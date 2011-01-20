@@ -51,33 +51,30 @@ send404 = function(res){
 
 server.listen(8080);
 
-var User = require('./lib/user.js').User;
+// Is this the proper notation?
+var User = require('./lib/user.js').User,
+    MessageProcessor = require('./lib/message_processor').MessageProcessor;
 
-var io = io.listen(server);
+var io = io.listen(server)
+  , clients = {};
+
 io.on('connection', function(client){
 
   // These happen on the initial connection of a client.
-  client.user = new User(client);
-  client.send({ connected: '' });
+  clients[client.sessionId] = client; // Add client to clients list
+  client.user = new User(client);     // Set up client.user
+  client.send({ connected: '' });     // Respond with 'connected' message
+
+  // Let everyone know about the connection
+  // TODO restrict this to a project
   client.broadcast({ announcement: client.user.ip + ' connected' });
 
   client.on('message', function(message){
-    // This is the start of the message processor.
-    if (message.type) {
-      if (message.type == 'name_change') {
-        var msg = { message: client.user.name + ' (' + client.user.ip + ') changed their display name to ' + message[message.type] };
-        client.user.name = message[message.type];
-        client.broadcast(msg);
-        client.send(msg);
-      }
-    } else {
-      var msg = { message: client.user.name + ' (' + client.user.ip + ') ' + message };
-      client.broadcast(msg);
-      client.send(msg);
-    }
+    new MessageProcessor(client, clients).process(message);
   });
 
   client.on('disconnect', function(){
+    // TODO restrict this to a project
     client.broadcast({ announcement: client.user.ip + ' disconnected' });
   });
 });
