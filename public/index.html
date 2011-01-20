@@ -1,25 +1,25 @@
 <!doctype html>
 <html>
-  <head>
-    <title>socket.io client test</title>
-    <script src="/jquery-1.4.4.min.js"></script>
-    <script src="/socket.io.js"></script>
-    <script src="/message_processor.js"></script>
-    <script src="/main.js"></script>
-    <link href="/style.css" type="text/css" rel="stylesheet" />
-  </head>
-  <body>
-    <p>
-      To test functionality, <strong>click anywhere</strong>. The click should send out its coordinates to other connected users.
-    </p>
+	<head>
+		<title>socket.io client test</title>
+		<script src="/jquery-1.4.4.min.js"></script>
+		<script src="/socket.io.js"></script>
+		<script src="/message_processor.js"></script>
+		<script src="/main.js"></script>
+		<link href="/style.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<p>
+			To test functionality, <strong>click anywhere</strong>. The click should send out its coordinates to other connected users.
+		</p>
 
-    <form id="name_change">
-      <label for="display_name">Display Name</label>
-      <input id="display_name" type="text" />
-      <input type="submit" value="Change" />
-    </form>
+		<form id="name_change">
+			<label for="display_name">Display Name</label>
+			<input id="display_name" type="text" />
+			<input type="submit" value="Change" />
+		</form>
 
-    <div id="flash"><p>Connecting...</p></div>
-  </body>
+		<div id="flash"><p>Connecting...</p></div>
+	</body>
 </html>
 
