@@ -18,29 +18,17 @@ server = http.createServer(function(req, res){
   // since sockets are primarily going to be used for passing messages.
   //
   // The simpler option is to serve static files from node.js without nginx.
-  send404(res);
+  // send404(res);
 
-/*
   switch (path){
     case '/':
       res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write('<h1>Welcome. Try the <a href="/chat.html">chat</a> example.</h1>');
+      res.write('Look at my pokemans!');
       res.end();
       break;
-    // Obviously this is unacceptable as a way to serve static files.
-    case '/example.js':
-    case '/example.htm':
-      fs.readFile(__dirname + path, function(err, data){
-        if (err) return send404(res);
-        res.writeHead(200, {'Content-Type': path == 'example.js' ? 'text/javascript' : 'text/html'})
-        res.write(data, 'utf8');
-        res.end();
-      });
-      break;
-      
     default: send404(res);
   }
-*/
+
 }),
 
 send404 = function(res){
