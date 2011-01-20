@@ -18,29 +18,17 @@ server = http.createServer(function(req, res){
   // since sockets are primarily going to be used for passing messages.
   //
   // The simpler option is to serve static files from node.js without nginx.
-  send404(res);
+  // send404(res);
 
-/*
   switch (path){
     case '/':
       res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write('<h1>Welcome. Try the <a href="/chat.html">chat</a> example.</h1>');
+      res.write('Look at my pokemans!');
       res.end();
       break;
-    // Obviously this is unacceptable as a way to serve static files.
-    case '/example.js':
-    case '/example.htm':
-      fs.readFile(__dirname + path, function(err, data){
-        if (err) return send404(res);
-        res.writeHead(200, {'Content-Type': path == 'example.js' ? 'text/javascript' : 'text/html'})
-        res.write(data, 'utf8');
-        res.end();
-      });
-      break;
-      
     default: send404(res);
   }
-*/
+
 }),
 
 send404 = function(res){
@@ -52,33 +40,3 @@ send404 = function(res){
 server.listen(8080);
 
 var User = require('./lib/user.js').User;
-
-var io = io.listen(server);
-io.on('connection', function(client){
-
-  // These happen on the initial connection of a client.
-  client.user = new User(client);
-  client.send({ connected: '' });
-  client.broadcast({ announcement: client.user.ip + ' connected' });
-
-  client.on('message', function(message){
-    // This is the start of the message processor.
-    if (message.type) {
-      if (message.type == 'name_change') {
-        var msg = { message: client.user.name + ' (' + client.user.ip + ') changed their display name to ' + message[message.type] };
-        client.user.name = message[message.type];
-        client.broadcast(msg);
-        client.send(msg);
-      }
-    } else {
-      var msg = { message: client.user.name + ' (' + client.user.ip + ') ' + message };
-      client.broadcast(msg);
-      client.send(msg);
-    }
-  });
-
-  client.on('disconnect', function(){
-    client.broadcast({ announcement: client.user.ip + ' disconnected' });
-  });
-});
-
