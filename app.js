@@ -62,9 +62,19 @@ io.on('connection', function(client){
   client.broadcast({ announcement: client.user.ip + ' connected' });
 
   client.on('message', function(message){
-    var msg = { message: [client.user.ip, message] };
-    client.broadcast(msg);
-    client.send(msg);
+    // This is the start of the message processor.
+    if (message.type) {
+      if (message.type == 'name_change') {
+        var msg = { message: client.user.name + ' (' + client.user.ip + ') changed their display name to ' + message[message.type] };
+        client.user.name = message[message.type];
+        client.broadcast(msg);
+        client.send(msg);
+      }
+    } else {
+      var msg = { message: client.user.name + ' (' + client.user.ip + ') ' + message };
+      client.broadcast(msg);
+      client.send(msg);
+    }
   });
 
   client.on('disconnect', function(){
