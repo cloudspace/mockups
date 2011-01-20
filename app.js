@@ -51,7 +51,7 @@ io.on('connection', function(client){
   client.broadcast({ announcement: client.user.ip + ' connected' });
 
   client.on('message', function(message){
-    new MessageProcessor(client, clients).process(message);
+    MessageProcessor.process(client, message);
   });
 
   client.on('disconnect', function(){
