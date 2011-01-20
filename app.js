@@ -4,6 +4,11 @@ var http = require('http')
   , io = require('socket.io')
   , sys = require(process.binding('natives').util ? 'util' : 'sys')
   , server;
+
+exports.sys = sys;
+exports.fs   = fs;
+
+
     
 server = http.createServer(function(req, res){
   var path = url.parse(req.url).pathname;
@@ -46,22 +51,24 @@ send404 = function(res){
 
 server.listen(8080);
 
-var io = io.listen(server);
-  
-io.on('connection', function(client){
-  sys.puts(client);
+var User = require('./lib/user.js').User;
 
+var io = io.listen(server);
+io.on('connection', function(client){
+
+  // These happen on the initial connection of a client.
+  client.user = new User(client);
   client.send({ connected: '' });
-  client.broadcast({ announcement: client.sessionId + ' connected' });
-  
+  client.broadcast({ announcement: client.user.ip + ' connected' });
+
   client.on('message', function(message){
-    var msg = { message: [client.sessionId, message] };
+    var msg = { message: [client.user.ip, message] };
     client.broadcast(msg);
     client.send(msg);
   });
 
   client.on('disconnect', function(){
-    client.broadcast({ announcement: client.sessionId + ' disconnected' });
+    client.broadcast({ announcement: client.user.ip + ' disconnected' });
   });
 });
 
