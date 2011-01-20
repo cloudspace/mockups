@@ -13,13 +13,6 @@ exports.fs   = fs;
 server = http.createServer(function(req, res){
   var path = url.parse(req.url).pathname;
 
-  // Send 404 because nginx will handle requests for actual urls.
-  // TODO It would be nice if we could decouple the 'url' requirement in the future,
-  // since sockets are primarily going to be used for passing messages.
-  //
-  // The simpler option is to serve static files from node.js without nginx.
-  // send404(res);
-
   switch (path){
     case '/':
       res.writeHead(200, {'Content-Type': 'text/html'});
