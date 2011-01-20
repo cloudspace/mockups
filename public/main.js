@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 	// Seed certain global variables.
 	// TODO move to User
-	display_name = '';
+	display_name = 'Anonymous';
 
 	socket.connect();
 	socket.on('message', function(obj) { MessageProcessor.process(obj); });
