@@ -48,7 +48,7 @@ function load_hash(hash) {
 		}
 	} else {
 		project = new Project();
-		// Create a new Project;
+		project.create();
 		// so explicitly initialize the new Project in addition to resetting.
 	}
 }
