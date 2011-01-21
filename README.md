@@ -16,29 +16,29 @@ Be sure to adjust settings before starting the box, under network settings, set 
 
 #### Basic package installation
 
-SSH into your virtual box and these commands should probably be run as root.
+SSH into your virtual box.
 
-    apt-get update
-    apt-get install build-essential libssl-dev openssl curl nginx -y
+    sudo apt-get update
+    sudo apt-get install build-essential libssl-dev openssl curl nginx dkms -y
 
 #### Install node.js
 
 Download the newest stable version of node.js (v0.2.6 as of 2011-01-19), unpack, and install it:
 
-    cd /root
+    cd /tmp
     wget http://nodejs.org/dist/node-v0.2.6.tar.gz
     tar -xvzf node-v0.2.6.tar.gz
     cd node-v0.2.6
     ./configure
     make
-    make install
+    sudo make install
 
-Obviously, this will create it in the /root folder. Use your own discretion.
 
 #### Install npm, Socket.IO
 
-    curl http://npmjs.org/install.sh | sh
-    npm install socket.io@0.6.8
+    cd /tmp
+    curl http://npmjs.org/install.sh | sudo sh
+    sudo npm install socket.io@0.6.8
 
 **Note:** there is a potential 'gotcha' for updated versions of Socket.IO (we use 0.6.8). The repository contains a public/socket.io.js file, which is the client-side code to get Socket.IO working. It was copied directly from the Socket.IO library. That file can change for newer versions of Socket.IO, so we would have to copy the socket.io.js file from the library into our repository when picking a newer version. *We mainly want nginx serving static content which is why we don't use node.js + Socket.IO's default behavior of managing the socket.io.js file.*
 
@@ -59,20 +59,20 @@ Go into the /srv folder and clone the repo
 Nginx should already be installed (from the earlier apt-get). Just be sure to set up the server. For example, set up the following location block in /etc/nginx/sites-enabled/default:
 
     location / { 
-      root   /path/to/this/repository/public;
+      root   /srv/Mockups/public;
       index  index.html index.htm;
     }
 
 Restart nginx
 
-    service nginx restart
+    sudo service nginx restart
 
 #### Start the nodejs application
 
 Run the following commands:
 
     cd /srv/Mockups
-    node app.js
+    sudo node app.js
 
 #### Update Your Local Hosts File
 
