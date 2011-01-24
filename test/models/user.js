@@ -48,4 +48,27 @@ it("#assign_project: fails and returns false when not passed an id", function() 
 	assert.equal(client.user.project_id, undefined);
 });
 
+it("#subscribe: subscribes a User to a channel", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	client.subscribe(1);
+	assert.equal(client.channels.indexOf(1), 0);
+	//assert.equal(client.user.assign_project(), false);
+});
+// unsubscribe
+// unsubscribe_all
+// publish
+// broadcast_to_project
+
+
+
+
+
+
+
+
+
+
+
 
