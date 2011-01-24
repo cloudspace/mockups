@@ -7,7 +7,7 @@ var http = require('http')
 
 exports.sys			 = sys;
 exports.fs			 = fs;
-exports.projects = {};
+exports.channels = {};
 
 server = http.createServer(function(req, res){
 	var path = url.parse(req.url).pathname;
@@ -33,7 +33,7 @@ server.listen(8080);
 // Is this the proper notation?
 var User = require('./lib/user.js').User
   , MessageProcessor = require('./lib/message_processor').MessageProcessor
-  , Project = require('./lib/project.js').Project
+  , Channel = require('./lib/channel.js').Channel
   , io = io.listen(server)
   , clients = {};
 
