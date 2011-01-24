@@ -5,6 +5,11 @@
 
 The goal of the mockup creator is to serve a way of creating and editing mockups collaboratively. The server should run off of node.js, and data is stored with mongodb. Static files are served in nginx in our default setup.
   
+## Tests
+
+To run unit tests, execute ./specs.sh. 
+
+Our test coverage should be improved to run on a CI server. Unit tests are currently using node's native Assert module.
 
 ## Installation
 
