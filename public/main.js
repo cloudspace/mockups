@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
 	socket = new io.Socket(null, {port: 8080, rememberTransport: false});
 
