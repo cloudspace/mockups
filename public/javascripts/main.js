@@ -8,6 +8,17 @@ $(document).ready(function(){
 
 	socket.connect();
 	socket.on('message', function(obj) { MessageProcessor.process(obj); });
+	socket.on('disconnect', function(){
+		$("#disconnected").fancybox({
+			'width'       			: '38%',
+			'height'      			: '40%',
+			'autoScale'   			: false,
+			'enableEscapeButton': false,
+			'showCloseButton'		: false,
+			'hideOnOverlayClick': false,
+			'hideOnContentClick': false
+		}).trigger("click");
+	});
 
 	$.history.init(load_hash);
 
