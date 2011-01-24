@@ -57,4 +57,26 @@ it("#process/update_name: does not update when nil", function() {
 	assert.equal(client.user.name, 'Anonymous');
 });
 
+it("#process/create_project: adds user to 'new' project", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	MessageProcessor.process(client, { create_project: true });
+	assert.equal(client.user.project_id, 'new');
+});
+
+// TODO add tests that depend on mongodb when it's added
+// These may need to be specced out further, and they will likely belong to a lib of their own.
+//it("#process/find_project: returns a project when successfully found")
+//it("#process/find_project: throws (or does not throw) an error if a project does not exist")
+
+it("#process/find_project: adds user to an existing project", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	MessageProcessor.process(client, { find_project: { id: 'test' } });
+	assert.equal(client.user.project_id, 'test');
+});
+
+
 
