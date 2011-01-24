@@ -1,17 +1,60 @@
 var
-	assert 	= require('assert'),
-	Project = require('../../lib/message_processor').MessageProcessor,
-	//User		= require('../../lib/user').User,
-  it      = require('../test_helper').it;
+	assert           = require('assert'),
+	MessageProcessor = require('../../lib/message_processor').MessageProcessor,
+	User             = require('../../lib/user').User,
+	it               = require('../test_helper').it;
 
-var
-	client	= { connection: { remoteAddress: '127.0.0.1' },sessionId:"1a" },
-	user		= new User(client);
+console.log("MessageProcessor");
 
-console.log("Message Processor");
+it("#process: routes methods with the appropriate data", function() {
+	// TODO DRY these up.
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
 
-it("#update_name:  sends out an announcement to the the current user and all other users of the name change", function() {
-	assert.equal( MessageProcessor.update_name(user.client, {new_name:"frank"}), '' );
+	MessageProcessor.test = function(client, data){ client.zero = data; }; // Stub
+	MessageProcessor.process(client, { test: 0 });
+	assert.equal(client.zero, 0);
+});
+
+it("#process: catches unknown methods", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	assert.doesNotThrow(function(){
+		MessageProcessor.process(client, { test2: 0 })
+	});
+});
+
+it("#process/update_name: changes a user's name", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	MessageProcessor.process(client, { update_name: { new_name: 'Doug' } });
+	assert.equal(client.user.name, 'Doug');
+});
+
+it("#process/update_name: strips html", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	MessageProcessor.process(client, { update_name: { new_name: 'Doug<>' } });
+	assert.equal(client.user.name, 'Doug');
+});
+
+it("#process/update_name: strips whitespace", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	MessageProcessor.process(client, { update_name: { new_name: '   Doug   ' } });
+	assert.equal(client.user.name, 'Doug');
+});
+
+it("#process/update_name: does not update when nil", function() {
+	var client  = { connection: { remoteAddress: '127.0.0.1' }, sessionId: "1a", send: function(){} };
+	client.user = new User(client);
+
+	MessageProcessor.process(client, { update_name: { new_name: null } });
+	assert.equal(client.user.name, 'Anonymous');
 });
 
 
