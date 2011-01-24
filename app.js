@@ -53,7 +53,7 @@ io.on('connection', function(client){
 	});
 
 	client.on('disconnect', function(){
-		client.user.remove_from_project();
+		client.user.remove_channels();
 		// TODO restrict this to a project
 		client.broadcast({ announcement: client.user.ip + ' disconnected' });
 	});
