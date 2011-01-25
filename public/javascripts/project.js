@@ -5,12 +5,12 @@ Project = function () {
 }
 
 Project.prototype.create = function() {
-	socket.send({ create_project: {} });
+	env.socket.send({ create_project: {} });
 };
 
 Project.prototype.load = function(id) {
 	this.id = id;
-	socket.send({ find_project: { id: id } });
+	env.socket.send({ find_project: { id: id } });
 	// send message to node w/project info
 	// NODE should authenticate and return response with actual setting of project
 	// response should be loaded into this.json

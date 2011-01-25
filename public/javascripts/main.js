@@ -1,37 +1,23 @@
 $(document).ready(function(){
-	socket = new io.Socket(null, {port: 8080, rememberTransport: false});
+	env = new Environment();
+	env.connect();
 
 	// Seed certain global variables.
 	// TODO move to User
-	display_name = 'Anonymous';
-	project = new Project();
 
-	socket.connect();
-	socket.on('message', function(obj) { MessageProcessor.process(obj); });
-	socket.on('disconnect', function(){
-		$("#disconnected").fancybox({
-			'width'       			: '38%',
-			'height'      			: '40%',
-			'autoScale'   			: false,
-			'enableEscapeButton': false,
-			'showCloseButton'		: false,
-			'hideOnOverlayClick': false,
-			'hideOnContentClick': false
-		}).trigger("click");
-	});
 
 	$.history.init(load_hash);
 
 	// This is purely for sending messages in the app's early stages.
 	// We don't really want to send messages for mouse clicks.
 	$(window).click(function(e){
-		socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
+		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
 	});
 
 	// Handle user changing their display name.
 	// TODO move to User
 	$('#name_change').submit(function(){
-		socket.send({ update_name: { new_name: $('#display_name').val() } });
+		env.socket.send({ update_name: { new_name: $('#display_name').val() } });
 		$('#display_name').blur();
 		return false;
 	});

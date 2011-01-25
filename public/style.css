@@ -1,4 +1,5 @@
-
+.status{width:250px;height:60px;overflow:auto;text-align:center;}
+.status .reconnect, .status .countdown{display:block;}
 #flash { height: 300px; overflow: auto; width: 800px; border: 1px solid #eee; font: 13px "Verdana", sans-serif; }
 #flash p { padding: 8px; margin: 0; }
 #flash p:nth-child(odd) { background: #F6F6F6; }
