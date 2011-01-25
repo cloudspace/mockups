@@ -8,9 +8,9 @@ var User = require('../lib/user').User;
 exports.it = function(description, test) {
 	try {
 		test();
-		sys.puts(" PASSED: " + description);
+		sys.puts(" PASS: " + description);
 	} catch (e) {
-		sys.puts(" FAILURE: " + description);
+		sys.puts(" FAIL: " + description);
 		sys.puts("  " + e.stack);	
 		sys.puts("\n");
 	}
