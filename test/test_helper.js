@@ -1,13 +1,17 @@
-var sys = require('sys')
-var assert = require('assert')
+
+exports.clients = [];
+
+var sys = require('sys');
+var assert = require('assert');
+var User = require('../lib/user').User;
 
 exports.it = function(description, test) {
 	try {
 		test();
-		sys.puts(" PASSED: " + description);
+		sys.puts(" PASS: " + description);
 	} catch (e) {
-		sys.puts(" FAILURE: " + description);
-		sys.puts("  " + e.stack);	
+		sys.puts(" FAIL: " + description);
+		sys.puts(" ~ " + e.stack);	
 		sys.puts("\n");
 	}
 }
@@ -16,10 +20,13 @@ var Client = function(data) {
 	if (!data) data = { remoteAddress: '127.0.0.1', sessionId: rand(10000) }
 	this.connection = { remoteAddress: data.remoteAddress };
 	this.sessionId = data.sessionId;
+	this.user = new User(this);
+	exports.clients.push(this);
 };
 	
 Client.prototype.send = function(data) {
-	return typeof data == 'object' ? JSON.stringify(data): data;
+	this.sent = data; // TODO There should be a better way to do this.
+	return typeof data == 'object' ? JSON.stringify(data) : data;
 }
 
 function rand(ceiling) {
@@ -27,4 +34,5 @@ function rand(ceiling) {
 }
 
 exports.Client = Client;
+
 
