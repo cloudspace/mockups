@@ -17,7 +17,7 @@ it("#handle: returns a user's name and IP address", function() {
 	var client = new Client;
 
 	client.user.name = 'Frank';
-	assert.equal(client.user.handle(), 'Frankf (127.0.0.1) ');
+	assert.equal(client.user.handle(), 'Frank (127.0.0.1) ');
 });
 
 it("#assign_project: removes a user's current project and assigns one", function() {
