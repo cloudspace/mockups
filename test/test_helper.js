@@ -11,7 +11,7 @@ exports.it = function(description, test) {
 		sys.puts(" PASS: " + description);
 	} catch (e) {
 		sys.puts(" FAIL: " + description);
-		sys.puts("  " + e.stack);	
+		sys.puts(" ~ " + e.stack);	
 		sys.puts("\n");
 	}
 }

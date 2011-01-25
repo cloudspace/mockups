@@ -10,7 +10,7 @@ for f in $FILES
 do
   # Run tests on the file and append data to results
   # TODO output files by class name for junit 'classname'
-	/usr/bin/env node $f $@ | tee -a test/results
+  /usr/bin/env node $f $@ | tr '\n' ' ' | sed -r 's~ (PASS|FAIL):~\n \1: ~g' | tee -a test/results
 done
 
 pass=`grep 'PASS:' test/results | wc -l`
@@ -31,6 +31,8 @@ eof
 #    <![CDATA[
 #]]>
 
-grep -h 'PASS' test/results | sed -r 's~^( PASS: )(.*)$~<testcase classname="Mockup Creator" name="\2"></testcase>~' >> test/results.xml
+grep -h ' PASS: ' test/results | sed -r 's~^( PASS: )(.*)$~<testcase classname="Mockup Creator" name="\2"></testcase>~' >> test/results.xml
+grep -h ' FAIL: ' test/results | sed -r 's~^( FAIL: )([^\~]*)\~(.*)$~<testcase classname="Mockup Creator" name="\2"><failure message="\2" type="failed">\n<![CDATA[\n\3\n]]>\n</failure></testcase>~' >> test/results.xml
+
 echo '</testsuite>' >> test/results.xml
 
