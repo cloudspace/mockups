@@ -15,10 +15,10 @@ MessageProcessor = {
 	},
 
 	announcement: function(data){
-		$('#flash').append('<p><strong>' + data + '</strong></p>').scrollTop(10000000);
+		$('#flash').html('<p><strong>' + data + '</strong></p>');
 	},
 
 	message: function(data){
-		$('#flash').append('<p>' + data + '</p>').scrollTop(10000000);
+		$('#flash').html('<p>' + data + '</p>');
 	}
 };
