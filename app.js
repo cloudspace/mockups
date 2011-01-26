@@ -1,14 +1,27 @@
+
+require.paths.unshift(".");
 var http = require('http')
+  , path = require('path')
   , url = require('url')
   , fs = require('fs')
   , io = require('socket.io')
   , sys = require(process.binding('natives').util ? 'util' : 'sys')
   , server
-  , clients = [];
+  , clients = []
+  , Db = require('mongodb').Db
+  , Server = require('mongodb').Server;
 
 exports.sys			 = sys;
 exports.fs			 = fs;
 exports.clients  = clients;
+exports.db       = new Db('testing_db', new Server("127.0.0.1", 27017, {}));
+
+var Project = require('./lib/project').Project;
+exports.Project = Project;
+
+var User = require('./lib/user').User
+  , MessageProcessor = require('./lib/message_processor').MessageProcessor;
+
 
 server = http.createServer(function(req, res){
 	var path = url.parse(req.url).pathname;
@@ -31,10 +44,7 @@ send404 = function(res){
 
 server.listen(8080);
 
-// Is this the proper notation?
-var User = require('./lib/user.js').User
-  , MessageProcessor = require('./lib/message_processor').MessageProcessor
-  , io = io.listen(server);
+var io = io.listen(server);
 
 io.on('connection', function(client){
 

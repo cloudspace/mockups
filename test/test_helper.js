@@ -4,6 +4,7 @@ exports.clients = [];
 var sys = require('sys');
 var assert = require('assert');
 var User = require('../lib/user').User;
+var Project = require('../lib/project').Project;
 
 exports.it = function(description, test) {
 	try {
@@ -34,5 +35,6 @@ function rand(ceiling) {
 }
 
 exports.Client = Client;
+exports.Project = Project;
 
 
