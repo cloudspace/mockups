@@ -29,7 +29,12 @@
 			<div id="disconnected"> 
 				<div class='status'> 
 					<strong>Your connection has been lost.</strong>
-					<span class='countdown'>Next connection attempt in <span class='time_til_reconnect'>&nbsp;</span>s.</span>
+					<div class='countdown'>
+						Next connection attempt in <span class='wait_time'>&nbsp;</span>s.
+						<form onsubmit='env.initialize_reconnect();return false;'>
+							<input type="submit" value="Reconnect Now" />
+						</form>
+					</div>
 					<span class='reconnect'>Attempting to reconnect.</span>
 				</div>
 			</div>

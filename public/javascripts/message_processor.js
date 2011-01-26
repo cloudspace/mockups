@@ -6,7 +6,7 @@ MessageProcessor = {
 	},
 
 	update_name: function(data) {
-		display_name = data.new_name;
+		env.display_name = data.new_name;
 		reset_display_name();
 	},
 

@@ -2,11 +2,6 @@ $(document).ready(function(){
 	env = new Environment();
 	env.connect();
 
-	// Seed certain global variables.
-	// TODO move to User
-
-
-	$.history.init(load_hash);
 
 	// This is purely for sending messages in the app's early stages.
 	// We don't really want to send messages for mouse clicks.
@@ -32,18 +27,18 @@ $(document).ready(function(){
 
 // TODO move to User
 function reset_display_name() {
-	$('#display_name').val(display_name);
+	$('#display_name').val(env.display_name);
 }
 
 function load_hash(hash) {
 	if (hash) {
 		hash = hash.split('/');
-		if (project.id != hash[0]) {
-			project.load(hash[0]);
+		if (env.project.id != hash[0]) {
+			env.project.load(hash[0]);
 		}
 	} else {
-		project = new Project();
-		project.create();
+		env.project = new Project();
+		env.project.create();
 		// so explicitly initialize the new Project in addition to resetting.
 	}
 }

@@ -1,59 +1,83 @@
 Environment = function(){
-	that = this;
-	that.socket;
-	that.reset_time = 10000;
-	that.project;
+	this.socket;
+	this.project;
 };
 
 Environment.prototype.connect = function(){
-	that.socket = new io.Socket(null, {port: 8080, rememberTransport: false});
-	that.socket.connect();
+	var that = this;
+	this.socket = new io.Socket(null, {port: 8080, rememberTransport: false, tryTransportsOnConnectTimeout: false});
+	this.socket.connect();
 	
-	that.display_name = 'Anonymous';
-	that.project = new Project();
-	
-	that.socket.on('message', function(obj) { MessageProcessor.process(obj); });
-	that.socket.on('connect',function(obj) { $.fancybox.close(); that.reset_time = 10000;});
-	that.socket.on('disconnect', function(){
+	this.socket.on('message', function(obj) { MessageProcessor.process(obj); });
+	this.socket.on('connect',function(obj) { 
+		$.fancybox.close(); 
+		that.display_name = 'Anonymous';
+		reset_display_name();
+		$.history.init(load_hash);
+	});
+	this.socket.on('disconnect', function(){
 		$("#disconnected").fancybox({
-			'autoScale'   			: false,
+			'autoScale'         : false,
 			'enableEscapeButton': false,
-			'showCloseButton'		: false,
+			'showCloseButton'   : false,
 			'hideOnOverlayClick': false,
 			'hideOnContentClick': false,
-			'content'						: $("#disconnected").html()
+			'content'           : $("#disconnected").html()
 		}).trigger("click");
-		that.attempt_reconnect();
-		that.countdown();
-		});
+		that.initialize_reconnect.call(that);
+	});
 	return true;
 };
 
+Environment.prototype.initialize_reconnect = function(){
+	if (this.show_countdown_timer) clearTimeout(this.show_countdown_timer);
+	if (this.countdown_timer) clearTimeout(this.countdown_timer);
+	if (this.reconnect_timer) clearTimeout(this.reconnect_timer);
+	this.reset_time = 4000;
+	this.attempt_reconnect.call(this);
+	this.countdown.call(this);
+}
+
 Environment.prototype.attempt_reconnect = function(){
-	if(that.socket.connected == false){ 	
-		setTimeout('that.attempt_reconnect()', that.reset_time);
-		$('#fancybox-content .time_til_reconnect').text(that.reset_time/1000);
-		$('#fancybox-content .countdown').hide();
-		$('#fancybox-content .reconnect').show();
-		setTimeout('that.update_visible_message()',10000);
-		that.reset_time = that.reset_time * 2 < 40000 ? that.reset_time * 2 : 40000;
-	}else{
-		return;
-	}
-	that.connect();
+	if(this.socket.connected == true) return;
+	var that = this;
+	
+	this.reconnect_timer = setTimeout(function(){
+		that.attempt_reconnect.call(that);
+	}, this.reset_time + 2000);
+
+	this.hide_countdown();
+	this.show_countdown_timer = setTimeout(function(){
+		that.show_countdown.call(that);
+	}, 2000);
+
+	this.socket.connect();
 };
 
-Environment.prototype.update_visible_message = function(){
+Environment.prototype.show_countdown = function(){
+console.log('countdown show');
+	$('#fancybox-content .wait_time').text((this.reset_time + 1000)/1000);
 	$('#fancybox-content .reconnect').hide();
+	this.reset_time = this.reset_time * 2 < 29000 ? this.reset_time * 2 : 29000;
 	$('#fancybox-content .countdown').show();
 };
 
+Environment.prototype.hide_countdown = function(){
+console.log('countdown hide');
+	$('#fancybox-content .reconnect').show();
+	$('#fancybox-content .countdown').hide();
+};
+
 Environment.prototype.countdown = function(){
-	var time_span = $("#fancybox-content .time_til_reconnect") 
+	if(this.socket.connected == true) return;
+	var time_span = $("#fancybox-content .wait_time"), 
+			that = this,
 			time = parseInt(time_span.text());
-	if(time > 0) {
-		time_span.text(--time);
-		setTimeout('that.countdown()',1000);
-	}
+	
+	time = time > 0? time - 1: 0;
+	time_span.text(time);
+	this.countdown_timer = setTimeout(function(){
+		that.countdown.call(that);
+	},1000);
 };
 
