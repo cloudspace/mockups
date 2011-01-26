@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Mock It Out</title>
+		<link rel="icon" href="/cloudspacefavicon.png" type="image/png">	
 		<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox-1.3.2.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
 		<script src="/javascripts/jquery-1.4.4.min.js"></script>
@@ -14,14 +15,50 @@
 		<script src="/javascripts/main.js"></script>
 	</head>
 	<body>
-		<p>
-			To test functionality, <strong>click anywhere</strong>. The click should send out its coordinates to other connected users.
-		</p>
-		<form id="name_change">
-			<label for="display_name">Display Name</label>
-			<input id="display_name" type="text" value="Anonymous" />
-			<input type="submit" value="Change" />
-		</form>
+	<div id="mockupCreator">
+    <div id="header">
+      <div id="logo">
+        <h1>Cloudspace Mockup Creator</h1> 
+      </div>
+        <div id="userinfo"> 
+          Welcome 
+          <span class="handle" >		
+						<form id="name_change">
+							<label style='display:none'for="display_name">Display Name</label>
+							<input id="display_name" type="text" value="Anonymous" />
+						</form>
+					</span>
+        </div> 
+        <div id="my_projects">
+          <div class="project">
+            <p><a class="new_project_url" href="http://cloudspaceplanner.com/projects/new_project_from_mockup">Add a New Project</a></p>
+          </div>
+        </div>
+      </div>
+        <div class="mockup_wrapper">
+          <div id="sideBar">
+            <ul><li>&nbsp;</li></ul>
+          </div>
+          <div id="tools">
+            <select class="selecturl">
+              <optgroup label="Sitemap">
+                  <option>1</option>
+                  <option>1</option>
+              </optgroup>
+            </select>
+						<ul>
+							<li id="edit_sitemap">
+								<a class="new_sitemap" href="http://cloudspaceplanner.com/projects/13/pages/96/edit_from_mockup"><img src='/images/settings.png' alt='Create New Sitemap' title='Create New Sitemap'/></a> 
+							</li>
+							<li id="new_sitemap">
+								<a class="edit_sitemap" href="http://cloudspaceplanner.com/projects/13/pages/new_from_mockup"><img src='/images/plus.png' alt='Create New Sitemap' title='Create New Sitemap'/></a> 
+							</li>
+						</ul>
+          </div>
+          <div id="mockup"></div>
+        </div>
+      </div>
+  </div>
 
 		<div id="flash"><p>Connecting...</p></div>
 
