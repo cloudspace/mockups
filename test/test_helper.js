@@ -1,7 +1,10 @@
+var sys = require('sys')
+  , Db = require('mongodb').Db
+  , Server = require('mongodb').Server;
 
-exports.clients = [];
+exports.clients  = [];
+exports.db       = new Db('testing_db', new Server("127.0.0.1", 27017, {}));
 
-var sys = require('sys');
 var assert = require('assert');
 var User = require('../lib/user').User;
 var Project = require('../lib/project').Project;
@@ -35,6 +38,5 @@ function rand(ceiling) {
 }
 
 exports.Client = Client;
-exports.Project = Project;
 
 

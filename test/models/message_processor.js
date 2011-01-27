@@ -1,8 +1,8 @@
 var
-	assert           = require('assert'),
-	MessageProcessor = require('../../lib/message_processor').MessageProcessor,
-	it               = require('../test_helper').it,
-	Client           = require('../test_helper').Client;
+  it               = require('../test_helper').it,
+  assert           = require('assert'),
+  Client           = require('../test_helper').Client,
+  MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
 console.log("MessageProcessor");
 

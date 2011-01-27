@@ -16,12 +16,9 @@ exports.fs			 = fs;
 exports.clients  = clients;
 exports.db       = new Db('testing_db', new Server("127.0.0.1", 27017, {}));
 
-var Project = require('./lib/project').Project;
-exports.Project = Project;
-
 var User = require('./lib/user').User
+  , Project = require('./lib/project').Project
   , MessageProcessor = require('./lib/message_processor').MessageProcessor;
-
 
 server = http.createServer(function(req, res){
 	var path = url.parse(req.url).pathname;
