@@ -77,7 +77,6 @@
 #my_projects p a{ color:#636363; }
 #my_projects .project:hover{ background-color:#B3D4FF; }
 
-/*****sidebar end*****/
 #new_sitemap a, #edit_sitemap a{ display:block; }
 #new_sitemap a, #edit_sitemap a{ padding-top:2px; padding-left:2px; }
 #new_sitemap a img{ cursor:pointer; }
@@ -137,12 +136,15 @@
 .mockupToolbox li.del { background-color:#800000; color:#fff; }
 
 #dialog{ display:none; }
+/****** sidebar begin ******/
+
+
+
 
 .ui-draggable .ui-dialog-titlebar{ padding: 4px; }
-  .mockup_wrapper{background:#dbdbdb url('/images/sidebarbg.png');}
-	#sideBar {  position:absolute; left:0; top:35px; width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
+  .mockup_wrapper{}
+	#sideBar { background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
   #sideBar ol, #sideBar ul{margin:0;}
-  #sideBar span{  left:0; top:35px; width:20%; }
   #sideBar #trest .sidebar_header>a,
   #sideBar #trest .design>a{  height:24px; background:#dbdbdb url('/images/blackbar.png'); line-height:24px; color:#d4d4d4; padding-left:5px; text-decoration:none;display:block;}
   #sideBar #trest .sidebar_header>a span,
@@ -152,13 +154,12 @@
   #sideBar #trest .expand .heading,
   #sideBar .menu>li>div>h2{color:#717171;text-decoration:none;text-indent:none;}
   #sideBar .menu>li>div {margin-left: 5px; }
-  #sideBar #applyCssPaneButton {display:block; width: 100px;margin-top:10px; border: 1px solid black; padding: 2px; -moz-border-radius: 10px; background: #9F9F9F; -webkit-border-radius:10px; text-shadow: none;color:black;text-decoration:none;-moz-box-shadow:1px 1px 1px #1F1F1F;box-shadow:1px 1px 1px #1F1F1F;-webkit-box-shadow:1px 1px 1px #1F1F1F;text-align:center;}
   #sideBar .toggleelement img{ padding-right:5px;}
   #sideBar ul{padding:0;line-height:24px;}
   #sideBar li { display:block;}
   #sideBar #trest .expand .expand{margin-top: 10px;}
   #sideBar .templateLabel{margin-left:20px; padding-left:20px;line-height:24px;}
-  #sideBar #trest ul li ul>li:hover {
+  #sideBar  ul>li:hover {
       background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(20,84,171)), color-stop(0.95, rgb(29,143,213)), color-stop(1, rgb(255,255,255)) );
       background: -moz-linear-gradient(center bottom, rgb(20,84,171) 0%, rgb(29,143,213) 90%, rgb(255,255,255) 100%);
       color:#fff; text-shadow: #000 0px 1px 1px;
