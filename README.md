@@ -39,11 +39,13 @@ Download the newest stable version of node.js (v0.2.6 as of 2011-01-19), unpack,
     sudo make install
 
 
-#### Install npm, Socket.IO
+#### Install npm and modules
 
     cd /tmp
     curl http://npmjs.org/install.sh | sudo sh
     sudo npm install socket.io@0.6.8
+    sudo npm install nodeunit@0.5.0
+    sudo npm install mongodb@0.7.9
 
 **Note:** there is a potential 'gotcha' for updated versions of Socket.IO (we use 0.6.8). The repository contains a public/socket.io.js file, which is the client-side code to get Socket.IO working. It was copied directly from the Socket.IO library. That file can change for newer versions of Socket.IO, so we would have to copy the socket.io.js file from the library into our repository when picking a newer version. *We mainly want nginx serving static content which is why we don't use node.js + Socket.IO's default behavior of managing the socket.io.js file.*
 
@@ -82,7 +84,20 @@ Run the following commands:
 #### Update Your Local Hosts File
 
 On your computer update your hosts file to add an entry matching the IP of your vbox to a url that you will use for development, such as mockups.dev
-#### TODO
 
-Add process for mongodb.
+#### MongoDB installation
+
+    sudo cd /tmp
+    sudo wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-1.6.5.tgz
+    sudo tar -xvzf mongodb-linux-x86_64-1.6.5.tgz
+    sudo cp mongodb-linux-x86_64-1.6.5/bin/* /usr/local/bin/
+    sudo mkdir -p /data/db
+
+#### Running MongoDB
+
+To run MongoDB:
+
+    mongod
+
+This will start the server (not as a daemon, logging to STDOUT) in your current terminal.
 
