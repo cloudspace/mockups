@@ -2,8 +2,9 @@ var sys = require('sys')
   , Db = require('mongodb').Db
   , Server = require('mongodb').Server;
 
-exports.clients  = [];
-exports.db       = new Db('testing_db', new Server("127.0.0.1", 27017, {}));
+var db = new Db('mockups_test', new Server("127.0.0.1", 27017, {}));
+exports.clients = [];
+exports.db      = db;
 
 var assert = require('assert');
 var User = require('../lib/user').User;
@@ -11,8 +12,13 @@ var Project = require('../lib/project').Project;
 
 exports.it = function(description, test) {
 	try {
-		test();
-		sys.puts(" PASS: " + description);
+		db.open(function(err, p_db) {
+			db.collection('projects', function(err, collection) {
+				//if (collection) collection.drop();
+				test();
+				sys.puts(" PASS: " + description);
+			}); 
+		});
 	} catch (e) {
 		sys.puts(" FAIL: " + description);
 		sys.puts(" ~ " + e.stack);	
