@@ -36,23 +36,6 @@ exports.process = testCase({
 		test.done();
 	},
 
-	"create_project: creates a new project": function(test) {
-		MessageProcessor.process(this.client, { create_project: true });
-
-		setTimeout(function() {
-			db.open(function(err, p_db) {
-				db.collection('projects', function(err, collection) {
-					collection.count(function(err, count) {
-						// If the count in our collection is 1,
-						// then a new project must have been created.
-						test.equals(count, 1);
-						test.done();
-					});
-				});
-			});
-		}, 10);
-	},
-
 	"update_name: changes a user's name": function(test) {
 		MessageProcessor.process(this.client, { update_name: { new_name: 'Doug' } });
 		test.equals(this.client.user.name, 'Doug');
@@ -77,22 +60,51 @@ exports.process = testCase({
 		test.done();
 	},
 
+	"create_project: creates a new project": function(test) {
+		MessageProcessor.process(this.client, { create_project: true });
+
+		setTimeout(function() {
+			db.open(function(err, p_db) {
+				db.collection('projects', function(err, collection) {
+					collection.count(function(err, count) {
+						// If the count in our collection is 1,
+						// then a new project must have been created.
+						test.equals(count, 1);
+						test.done();
+					});
+				});
+			});
+		}, 10);
+	},
+
+	"find_project: sends user an error message if project is not found": function(test) {
+		var that = this;
+		MessageProcessor.process(this.client, { find_project: { hash: '1' } });
+
+		setTimeout(function() {
+			test.notEqual(that.client.sent.error, undefined);
+			test.done();
+		}, 10);
+	},
+
+	"find_project: assigns user a project if it is found": function(test) {
+		var that = this;
+		db.open(function(err, p_db) {
+			db.collection('projects', function(err, collection) {
+				collection.insert({ hash: '1' }, function(err, docs) {
+
+					MessageProcessor.process(that.client, { find_project: { hash: '1' } });
+					setTimeout(function() {
+						test.notEqual(that.client.user.project_id, undefined);
+						test.done();
+					}, 10);
+
+				}); 
+			}); 
+		}); 
+	},
+
+
 });
-
-/*
-
-// TODO add tests that depend on mongodb when it's added
-// These may need to be specced out further, and they will likely belong to a lib of their own.
-//it("#process/find_project: returns a project when successfully found")
-//it("#process/find_project: throws (or does not throw) an error if a project does not exist")
-
-it("#process/find_project: adds user to an existing project", function() {
-	var client = new Client;
-
-	MessageProcessor.process(client, { find_project: { id: 'test' } });
-	assert.equal(client.user.project_id, 'test');
-});
-
-*/
 
 
