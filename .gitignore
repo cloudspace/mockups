@@ -1,2 +1,2 @@
 *.swp
-test/results*
+test/results/*.js.xml
