@@ -36,7 +36,7 @@
  #userinfo a{color:#454545; text-decoration:none; }
 
  #resizer { position:fixed; bottom:0; left:0px; background:url('/images/resizer.png') right; width:20%; text-align:right; height:24px; line-height:24px; }
- #mockup{ overflow: visible; background: #FFF;margin: 0 0 0 254px;position:relative;height:600px;}
+ #mockup{ overflow: visible; background: #FFF;margin: 0 0 0 254px;position:relative;}
  #canvas{ position: relative;height:100%; border-bottom: 1px solid; border-right: 1px solid; }
  #tools { background: url('/images/blackbar.png') top left; height:25px; line-height:25px; border-bottom:1px solid #000; color:#fff; margin-left:254px; }
  #tools .selecturl{margin: 3px 0 0 5px;float:left;}
@@ -79,7 +79,7 @@
 
 #new_sitemap a, #edit_sitemap a{ display:block; }
 #new_sitemap a, #edit_sitemap a{ padding-top:2px; padding-left:2px; }
-#new_sitemap a img{ cursor:pointer; }
+#tools a img{ cursor:pointer;border:none; }
 #edit_sitemap a{ color: #454545; text-decoration: none; }
 
 .horizontal_main{ -moz-box-shadow: 0 5px 5px black; -webkit-box-shadow: 0 5px 5px black; border: 1px solid black; display: inline; list-style-type: none; padding: 4px; }
@@ -143,51 +143,36 @@
 
 .ui-draggable .ui-dialog-titlebar{ padding: 4px; }
   .mockup_wrapper{}
-	#sideBar { background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
-  #sideBar ol, #sideBar ul{margin:0;}
-  #sideBar #trest .sidebar_header>a,
-  #sideBar #trest .design>a{  height:24px; background:#dbdbdb url('/images/blackbar.png'); line-height:24px; color:#d4d4d4; padding-left:5px; text-decoration:none;display:block;}
-  #sideBar #trest .sidebar_header>a span,
-  #sideBar #trest .design>a span{background:url('/images/menu.png') no-repeat 0 -409px; width:auto;padding-left:20px;}
-  #sideBar #trest .sidebar_header>a.active span,
-  #sideBar #trest .design>a.active span{background-position: 0 -269px;}
-  #sideBar #trest .expand .heading,
-  #sideBar .menu>li>div>h2{color:#717171;text-decoration:none;text-indent:none;}
-  #sideBar .menu>li>div {margin-left: 5px; }
-  #sideBar .toggleelement img{ padding-right:5px;}
-  #sideBar ul{padding:0;line-height:24px;}
-  #sideBar li { display:block;}
-  #sideBar #trest .expand .expand{margin-top: 10px;}
-  #sideBar .templateLabel{margin-left:20px; padding-left:20px;line-height:24px;}
-  #sideBar  ul>li:hover {
+	#sideBar { background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;float:left;}
+  #sideBar ol, #sideBar ul{margin:0;padding:0; line-height:24px;}
+	#sideBar ul li h3{margin:0; padding-left:10px;}
+	#sideBar ul li li{cursor:move;}
+	#sideBar ul li li a{margin-left:20px;padding-left:20px; display:block;}
+  #sideBar  ul>li>ul>li:hover {
       background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(20,84,171)), color-stop(0.95, rgb(29,143,213)), color-stop(1, rgb(255,255,255)) );
       background: -moz-linear-gradient(center bottom, rgb(20,84,171) 0%, rgb(29,143,213) 90%, rgb(255,255,255) 100%);
       color:#fff; text-shadow: #000 0px 1px 1px;
   }
-  #sideBar li img { padding-right:10px; vertical-align:baseline;}
-#sideBar .heading_1       {background:url('/images/menu.png') no-repeat 0 -1px;}
-#sideBar .heading_2       {background:url('/images/menu.png') no-repeat 0 -23px;}
-#sideBar .heading_3       {background:url('/images/menu.png') no-repeat 0 -41px;}
-#sideBar .heading_4       {background:url('/images/menu.png') no-repeat 0 -63px;}
-#sideBar .text_paragraph  {background:url('/images/menu.png') no-repeat 0 -189px;}
-#sideBar .link            {background:url('/images/menu.png') no-repeat 0 -113px;}
-#sideBar .list            {background:url('/images/menu.png') no-repeat 0 -140px;}
-#sideBar .image           {background:url('/images/menu.png') no-repeat 0 -357px;}
+#sideBar .heading a        {background:url('/images/menu.png') no-repeat 0 -1px;}
+#sideBar .paragraph a      {background:url('/images/menu.png') no-repeat 0 -189px;}
+#sideBar .link a           {background:url('/images/menu.png') no-repeat 0 -113px;}
+#sideBar .list a           {background:url('/images/menu.png') no-repeat 0 -140px;}
+#sideBar .image a          {background:url('/images/menu.png') no-repeat 0 -357px;}
 #sideBar .table,
-#sideBar .global_container{background:url('/images/menu.png') no-repeat 0 -462px;}
-#sideBar .input_box       {background:url('/images/menu.png') no-repeat 0 -87px;}
-#sideBar .textarea        {background:url('/images/menu.png') no-repeat 0 -295px;}
-#sideBar .check_box       {background:url('/images/menu.png') no-repeat 0 -326px;}
-#sideBar .radio_buttons   {background:url('/images/menu.png') no-repeat 0 -217px;}
-#sideBar .submit_button   {background:url('/images/menu.png') no-repeat 0 -241px;}
-#sideBar .select_menu     {background:url('/images/menu.png') no-repeat 0 -422px;}
-#sideBar .main_navigation {background:url('/images/menu.png') no-repeat 0 -165px;}
-#sideBar .user_navigation {background:url('/images/menu.png') no-repeat 0 -165px;}
-#sideBar .footer_navigation {background:url('/images/menu.png') no-repeat 0 -165px;}
+#sideBar .global_container a {background:url('/images/menu.png') no-repeat 0 -462px;}
+#sideBar .input_box a      {background:url('/images/menu.png') no-repeat 0 -87px;}
+#sideBar .textarea a       {background:url('/images/menu.png') no-repeat 0 -295px;}
+#sideBar .check_box a      {background:url('/images/menu.png') no-repeat 0 -326px;}
+#sideBar .radio_buttons a  {background:url('/images/menu.png') no-repeat 0 -217px;}
+#sideBar .submit_button a  {background:url('/images/menu.png') no-repeat 0 -241px;}
+#sideBar .select_box a     {background:url('/images/menu.png') no-repeat 0 -422px;}
+#sideBar .main_navigation a {background:url('/images/menu.png') no-repeat 0 -165px;}
+#sideBar .user_navigation a {background:url('/images/menu.png') no-repeat 0 -165px;}
+#sideBar .footer_navigation a {background:url('/images/menu.png') no-repeat 0 -165px;}
 
-#sideBar .box_container   {background:url('/images/menu.png') no-repeat 0 -442px;}
-#sideBar .vertical_line   {background:url('/images/menu.png') no-repeat 0 -385px;}
-#sideBar .horizontal_line {background:url('/images/menu.png') no-repeat 0 -481px;}
+#sideBar .box_container a  {background:url('/images/menu.png') no-repeat 0 -442px;}
+#sideBar .vertical_line a  {background:url('/images/menu.png') no-repeat 0 -385px;}
+#sideBar .horizontal_line a{background:url('/images/menu.png') no-repeat 0 -481px;}
 /*****sidebar end*****/
 
 #sideBar #CssPaneTextArea {width:200px;height:400px;}

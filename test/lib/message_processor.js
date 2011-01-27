@@ -21,9 +21,9 @@ exports.process = testCase({
 	tearDown: function (callback) {
 		callback();
 	},
-
+	//creates a new generic process called test in order to check that process will hand off incoming data correctly
 	"routes methods with appropriate data": function (test) {
-		MessageProcessor.test = function(client, data){ client.zero = data; }; // Stub
+		MessageProcessor.test = function(client, data){ client.zero = data; }; // Stub new process
 		MessageProcessor.process(this.client, { test: 0 });
 		test.equals(this.client.zero, 0);
 		test.done();
