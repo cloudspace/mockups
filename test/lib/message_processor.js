@@ -1,73 +1,83 @@
 
 var testCase         = require('nodeunit').testCase,
     it               = require('../test_helper').it,
+	  db               = require('../test_helper').db,
     Client           = require('../test_helper').Client,
     MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
 exports.process = testCase({
 	setUp: function (callback) {
+		// Set up a new [fake] client connection.
 		this.client = new Client;
-		callback();
+
+		// Clear out the projects collection.
+		db.open(function(err, p_db) {
+			db.dropCollection('projects', function(err) {
+				callback();
+			});
+		});
 	},
 
 	tearDown: function (callback) {
-		delete this.client;
 		callback();
 	},
 
-	'routes methods with appropriate data': function (test) {
+	"routes methods with appropriate data": function (test) {
 		MessageProcessor.test = function(client, data){ client.zero = data; }; // Stub
 		MessageProcessor.process(this.client, { test: 0 });
 		test.equals(this.client.zero, 0);
 		test.done();
 	},
 
-	'catches unknown methods': function(test) {
+	"catches unknown methods": function(test) {
 		test.doesNotThrow(function() {
 			MessageProcessor.process(this.client, { test2: 0 })
 		});
 		test.done();
 	},
 
-	'create_project: creates a new project': function(test) {
-		var that = this;
+	"create_project: creates a new project": function(test) {
 		MessageProcessor.process(this.client, { create_project: true });
+
 		setTimeout(function() {
-			test.equals(that.client.user.project_id, 'new');
-			test.done();
+			db.open(function(err, p_db) {
+				db.collection('projects', function(err, collection) {
+					collection.count(function(err, count) {
+						// If the count in our collection is 1,
+						// then a new project must have been created.
+						test.equals(count, 1);
+						test.done();
+					});
+				});
+			});
 		}, 10);
 	},
 
+	"update_name: changes a user's name": function(test) {
+		MessageProcessor.process(this.client, { update_name: { new_name: 'Doug' } });
+		test.equals(this.client.user.name, 'Doug');
+		test.done();
+	},
+
+	"update_name: strips html": function(test) {
+		MessageProcessor.process(this.client, { update_name: { new_name: 'Doug<>' } });
+		test.equals(this.client.user.name, 'Doug');
+		test.done();
+	},
+
+	"update_name: strips whitespace": function(test) {
+		MessageProcessor.process(this.client, { update_name: { new_name: '   Doug   ' } });
+		test.equals(this.client.user.name, 'Doug');
+		test.done();
+	},
+
+	"update_name: does not update when nil": function(test) {
+		MessageProcessor.process(this.client, { update_name: { new_name: null } });
+		test.equals(this.client.user.name, 'Anonymous');
+		test.done();
+	},
+
 });
-/*
-
-
-it("#process/update_name: changes a user's name", function() {
-	MessageProcessor.process(client, { update_name: { new_name: 'Doug' } });
-	assert.equal(client.user.name, 'Doug');
-});
-
-it("#process/update_name: strips html", function() {
-	MessageProcessor.process(client, { update_name: { new_name: 'Doug<>' } });
-	assert.equal(client.user.name, 'Doug');
-});
-
-it("#process/update_name: strips whitespace", function() {
-	var client = new Client;
-
-	MessageProcessor.process(client, { update_name: { new_name: '   Doug   ' } });
-	assert.equal(client.user.name, 'Doug');
-});
-
-it("#process/update_name: does not update when nil", function() {
-	var client = new Client;
-
-	MessageProcessor.process(client, { update_name: { new_name: null } });
-	assert.equal(client.user.name, 'Anonymous');
-});
-
-
-*/
 
 /*
 
