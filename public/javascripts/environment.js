@@ -55,7 +55,6 @@ Environment.prototype.attempt_reconnect = function(){
 };
 
 Environment.prototype.show_countdown = function(){
-console.log('countdown show');
 	$('#fancybox-content .wait_time').text((this.reset_time + 1000)/1000);
 	$('#fancybox-content .reconnect').hide();
 	this.reset_time = this.reset_time * 2 < 29000 ? this.reset_time * 2 : 29000;
@@ -63,7 +62,6 @@ console.log('countdown show');
 };
 
 Environment.prototype.hide_countdown = function(){
-console.log('countdown hide');
 	$('#fancybox-content .reconnect').show();
 	$('#fancybox-content .countdown').hide();
 };

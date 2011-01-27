@@ -33,12 +33,15 @@ function reset_display_name() {
 function load_hash(hash) {
 	if (hash) {
 		hash = hash.split('/');
-		if (env.project.id != hash[0]) {
-			env.project.load(hash[0]);
+		if (typeof env.project == 'undefined') {
+			env.socket.send({ find_project: { hash: hash[0] } });
+		} else if (env.project._id != hash[0]) {
+			env.project = undefined;
+			env.socket.send({ find_project: { hash: hash[0] } });
 		}
 	} else {
-		env.project = new Project();
-		env.project.create();
+		env.project = undefined;
+		env.socket.send({ create_project: {} });
 		// so explicitly initialize the new Project in addition to resetting.
 	}
 }

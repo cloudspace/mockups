@@ -1,7 +1,8 @@
 
 var testCase         = require('nodeunit').testCase,
     it               = require('../test_helper').it,
-	  db               = require('../test_helper').db,
+    db               = require('../test_helper').db,
+    ObjectID         = require('mongodb').ObjectID,
     Client           = require('../test_helper').Client,
     MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
@@ -91,9 +92,9 @@ exports.process = testCase({
 		var that = this;
 		db.open(function(err, p_db) {
 			db.collection('projects', function(err, collection) {
-				collection.insert({ hash: '1' }, function(err, docs) {
+				collection.insert({}, function(err, docs) {
 
-					MessageProcessor.process(that.client, { find_project: { hash: '1' } });
+					MessageProcessor.process(that.client, { find_project: { hash: docs[0]._id } });
 					setTimeout(function() {
 						test.notEqual(that.client.user.project_id, undefined);
 						test.done();

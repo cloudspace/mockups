@@ -1,8 +1,16 @@
 MessageProcessor = {
+	error: function(message) {
+	},
+
 	process: function(message) {
 		for (var action in message) {
 			this[action](message[action]);
 		}
+	},
+
+	load_project: function(project) {
+		env.project = project;
+		jQuery.history.load(project._id);
 	},
 
 	update_name: function(data) {
