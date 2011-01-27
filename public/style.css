@@ -38,7 +38,7 @@
  #resizer { position:fixed; bottom:0; left:0px; background:url('/images/resizer.png') right; width:20%; text-align:right; height:24px; line-height:24px; }
  #mockup{ overflow: visible; background: #FFF;margin: 0 0 0 254px;position:relative;}
  #canvas{ position: relative;height:100%; border-bottom: 1px solid; border-right: 1px solid; }
- #tools { background: url('/images/blackbar.png') top left; height:25px; line-height:25px; border-bottom:1px solid #000; color:#fff; margin-left:254px; }
+ #tools{background: url('/images/blackbar.png') top left; height:25px; line-height:25px; border-bottom:1px solid #000; color:#fff;}
  #tools .selecturl{margin: 3px 0 0 5px;float:left;}
  #tools p{ padding:3px 0 0 14px; }
  #tools ul { display: inline-block; float:right; padding:0; margin:0 10px 0 0; }
@@ -143,7 +143,7 @@
 
 .ui-draggable .ui-dialog-titlebar{ padding: 4px; }
   .mockup_wrapper{}
-	#sideBar { background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;float:left;}
+	#sideBar { float:left;background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
   #sideBar ol, #sideBar ul{margin:0;padding:0; line-height:24px;}
 	#sideBar ul li h3{margin:0; padding-left:10px;}
 	#sideBar ul li li{cursor:move;}
