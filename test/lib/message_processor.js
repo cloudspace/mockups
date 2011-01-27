@@ -6,10 +6,10 @@ var testCase         = require('nodeunit').testCase,
     MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
 exports.process = testCase({
+
 	setUp: function (callback) {
 		// Set up a new [fake] client connection.
 		this.client = new Client;
-
 		// Clear out the projects collection.
 		db.open(function(err, p_db) {
 			db.dropCollection('projects', function(err) {
