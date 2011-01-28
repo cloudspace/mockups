@@ -7,9 +7,9 @@ The goal of the mockup creator is to serve a way of creating and editing mockups
   
 ## Tests
 
-To run unit tests, execute ./specs.sh. 
+To run unit tests:
 
-Our test coverage should be improved to run on a CI server. Unit tests are currently using node's native Assert module.
+    nodeunit test/lib/*
 
 ## Installation
 
