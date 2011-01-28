@@ -34,15 +34,14 @@ function load_hash(hash) {
 	if (hash) {
 		hash = hash.split('/');
 		if (typeof env.project == 'undefined') {
-			env.socket.send({ find_project: { hash: hash[0] } });
+			env.socket.send({ find_project: { id: hash[0], hash: hash[1] } });
 		} else if (env.project._id != hash[0]) {
 			env.project = undefined;
-			env.socket.send({ find_project: { hash: hash[0] } });
+			env.socket.send({ find_project: { id: hash[0], hash: hash[1] } });
 		}
 	} else {
 		env.project = undefined;
 		env.socket.send({ create_project: {} });
-		// so explicitly initialize the new Project in addition to resetting.
 	}
 }
 

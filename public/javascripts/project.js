@@ -2,9 +2,9 @@ function Project(project_data){
 	//set this objs
 	this.pages = project_data.pages;
 	this.name  = project_data.name;
-	this.id    = project_data.id;
+	this.id    = project_data._id;
 	this.hash  = project_data.hash;
-
+	this.path  = this.id + '/' + this.hash;
 	//set page items
   this.sync_mockup();
 	
