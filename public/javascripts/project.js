@@ -9,13 +9,14 @@ function Project(project_data){
   this.sync_mockup();
 	
 	//reset any bindings
-  $('#project_name_change').submit(function(){
-     env.socket.send({ update_project: { name: $('#project_display_name').val() } });
-     $(this.input).blur();
+  $('#project_name_change').unbind('submit').submit(function(){
+		var project_name_input = $(this).find('input');
+     env.socket.send({ update_project: { name: project_name_input.val() } });
+     project_name_input.blur();
      return false;
    });
 
-   $('#mockup_pages li form').submit(function(event){
+   $('#mockup_pages li form').unbind('submit').submit(function(){
 		 var page_name_input = $(this).find('input');
 		 env.socket.send({ update_project: { page: { name: page_name_input.val(), id : $(this).attr('data-id') } } });
      page_name_input.blur();
