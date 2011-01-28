@@ -13,6 +13,7 @@ MessageProcessor = {
 
 	load_project: function(project) {
 		env.project = new Project(project);
+		console.log(project);
 		jQuery.history.load(env.project.path);
 		$('#project_display_name').val(project.name);
 	},

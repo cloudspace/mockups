@@ -64,7 +64,7 @@ exports.process = testCase({
 		test.done();
 	},
 
-	"create_project: creates a project and assigns the user to it": function(test) {
+	"create_project: creates a project": function(test) {
 		var that = this;
 		MessageProcessor.process(this.client, { create_project: true });
 
@@ -74,7 +74,6 @@ exports.process = testCase({
 					collection.count(function(err, count) {
 						// If the count in our collection is 1,
 						// then a new project must have been created.
-						test.notEqual(that.client.user.project_id, undefined);
 						test.equals(count, 1);
 						test.done();
 					});

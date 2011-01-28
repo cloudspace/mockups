@@ -9,37 +9,33 @@ function Project(project_data){
   this.sync_mockup();
 	
 	//reset any bindings
-  $('#name_change').submit(function(){
-     env.socket.send({ update_user: { name: $('#display_name').val() } });
-     $(this.input).blur();
-     return false;
-  });
   $('#project_name_change').submit(function(){
      env.socket.send({ update_project: { name: $('#project_display_name').val() } });
      $(this.input).blur();
      return false;
-   }); 
-  /* $('.mockup_objects li').submit(function(event){
-     var page_name_input = $(event.currentTarget).find('form input');
-     env.socket.send({ update_project: { page: { name: page_name_input.val(), id : page_name_input.attr('data-id') } } });
-     $(page.input).blur();
+   });
+
+   $('#mockup_pages li form').submit(function(event){
+		 var page_name_input = $(this).find('input');
+		 env.socket.send({ update_project: { page: { name: page_name_input.val(), id : $(this).attr('data-id') } } });
+     page_name_input.blur();
      return false;
-   });*/
+   });
 }
 
 //set page items
 Project.prototype.sync_mockup = function(property){
-	console.log(this.pages);
-	var that = this,
+	var that = this;
 			mockup_sync_project_name = function(){ 
 				$('#project_name_change').find('input').val(that.name);
 			},
 			mockup_sync_pages = function(){
-				that.pages.forEach(function(page,index){
-					var span = $("<span>" + page.name.toLowerCase() + "</span>").attr('data-id', index);
-					$('<li>/</li>').append(span).appendTo("#mockup_pages ul");
-
-				});
+				var mockup_pages = $("#mockup_pages ul").html("");
+				for( index in that.pages){
+					var page = that.pages[index];
+					var span = $("<form><input type='text' value='" + page.name.toLowerCase() + "'/></form>").attr('data-id', index);
+					$('<li>/</li>').append(span).appendTo(mockup_pages);
+				}
 			};
 	
 	if(property == undefined){
