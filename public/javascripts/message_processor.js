@@ -1,5 +1,8 @@
 MessageProcessor = {
 	error: function(message) {
+		if (message == '404') {
+			$('body').html('<div id="error_404"><p>Sorry, that project could not be found.</p><p><a href="/">Create a new project.</a></p><div>');
+		}
 	},
 
 	process: function(message) {
