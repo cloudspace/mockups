@@ -144,6 +144,7 @@
 .ui-draggable .ui-dialog-titlebar{ padding: 4px; }
   .mockup_wrapper{}
 	#mockup_pages ul li{margin-left:20px;}
+	#mockup_pages ul li form{display:inline;}
 	#sideBar { float:left;background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
   #sideBar ol, #sideBar ul{margin:0;padding:0; line-height:24px;}
 	#sideBar ul li h3{margin:0; padding-left:10px;}
