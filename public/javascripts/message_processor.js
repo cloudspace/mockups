@@ -14,6 +14,7 @@ MessageProcessor = {
 	load_project: function(project) {
 		env.project = project;
 		jQuery.history.load(project._id + '/' + project.hash);
+		$('#project_display_name').val(project.name);
 	},
 
 	update_name: function(data) {
