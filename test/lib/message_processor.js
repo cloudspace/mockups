@@ -75,7 +75,7 @@ exports.process = testCase({
 					});
 				});
 			});
-		}, 10);
+		}, 50);
 	},
 
 	"find_project: sends user an error message if project is not found": function(test) {
@@ -85,7 +85,7 @@ exports.process = testCase({
 		setTimeout(function() {
 			test.notEqual(that.client.sent.error, undefined);
 			test.done();
-		}, 10);
+		}, 50);
 	},
 
 	"find_project: assigns user a project if it is found": function(test) {
@@ -98,7 +98,7 @@ exports.process = testCase({
 					setTimeout(function() {
 						test.notEqual(that.client.user.project_id, undefined);
 						test.done();
-					}, 10);
+					}, 50);
 
 				}); 
 			}); 
