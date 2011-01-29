@@ -1,5 +1,8 @@
 MessageProcessor = {
 	error: function(message) {
+		if (message == '404') {
+			$('body').html('<div id="error_404"><p>Sorry, that project could not be found.</p><p><a href="/">Create a new project.</a></p><div>');
+		}
 	},
 
 	process: function(message) {
@@ -9,8 +12,10 @@ MessageProcessor = {
 	},
 
 	load_project: function(project) {
-		env.project = project;
-		jQuery.history.load(project._id);
+		env.project = new Project(project);
+		console.log(project);
+		jQuery.history.load(env.project.path);
+		$('#project_display_name').val(project.name);
 	},
 
 	update_name: function(data) {

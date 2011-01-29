@@ -1,7 +1,7 @@
 .status{width:250px;height:60px;overflow:auto;text-align:center;}
 .status .reconnect, .status .countdown{display:block;}
 #name_change{display:inline;}
-#name_change label{display:none;}
+#projectinfo{position: absolute;left:350px;} 
 #flash {  position:fixed; bottom:0; right:0;overflow: auto;  border: 1px solid #eee; font: 13px "Verdana", sans-serif; }
 #flash p { padding: 8px; margin: 0; }
 #flash p:nth-child(odd) { background: #F6F6F6; }
@@ -143,6 +143,8 @@
 
 .ui-draggable .ui-dialog-titlebar{ padding: 4px; }
   .mockup_wrapper{}
+	#mockup_pages ul li{margin-left:20px;}
+	#mockup_pages ul li form{display:inline;}
 	#sideBar { float:left;background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
   #sideBar ol, #sideBar ul{margin:0;padding:0; line-height:24px;}
 	#sideBar ul li h3{margin:0; padding-left:10px;}

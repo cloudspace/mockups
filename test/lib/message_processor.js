@@ -4,6 +4,7 @@ var testCase         = require('nodeunit').testCase,
     db               = require('../test_helper').db,
     ObjectID         = require('mongodb').ObjectID,
     Client           = require('../test_helper').Client,
+    Project          = require('../../lib/project').Project,
     MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
 exports.process = testCase({
@@ -22,7 +23,9 @@ exports.process = testCase({
 	tearDown: function (callback) {
 		callback();
 	},
-	//creates a new generic process called test in order to check that process will hand off incoming data correctly
+
+	// creates a new generic process called 'test'
+	// in order to check that process will hand off incoming data correctly
 	"routes methods with appropriate data": function (test) {
 		MessageProcessor.test = function(client, data){ client.zero = data; }; // Stub new process
 		MessageProcessor.process(this.client, { test: 0 });
@@ -61,7 +64,8 @@ exports.process = testCase({
 		test.done();
 	},
 
-	"create_project: creates a new project": function(test) {
+	"create_project: creates a project": function(test) {
+		var that = this;
 		MessageProcessor.process(this.client, { create_project: true });
 
 		setTimeout(function() {
@@ -75,36 +79,29 @@ exports.process = testCase({
 					});
 				});
 			});
-		}, 10);
+		}, 50);
 	},
 
 	"find_project: sends user an error message if project is not found": function(test) {
 		var that = this;
-		MessageProcessor.process(this.client, { find_project: { hash: '1' } });
+		MessageProcessor.process(this.client, { find_project: { id: '1', hash: '1' } });
 
 		setTimeout(function() {
 			test.notEqual(that.client.sent.error, undefined);
 			test.done();
-		}, 10);
+		}, 50);
 	},
 
 	"find_project: assigns user a project if it is found": function(test) {
 		var that = this;
-		db.open(function(err, p_db) {
-			db.collection('projects', function(err, collection) {
-				collection.insert({}, function(err, docs) {
-
-					MessageProcessor.process(that.client, { find_project: { hash: docs[0]._id } });
-					setTimeout(function() {
-						test.notEqual(that.client.user.project_id, undefined);
-						test.done();
-					}, 10);
-
-				}); 
-			}); 
-		}); 
+		new Project(function(project) {
+			MessageProcessor.process(that.client, { find_project: { id: project._id, hash: project.hash } });
+			setTimeout(function() {
+				test.notEqual(that.client.user.project_id, undefined);
+				test.done();
+			}, 50);
+		});
 	},
-
 
 });
 
