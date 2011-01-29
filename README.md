@@ -95,9 +95,11 @@ On your computer update your hosts file to add an entry matching the IP of your 
 
 #### Running MongoDB
 
-To run MongoDB:
+Run MongoDB:
 
-    mongod
+    sudo mongod
 
-This will start the server (not as a daemon, logging to STDOUT) in your current terminal.
+This will start the server (not as a daemon, logging to STDOUT) in your current terminal.  If it runs, kill the process with CTRL + C and then run it in the background:
+
+  sudo mongod &
 
