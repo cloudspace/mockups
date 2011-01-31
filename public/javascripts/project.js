@@ -17,7 +17,7 @@ function Project(project_data){
      return false;
    });
 
-	$('#mockup_pages li form').unbind('submit').submit(function(){
+	$('#mockup_pages li form').live('submit', function(){
 		var page_name_input = $(this).find('input');
 		var page_id = $(this).attr('data-id');
 		var update_message =
