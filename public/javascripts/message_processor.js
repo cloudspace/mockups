@@ -7,13 +7,13 @@ MessageProcessor = {
 
 	process: function(message) {
 		for (var action in message) {
-			this[action](message[action]);
+			if (this[action]){ this[action](message[action]); }
+			else             { console.log("Undefined action: " + action);}
 		}
 	},
 
 	load_project: function(project) {
 		env.project = new Project(project);
-		console.log(project);
 		jQuery.history.load(env.project.path);
 		$('#project_display_name').val(project.name);
 	},
@@ -22,7 +22,9 @@ MessageProcessor = {
 		env.display_name = data.new_name;
 		reset_display_name();
 	},
-
+	update_project: function(data) {
+		//env.project.update(data);
+	},
 	connected: function() {
 		$('#flash').html('');
 	},
