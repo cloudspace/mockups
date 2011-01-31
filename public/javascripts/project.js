@@ -7,21 +7,28 @@ function Project(project_data){
 	this.path  = this.id + '/' + this.hash;
 	//set page items
   this.sync_mockup();
-	
+
 	//reset any bindings
   $('#project_name_change').unbind('submit').submit(function(){
 		var project_name_input = $(this).find('input');
-     env.socket.send({ update_project: { name: project_name_input.val() } });
+
+     env.socket.send({ update_project: { id: env.project.id, hash: env.project.hash, name: project_name_input.val() } });
      project_name_input.blur();
      return false;
    });
 
-   $('#mockup_pages li form').unbind('submit').submit(function(){
-		 var page_name_input = $(this).find('input');
-		 env.socket.send({ update_project: { page: { name: page_name_input.val(), id : $(this).attr('data-id') } } });
-     page_name_input.blur();
-     return false;
-   });
+	$('#mockup_pages li form').unbind('submit').submit(function(){
+		var page_name_input = $(this).find('input');
+		var page_id = $(this).attr('data-id');
+		var update_message =
+			{ update_project:
+				{ id: env.project.id, hash: env.project.hash, pages: {} }
+			};
+		update_message.update_project.pages[page_id] = { name: page_name_input.val() };
+		env.socket.send(update_message);
+    page_name_input.blur();
+    return false;
+  });
 }
 
 //set page items

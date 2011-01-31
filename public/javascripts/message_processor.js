@@ -7,7 +7,8 @@ MessageProcessor = {
 
 	process: function(message) {
 		for (var action in message) {
-			this[action](message[action]);
+			if (this[action]){ this[action](message[action]); }
+			else             { console.log("Undefined action: " + action);}
 		}
 	},
 
@@ -21,7 +22,9 @@ MessageProcessor = {
 		env.display_name = data.new_name;
 		reset_display_name();
 	},
-
+	update_project: function(data) {
+		//env.project.update(data);
+	},
 	connected: function() {
 		$('#flash').html('');
 	},
