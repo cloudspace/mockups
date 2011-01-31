@@ -26,41 +26,32 @@ function Project(project_data){
 
 //set page items
 Project.prototype.sync_mockup = function(property){
-	var that = this;
-			mockup_sync_project_name = function(){ 
-				$('#project_name_change').find('input').val(that.name);
-			},
-			mockup_sync_pages = function(){
-				var mockup_pages = $("#mockup_pages ul").html("");
-				for( index in that.pages){
-					var page = that.pages[index];
-					var span = $("<form><input type='text' value='" + page.name.toLowerCase() + "'/></form>").attr('data-id', index);
-					$('<li>/</li>').append(span).appendTo(mockup_pages);
-				}
-			};
-	
-	if(property == undefined){
-		mockup_sync_project_name();
-		mockup_sync_pages();
+	if (property == undefined) {
+		this.sync_name();
+		this.sync_pages();
 		return;
 	}
 
-	switch(property)
-	{
-		case 'name':
-			mockup_sync_project_name();
-			break;
-		case 'pages':
-			mockup_sync_pages();
-			break;
-		default:
-			console.log("The Project object can't handle your crazy call to sync" + property);
+	if (this['sync_' + property]) this['sync_' + property]();
+};
+
+Project.prototype.sync_pages = function() {
+	var mockup_pages = $("#mockup_pages").html("");
+	for (var index in this.pages) {
+		var page = this.pages[index];
+		var span = $("<form><input type='text' value='" + page.name.toLowerCase() + "'/></form>").attr('data-id', index);
+		$('<li>/</li>').append(span).appendTo(mockup_pages);
 	}
-
 };
+
+Project.prototype.sync_name = function() {
+	$('#project_name_change').find('input').val(this.name);
+};
+
+
 Project.prototype.set_user_name = function(){
-
 };
+
 Project.prototype.set_page_name = function(){
-
 };
+

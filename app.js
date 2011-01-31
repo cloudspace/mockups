@@ -14,7 +14,7 @@ var http = require('http')
 exports.sys			 = sys;
 exports.fs			 = fs;
 exports.clients  = clients;
-exports.db       = new Db('testing_db', new Server("127.0.0.1", 27017, {}));
+exports.db       = new Db('mockups', new Server("127.0.0.1", 27017, {}));
 
 var User = require('./lib/user').User
   , Project = require('./lib/project').Project
