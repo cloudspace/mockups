@@ -38,11 +38,11 @@ MessageProcessor = {
 	},
 
 	add_page: function(data) {
-		for (var key in data) {
+		for (var key in data.page) {
 			var page = key.split('.'); // server should send key in form: pages.3 (where 3 is the new page id)
-			env.project.pages[page[1]] = data[key];
+			env.project.pages[page[1]] = data.page[key];
 		}
 		env.project.sync_pages();
-		$('#mockup_pages li:last input').focus();
+		if (data.focus) $('#mockup_pages li:last input').focus();
 	},
 };
