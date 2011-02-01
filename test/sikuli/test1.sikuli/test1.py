@@ -3,48 +3,48 @@
 # Assumes Mac OS + Google Chrome and
 # an /etc/hosts entry for mockups.dev
 ##############################
+import os
+myPath = os.path.dirname(getBundlePath())
+if not myPath in sys.path: sys.path.append(myPath)
+import operatingsystem
+import browser
+import network
+import mockups
 
-App.open("Google Chrome")
-click("F.png")
-exists("1295917715592.png")
-type("1295917715592.png", "http://mockups.dev\n")
-exists("CloudspaceMo.png")
-waitVanish("Connecting.png")
-click("ndusers.png")
-exists("Anonymous.png")
-exists("x645v25.png")
+#browsers = operatingsystem.getBrowsers()
+browsers = ['chrome-mac', 'safari-mac']
 
-# Test Socket.io Connection Loss
-click("1295919834869.png")
-click("TurnAirPortO.png")
-wait(5)
-App.focus("Google Chrome")
-if not wait("Therequested.png", 20):
-	print "Socket.io disconnect failed"
-	exit()
+for browseros in browsers:
+	browser.openBrowser(browseros)
+	browser.openURL("http://mockups.dev")
+	mockups.testProjectLoaded()
 
-# Reconnect to Internet
-click("1295919982435.png")
-click("TurnAirPortO-1.png")
-wait(5)
-App.focus("Google Chrome")
-click("1295920051816.png")
-exists("DisblavName.png")
+	# Test Socket Auto-reconnect
+	network.disconnect()
+	App.focus(browseros)
+	mockups.testLostConnection()
+	network.connect()
+	App.focus(browseros)
+	mockups.testReconnected()	
 
-# Test Name Change
-click("DisplayNameA.png")
-type( "a", KEY_CMD)
-wait(1)
-type("Todd\n")
-if not exists("Yousuccessfu.png"):
-	print "Name change failed"
-	exit()
-click("ndusers.png")
-if not exists("Todd-1.png"):
-	print "Name change failed"
-	exit()
-if not exists("x645v25-1.png"):
-	print "Name changed failed"
-	exit()
-else:
-	print "SUCCESS!"
+	# Test Reconnect Button
+	network.disconnect()
+	App.focus(browseros)
+	mockups.testLostConnection()
+	wait("Yourconnectl.png", 40)
+	network.connect()
+	App.focus(browseros)
+	mockups.reconnect()
+	mockups.testReconnected()	
+	
+	# Test Name Change
+	mockups.changeName("Todd")
+	mockups.testNameChange()
+
+	# Test Existing Project
+	browser.copyURL()
+	browser.openURL("http://mockups.dev")
+	browser.pasteURL()
+	mockups.testProjectExists()
+
+print("SUCCESS!")

@@ -1,0 +1,194 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }  
+         
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>browser.sikuli</h2> <a href="browser.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+
+<span class="kw">def</span> openBrowser(browseros):
+        <span class="kw">if</span> browseros == <span class="str">"chrome-mac"</span>:
+                App.focus(<span class="str">"Google Chrome"</span>)
+                <span class="skw">click</span>(<img src="1295927341980.png" />)
+                <span class="kw">while</span> exists(<img src="SikuliIDE.png" />):
+                        App.focus(<span class="str">"Google Chrome"</span>)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">elif</span> browseros == <span class="str">"firefox-mac"</span>:
+                App.focus(<span class="str">"Firefox"</span>)
+                <span class="skw">click</span>(<img src="1295937601003.png" />)
+                <span class="kw">while</span> exists(<img src="SikuliIDE.png" />):
+                        App.focus(<span class="str">"Firefox"</span>)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">elif</span> browseros == <span class="str">"safari-mac"</span>:
+                App.focus(<span class="str">"Safari"</span>)
+                <span class="skw">click</span>(<img src="1295939266560.png" />)
+                <span class="kw">while</span> exists(<img src="SikuliIDE.png" />):
+                        App.focus(<span class="str">"Safari"</span>)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">else</span>:
+                exit(<span class="str">"Browser not found"</span>)
+
+<span class="kw">def</span> selectURL():
+        <span class="skw">type</span>(<span class="str">"l"</span>, KEY_CMD)
+
+<span class="kw">def</span> openURL(url):
+        selectURL()
+        <span class="skw">type</span>(url+<span class="str">"\n"</span>)
+        <span class="skw">wait</span>(<span class="dig">3</span>)
+
+<span class="kw">def</span> copyURL():
+        selectURL()
+        <span class="skw">type</span>( <span class="str">"a"</span>, KEY_CMD)
+        <span class="skw">type</span>( <span class="str">"c"</span>, KEY_CMD)
+
+<span class="kw">def</span> pasteURL():
+        selectURL()
+        <span class="skw">type</span>(<span class="str">"v"</span>, KEY_CMD)
+        <span class="skw">type</span>(<span class="str">"\n"</span>)
+
+<span class="kw">def</span> reloadPage():
+        <span class="kw">if</span> exists(<img src="1295995288421.png" />):
+                <span class="skw">click</span>(<img src="1295995288421.png" />)
+        <span class="kw">elif</span> exists(<img src="1295995312378.png" />):
+                <span class="skw">click</span>(<img src="1295995312378.png" />)
+        <span class="kw">elif</span> exists(<img src="1295995335286.png" />):
+                <span class="skw">click</span>(<img src="1295995335286.png" />)
+        <span class="kw">else</span>:
+                exit(<span class="str">"Browser refresh button not found"</span>)
+
+
+<span class="kw">def</span> removeCookies(urls):
+        __openCookieSettings()
+        <span class="kw">for</span> url <span class="kw">in</span> urls:
+                <span class="kw">if</span> exists(<img src="Chrome.png" />):
+                        <span class="skw">type</span>(<img src="al.png" />, url)
+                        <span class="kw">if</span> exists(<img src="1295907771375.png" />):
+                                <span class="skw">click</span>(<img src="1295907771375.png" />)
+                        <span class="skw">click</span>(<img src="1295907793934.png" />)
+                <span class="kw">elif</span> exists(<img src="Firefox.png" />):
+                        <span class="skw">type</span>(<img src="1295985153669.png" />, url)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+                        <span class="kw">while</span>  <span class="kw">not</span> exists(<img src="Site.png" />):
+                                <span class="skw">click</span>(<img src="RemoveCookie.png" />)
+                                <span class="skw">type</span>(Key.UP) <span class="cmt"># Hack for the cookies that keep being added by Firefox</span>
+                        <span class="kw">if</span> exists(<img src="Q-1.png" />):
+                                <span class="skw">click</span>(<img src="Q-1.png" />)
+                        <span class="kw">elif</span> exists(<img src="1295986311698.png" />):
+                                <span class="skw">click</span>(<img src="1295986311698.png" />)
+                <span class="kw">elif</span> exists(<img src="Safari.png" />):
+                        <span class="skw">type</span>(<img src="Q.png" />, url)
+                        <span class="skw">wait</span>(<span class="dig">1</span>)
+                        <span class="kw">while</span>  <span class="kw">not</span> exists(<img src="WebsiteName.png" />):
+                                <span class="skw">click</span>(<img src="RemoveAll.png" />)
+                                <span class="skw">wait</span>(<img src="1295986502311.png" />)
+                                <span class="skw">click</span>(<img src="1295986502311.png" />)
+                        <span class="skw">click</span>(<img src="1295985499181.png" />)
+                <span class="kw">else</span>:
+                        exit(<span class="str">"Broswer cookie settings not found"</span>)
+        __closeCookieSettings()
+
+
+<span class="kw">def</span> __openCookieSettings():
+        <span class="kw">if</span> exists(<img src="Chrome.png" />):
+                <span class="skw">click</span>(<img src="Chrome.png" />)
+                <span class="skw">click</span>(<img src="Preferences.png" />)
+                <span class="skw">click</span>(<img src="IndertheHocc.png" />)
+                <span class="skw">click</span>(<img src="Contentsetti.png" />)
+                <span class="kw">if</span> <span class="kw">not</span> exists(<img src="1295907682602.png" />):
+                        <span class="skw">click</span>(<img src="Cookies.png" />)
+                <span class="skw">click</span>(<img src="Showcookiesa.png" />)
+        <span class="kw">elif</span> exists(<img src="Firefox.png" />):
+                <span class="skw">click</span>(<img src="Firefox.png" />)
+                <span class="skw">click</span>(<img src="Preferences-1.png" />)
+                <span class="skw">click</span>(<img src="Privacv.png" />)
+                <span class="skw">click</span>(<img src="removeindivi.png" />)
+        <span class="kw">elif</span> exists(<img src="Safari.png" />):
+                <span class="skw">click</span>(<img src="Safari.png" />)
+                <span class="skw">click</span>(<img src="Preferences-2.png" />)
+                <span class="skw">click</span>(<img src="Security.png" />)
+                <span class="skw">click</span>(<img src="ShowCookies.png" />)
+        <span class="kw">else</span>:
+                exit(<span class="str">"Browser cookie settings not found"</span>)
+
+<span class="kw">def</span> __closeCookieSettings():
+        <span class="kw">if</span> exists(<img src="Chrome.png" />):
+                <span class="skw">click</span>(<img src="1295907808768.png" />)
+                <span class="skw">type</span>(Key.ESC)
+                <span class="skw">type</span>(Key.ESC)
+        <span class="kw">elif</span> exists(<img src="Firefox.png" />):
+                <span class="skw">click</span>(<img src="1295984776039.png" />)
+                <span class="skw">type</span>(Key.ESC)
+        <span class="kw">elif</span> exists(<img src="Safari.png" />):
+                <span class="skw">click</span>(<img src="1295985055093.png" />)
+                <span class="skw">type</span>(Key.ESC)
+        <span class="kw">else</span>:
+                exit(<span class="str">"Brower cookie settings not found"</span>)
+</pre>
+</body>
+</html>
