@@ -109,6 +109,23 @@ exports.process = testCase({
 		});
 	},
 
+	"delete_page: deletes a page to the project a user is on": function(test) {
+		var that = this;
+		new Project(function(project) {
+			// asign client to project
+			MessageProcessor.process(that.client, { find_project: { id: project._id, hash: project.hash } });
+			setTimeout(function() {
+				// delete page
+				MessageProcessor.process(that.client, { delete_page: { page_id: 0 } });
+				setTimeout(function() {
+					test.equal(that.client.sent.error, undefined);
+					test.notEqual(that.client.sent.delete_page, undefined);
+					test.done();
+				}, 50);
+			}, 50);
+		});
+	},
+
 	"find_project: assigns user a project if it is found": function(test) {
 		var that = this;
 		new Project(function(project) {
