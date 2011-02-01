@@ -24,8 +24,11 @@ MessageProcessor = {
 	},
 
 	update_project: function(data) {
-		if(data.pages){ env.project.update_page_name(data); }
-		else          { env.project.update_name(data); }
+		env.project.update_name(data);
+	},
+
+	update_pages: function(data) {
+		env.project.update_page_name(data);
 	},
 
 	connected: function() {
