@@ -103,6 +103,54 @@ exports.process = testCase({
 		});
 	},
 
+	"update_project: sends an error message when a project is not found ": function(test) {
+		var that = this;
+		MessageProcessor.process(this.client, { update_project: { id: '1', hash: '1', name: 'Franklin' } });
+
+		setTimeout(function(){
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
+		}, 50);
+	},
+
+	"update_project: can update the project name": function(test) {
+		var that = this;
+		new Project(function(project){
+			var old_project = project;
+			MessageProcessor.process(that.client, { update_project: { id: project._id, hash: project.hash, name: 'Franklin' } });
+			setTimeout(function(){
+				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
+					test.notEqual(new_project.name, undefined);
+					test.notEqual(project.name, new_project.name);
+					test.done();
+				});
+			}, 50);
+		});
+	},
+
+	"update_project: can update the project pages": function(test) {
+		var that = this;
+		new Project(function(project){
+			var old_project = project;
+			MessageProcessor.process(that.client, {
+					update_project: {
+						id: project._id, hash: project.hash,
+						pages : {
+							'0': { name: 'test', mockup_objects: {} }
+						}
+					}
+				});
+
+			setTimeout(function(){
+				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
+				test.notEqual(project.pages['0'].name, new_project.pages['0'].name);
+
+				test.done();
+				});
+			}, 50);
+		});
+	}
+
 });
 
 
