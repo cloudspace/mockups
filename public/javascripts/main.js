@@ -3,10 +3,12 @@ $(document).ready(function(){
 	env.connect();
 
 
-	// This is purely for sending messages in the app's early stages.
-	// We don't really want to send messages for mouse clicks.
-	$(window).click(function(e){
-		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
+	$(window).click(function(e) { 
+		$tgt = $(e.target);
+		if ($tgt.is('#add_page')) {
+			env.socket.send({ add_page: true });
+		}
+		//env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
 	});
 
 	// Handle user changing their display name.

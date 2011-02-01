@@ -35,5 +35,14 @@ MessageProcessor = {
 
 	message: function(data){
 		$('#flash').html('<p>' + data + '</p>');
-	}
+	},
+
+	add_page: function(data) {
+		for (var key in data) {
+			var page = key.split('.'); // server should send key in form: pages.3 (where 3 is the new page id)
+			env.project.pages[page[1]] = data[key];
+		}
+		env.project.sync_pages();
+		$('#mockup_pages li:last input').focus();
+	},
 };

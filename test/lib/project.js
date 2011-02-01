@@ -67,6 +67,21 @@ exports.project = testCase({
 		});
 	},
 
+	"Project.add_page: creates a new page": function(test) {
+		new Project(function(project) {
+			Project.add_page(project._id, function(err, doc) {
+				// pages.0 (Home) already exists, add pages.1
+				test.equal(doc['pages.1'].name, 'New Page');
+
+				Project.add_page(project._id, function(err, doc) {
+					// add pages.2
+					test.equal(doc['pages.2'].name, 'New Page');
+					test.done();
+				});
+			});
+		});
+	},
+
 });
 
 

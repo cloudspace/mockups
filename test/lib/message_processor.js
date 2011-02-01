@@ -92,6 +92,23 @@ exports.process = testCase({
 		}, 50);
 	},
 
+	"add_page: adds a page to the project a user is on": function(test) {
+		var that = this;
+		new Project(function(project) {
+			// asign client to project
+			MessageProcessor.process(that.client, { find_project: { id: project._id, hash: project.hash } });
+			setTimeout(function() {
+				// add page
+				MessageProcessor.process(that.client, { add_page: true });
+				setTimeout(function() {
+					test.equal(that.client.sent.error, undefined);
+					test.notEqual(that.client.sent.add_page, undefined);
+					test.done();
+				}, 50);
+			}, 50);
+		});
+	},
+
 	"find_project: assigns user a project if it is found": function(test) {
 		var that = this;
 		new Project(function(project) {
