@@ -7,15 +7,16 @@ function Project(project_data){
 	this.path  = this.id + '/' + this.hash;
 	//set page items
   this.sync_mockup();
+	var that = this;
 
 	//reset any bindings
   $('#project_name_change').unbind('submit').submit(function(){
 		var project_name_input = $(this).find('input');
-
-     env.socket.send({ update_project: { id: env.project.id, hash: env.project.hash, name: project_name_input.val() } });
-     project_name_input.blur();
-     return false;
-   });
+    env.socket.send({ update_project: { id: env.project.id, hash: env.project.hash, name: project_name_input.val() } });
+		project_name_input.val(that.name);
+    project_name_input.blur();
+		return false;
+	});
 
 	$('#mockup_pages li form').live('submit', function(){
 		var page_name_input = $(this).find('input');
@@ -26,6 +27,8 @@ function Project(project_data){
 			};
 		update_message.update_project.pages[page_id] = { name: page_name_input.val() };
 		env.socket.send(update_message);
+		window.l = page_name_input;
+		page_name_input.val(that.pages[page_id].name);
     page_name_input.blur();
     return false;
   });
@@ -56,9 +59,14 @@ Project.prototype.sync_name = function() {
 };
 
 
-Project.prototype.set_user_name = function(){
+Project.prototype.update_name = function(update_data){
+	this.name = update_data.name;
+	this.sync_name();
 };
 
-Project.prototype.set_page_name = function(){
+Project.prototype.update_page_name = function(update_data){
+	var pages = update_data.pages;
+	for(var index in pages ){ this.pages[index] = pages[index]; }
+	this.sync_pages();
 };
 

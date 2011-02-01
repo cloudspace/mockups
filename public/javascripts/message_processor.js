@@ -22,9 +22,12 @@ MessageProcessor = {
 		env.display_name = data.new_name;
 		reset_display_name();
 	},
+
 	update_project: function(data) {
-		//env.project.update(data);
+		if(data.pages){ env.project.update_page_name(data); }
+		else          { env.project.update_name(data); }
 	},
+
 	connected: function() {
 		$('#flash').html('');
 	},
