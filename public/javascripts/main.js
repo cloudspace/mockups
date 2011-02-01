@@ -4,11 +4,7 @@ $(document).ready(function(){
 
 
 	$(window).click(function(e) { 
-		$tgt = $(e.target);
-		if ($tgt.is('#add_page')) {
-			env.socket.send({ add_page: true });
-		}
-		//env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
+		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
 	});
 
 	// Handle user changing their display name.
@@ -25,6 +21,15 @@ $(document).ready(function(){
 	$('#display_name').blur(function(){
 		reset_display_name();
 	});
+
+	$('#mockup_pages .delete').live('click', function() {
+		env.socket.send({ delete_page: { page_id: $(this).attr('data-id') } });
+	});
+
+	$('#add_page').live('click', function() {
+		env.socket.send({ add_page: true });
+	});
+
 });
 
 // TODO move to User

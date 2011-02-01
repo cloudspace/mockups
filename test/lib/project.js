@@ -82,6 +82,21 @@ exports.project = testCase({
 		});
 	},
 
+	"Project.delete_page: deletes a page": function(test) {
+		new Project(function(project) {
+			Project.delete_page(project._id, '0', function(err, doc) {
+				db.open(function(err, p_db) {
+					db.collection('projects', function(err, collection) {
+						collection.findOne({ _id: project._id }, function(err, doc) {
+							test.equal(doc.pages['1'], undefined);
+							test.done();
+						});
+					});
+				});
+			});
+		});
+	},
+
 });
 
 
