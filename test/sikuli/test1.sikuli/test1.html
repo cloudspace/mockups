@@ -75,51 +75,51 @@
 </span><span class="cmt"># Assumes Mac OS + Google Chrome and
 </span><span class="cmt"># an /etc/hosts entry for mockups.dev
 </span><span class="cmt">##############################
-</span>
-App.open(<span class="str">"Google Chrome"</span>)
-<span class="skw">click</span>(<img src="F.png" />)
-exists(<img src="1295917715592.png" />)
-<span class="skw">type</span>(<img src="1295917715592.png" />, <span class="str">"http://mockups.dev\n"</span>)
-exists(<img src="CloudspaceMo.png" />)
-waitVanish(<img src="Connecting.png" />)
-<span class="skw">click</span>(<img src="ndusers.png" />)
-exists(<img src="Anonymous.png" />)
-exists(<img src="x645v25.png" />)
+</span><span class="kw">import</span> os
+myPath = os.path.dirname(getBundlePath())
+<span class="kw">if</span> <span class="kw">not</span> myPath <span class="kw">in</span> sys.path: sys.path.append(myPath)
+<span class="kw">import</span> operatingsystem
+<span class="kw">import</span> browser
+<span class="kw">import</span> network
+<span class="kw">import</span> mockups
 
-<span class="cmt"># Test Socket.io Connection Loss
-</span><span class="skw">click</span>(<img src="1295919834869.png" />)
-<span class="skw">click</span>(<img src="TurnAirPortO.png" />)
-<span class="skw">wait</span>(<span class="dig">5</span>)
-App.focus(<span class="str">"Google Chrome"</span>)
-<span class="kw">if</span> <span class="kw">not</span> <span class="skw">wait</span>(<img src="Therequested.png" />, <span class="dig">20</span>):
-        <span class="kw">print</span> <span class="str">"Socket.io disconnect failed"</span>
-        exit()
+<span class="cmt">#browsers = operatingsystem.getBrowsers()
+</span>browsers = [<span class="str">'chrome-mac'</span>, <span class="str">'safari-mac'</span>]
 
-<span class="cmt"># Reconnect to Internet
-</span><span class="skw">click</span>(<img src="1295919982435.png" />)
-<span class="skw">click</span>(<img src="TurnAirPortO-1.png" />)
-<span class="skw">wait</span>(<span class="dig">5</span>)
-App.focus(<span class="str">"Google Chrome"</span>)
-<span class="skw">click</span>(<img src="1295920051816.png" />)
-exists(<img src="DisblavName.png" />)
+<span class="kw">for</span> browseros <span class="kw">in</span> browsers:
+        browser.openBrowser(browseros)
+        browser.openURL(<span class="str">"http://mockups.dev"</span>)
+        mockups.testProjectLoaded()
 
-<span class="cmt"># Test Name Change
-</span><span class="skw">click</span>(<img src="DisplayNameA.png" />)
-<span class="skw">type</span>( <span class="str">"a"</span>, KEY_CMD)
-<span class="skw">wait</span>(<span class="dig">1</span>)
-<span class="skw">type</span>(<span class="str">"Todd\n"</span>)
-<span class="kw">if</span> <span class="kw">not</span> exists(<img src="Yousuccessfu.png" />):
-        <span class="kw">print</span> <span class="str">"Name change failed"</span>
-        exit()
-<span class="skw">click</span>(<img src="ndusers.png" />)
-<span class="kw">if</span> <span class="kw">not</span> exists(<img src="Todd-1.png" />):
-        <span class="kw">print</span> <span class="str">"Name change failed"</span>
-        exit()
-<span class="kw">if</span> <span class="kw">not</span> exists(<img src="x645v25-1.png" />):
-        <span class="kw">print</span> <span class="str">"Name changed failed"</span>
-        exit()
-<span class="kw">else</span>:
-        <span class="kw">print</span> <span class="str">"SUCCESS!"</span>
+        <span class="cmt"># Test Socket Auto-reconnect
+</span>        network.disconnect()
+        App.focus(browseros)
+        mockups.testLostConnection()
+        network.connect()
+        App.focus(browseros)
+        mockups.testReconnected()
+
+        <span class="cmt"># Test Reconnect Button
+</span>        network.disconnect()
+        App.focus(browseros)
+        mockups.testLostConnection()
+        <span class="skw">wait</span>(<img src="Yourconnectl.png" />, <span class="dig">40</span>)
+        network.connect()
+        App.focus(browseros)
+        mockups.reconnect()
+        mockups.testReconnected()
+
+        <span class="cmt"># Test Name Change
+</span>        mockups.changeName(<span class="str">"Todd"</span>)
+        mockups.testNameChange()
+
+        <span class="cmt"># Test Existing Project
+</span>        browser.copyURL()
+        browser.openURL(<span class="str">"http://mockups.dev"</span>)
+        browser.pasteURL()
+        mockups.testProjectExists()
+
+<span class="kw">print</span>(<span class="str">"SUCCESS!"</span>)
 </pre>
 </body>
 </html>

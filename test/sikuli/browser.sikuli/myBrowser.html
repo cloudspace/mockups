@@ -1,0 +1,119 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }  
+         
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>browser.sikuli</h2> <a href="browser.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+myOS = Env.getOS()
+myOSVer = Env.getOSVersion()
+<span class="kw">print</span> <span class="str">"OS: "</span> + myOS + <span class="str">" "</span> myOSVer
+
+<span class="cmt"># Open Chrome
+</span><span class="kw">def</span> openChrome():
+        <span class="kw">if</span> myOS == <span class="str">"MAC"</span>:
+                openApp(<span class="str">"Google\ Chrome"</span>)
+        <span class="kw">elif</span> myOS == <span class="str">"WINDOWS"</span>:
+                openApp(<span class="str">"googlechrome.exe"</span>)
+        <span class="kw">elif</span> myOS == <span class="str">"LINUX"</span>:
+                openApp(<span class="str">"Google\ Chrome"</span>)
+        <span class="kw">else</span>:
+                <span class="kw">print</span> <span class="str">"OS not found!"</span>
+                exit()
+        <span class="skw">type</span>(Key.ESC)
+        <span class="skw">type</span>(Key.ESC)
+        <span class="skw">type</span>(Key.ESC)
+
+<span class="kw">def</span> openFirefox():
+        <span class="cmt">#work on this
+</span>
+<span class="cmt"># Open Cookie Preferences
+</span><span class="kw">def</span> openCookies():
+        <span class="skw">type</span>(<span class="str">","</span>, KEY_CMD)
+        <span class="skw">click</span>(<img src="JndertheHood.png" />)
+        <span class="skw">click</span>(<img src="Contentsetti.png" />)
+        <span class="kw">if</span> <span class="kw">not</span> exists(<img src="1295375433222.png" />):
+                <span class="skw">click</span>(<img src="Cookies.png" />)
+
+<span class="cmt"># Remove Cookies
+</span><span class="kw">def</span> removeCookies(url):
+        <span class="skw">click</span>(<img src="Showcookiesa.png" />)
+        <span class="skw">type</span>(<img src="1295374919460.png" />, url)
+        <span class="kw">if</span> exists(<img src="RemoveAll.png" />):
+                <span class="skw">click</span>(<img src="1295374950584.png" />)
+        <span class="skw">click</span>(<img src="1295379312202.png" />)
+
+<span class="cmt"># Close Cookie Preferences
+</span><span class="kw">def</span> closeCookies():
+        <span class="skw">click</span>(<img src="1295374985887.png" />)
+        <span class="skw">click</span>(<img src="Q6.png" />)
+        <span class="skw">click</span>(<img src="01.png" />)
+</pre>
+</body>
+</html>
