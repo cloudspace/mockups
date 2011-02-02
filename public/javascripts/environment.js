@@ -13,7 +13,7 @@ Environment.prototype.connect = function(){
 		$.fancybox.close(); 
 		that.display_name = 'Anonymous';
 		reset_display_name();
-		$.history.init(load_hash);
+		$.history.init(load_hash, { 'unescape': '/' });
 	});
 	this.socket.on('disconnect', function(){
 		$("#disconnected").fancybox({

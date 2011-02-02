@@ -7,7 +7,6 @@ function Project(project_data){
 	this.id    = project_data._id;
 	this.hash  = project_data.hash;
 	this.path  = this.id + '/' + this.hash;
-	this.select_page();
 
 	// set page items
 	this.sync_mockup();
@@ -36,19 +35,28 @@ function Project(project_data){
   });
 }
 
+Project.prototype.current_page_path = function() {
+	return this.path + '/' + this.current_page;
+};
+
 // set current_page based on page_id
 // sending an invalid page_id will make it default to the first page
 Project.prototype.select_page = function(page_id) {
+	$('#page_' + this.current_page).removeClass('selected');
+
 	if (!this.pages[page_id]) {
 		for (var i in this.pages) {
 			if (this.pages.hasOwnProperty(i)) {
 				this.current_page = i;
+				jQuery.history.load(this.current_page_path());
 				break;
 			}
 		}
 	} else {
 		this.current_page = page_id;
 	}
+
+	$('#page_' + this.current_page).addClass('selected');
 };
 
 //set page items
@@ -67,9 +75,10 @@ Project.prototype.sync_pages = function() {
 	for (var index in this.pages) {
 		var page = this.pages[index];
 		//var span = $("<form class='name_update'><input type='text' value='" + page.name.toLowerCase() + "'/></form><span class='delete'> delete </span>").attr('data-id', index);
-		var span = $('<a title="' + page.name.replace('"', '&quot;') + '" href="#' + this.id + '/' + this.hash + '/' + index + '">' + page.name + '</a><span class="delete"> delete </span>');
+		var span = $('<a id="page_' + index + '" title="' + page.name.replace('"', '&quot;') + '" href="#' + this.id + '/' + this.hash + '/' + index + '">' + page.name + '</a><span class="delete"> delete </span>').attr('data-id', index);
 		$('<li>/</li>').append(span).appendTo(mockup_pages);
 	}
+	this.select_page();
 };
 
 Project.prototype.sync_name = function() {
