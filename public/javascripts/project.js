@@ -48,7 +48,8 @@ Project.prototype.sync_pages = function() {
 	var mockup_pages = $("#mockup_pages").html("");
 	for (var index in this.pages) {
 		var page = this.pages[index];
-		var span = $("<form class='name_update'><input type='text' value='" + page.name.toLowerCase() + "'/></form><span class='delete'> delete </span>").attr('data-id', index);
+		//var span = $("<form class='name_update'><input type='text' value='" + page.name.toLowerCase() + "'/></form><span class='delete'> delete </span>").attr('data-id', index);
+		var span = $('<a href="#' + this.id + '/' + this.hash + '/' + index + '">' + page.name + '</a><span class="delete"> delete </span>');
 		$('<li>/</li>').append(span).appendTo(mockup_pages);
 	}
 };
