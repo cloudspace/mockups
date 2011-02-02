@@ -76,13 +76,13 @@ Project.prototype.sync_pages = function() {
 		var page = this.pages[index];
 		$mockup_pages.append(
 			'<li>' +
-				'<a data-id="' + index + '" id="page_' + index + '" ' +
-				'   title="' + page.name.replace('"', '&quot;') + '" ' +
-				'   href="#' + this.id + '/' + this.hash + '/' + index + '">' +
-					page.name +
-				'</a>' +
-		    '<form data-id="' + index + '" class="name_update h">' + // TODO remove h for current_page
-					'<input type="text" value="' + page.name + '"/>' +
+		    '<form data-id="' + index + '" class="name_update">' + // TODO remove h for current_page
+					'<a data-id="' + index + '" id="page_' + index + '" ' +
+					'   title="' + page.name.replace('"', '&quot;') + '" ' +
+					'   href="#' + this.id + '/' + this.hash + '/' + index + '">' +
+						page.name +
+					'</a>' +
+					'<input class="h" type="text" value="' + page.name + '"/>' +
 				'</form>' +
 				'<span data-id="' + index + '" class="delete"> delete </span>' +
 			'</li>'
