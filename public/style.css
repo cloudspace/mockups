@@ -146,16 +146,11 @@
 
 .ui-draggable .ui-dialog-titlebar{ padding: 4px; }
   .mockup_wrapper{}
-	#mockup_pages li, #add_page { margin-left: 20px; cursor: pointer; }
-	#mockup_pages li form.name_update{display:inline;}
-
-	#mockup_pages li form.name_update input{background:none; border:none;width:120px;margin: 0 6px;color:white;}
-	#mockup_pages li form.name_update input:focus{background:white;border:1px solid #f0f0f0; margin: 0 5px; border-style:inset; color:black;text-decoration:none;}
 	#sideBar { float:left;background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
   #sideBar ol, #sideBar ul{margin:0;padding:0; line-height:24px;}
 	#sideBar ul li h3{margin:0; padding-left:10px;}
-	#sideBar ul li li.elements{cursor:move;}
-	#sideBar ul li li a{margin-left:20px;padding-left:20px; display:block;}
+	#sideBar ul li li.elements { cursor: move; }
+	#sideBar ul li ul.elements li a { margin-left:20px;padding-left:20px; display:block; }
   #sideBar  ul>li>ul.elements>li:hover {
       background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(20,84,171)), color-stop(0.95, rgb(29,143,213)), color-stop(1, rgb(255,255,255)) );
       background: -moz-linear-gradient(center bottom, rgb(20,84,171) 0%, rgb(29,143,213) 90%, rgb(255,255,255) 100%);
@@ -184,4 +179,10 @@
 /*****sidebar end*****/
 
 #sideBar #CssPaneTextArea {width:200px;height:400px;}
+
+#mockup_pages li, #add_page { margin-left: 20px; cursor: pointer; }
+#mockup_pages li form.name_update { display:inline; }
+#mockup_pages a { text-decoration: none; color: #fff; width: 120px; overflow: hidden; }
+#mockup_pages li form.name_update input{background:none; border:none;width:120px;margin: 0 6px;color:white;}
+#mockup_pages li form.name_update input:focus{background:white;border:1px solid #f0f0f0; margin: 0 5px; border-style:inset; color:black;text-decoration:none;}
 
