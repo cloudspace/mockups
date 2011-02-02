@@ -29,8 +29,8 @@ function Project(project_data){
 			};
 		update_message.update_pages.pages[page_id] = { name: page_name_input.val() };
 		env.socket.send(update_message);
+		console.log(that.pages[page_id]);
 		page_name_input.val(that.pages[page_id].name);
-    page_name_input.blur();
     return false;
   });
 }
@@ -70,17 +70,17 @@ Project.prototype.sync_mockup = function(property){
 	if (this['sync_' + property]) this['sync_' + property]();
 };
 
-Project.prototype.sync_pages = function() {
+Project.prototype.sync_pages = function(page_id) {
 	var $mockup_pages = $("#mockup_pages").html("");
 	for (var index in this.pages) {
-		var page = this.pages[index];
+		var page = this.pages[index], page_name = page.name ? page.name : '&nbsp;';
 		$mockup_pages.append(
 			'<li>' +
 		    '<form data-id="' + index + '" class="name_update">' + // TODO remove h for current_page
 					'<a data-id="' + index + '" id="page_' + index + '" ' +
 					'   title="' + page.name.replace('"', '&quot;') + '" ' +
 					'   href="#' + this.id + '/' + this.hash + '/' + index + '">' +
-						page.name +
+						page_name +
 					'</a>' +
 					'<input class="h" type="text" value="' + page.name + '"/>' +
 				'</form>' +
@@ -88,7 +88,7 @@ Project.prototype.sync_pages = function() {
 			'</li>'
 		);
 	}
-	this.select_page();
+	this.select_page(page_id);
 };
 
 Project.prototype.sync_name = function() {
@@ -104,6 +104,6 @@ Project.prototype.update_name = function(update_data){
 Project.prototype.update_page_name = function(update_data){
 	var pages = update_data.pages;
 	for (var index in pages) { this.pages[index] = pages[index]; }
-	this.sync_pages();
+	this.sync_pages(this.current_page);
 };
 

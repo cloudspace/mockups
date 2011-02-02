@@ -43,6 +43,12 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$('#mockup_pages .name_update input').live('blur', function(e) {
+		$tgt = $(e.target);
+		$tgt.addClass('h')
+			.siblings('a').removeClass('h');
+	});
+
 });
 
 // TODO move to User
