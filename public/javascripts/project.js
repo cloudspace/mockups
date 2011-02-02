@@ -71,12 +71,22 @@ Project.prototype.sync_mockup = function(property){
 };
 
 Project.prototype.sync_pages = function() {
-	var mockup_pages = $("#mockup_pages").html("");
+	var $mockup_pages = $("#mockup_pages").html("");
 	for (var index in this.pages) {
 		var page = this.pages[index];
-		//var span = $("<form class='name_update'><input type='text' value='" + page.name.toLowerCase() + "'/></form><span class='delete'> delete </span>").attr('data-id', index);
-		var span = $('<a id="page_' + index + '" title="' + page.name.replace('"', '&quot;') + '" href="#' + this.id + '/' + this.hash + '/' + index + '">' + page.name + '</a><span class="delete"> delete </span>').attr('data-id', index);
-		$('<li>/</li>').append(span).appendTo(mockup_pages);
+		$mockup_pages.append(
+			'<li>' +
+				'<a data-id="' + index + '" id="page_' + index + '" ' +
+				'   title="' + page.name.replace('"', '&quot;') + '" ' +
+				'   href="#' + this.id + '/' + this.hash + '/' + index + '">' +
+					page.name +
+				'</a>' +
+		    '<form data-id="' + index + '" class="name_update h">' + // TODO remove h for current_page
+					'<input type="text" value="' + page.name + '"/>' +
+				'</form>' +
+				'<span data-id="' + index + '" class="delete"> delete </span>' +
+			'</li>'
+		);
 	}
 	this.select_page();
 };

@@ -30,6 +30,15 @@ $(document).ready(function(){
 		env.socket.send({ add_page: true });
 	});
 
+	$('#mockup_pages a.selected').live('click', function(e) {
+		$tgt = $(e.target);
+		$tgt.addClass('h');
+		$tgt.siblings('form').removeClass('h').children('input').focus();
+		//$('#mockup_pages a').hide();
+		//$('#mockup_pages form').show();
+		return false;
+	});
+
 });
 
 // TODO move to User
