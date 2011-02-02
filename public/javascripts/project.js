@@ -1,16 +1,19 @@
 function Project(project_data){
-	//set this objs
+	var that = this;
+
+	// set this objs
 	this.pages = project_data.pages;
 	this.name  = project_data.name;
 	this.id    = project_data._id;
 	this.hash  = project_data.hash;
 	this.path  = this.id + '/' + this.hash;
-	//set page items
-  this.sync_mockup();
-	var that = this;
+	this.select_page();
 
-	//reset any bindings
-  $('#project_name_change').unbind('submit').submit(function(){
+	// set page items
+	this.sync_mockup();
+
+	// reset any bindings
+	$('#project_name_change').unbind('submit').submit(function(){
 		var project_name_input = $(this).find('input');
     env.socket.send({ update_project: { id: env.project.id, hash: env.project.hash, name: project_name_input.val() } });
 		project_name_input.val(that.name);
@@ -32,6 +35,21 @@ function Project(project_data){
     return false;
   });
 }
+
+// set current_page based on page_id
+// sending an invalid page_id will make it default to the first page
+Project.prototype.select_page = function(page_id) {
+	if (!this.pages[page_id]) {
+		for (var i in this.pages) {
+			if (this.pages.hasOwnProperty(i)) {
+				this.current_page = i;
+				break;
+			}
+		}
+	} else {
+		this.current_page = page_id;
+	}
+};
 
 //set page items
 Project.prototype.sync_mockup = function(property){
@@ -66,7 +84,7 @@ Project.prototype.update_name = function(update_data){
 
 Project.prototype.update_page_name = function(update_data){
 	var pages = update_data.pages;
-	for(var index in pages ){ this.pages[index] = pages[index]; }
+	for (var index in pages) { this.pages[index] = pages[index]; }
 	this.sync_pages();
 };
 

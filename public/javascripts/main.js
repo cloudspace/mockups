@@ -42,9 +42,11 @@ function load_hash(hash) {
 		hash = hash.split('/');
 		if (typeof env.project == 'undefined') {
 			env.socket.send({ find_project: { id: hash[0], hash: hash[1] } });
-		} else if (env.project._id != hash[0]) {
+		} else if (env.project.id != hash[0]) {
 			env.project = undefined;
 			env.socket.send({ find_project: { id: hash[0], hash: hash[1] } });
+		} else {
+			env.project.select_page(hash[2]);
 		}
 	} else {
 		env.project = undefined;
