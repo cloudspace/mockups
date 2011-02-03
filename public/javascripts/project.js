@@ -29,7 +29,6 @@ function Project(project_data){
 			};
 		update_message.update_pages.pages[page_id] = { name: page_name_input.val() };
 		env.socket.send(update_message);
-		console.log(that.pages[page_id]);
 		page_name_input.val(that.pages[page_id].name);
     return false;
   });
@@ -105,5 +104,10 @@ Project.prototype.update_page_name = function(update_data){
 	var pages = update_data.pages;
 	for (var index in pages) { this.pages[index] = pages[index]; }
 	this.sync_pages(this.current_page);
+};
+
+Project.prototype.open_input_box = function($target){
+	$target.addClass('h')
+		.siblings('input').removeClass('h').focus();
 };
 

@@ -35,13 +35,10 @@ $(document).ready(function(){
 	});
 
 	$('#mockup_pages a.selected').live('click', function(e) {
-		$tgt = $(e.target);
-		$tgt.addClass('h');
-		$tgt.siblings('input').removeClass('h').focus();
-		//$('#mockup_pages a').hide();
-		//$('#mockup_pages form').show();
+		env.project.open_input_box($(e.target));
 		return false;
 	});
+
 
 	$('#mockup_pages .name_update input').live('blur', function(e) {
 		$tgt = $(e.target);

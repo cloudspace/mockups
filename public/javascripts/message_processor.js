@@ -44,12 +44,14 @@ MessageProcessor = {
 	},
 
 	add_page: function(data) {
+		var page_id;
 		for (var key in data.page) {
 			var page = key.split('.'); // server should send key in form: pages.3 (where 3 is the new page id)
+			page_id = page[1];
 			env.project.pages[page[1]] = data.page[key];
 		}
-		env.project.sync_pages();
-		if (data.focus) $('#mockup_pages li:last input').focus();
+		env.project.sync_pages(page_id);
+		env.project.open_input_box($('.selected'));
 	},
 
 	delete_page: function(data) {
