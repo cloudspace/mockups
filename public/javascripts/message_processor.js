@@ -23,7 +23,7 @@ MessageProcessor = {
 		reset_display_name();
 	},
 
-	update_project: function(data) {
+	project_update: function(data) {
 		env.project.update_name(data);
 	},
 

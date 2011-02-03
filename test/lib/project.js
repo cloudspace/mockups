@@ -51,6 +51,31 @@ exports.project = testCase({
 		});
 	},
 
+	"update: updates a project's name": function(test) {
+		Project.create(function(project) {
+			var project_id = project._id;
+			project.update({ name: 'not a default name' }, function(project) {
+				Project.find_by_id(project_id, function(project) {
+					test.equal(project.name, 'not a default name');
+					test.done();
+				});
+			});
+		});
+	},
+
+	"update: does not allow blank project names": function(test) {
+		Project.create(function(project) {
+			var project_id = project._id;
+			var project_name = project.name;
+			project.update({ name: '' }, function(project) {
+				Project.find_by_id(project_id, function(project) {
+					test.equal(project.name, project_name);
+					test.done();
+				});
+			});
+		});
+	},
+
 /*
 
 

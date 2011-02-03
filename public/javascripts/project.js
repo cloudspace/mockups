@@ -14,7 +14,7 @@ function Project(project_data){
 	// reset any bindings
 	$('#project_name_change').unbind('submit').submit(function(){
 		var project_name_input = $(this).find('input');
-    env.socket.send({ update_project: { id: env.project.id, hash: env.project.hash, name: project_name_input.val() } });
+    env.socket.send({ project_update: { name: project_name_input.val() } });
 		project_name_input.val(that.name);
     project_name_input.blur();
 		return false;

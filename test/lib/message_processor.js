@@ -90,32 +90,31 @@ exports.process = testCase({
 		}, 50);
 	},
 
-/*
-	"update_project: sends an error message when a project is not found ": function(test) {
-		var that = this;
-		MessageProcessor.process(this.client, { update_project: { id: '1', hash: '1', name: 'Franklin' } });
-
+	"project_update: sends an error message when a project is not found": function(test) {
+		var that = this; 
+		this.client.user.project_id = 5;
+		MessageProcessor.process(this.client, { project_update: { name: 'Franklin' } });
 		setTimeout(function(){
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
 		}, 50);
 	},
 
-	"update_project: can update the project name": function(test) {
+	"project_update: can update the project name": function(test) {
 		var that = this;
-		new Project(function(project){
-			var old_project = project;
-			MessageProcessor.process(that.client, { update_project: { id: project._id, hash: project.hash, name: 'Franklin' } });
+		Project.create(function(project){
+			that.client.user.project_id = project._id;
+			MessageProcessor.process(that.client, { project_update: { name: 'Franklin' } });
 			setTimeout(function(){
-				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
-					test.notEqual(new_project.name, undefined);
-					test.notEqual(project.name, new_project.name);
+				Project.find_by_id(project._id, function (updated_project){
+					test.notEqual(project.name, updated_project.name);
 					test.done();
 				});
 			}, 50);
 		});
 	},
 
+/*
 	"update_project: can update the project pages": function(test) {
 		var that = this;
 		new Project(function(project){
