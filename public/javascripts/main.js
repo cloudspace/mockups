@@ -10,7 +10,7 @@ $(document).ready(function(){
 	// Handle user changing their display name.
 	// TODO move to User
 	$('#name_change').submit(function(){
-		env.socket.send({ update_name: { new_name: $('#display_name').val() } });
+		env.socket.send({ user_update: { name: $('#display_name').val() } });
 		$('#display_name').blur();
 		return false;
 	});

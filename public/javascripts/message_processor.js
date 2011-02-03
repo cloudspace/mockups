@@ -18,8 +18,8 @@ MessageProcessor = {
 		$('#project_display_name').val(project.name);
 	},
 
-	update_name: function(data) {
-		env.display_name = data.new_name;
+	user_update: function(data) {
+		env.display_name = data.name;
 		reset_display_name();
 	},
 

@@ -91,28 +91,52 @@ exports.process = testCase({
 	},
 
 /*
-	"update_name: changes a user's name": function(test) {
-		MessageProcessor.process(this.client, { update_name: { new_name: 'Doug' } });
-		test.equals(this.client.user.name, 'Doug');
-		test.done();
+	"update_project: sends an error message when a project is not found ": function(test) {
+		var that = this;
+		MessageProcessor.process(this.client, { update_project: { id: '1', hash: '1', name: 'Franklin' } });
+
+		setTimeout(function(){
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
+		}, 50);
 	},
 
-	"update_name: strips html": function(test) {
-		MessageProcessor.process(this.client, { update_name: { new_name: 'Doug<>' } });
-		test.equals(this.client.user.name, 'Doug');
-		test.done();
+	"update_project: can update the project name": function(test) {
+		var that = this;
+		new Project(function(project){
+			var old_project = project;
+			MessageProcessor.process(that.client, { update_project: { id: project._id, hash: project.hash, name: 'Franklin' } });
+			setTimeout(function(){
+				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
+					test.notEqual(new_project.name, undefined);
+					test.notEqual(project.name, new_project.name);
+					test.done();
+				});
+			}, 50);
+		});
 	},
 
-	"update_name: strips whitespace": function(test) {
-		MessageProcessor.process(this.client, { update_name: { new_name: '   Doug   ' } });
-		test.equals(this.client.user.name, 'Doug');
-		test.done();
-	},
+	"update_project: can update the project pages": function(test) {
+		var that = this;
+		new Project(function(project){
+			var old_project = project;
+			MessageProcessor.process(that.client, {
+					update_project: {
+						id: project._id, hash: project.hash,
+						pages : {
+							'0': { name: 'test', mockup_objects: {} }
+						}
+					}
+				});
 
-	"update_name: does not update when nil": function(test) {
-		MessageProcessor.process(this.client, { update_name: { new_name: null } });
-		test.equals(this.client.user.name, 'Anonymous');
-		test.done();
+			setTimeout(function(){
+				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
+				test.notEqual(project.pages['0'].name, new_project.pages['0'].name);
+
+				test.done();
+				});
+			}, 50);
+		});
 	},
 
 	"add_page: adds a page to the project a user is on": function(test) {
@@ -169,55 +193,31 @@ exports.process = testCase({
 		});
 	},
 
-	"update_project: sends an error message when a project is not found ": function(test) {
-		var that = this;
-		MessageProcessor.process(this.client, { update_project: { id: '1', hash: '1', name: 'Franklin' } });
-
-		setTimeout(function(){
-				test.notEqual(that.client.sent.error, undefined);
-				test.done();
-		}, 50);
-	},
-
-	"update_project: can update the project name": function(test) {
-		var that = this;
-		new Project(function(project){
-			var old_project = project;
-			MessageProcessor.process(that.client, { update_project: { id: project._id, hash: project.hash, name: 'Franklin' } });
-			setTimeout(function(){
-				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
-					test.notEqual(new_project.name, undefined);
-					test.notEqual(project.name, new_project.name);
-					test.done();
-				});
-			}, 50);
-		});
-	},
-
-	"update_project: can update the project pages": function(test) {
-		var that = this;
-		new Project(function(project){
-			var old_project = project;
-			MessageProcessor.process(that.client, {
-					update_project: {
-						id: project._id, hash: project.hash,
-						pages : {
-							'0': { name: 'test', mockup_objects: {} }
-						}
-					}
-				});
-
-			setTimeout(function(){
-				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
-				test.notEqual(project.pages['0'].name, new_project.pages['0'].name);
-
-				test.done();
-				});
-			}, 50);
-		});
-	}
 */
 
+	"user_update: changes a user's name": function(test) {
+		MessageProcessor.process(this.client, { user_update: { name: 'Doug' } });
+		test.equals(this.client.user.name, 'Doug');
+		test.done();
+	},
+
+	"user_update: strips html": function(test) {
+		MessageProcessor.process(this.client, { user_update: { name: 'Doug<>' } });
+		test.equals(this.client.user.name, 'Doug');
+		test.done();
+	},
+
+	"user_update: strips whitespace": function(test) {
+		MessageProcessor.process(this.client, { user_update: { name: '   Doug   ' } });
+		test.equals(this.client.user.name, 'Doug');
+		test.done();
+	},
+
+	"user_update: does not update when nil": function(test) {
+		MessageProcessor.process(this.client, { user_update: { name: null } });
+		test.equals(this.client.user.name, 'Anonymous');
+		test.done();
+	},
 });
 
 

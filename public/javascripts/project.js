@@ -94,14 +94,13 @@ Project.prototype.sync_name = function() {
 	$('#project_name_change').find('input').val(this.name);
 };
 
-
-Project.prototype.update_name = function(update_data){
-	this.name = update_data.name;
+Project.prototype.update_name = function(data){
+	this.name = data.name;
 	this.sync_name();
 };
 
-Project.prototype.update_page_name = function(update_data){
-	var pages = update_data.pages;
+Project.prototype.update_page_name = function(data){
+	var pages = data.pages;
 	for (var index in pages) { this.pages[index] = pages[index]; }
 	this.sync_pages(this.current_page);
 };
