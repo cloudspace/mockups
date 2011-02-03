@@ -52,7 +52,7 @@ exports.process = testCase({
 
 	"project_find: assigns user a project if it is found": function(test) {
 		var that = this;
-		Project.create(function(err, project) {
+		Project.create(function(project) {
 			MessageProcessor.process(that.client, { project_find: { id: project._id, hash: project.hash } });
 			setTimeout(function() {
 				test.notEqual(that.client.user.project_id, undefined);
@@ -63,7 +63,7 @@ exports.process = testCase({
 
 	"project_find: assigns user a project if it is authorized": function(test) {
 		var that = this;
-		Project.create(function(err, project) {
+		Project.create(function(project) {
 			MessageProcessor.process(that.client, { project_find: { id: project._id, hash: 'bad hash' } });
 			setTimeout(function() {
 				test.notEqual(that.client.sent.error, undefined);
