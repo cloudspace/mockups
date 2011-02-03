@@ -31,7 +31,7 @@ $(document).ready(function(){
 	});
 
 	$('#add_page').live('click', function() {
-		env.socket.send({ add_page: true });
+		env.socket.send({ page_create: true });
 	});
 
 	$('#mockup_pages a.selected').live('click', function(e) {

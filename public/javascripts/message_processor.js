@@ -43,13 +43,12 @@ MessageProcessor = {
 		$('#flash').html('<p>' + data + '</p>');
 	},
 
- // server should send key in form: pages.3 (where 3 is the new page id)
-	add_page: function(data) {
+	// server should send key in form: pages.3 (where 3 is the new page id)
+	page_create: function(data) {
 		var page_id;
-		for (var key in data.page) {
-			var page = key.split('.');
-			page_id = page[1];
-			env.project.pages[page[1]] = data.page[key];
+		for (var id in data.page) {
+			page_id = id;
+			env.project.pages[id] = data.page[id];
 		}
 
 		if (data.focus) {

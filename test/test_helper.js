@@ -9,6 +9,7 @@ exports.db      = db;
 var assert = require('assert');
 var User = require('../lib/user').User;
 var Project = require('../lib/project').Project;
+var Page = require('../lib/page').Page;
 
 exports.it = function(description, test) {
 	try {

@@ -76,40 +76,6 @@ exports.project = testCase({
 		});
 	},
 
-/*
-
-
-	"Project.add_page: creates a new page": function(test) {
-		new Project(function(project) {
-			Project.add_page(project._id, function(err, doc) {
-				// pages.0 (Home) already exists, add pages.1
-				test.equal(doc['pages.1'].name, 'New Page');
-
-				Project.add_page(project._id, function(err, doc) {
-					// add pages.2
-					test.equal(doc['pages.2'].name, 'New Page');
-					test.done();
-				});
-			});
-		});
-	},
-
-	"Project.delete_page: deletes a page": function(test) {
-		new Project(function(project) {
-			Project.delete_page(project._id, '0', function(err, doc) {
-				db.open(function(err, p_db) {
-					db.collection('projects', function(err, collection) {
-						collection.findOne({ _id: project._id }, function(err, doc) {
-							test.equal(doc.pages['1'], undefined);
-							test.done();
-						});
-					});
-				});
-			});
-		});
-	},
-*/
-
 });
 
 
