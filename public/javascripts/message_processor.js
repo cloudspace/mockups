@@ -43,15 +43,26 @@ MessageProcessor = {
 		$('#flash').html('<p>' + data + '</p>');
 	},
 
+ // server should send key in form: pages.3 (where 3 is the new page id)
 	add_page: function(data) {
 		var page_id;
 		for (var key in data.page) {
-			var page = key.split('.'); // server should send key in form: pages.3 (where 3 is the new page id)
+			var page = key.split('.');
 			page_id = page[1];
 			env.project.pages[page[1]] = data.page[key];
 		}
-		env.project.sync_pages(page_id);
-		env.project.open_input_box($('.selected'));
+
+		if (data.focus) {
+			// This should occur for the user who added the page.
+			// Adds focus to the new page element.
+			env.project.sync_pages(page_id);
+			env.project.open_input_box($('.selected'));
+		} else {
+			// This should occur for users who did not add the page.
+			// Just re-sync their page list and select whatever page they're already editing.
+			env.project.sync_pages(env.project.current_page);
+		}
+
 	},
 
 	delete_page: function(data) {
