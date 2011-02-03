@@ -40,6 +40,57 @@ exports.process = testCase({
 		test.done();
 	},
 
+	"project_find: sends client an error message if project is not found": function(test) {
+		var that = this;
+		MessageProcessor.process(this.client, { project_find: { id: '1', hash: '1' } });
+
+		setTimeout(function() {
+			test.notEqual(that.client.sent.error, undefined);
+			test.done();
+		}, 50);
+	},
+
+	"project_find: assigns user a project if it is found": function(test) {
+		var that = this;
+		Project.create(function(err, project) {
+			MessageProcessor.process(that.client, { project_find: { id: project._id, hash: project.hash } });
+			setTimeout(function() {
+				test.notEqual(that.client.user.project_id, undefined);
+				test.done();
+			}, 50);
+		});
+	},
+
+	"project_find: assigns user a project if it is authorized": function(test) {
+		var that = this;
+		Project.create(function(err, project) {
+			MessageProcessor.process(that.client, { project_find: { id: project._id, hash: 'bad hash' } });
+			setTimeout(function() {
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
+			}, 50);
+		});
+	},
+
+	"project_create: creates a project": function(test) {
+		var that = this;
+		MessageProcessor.process(this.client, { project_create: true });
+
+		setTimeout(function() {
+			db.open(function(err, p_db) {
+				db.collection('projects', function(err, collection) {
+					collection.count(function(err, count) {
+						// If the count in our collection is 1,
+						// then a new project must have been created.
+						test.equals(count, 1);
+						test.done();
+					});
+				});
+			});
+		}, 50);
+	},
+
+/*
 	"update_name: changes a user's name": function(test) {
 		MessageProcessor.process(this.client, { update_name: { new_name: 'Doug' } });
 		test.equals(this.client.user.name, 'Doug');
@@ -62,34 +113,6 @@ exports.process = testCase({
 		MessageProcessor.process(this.client, { update_name: { new_name: null } });
 		test.equals(this.client.user.name, 'Anonymous');
 		test.done();
-	},
-
-	"create_project: creates a project": function(test) {
-		var that = this;
-		MessageProcessor.process(this.client, { create_project: true });
-
-		setTimeout(function() {
-			db.open(function(err, p_db) {
-				db.collection('projects', function(err, collection) {
-					collection.count(function(err, count) {
-						// If the count in our collection is 1,
-						// then a new project must have been created.
-						test.equals(count, 1);
-						test.done();
-					});
-				});
-			});
-		}, 50);
-	},
-
-	"find_project: sends user an error message if project is not found": function(test) {
-		var that = this;
-		MessageProcessor.process(this.client, { find_project: { id: '1', hash: '1' } });
-
-		setTimeout(function() {
-			test.notEqual(that.client.sent.error, undefined);
-			test.done();
-		}, 50);
 	},
 
 	"add_page: adds a page to the project a user is on": function(test) {
@@ -146,17 +169,6 @@ exports.process = testCase({
 		});
 	},
 
-	"find_project: assigns user a project if it is found": function(test) {
-		var that = this;
-		new Project(function(project) {
-			MessageProcessor.process(that.client, { find_project: { id: project._id, hash: project.hash } });
-			setTimeout(function() {
-				test.notEqual(that.client.user.project_id, undefined);
-				test.done();
-			}, 50);
-		});
-	},
-
 	"update_project: sends an error message when a project is not found ": function(test) {
 		var that = this;
 		MessageProcessor.process(this.client, { update_project: { id: '1', hash: '1', name: 'Franklin' } });
@@ -204,6 +216,7 @@ exports.process = testCase({
 			}, 50);
 		});
 	}
+*/
 
 });
 
