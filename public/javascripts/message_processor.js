@@ -27,7 +27,7 @@ MessageProcessor = {
 		env.project.update_name(data);
 	},
 
-	update_pages: function(data) {
+	page_update: function(data) {
 		env.project.update_page_name(data);
 	},
 
@@ -45,16 +45,13 @@ MessageProcessor = {
 
 	// server should send key in form: pages.3 (where 3 is the new page id)
 	page_create: function(data) {
-		var page_id;
-		for (var id in data.page) {
-			page_id = id;
-			env.project.pages[id] = data.page[id];
-		}
+		var page=data.page;
 
+		env.project.pages[page.id] = page;
 		if (data.focus) {
 			// This should occur for the user who added the page.
 			// Adds focus to the new page element.
-			env.project.sync_pages(page_id);
+			env.project.sync_pages(page.id);
 			env.project.open_input_box($('.selected'));
 		} else {
 			// This should occur for users who did not add the page.
