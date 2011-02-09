@@ -5,6 +5,7 @@ var testCase         = require('nodeunit').testCase,
     ObjectID         = require('mongodb').ObjectID,
     Client           = require('../test_helper').Client,
     Project          = require('../../lib/project').Project,
+		Page             = require('../../lib/page').Page,
     MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
 exports.process = testCase({
@@ -91,7 +92,7 @@ exports.process = testCase({
 	},
 
 	"project_update: sends an error message when a project is not found": function(test) {
-		var that = this; 
+		var that = this;
 		this.client.user.project_id = 5;
 		MessageProcessor.process(this.client, { project_update: { name: 'Franklin' } });
 		setTimeout(function(){
@@ -150,45 +151,41 @@ exports.process = testCase({
 			}, 50);
 		});
 	},
-
-	"delete_page: deletes a page to the project a user is on": function(test) {
+*/
+	"page_delete: doesn't delete the final page": function(test) {
 		var that = this;
-		new Project(function(project) {
+		Project.create(function(project) {
 			// asign client to project
-			MessageProcessor.process(that.client, { find_project: { id: project._id, hash: project.hash } });
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			// delete page
+			MessageProcessor.process(that.client, { page_delete: { page_id: 0 } });
 			setTimeout(function() {
-				// add a page
-				Project.add_page(project._id, function() {
-					// delete page
-					MessageProcessor.process(that.client, { delete_page: { page_id: 0 } });
-					setTimeout(function() {
-						test.equal(that.client.sent.error, undefined);
-						test.notEqual(that.client.sent.delete_page, undefined);
-						test.done();
-					}, 50);
-				});
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
 			}, 50);
 		});
 	},
 
-	"delete_page: doesn't delete the final page": function(test) {
+	"page_delete: deletes a page to the project a user is on": function(test) {
 		var that = this;
-		new Project(function(project) {
-			// asign client to project
-			MessageProcessor.process(that.client, { find_project: { id: project._id, hash: project.hash } });
-			setTimeout(function() {
+		Project.create(function(project) {
+			// assign client to project
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			Page.create(project, function(page){
 				// delete page
-				MessageProcessor.process(that.client, { delete_page: { page_id: 0 } });
+				MessageProcessor.process(that.client, { page_delete: { page_id: 1 } });
 				setTimeout(function() {
-					test.notEqual(that.client.sent.error, undefined);
-					test.equal(that.client.sent.delete_page, undefined);
+					test.equal(that.client.sent.error, undefined);
+					test.notEqual(that.client.sent.page_delete, undefined);
 					test.done();
 				}, 50);
-			}, 50);
+			});
 		});
 	},
 
-*/
+
 
 	"user_update: changes a user's name": function(test) {
 		MessageProcessor.process(this.client, { user_update: { name: 'Doug' } });

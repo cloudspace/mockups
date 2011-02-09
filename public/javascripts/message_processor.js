@@ -61,7 +61,7 @@ MessageProcessor = {
 
 	},
 
-	delete_page: function(data) {
+	page_delete: function(data) {
 		for (var key in data.page) {
 			var page = key.split('.'); // server should send key in form: pages.3 (where 3 is the new page id)
 			delete env.project.pages[page[1]];

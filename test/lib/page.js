@@ -25,6 +25,17 @@ exports.page = testCase({
 		Project.create(function(project) {
 			test.equal(project.pages_created, 1);
 			Page.create(project, function(page) {
+				test.equal(project.pages_created, page.id);
+				test.equal(page.error, undefined);
+				test.done();
+			});
+		});
+	},
+
+	"create: updates the pages_created counter": function(test) {
+		Project.create(function(project) {
+			test.equal(project.pages_created, 1);
+			Page.create(project, function(page) {
 				Project.find_by_id(project._id, function(project) {
 					test.equal(project.pages_created, 2);
 					test.done();
@@ -42,24 +53,54 @@ exports.page = testCase({
 		});
 	},
 
-
-/*
-
-	"Project.delete_page: deletes a page": function(test) {
-		new Project(function(project) {
-			Project.delete_page(project._id, '0', function(err, doc) {
-				db.open(function(err, p_db) {
-					db.collection('projects', function(err, collection) {
-						collection.findOne({ _id: project._id }, function(err, doc) {
-							test.equal(doc.pages['1'], undefined);
-							test.done();
-						});
-					});
+	"find_by_id_and_project_id: returns a page ": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				Page.find_by_id_and_project_id(page.id, project._id,  function(found_page) {
+					test.equal(JSON.stringify(page),JSON.stringify(found_page));
+					test.done();
 				});
 			});
 		});
 	},
-*/
+
+	"find_by_id_and_project_id: returns an error if page not found ": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				Page.find_by_id_and_project_id(page.id, 'invalid id',  function(found_page) {
+					test.equal(found_page.error, '404');
+					test.done();
+				});
+			});
+		});
+	},
+
+	"delete: returns the page it deleted from a project": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				page.delete( function(deleted_page) {
+					test.equal(JSON.stringify(page),JSON.stringify(deleted_page));
+					test.done();
+				});
+			});
+		});
+	},
+
+	"delete: after deletion page should not exist": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				page.delete( function(deleted_page) {
+					setTimeout(function(){
+						Project.find_by_id(deleted_page.project_id, function(pj){
+							test.equal( pj.pages[deleted_page.id], undefined);
+							test.done();
+						});
+					},50);
+				});
+			});
+		});
+	},
+
 
 });
 

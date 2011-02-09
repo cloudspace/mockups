@@ -24,10 +24,10 @@ function Project(project_data){
 		var page_name_input = $(this).find('input');
 		var page_id = $(this).attr('data-id');
 		var update_message =
-			{ update_pages:
+			{ page_update:
 				{ id: env.project.id, hash: env.project.hash, pages: {} }
 			};
-		update_message.update_pages.pages[page_id] = { name: page_name_input.val() };
+		update_message.page_update.pages[page_id] = { name: page_name_input.val() };
 		env.socket.send(update_message);
 		page_name_input.val(that.pages[page_id].name);
     return false;

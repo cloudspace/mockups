@@ -26,7 +26,7 @@ $(document).ready(function(){
 		if ($('#mockup_pages .delete').length == 1) {
 			alert("You can't delete the last page on a project.");
 		} else {
-			env.socket.send({ delete_page: { page_id: $(this).attr('data-id') } });
+			env.socket.send({ page_delete: { page_id: $(this).attr('data-id') } });
 		}
 	});
 
