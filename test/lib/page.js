@@ -101,7 +101,21 @@ exports.page = testCase({
 		});
 	},
 
-
+	"update: updates the name attribute a page": function(test) {
+		var data = {page:{name:'frank',id:0}};
+		Project.create(function(project) {
+			Page.find_by_id_and_project_id( 0, project._id, function(page) {
+				page.update( data.page, function(updated_page) {
+					setTimeout(function(){
+						Project.find_by_id(updated_page.project_id, function(pj){
+							test.equal( pj.pages[updated_page.id].name,'frank');
+							test.done();
+						});
+					},50);
+				});
+			});
+		});
+	}
 });
 
 
