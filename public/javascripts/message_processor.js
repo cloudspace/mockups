@@ -31,19 +31,10 @@ MessageProcessor = {
 		env.project.update_page_name(data);
 	},
 
-	connected: function() {
-		$('#flash').html('');
+	page_delete: function(data) {
+		delete env.project.pages[data.page.id];
+		env.project.sync_pages();
 	},
-
-	announcement: function(data){
-		$('#flash').html('<p><strong>' + data + '</strong></p>');
-	},
-
-	message: function(data){
-		$('#flash').html('<p>' + data + '</p>');
-	},
-
-	// server should send key in form: pages.3 (where 3 is the new page id)
 	page_create: function(data) {
 		var page=data.page;
 
@@ -58,11 +49,19 @@ MessageProcessor = {
 			// Just re-sync their page list and select whatever page they're already editing.
 			env.project.sync_pages(env.project.current_page);
 		}
-
 	},
 
-	page_delete: function(data) {
-		delete env.project.pages[data.page.id];
-		env.project.sync_pages();
+	connected: function() {
+		$('#flash').html('');
 	},
+
+	announcement: function(data){
+		$('#flash').html('<p><strong>' + data + '</strong></p>');
+	},
+
+	message: function(data){
+		$('#flash').html('<p>' + data + '</p>');
+	},
+
+
 };
