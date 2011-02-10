@@ -128,30 +128,8 @@ exports.process = testCase({
 		});
 	},
 
-/*
-	"update_project: can update the project pages": function(test) {
-		var that = this;
-		new Project(function(project){
-			var old_project = project;
-			MessageProcessor.process(that.client, {
-					update_project: {
-						id: project._id, hash: project.hash,
-						pages : {
-							'0': { name: 'test', mockup_objects: {} }
-						}
-					}
-				});
 
-			setTimeout(function(){
-				Project.find({ id: project._id, hash: project.hash}, function (err, new_project){
-				test.notEqual(project.pages['0'].name, new_project.pages['0'].name);
 
-				test.done();
-				});
-			}, 50);
-		});
-	},
-*/
 	"page_delete: doesn't delete the final page": function(test) {
 		var that = this;
 		Project.create(function(project) {
@@ -184,8 +162,6 @@ exports.process = testCase({
 			});
 		});
 	},
-
-
 
 	"user_update: changes a user's name": function(test) {
 		MessageProcessor.process(this.client, { user_update: { name: 'Doug' } });
