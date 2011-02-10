@@ -68,8 +68,8 @@ exports.page = testCase({
 		Project.create(function(project) {
 			Page.create(project, function(page) {
 				page.delete(function(deleted_page) {
-					Project.find_by_id(deleted_page.project_id, function(project){
-						test.equal(project.pages[deleted_page.id], undefined);
+					Page.find_by_id_and_project_id(deleted_page.id, deleted_page.project._id, function(page) {
+						test.equal(page.error, '404');
 						test.done();
 					});
 				});
@@ -81,10 +81,8 @@ exports.page = testCase({
 		Project.create(function(project) {
 			Page.find_by_id_and_project_id(0, project._id, function(page) {
 				page.update({ name: 'frank', id: 0 }, function(updated_page) {
-					Project.find_by_id(updated_page.project_id, function(project){
-						test.equal(project.pages[updated_page.id].name, 'frank');
-						test.done();
-					});
+					test.equal(updated_page.name, 'frank');
+					test.done();
 				});
 			});
 		});
@@ -94,7 +92,8 @@ exports.page = testCase({
 		Project.create(function(project) {
 			Page.create(project, function(page) {
 				Page.find_by_id_and_project_id(page.id, project._id, function(found_page) {
-					test.equal(JSON.stringify(page), JSON.stringify(found_page));
+					test.equal(found_page.error, undefined);
+					test.equal(found_page.project.error, undefined);
 					test.done();
 				});
 			});

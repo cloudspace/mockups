@@ -40,19 +40,21 @@ Project.prototype.current_page_path = function() {
 // set current_page based on page_id
 // sending an invalid page_id will make it default to the first page
 Project.prototype.select_page = function(page_id) {
+	if (!page_id) page_id = this.current_page;
+
 	$('#page_' + this.current_page).removeClass('selected');
 
 	if (!this.pages[page_id]) {
 		for (var i in this.pages) {
 			if (this.pages.hasOwnProperty(i)) {
 				this.current_page = i;
-				jQuery.history.load(this.current_page_path());
 				break;
 			}
 		}
 	} else {
 		this.current_page = page_id;
 	}
+	jQuery.history.load(this.current_page_path());
 
 	$('#page_' + this.current_page).addClass('selected');
 };
