@@ -1,16 +1,21 @@
 Environment = function(){
 	this.socket;
 	this.project;
+	var that = this;
+	$.get("/templates.json", function(response) {
+		that.templates = JSON.parse(response);
+	});
 };
 
 Environment.prototype.connect = function(){
 	var that = this;
+
 	this.socket = new io.Socket(null, {port: 8080, rememberTransport: false, tryTransportsOnConnectTimeout: false});
 	this.socket.connect();
-	
+
 	this.socket.on('message', function(obj) { MessageProcessor.process(obj); });
-	this.socket.on('connect',function(obj) { 
-		$.fancybox.close(); 
+	this.socket.on('connect',function(obj) {
+		$.fancybox.close();
 		that.display_name = 'Anonymous';
 		reset_display_name();
 		$.history.init(load_hash, { 'unescape': '/' });
@@ -41,7 +46,7 @@ Environment.prototype.initialize_reconnect = function(){
 Environment.prototype.attempt_reconnect = function(){
 	if(this.socket.connected == true) return;
 	var that = this;
-	
+
 	this.reconnect_timer = setTimeout(function(){
 		that.attempt_reconnect.call(that);
 	}, this.reset_time + 2000);
@@ -68,10 +73,10 @@ Environment.prototype.hide_countdown = function(){
 
 Environment.prototype.countdown = function(){
 	if(this.socket.connected == true) return;
-	var time_span = $("#fancybox-content .wait_time"), 
+	var time_span = $("#fancybox-content .wait_time"),
 			that = this,
 			time = parseInt(time_span.text());
-	
+
 	time = time > 0? time - 1: 0;
 	time_span.text(time);
 	this.countdown_timer = setTimeout(function(){

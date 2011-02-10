@@ -2,6 +2,13 @@ $(document).ready(function(){
 	env = new Environment();
 	env.connect();
 
+	$('#sideBar .elements li').draggable({
+		appendTo: $("#mockup"),
+	  helper: function() {
+			var id = $(this).attr('template_id');
+			return $(env.templates[id].render);
+		}
+	});
 
 	$(window).click(function(e) {
 		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
