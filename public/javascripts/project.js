@@ -98,9 +98,8 @@ Project.prototype.update_name = function(data){
 	this.sync_name();
 };
 
-Project.prototype.update_page_name = function(data){
-	var pages = data.pages;
-	for (var index in pages) { this.pages[index] = pages[index]; }
+Project.prototype.update_page_name = function(page){
+	this.pages[page.id] = page;
 	this.sync_pages(this.current_page);
 };
 

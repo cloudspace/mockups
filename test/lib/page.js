@@ -36,10 +36,12 @@ exports.page = testCase({
 		Project.create(function(project) {
 			test.equal(project.pages_created, 1);
 			Page.create(project, function(page) {
-				Project.find_by_id(project._id, function(project) {
-					test.equal(project.pages_created, 2);
-					test.done();
-				});
+				setTimeout(function(){
+					Project.find_by_id(project._id, function(project) {
+						test.equal(project.pages_created, 2);
+						test.done();
+					});
+				}, 50);
 			});
 		});
 	},

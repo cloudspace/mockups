@@ -28,7 +28,7 @@ MessageProcessor = {
 	},
 
 	page_update: function(data) {
-		env.project.update_page_name(data);
+		env.project.update_page_name(data.page);
 	},
 
 	page_delete: function(data) {
