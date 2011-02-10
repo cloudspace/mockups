@@ -1,0 +1,64 @@
+{
+  "heading": {
+    "render": "<h1>Heading</h1>"
+  },
+  "paragraph": {
+    "render": "<p class=\"paragraph\">Text Paragraph</p>"
+  },
+  "link": {
+    "render": "<a href=\"#\">Link</a>"
+  },
+  "list": {
+    "render": "<ul type='bulleted'><li class='list_item'>Change Me</li></ul>"
+  },
+  "input_box": {
+    "render": "<input type='text' class='inputbox' value='Input Box'/>",
+    "formLabel": "<label position='top'>Label</label>"
+  },
+  "textarea": {
+    "render": "<textarea>Textarea</textarea>",
+    "formLabel": "<label position='top'>Label</label>"
+  },
+  "check_box": {
+    "render": "<form><input type='checkbox' class='check_item'/><label>Change Me</label></form>",
+    "formLabel": "<label position='top'>Label</label>"
+  },
+  "radio_buttons": {
+    "render": "<form><input type='radio' class='radio_item' name='radio_name'/><label>Change</label><br /><input type='radio' class='radio_item' name='radio_name'/><label>Us</label>",
+    "formLabel": "<label position='top'>Label</label>"
+  },
+  "image": {
+    "render": "<img class='image' src='/images/picture.png' alt='Image Placeholder' />"
+  },
+  "table": {
+    "render": "<table><tbody><tr class='table_row'><td class='table_cell'>Change</td><td class='table_cell'>Us</td></tr></tbody></table>"
+  },
+  "submit_button": {
+    "render": "<div class='white button'>Submit</div>"
+  },
+  "select_menu": {
+     "render": "<select class='selectbox'><option class='option_item' value=''>Choose One</option></select>",
+      "formLabel": "<label position='top'>Label</label>"
+	},
+	"global_container": {
+		"render": "<div class='global_container'>Drop More Items in Here</div>"
+	},
+	"main_navigation": {
+		"render": "<ul class='nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>"
+	},
+	"user_navigation": {
+		"render": "<ul class='user_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>"
+	},
+	"footer_navigation": {
+		"render": "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>"
+	},
+	"box_container": {
+		"render": "<div class='box'></div>"
+	},
+	"vertical_line": {
+		"render": "<div class='verLine'></div>"
+	},
+	"horizontal_line": {
+		"render": "<div class='horLine'></div>"
+	}
+}
