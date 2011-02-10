@@ -55,6 +55,7 @@ exports.process = testCase({
 		var that = this;
 		Project.create(function(project) {
 			MessageProcessor.process(that.client, { project_find: { id: project._id, hash: project.hash } });
+
 			setTimeout(function() {
 				test.notEqual(that.client.user.project_id, undefined);
 				test.done();
@@ -66,6 +67,7 @@ exports.process = testCase({
 		var that = this;
 		Project.create(function(project) {
 			MessageProcessor.process(that.client, { project_find: { id: project._id, hash: 'bad hash' } });
+
 			setTimeout(function() {
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
@@ -95,6 +97,7 @@ exports.process = testCase({
 		var that = this;
 		this.client.user.project_id = 5;
 		MessageProcessor.process(this.client, { project_update: { name: 'Franklin' } });
+
 		setTimeout(function(){
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
@@ -106,6 +109,7 @@ exports.process = testCase({
 		Project.create(function(project){
 			that.client.user.project_id = project._id;
 			MessageProcessor.process(that.client, { project_update: { name: 'Franklin' } });
+
 			setTimeout(function(){
 				Project.find_by_id(project._id, function (updated_project){
 					test.notEqual(project.name, updated_project.name);
@@ -120,6 +124,7 @@ exports.process = testCase({
 		Project.create(function(project) {
 			that.client.user.project_id = project._id;
 			MessageProcessor.process(that.client, { page_create: true });
+
 			setTimeout(function() {
 				test.equal(that.client.sent.error, undefined);
 				test.notEqual(that.client.sent.page_create, undefined);
@@ -138,6 +143,7 @@ exports.process = testCase({
 			that.client.user.subscribe(project._id);
 			// delete page
 			MessageProcessor.process(that.client, { page_delete: { page_id: 0 } });
+
 			setTimeout(function() {
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
@@ -154,6 +160,7 @@ exports.process = testCase({
 			Page.create(project, function(page){
 				// delete page
 				MessageProcessor.process(that.client, { page_delete: { page_id: 1 } });
+
 				setTimeout(function() {
 					test.equal(that.client.sent.error, undefined);
 					test.notEqual(that.client.sent.page_delete, undefined);
