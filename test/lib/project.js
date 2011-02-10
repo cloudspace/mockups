@@ -20,22 +20,6 @@ exports.project = testCase({
 		callback();
 	},
 
-	"Project.find_by_id: returns a project when given a valid id": function(test) {
-		Project.create(function(project) {
-			Project.find_by_id(project._id, function(project) {
-				test.notEqual(project, undefined);
-				test.done();
-			});
-		});
-	},
-
-	"Project.find_by_id: returns an error when passed an invalid id": function(test) {
-		Project.find_by_id('invalid', function(project) {
-			test.notEqual(project.error, undefined);
-			test.done();
-		});
-	},
-
 	"authorize: returns an error when passed an invalid hash": function(test) {
 		Project.create(function(project) {
 			project.authorize('bad hash');
@@ -73,6 +57,22 @@ exports.project = testCase({
 					test.done();
 				});
 			});
+		});
+	},
+
+	"Project.find_by_id: returns a project when given a valid id": function(test) {
+		Project.create(function(project) {
+			Project.find_by_id(project._id, function(project) {
+				test.notEqual(project, undefined);
+				test.done();
+			});
+		});
+	},
+
+	"Project.find_by_id: returns an error when passed an invalid id": function(test) {
+		Project.find_by_id('invalid', function(project) {
+			test.notEqual(project.error, undefined);
+			test.done();
 		});
 	},
 
