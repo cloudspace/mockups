@@ -9,6 +9,14 @@ $(document).ready(function(){
 			return $(env.templates[id].render);
 		}
 	});
+	$('#mockup').droppable({
+		drop: function(event, ui) {
+			var template_id = $(ui.draggable.attr('template_id')),
+			ui.position;
+			$tgt = $(event.target);
+
+		}
+	});
 
 	$(window).click(function(e) {
 		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
