@@ -57,6 +57,11 @@ Project.prototype.select_page = function(page_id) {
 	}
 	jQuery.history.load(this.current_page_path());
 
+	$('#canvas .canvas_object').remove();
+	for (var i in this.pages[this.current_page].canvas_objects) {
+		Renderer.render(this.pages[this.current_page].canvas_objects[i]);
+	}
+
 	$('#page_' + this.current_page).addClass('selected');
 };
 
@@ -102,7 +107,7 @@ Project.prototype.update_name = function(data){
 };
 
 Project.prototype.update_page_name = function(page){
-	this.pages[page.id] = page;
+	this.pages[page.id].name = page.name;
 	this.sync_pages(this.current_page);
 };
 
@@ -112,7 +117,10 @@ Project.prototype.open_input_box = function($target){
 };
 
 Project.prototype.add_canvas_object = function(new_canvas_object){
-		var current_canvas_objects = this.pages[new_canvas_object.page.id].canvas_objects;
-		current_canvas_objects[new_canvas_object.id] = new_canvas_object;
-		Renderer.render(new_canvas_object);
+		var page_id = new_canvas_object.page.id;
+		delete new_canvas_object.page;
+
+		var current_canvas_objects = this.pages[page_id].canvas_objects;
+		current_canvas_objects[page_id] = new_canvas_object;
+		if (this.current_page == page_id) Renderer.render(new_canvas_object);
 };

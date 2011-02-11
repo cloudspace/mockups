@@ -4,7 +4,7 @@ Renderer = {
 		this.page_element = $('<div></div>')
 			.addClass('canvas_object')
 			.html(env.templates[canvas_object.template_id].render)
-			.attr('canvas_object_id',canvas_object.id);
+			.attr('canvas_object_id', canvas_object.id);
 
 		//call specialized renderer if necessary
 		if(this[canvas_object['template_id']]){ this[canvas_object['template_id']](); }
