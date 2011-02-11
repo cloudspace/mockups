@@ -39,8 +39,8 @@
  #userinfo #display_name{background:none;border:none;}
  #userinfo #display_name:focus{background:white; border:1px solid #f0f0f0;border-style:inset;}
  #resizer { position:fixed; bottom:0; left:0px; background:url('/images/resizer.png') right; width:20%; text-align:right; height:24px; line-height:24px; }
- #mockup{height:600px; overflow: visible; background: #FFF;border:solid black 3px; margin: 5px 5px 5px 259px;position:relative;}
- #canvas{ position: relative;height:100%; border-bottom: 1px solid; border-right: 1px solid; }
+ #canvas{height:600px; overflow: visible; background: #FFF;border:solid black 3px; margin: 5px 5px 5px 259px;position:relative;}
+ #canvas{ position: relative; }
  #tools{background: url('/images/blackbar.png') top left; height:25px; line-height:25px; border-bottom:1px solid #000; color:#fff;}
  #tools .selecturl{margin: 3px 0 0 5px;float:left;}
  #tools p{ padding:3px 0 0 14px; }
@@ -96,7 +96,7 @@
 .settings ol, ul { list-style:none outside none; margin-right:5px; margin-top:9px; }
 .settings li {padding-bottom:4px; }
 
-.box, #mockup .global_container{ width:100px; height:100px; }
+.box, #canvas .global_container{ width:100px; height:100px; }
 .verLine{ height:100px; }
 .horLine{ width:100px; }
 .project_settings, .feature_settings, .new_feature_settings, .user_story_roles{ background-color:white; border:1px solid #999999; float:left; margin-left:20px; min-height:600px; padding:3px; width: 76%; margin-top:20px; }
@@ -104,10 +104,10 @@
 
 .settings_content{border-top:1px solid black; padding-bottom:2px; }
 
-.mockup-object {padding: 2px; border: 1px solid transparent; cursor: default; }
-.mockup-object.hover { border: 1px dashed #d3d3d3; }
-.mockup-object.ui-draggable-dragging, .mockup-object.selected.hover, .mockup-object.selected { border: 1px dashed #000; cursor: move; }
-.mockup-object .ui-resizable-handle.ui-icon { background-image: none; }
+.canvas_object {padding: 2px; border: 1px solid transparent; cursor: default; }
+.canvas_object.hover { border: 1px dashed #d3d3d3; }
+.canvas_object.ui-draggable-dragging, .canvas_object.selected.hover, .canvas_object.selected { border: 1px dashed #000; cursor: move; }
+.canvas_object .ui-resizable-handle.ui-icon { background-image: none; }
 
 /*----------------------------------*/
 .ui-resizable { position: relative;}
