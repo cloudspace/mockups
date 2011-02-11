@@ -14,11 +14,7 @@ Renderer = {
 		if(canvas_object.color){ this.page_element.css('color',canvas_object.color); }
 
 		this.page_element.draggable({
-	  	helper: function() {
-			var id = $(this).attr('template_id');
-			return $(env.templates[id].render);
-		}
-	});
+		});
 
 		return this.page_element.appendTo('#canvas');
 	},
