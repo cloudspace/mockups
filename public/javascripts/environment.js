@@ -83,4 +83,7 @@ Environment.prototype.countdown = function(){
 		that.countdown.call(that);
 	},1000);
 };
+Environment.prototype.render = function(canvas_object){
+	Render[canvas_object.template_id](canvas_object);
+};
 

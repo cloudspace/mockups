@@ -2,6 +2,7 @@ function Project(project_data){
 	var that = this;
 
 	// set this objs
+	this.current_page;
 	this.pages = project_data.pages;
 	this.name  = project_data.name;
 	this.id    = project_data._id;
@@ -110,3 +111,8 @@ Project.prototype.open_input_box = function($target){
 		.siblings('input').removeClass('h').focus();
 };
 
+Project.prototype.add_canvas_object = function(new_canvas_object){
+		var current_canvas_objects = this.pages[new_canvas_object.page_id].canvas_objects;
+		current_canvas_objects[new_canvas_object.id] = new_canvas_object;
+		env.render.paragraph(new_canvas_object);
+};

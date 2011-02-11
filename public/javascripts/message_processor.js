@@ -51,6 +51,10 @@ MessageProcessor = {
 		}
 	},
 
+	canvas_object_add: function(data){
+		env.project.add_canvas_object(data.canvas_object);
+	},
+
 	connected: function() {
 		$('#flash').html('');
 	},

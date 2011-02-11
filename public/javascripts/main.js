@@ -3,17 +3,23 @@ $(document).ready(function(){
 	env.connect();
 
 	$('#sideBar .elements li').draggable({
-		appendTo: $("#mockup"),
+		appendTo: $("#canvas"),
 	  helper: function() {
 			var id = $(this).attr('template_id');
 			return $(env.templates[id].render);
 		}
 	});
-	$('#mockup').droppable({
+	$('#canvas').droppable({
 		drop: function(event, ui) {
-			var template_id = $(ui.draggable.attr('template_id'));//,ui.position;
+			var template_id = $(ui.draggable).attr('template_id'), message = {};//,ui.position;
 			$tgt = $(event.target);
-
+			message['canvas_object_add'] = {
+				template_id: template_id,
+			  page_id:     env.project.current_page,
+				top:         ui.position.top,
+				left:        ui.position.left
+			};
+			env.socket.send(message);
 		}
 	});
 
