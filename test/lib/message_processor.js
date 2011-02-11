@@ -5,7 +5,8 @@ var testCase         = require('nodeunit').testCase,
     ObjectID         = require('mongodb').ObjectID,
     Client           = require('../test_helper').Client,
     Project          = require('../../lib/project').Project,
-		Page             = require('../../lib/page').Page,
+    Page             = require('../../lib/page').Page,
+    CanvasObject     = require('../../lib/canvas_object').CanvasObject,
     MessageProcessor = require('../../lib/message_processor').MessageProcessor;
 
 exports.process = testCase({
@@ -133,8 +134,6 @@ exports.process = testCase({
 		});
 	},
 
-
-
 	"page_delete: doesn't delete the final page": function(test) {
 		var that = this;
 		Project.create(function(project) {
@@ -167,6 +166,21 @@ exports.process = testCase({
 					test.done();
 				}, 50);
 			});
+		});
+	},
+
+	"canvas_object_create: adds a canvas object to the page a user passes": function(test) {
+		var that = this;
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+
+			MessageProcessor.process(that.client, { canvas_object_create: { page: { id: 0 }, top: 1, left: 2, template_id: 'header' } });
+
+			setTimeout(function() {
+				test.equal(that.client.sent.error, undefined);
+				test.notEqual(that.client.sent.canvas_object_create, undefined);
+				test.done();
+			}, 50);
 		});
 	},
 
