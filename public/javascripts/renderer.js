@@ -1,14 +1,13 @@
 Renderer = {
 	render: function(canvas_object){
 		this.canvas_object = canvas_object;
-console.log(canvas_object);
 		//if this call gets something back then canvas_object exists
 		this.page_element = $('#canvas div[canvas_object_id='+ canvas_object.id +']');
 		if(this.page_element.length == 0){
-			console.log( canvas_object  );
 			this.page_element = $('<div></div>')
 				.addClass('canvas_object')
 				.html(env.templates[canvas_object.template_id].render)
+				.css('position','absolute')
 				.attr('canvas_object_id',canvas_object.id);
 			this.page_element.draggable({
 			'containment': 'parent',
