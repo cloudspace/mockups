@@ -13,7 +13,7 @@ $(document).ready(function(){
 		drop: function(event, ui) {
 			var template_id = $(ui.draggable).attr('template_id'), message = {};//,ui.position;
 			$tgt = $(event.target);
-			message['canvas_object_add'] = {
+			message['canvas_object_create'] = {
 				template_id: template_id,
 			  page_id:     env.project.current_page,
 				top:         ui.position.top,

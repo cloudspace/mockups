@@ -51,7 +51,7 @@ MessageProcessor = {
 		}
 	},
 
-	canvas_object_add: function(data){
+	canvas_object_create: function(data){
 		env.project.add_canvas_object(data.canvas_object);
 	},
 
