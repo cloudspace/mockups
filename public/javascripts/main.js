@@ -11,11 +11,12 @@ $(document).ready(function(){
 	});
 	$('#canvas').droppable({
 		drop: function(event, ui) {
-			var template_id = $(ui.draggable).attr('template_id'), message = {};//,ui.position;
-			$tgt = $(event.target);
-			message['canvas_object_create'] = {
+			var $dragged_item = $(ui.draggable), template_id = $dragged_item.attr('template_id'), message = {};//,ui.position;
+			// if length > 0 then the dragged item is from the sidebar so it is a new canvas_object
+			var message_type = $dragged_item.parent('.elements').length > 0 ? 'canvas_object_create' : 'canvas_object_update';
+			message[message_type] = {
 				template_id: template_id,
-			  page:        { id: env.project.current_page },
+				page:        { id: env.project.current_page },
 				top:         ui.position.top,
 				left:        ui.position.left
 			};

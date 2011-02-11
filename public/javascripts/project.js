@@ -115,7 +115,6 @@ Project.prototype.open_input_box = function($target){
 	$target.addClass('h')
 		.siblings('input').removeClass('h').focus();
 };
-
 Project.prototype.add_canvas_object = function(new_canvas_object){
 		var page_id = new_canvas_object.page.id;
 		delete new_canvas_object.page;
