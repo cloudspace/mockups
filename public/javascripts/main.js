@@ -11,8 +11,7 @@ $(document).ready(function(){
 	});
 	$('#mockup').droppable({
 		drop: function(event, ui) {
-			var template_id = $(ui.draggable.attr('template_id')),
-			ui.position;
+			var template_id = $(ui.draggable.attr('template_id'));//,ui.position;
 			$tgt = $(event.target);
 
 		}
