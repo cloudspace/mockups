@@ -114,9 +114,5 @@ Project.prototype.open_input_box = function($target){
 Project.prototype.add_canvas_object = function(new_canvas_object){
 		var current_canvas_objects = this.pages[new_canvas_object.page.id].canvas_objects;
 		current_canvas_objects[new_canvas_object.id] = new_canvas_object;
-		if(Renderer[canvas_object.template_id] == undefined){
-			console.log('Renderer.'+ canvas_object.template_id +' is not defined.');
-		}else{
-			Renderer[canvas_object.template_id](canvas_object);
-		}
+		Renderer.render(new_canvas_object);
 };

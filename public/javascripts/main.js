@@ -15,7 +15,7 @@ $(document).ready(function(){
 			$tgt = $(event.target);
 			message['canvas_object_create'] = {
 				template_id: template_id,
-			  page_id:     env.project.current_page,
+			  page:        { id: env.project.current_page },
 				top:         ui.position.top,
 				left:        ui.position.left
 			};

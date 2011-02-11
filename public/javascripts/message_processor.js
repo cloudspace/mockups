@@ -2,6 +2,8 @@ MessageProcessor = {
 	error: function(message) {
 		if (message == '404') {
 			$('body').html('<div id="error_404"><p>Sorry, that project could not be found.</p><p><a href="/">Create a new project.</a></p><div>');
+		}else{
+			$('#flash').html('<p>Error: ' + message + '</p>');
 		}
 	},
 
@@ -66,6 +68,5 @@ MessageProcessor = {
 	message: function(data){
 		$('#flash').html('<p>' + data + '</p>');
 	},
-
 
 };
