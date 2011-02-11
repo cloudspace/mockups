@@ -56,7 +56,13 @@ MessageProcessor = {
 	canvas_object_create: function(data){
 		env.project.add_canvas_object(data.canvas_object);
 	},
-
+	canvas_object_update: function(data){
+		env.project.update_canvas_object(data.canvas_object);
+	},
+	canvas_object_delete: function(data){
+		console.log("In MessageProcessor: canvas_object_delete not implemented");
+		this.announcement(data);
+	},
 	connected: function() {
 		$('#flash').html('');
 	},

@@ -111,7 +111,14 @@ Project.prototype.open_input_box = function($target){
 		.siblings('input').removeClass('h').focus();
 };
 Project.prototype.add_canvas_object = function(new_canvas_object){
-		var current_canvas_objects = this.pages[new_canvas_object.page.id].canvas_objects;
-		current_canvas_objects[new_canvas_object.id] = new_canvas_object;
-		Renderer.render(new_canvas_object);
+thing = new_canvas_object;
+	var current_canvas_objects = this.pages[new_canvas_object.page.id].canvas_objects;
+	current_canvas_objects[new_canvas_object.id] = new_canvas_object;
+	Renderer.render(new_canvas_object);
+};
+
+Project.prototype.update_canvas_object = function(canvas_object){
+	var current_canvas_objects = this.pages[canvas_object.page.id].canvas_objects;
+	current_canvas_objects[canvas_object.id] = canvas_object;
+	Renderer.render(canvas_object);
 };
