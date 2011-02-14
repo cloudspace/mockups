@@ -13,7 +13,7 @@ exports.process = testCase({
 
 	setUp: function (callback) {
 		// Set up a new [fake] client connection.
-		this.client = new Client;
+		this.client = new Client();
 		// Clear out the projects collection.
 		db.open(function(err, p_db) {
 			db.dropCollection('projects', function(err) {
