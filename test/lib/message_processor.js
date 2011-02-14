@@ -134,6 +134,32 @@ exports.process = testCase({
 		});
 	},
 
+	"page_update: sends an error message when a page is not found": function(test) {
+		var that = this;
+		this.client.user.project_id = 5;
+		MessageProcessor.process(this.client, { page_update: { page: { name: 'Franklin' } } });
+
+		setTimeout(function(){
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
+		}, 500);
+	},
+
+	"page_update: can update the page name": function(test) {
+		var that = this;
+		Project.create(function(project){
+			that.client.user.project_id = project._id;
+			MessageProcessor.process(that.client, { page_update: { page: { id: 0, name: 'Franklin' } } });
+
+			setTimeout(function(){
+				Page.find_by_id_and_project_id(0, project._id, function (updated_page){
+					test.equal(updated_page.name, 'Franklin');
+					test.done();
+				});
+			}, 500);
+		});
+	},
+
 	"page_delete: doesn't delete the final page": function(test) {
 		var that = this;
 		Project.create(function(project) {
@@ -181,6 +207,49 @@ exports.process = testCase({
 				test.notEqual(that.client.sent.canvas_object_create, undefined);
 				test.done();
 			}, 500);
+		});
+	},
+
+	"canvas_object_update: sends an error message when a canvas object is not found": function(test) {
+		var that = this;
+		this.client.user.project_id = 5;
+		MessageProcessor.process(this.client, { canvas_object_update: { page: { id: 0 }, canvas_object: { id: 1, top: 333 } } });
+
+		setTimeout(function(){
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
+		}, 500);
+	},
+
+	"canvas_object_update: sends an error message when a page is not found": function(test) {
+		var that = this;
+		this.client.user.project_id = 5;
+		MessageProcessor.process(this.client, { canvas_object_update: { page: { id: 'not an id' }, canvas_object: { id: 1, top: 333 } } });
+
+		setTimeout(function(){
+				test.notEqual(that.client.sent.error, undefined);
+				test.done();
+		}, 500);
+	},
+
+	"canvas_object_update: can update the canvas object": function(test) {
+		var that = this;
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			Page.find_by_id_and_project_id(0, project._id, function(page) {
+				CanvasObject.create(page, { canvas_object: { top: 10 } }, function(canvas_object) {
+					MessageProcessor.process(that.client, { canvas_object_update: { page: { id: page.id }, canvas_object: { id: 0, top: 333 } } });
+
+					setTimeout(function() {
+						Page.find_by_id_and_project_id(0, project._id, function(page) {
+							CanvasObject.find(0, page, function(updated_canvas_object) {
+								test.equal(updated_canvas_object.top, 333);
+								test.done();
+							});
+						});
+					}, 500);
+				});
+			});
 		});
 	},
 
