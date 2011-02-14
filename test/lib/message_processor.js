@@ -49,7 +49,7 @@ exports.process = testCase({
 		setTimeout(function() {
 			test.notEqual(that.client.sent.error, undefined);
 			test.done();
-		}, 50);
+		}, 500);
 	},
 
 	"project_find: assigns user a project if it is found": function(test) {
@@ -60,7 +60,7 @@ exports.process = testCase({
 			setTimeout(function() {
 				test.notEqual(that.client.user.project_id, undefined);
 				test.done();
-			}, 50);
+			}, 500);
 		});
 	},
 
@@ -72,7 +72,7 @@ exports.process = testCase({
 			setTimeout(function() {
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
-			}, 50);
+			}, 500);
 		});
 	},
 
@@ -91,7 +91,7 @@ exports.process = testCase({
 					});
 				});
 			});
-		}, 50);
+		}, 500);
 	},
 
 	"project_update: sends an error message when a project is not found": function(test) {
@@ -102,7 +102,7 @@ exports.process = testCase({
 		setTimeout(function(){
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
-		}, 50);
+		}, 500);
 	},
 
 	"project_update: can update the project name": function(test) {
@@ -116,7 +116,7 @@ exports.process = testCase({
 					test.notEqual(project.name, updated_project.name);
 					test.done();
 				});
-			}, 50);
+			}, 500);
 		});
 	},
 
@@ -130,7 +130,7 @@ exports.process = testCase({
 				test.equal(that.client.sent.error, undefined);
 				test.notEqual(that.client.sent.page_create, undefined);
 				test.done();
-			}, 50);
+			}, 500);
 		});
 	},
 
@@ -146,7 +146,7 @@ exports.process = testCase({
 			setTimeout(function() {
 				test.notEqual(that.client.sent.error, undefined);
 				test.done();
-			}, 50);
+			}, 500);
 		});
 	},
 
@@ -164,7 +164,7 @@ exports.process = testCase({
 					test.equal(that.client.sent.error, undefined);
 					test.notEqual(that.client.sent.page_delete, undefined);
 					test.done();
-				}, 50);
+				}, 500);
 			});
 		});
 	},
@@ -174,13 +174,13 @@ exports.process = testCase({
 		Project.create(function(project) {
 			that.client.user.project_id = project._id;
 
-			MessageProcessor.process(that.client, { canvas_object_create: { page: { id: 0 }, top: 1, left: 2, template_id: 'header' } });
+			MessageProcessor.process(that.client, { canvas_object_create: { page: { id: 0 }, canvas_object: { top: 1, left: 2, template_id: 'header' } } });
 
 			setTimeout(function() {
 				test.equal(that.client.sent.error, undefined);
 				test.notEqual(that.client.sent.canvas_object_create, undefined);
 				test.done();
-			}, 50);
+			}, 500);
 		});
 	},
 
