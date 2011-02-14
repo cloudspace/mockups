@@ -15,10 +15,13 @@ $(document).ready(function(){
 			// if length > 0 then the dragged item is from the sidebar so it is a new canvas_object
 			var message_type = $dragged_item.parent('.elements').length > 0 ? 'canvas_object_create' : 'canvas_object_update';
 			message[message_type] = {
-				template_id: template_id,
-				page:        { id: env.project.current_page },
-				top:         ui.position.top,
-				left:        ui.position.left
+				canvas_object: {
+					template_id: template_id,
+					top:         ui.position.top,
+					left:        ui.position.left,
+					id:          $dragged_item.attr('canvas_object_id')
+				},
+				page:        { id: env.project.current_page }
 			};
 			env.socket.send(message);
 		}
