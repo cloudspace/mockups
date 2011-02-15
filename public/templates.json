@@ -9,7 +9,7 @@
     "render": "<a href=\"#\">Link</a>"
   },
   "list": {
-    "render": "<ul type='bulleted'><li class='list_item'>Change Me</li></ul>"
+    "render": "<ul type='bulleted'><li>Item 1</li><li>Item 2</li></ul>"
   },
   "input_box": {
     "render": "<input type='text' class='inputbox' value='Input Box'/>",

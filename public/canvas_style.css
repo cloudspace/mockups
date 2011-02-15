@@ -1,1 +1,14 @@
-#canvas .canvas_object{ width:150px;position: absolute; border:dashed 1px #000;}
+
+/*
+.canvas_object { padding: 2px; border: 1px solid transparent; cursor: default; }
+.canvas_object.hover { border: 1px dashed #d3d3d3; }
+.canvas_object.ui-draggable-dragging, .canvas_object.selected.hover, .canvas_object.selected { border: 1px dashed #000; cursor: move; }
+.canvas_object .ui-resizable-handle.ui-icon { background-image: none; }
+*/
+
+.ui-selectable-helper { position: absolute; z-index: 1; border: 1px dotted #333; }
+
+#canvas .canvas_object { position: absolute; z-index: 2; width: 150px; display: block; border: dashed 1px transparent; padding: 2px; cursor: pointer; }
+#canvas .canvas_object:hover, #canvas .ui-selecting { border-color: #999; }
+#canvas .ui-selected:hover, #canvas .ui-selected { border-color: #333; }
+

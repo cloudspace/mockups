@@ -1,3 +1,22 @@
+
+$(window).load(function() {
+
+  $(document).keydown(function(e) {
+		if ($(document.activeElement).is('input') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
+		switch (e.keyCode) {
+			case 8: // delete key
+				break;
+			default:
+				return;
+		}
+		e.cancelBubble = true;
+		if (e.stopPropagation) e.stopPropagation();
+		return false;
+	});
+
+});
+
+
 $(document).ready(function(){
 	env = new Environment();
 	env.connect();
@@ -6,9 +25,10 @@ $(document).ready(function(){
 		appendTo: $("#canvas"),
 	  helper: function() {
 			var id = $(this).attr('template_id');
-			return $(env.templates[id].render);
+			return $(env.templates[id].render).addClass('canvas_object');
 		}
 	});
+
 	$('#canvas').droppable({
 		drop: function(event, ui) {
 			var $dragged_item = $(ui.draggable), template_id = $dragged_item.attr('template_id'), message = {};//,ui.position;
@@ -25,6 +45,10 @@ $(document).ready(function(){
 			};
 			env.socket.send(message);
 		}
+	});
+
+	$('#canvas').selectable({
+		cancel: '.clear',
 	});
 
 	$(window).click(function(e) {

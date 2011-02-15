@@ -90,11 +90,6 @@
 
 .last_element{ -moz-box-shadow: 5px 5px 5px black; -webkit-box-shadow: 5px 5px 5px black; border: 1px solid black; display: inline; list-style-type: none; padding: 4px; }
 .last_user_element{ border-right: none; }
-.settings { background-color: white; border: 1px solid #999999; float: left; font-size: 16px; margin-left: 23px; padding: 6px; width: 16%; }
-.settings { background-color:white; border:1px solid #999999; float:left; font-size:16px; margin-left:23px; padding:6px; width:16%; margin-top:20px; }
-.settings a{ color:#105998; }
-.settings ol, ul { list-style:none outside none; margin-right:5px; margin-top:9px; }
-.settings li {padding-bottom:4px; }
 
 .box, #canvas .global_container{ width:100px; height:100px; }
 .verLine{ height:100px; }
@@ -102,12 +97,7 @@
 .project_settings, .feature_settings, .new_feature_settings, .user_story_roles{ background-color:white; border:1px solid #999999; float:left; margin-left:20px; min-height:600px; padding:3px; width: 76%; margin-top:20px; }
 .myframe{ height:600px; width:100%; }
 
-.settings_content{border-top:1px solid black; padding-bottom:2px; }
-
-.canvas_object {padding: 2px; border: 1px solid transparent; cursor: default; }
-.canvas_object.hover { border: 1px dashed #d3d3d3; }
-.canvas_object.ui-draggable-dragging, .canvas_object.selected.hover, .canvas_object.selected { border: 1px dashed #000; cursor: move; }
-.canvas_object .ui-resizable-handle.ui-icon { background-image: none; }
+.settings_content { border-top:1px solid black; padding-bottom:2px; }
 
 /*----------------------------------*/
 .ui-resizable { position: relative;}
@@ -188,3 +178,6 @@
 #mockup_pages li form.name_update input { margin-bottom: 0; margin-right:0; height: 19px; width:124px; background: white; border:none;color: black; text-decoration: none; }
 
 #mockup_pages li a.h, #mockup_pages li form input.h { display: none; }
+
+
+.clear { clear: both; height: 1px; }
