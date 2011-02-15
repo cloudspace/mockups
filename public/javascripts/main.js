@@ -35,7 +35,10 @@ $(document).ready(function(){
 		appendTo: $("#canvas"),
 	  helper: function() {
 			var id = $(this).attr('template_id');
-			return $(env.templates[id].render).addClass('canvas_object');
+			var $el = $('<div></div>')
+				.addClass('canvas_object')
+				.html($(env.templates[id].render));
+			return $el;
 		}
 	});
 

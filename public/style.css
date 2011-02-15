@@ -9,7 +9,7 @@
 #flash p:nth-child(odd) { background: #F6F6F6; }
 
  body { margin:0; padding:0; font-family:Helvetica; font-size:14px; }
- p { padding:0 0 0 20px; margin:0; width:auto; }
+ /*p { padding:0 0 0 20px; margin:0; width:auto; }*/
  #header {
    background: -webkit-gradient(linear,  left bottom,  left top,  color-stop(0, rgb(167,167,167)),  color-stop(0.95, rgb(208,208,208)),  color-stop(1, rgb(255,255,255)));
    background: -moz-linear-gradient(center bottom,  rgb(167,167,167) 0%,  rgb(208,208,208) 90%,  rgb(255,255,255) 100%);
@@ -91,9 +91,7 @@
 .last_element{ -moz-box-shadow: 5px 5px 5px black; -webkit-box-shadow: 5px 5px 5px black; border: 1px solid black; display: inline; list-style-type: none; padding: 4px; }
 .last_user_element{ border-right: none; }
 
-.box, #canvas .global_container{ width:100px; height:100px; }
-.verLine{ height:100px; }
-.horLine{ width:100px; }
+#canvas .global_container{ width:100px; height:100px; }
 .project_settings, .feature_settings, .new_feature_settings, .user_story_roles{ background-color:white; border:1px solid #999999; float:left; margin-left:20px; min-height:600px; padding:3px; width: 76%; margin-top:20px; }
 .myframe{ height:600px; width:100%; }
 
@@ -134,8 +132,6 @@
 
 
 
-.ui-draggable .ui-dialog-titlebar{ padding: 4px; }
-  .mockup_wrapper{}
 	#sideBar { float:left;background:#dbdbdb url('/images/sidebarbg.png'); width:20%; min-height:100%; border-right:1px solid #000; z-index:0; color:#717171; text-shadow: #000 0px 1px 1px; width:253px;}
   #sideBar ol, #sideBar ul{margin:0;padding:0; line-height:24px;}
 	#sideBar ul li h3{margin:0; padding-left:10px;}

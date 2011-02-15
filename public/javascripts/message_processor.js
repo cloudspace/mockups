@@ -2,15 +2,15 @@ MessageProcessor = {
 	error: function(message) {
 		if (message == '404') {
 			$('body').html('<div id="error_404"><p>Sorry, that project could not be found.</p><p><a href="/">Create a new project.</a></p><div>');
-		}else{
+		} else {
 			$('#flash').html('<p>Error: ' + message + '</p>');
 		}
 	},
 
 	process: function(message) {
 		for (var action in message) {
-			if (this[action]){ this[action](message[action]); }
-			else             { console.log("Undefined action: " + action);}
+			if (this[action]) { this[action](message[action]); }
+			else              { console.log("Undefined action: " + action); }
 		}
 	},
 
@@ -53,15 +53,15 @@ MessageProcessor = {
 		}
 	},
 
-	canvas_object_create: function(data){
+	canvas_object_create: function(data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
-	canvas_object_update: function(data){
+	canvas_object_update: function(data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
-	canvas_object_delete: function(data){
+	canvas_object_delete: function(data) {
 		$('#canvas div[canvas_object_id=' + data.canvas_object.id + ']').remove();
 	},
 
@@ -69,11 +69,11 @@ MessageProcessor = {
 		$('#flash').html('');
 	},
 
-	announcement: function(data){
+	announcement: function(data) {
 		$('#flash').html('<p><strong>' + data + '</strong></p>');
 	},
 
-	message: function(data){
+	message: function(data) {
 		$('#flash').html('<p>' + data + '</p>');
 	},
 
