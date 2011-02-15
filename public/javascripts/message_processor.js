@@ -37,6 +37,7 @@ MessageProcessor = {
 		delete env.project.pages[data.page.id];
 		env.project.sync_pages();
 	},
+
 	page_create: function(data) {
 		var page=data.page;
 
@@ -62,6 +63,7 @@ MessageProcessor = {
 	},
 
 	canvas_object_delete: function(data) {
+		delete env.project.pages[data.canvas_object.page.id].canvas_objects[data.canvas_object.id];
 		$('#canvas div[canvas_object_id=' + data.canvas_object.id + ']').remove();
 	},
 
