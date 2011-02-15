@@ -1,10 +1,15 @@
 
 $(window).load(function() {
 
-  $(document).keydown(function(e) {
+	// Key bindings used so that users may delete mockup objects (with the delete key).
+	$(document).keydown(function(e) {
 		if ($(document.activeElement).is('input') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
 		switch (e.keyCode) {
-			case 8: // delete key
+			case 8:  // backspace key
+			case 46: // delete key
+				$('#canvas .ui-selected').each(function() {
+					$(this).remove();
+				});
 				break;
 			default:
 				return;
