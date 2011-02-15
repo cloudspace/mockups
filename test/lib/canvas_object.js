@@ -99,6 +99,36 @@ exports.canvas_object = testCase({
 		});
 	},
 
+	"delete: returns the canvas_object it deleted from a project": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				CanvasObject.create(page, { canvas_object: {} }, function(canvas_object) {
+					canvas_object.delete(function(deleted_canvas_object) {
+						test.equal(JSON.stringify(canvas_object), JSON.stringify(deleted_canvas_object));
+						test.done();
+					});
+				});
+			});
+		});
+	},
+
+	"delete: after deletion canvas_object should not exist": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				CanvasObject.create(page, { canvas_object: {} }, function(canvas_object) {
+					canvas_object.delete(function(deleted_canvas_object) {
+						Page.find_by_id_and_project_id(page.id, page.project._id, function(page) {
+							CanvasObject.find(deleted_canvas_object.id, page, function(canvas_object) {
+								test.equal(canvas_object.error, '404');
+								test.done();
+							});
+						});
+					});
+				});
+			});
+		});
+	},
+
 	"CanvasObject.find: returns a canvas_object": function(test) {
 		Project.create(function(project) {
 			Page.create(project, function(page) {
