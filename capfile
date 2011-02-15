@@ -1,0 +1,71 @@
+load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+
+##################################
+# Edit these
+set :application, "mockupcreator"
+set :node_file, "app.js"
+set :host, "mockitout.com"
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "mockup.pem")]
+set :repository, "git@github.com:cloudspace/Mockups.git"
+set :branch, "master"
+set :deploy_to, "/srv/#{application}"
+####################################
+
+set :scm, :git
+set :deploy_via, :remote_cache
+role :app, host
+set :user, "root"
+set :use_sudo, true
+set :admin_runner, 'ubuntu'
+default_run_options[:pty] = true
+
+namespace :deploy do
+  task :start, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo :as => 'root'} start #{application}"
+  end
+
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo :as => 'root'} stop #{application}"
+  end
+
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo :as => 'root'} restart #{application} || #{try_sudo :as => 'root'} start #{application}"
+  end
+
+	task :create_deploy_to_with_sudo, :roles => :app do
+		to_screen "Checking dependencies..."
+		to_screen "Mongo not installed"  unless installed? "mongo"
+		to_screen "NPM is not installed" unless installed? "npm"
+		to_screen "Nginx not set up"			 if capture("ls -d /etc/nginx/sites-enabled")['No such file or directory']
+		to_screen "I think you're good to go"
+		run "#{try_sudo :as => 'root'} mkdir -p #{deploy_to}"
+		run "#{try_sudo :as => 'root'} chown #{admin_runner}:#{admin_runner} #{deploy_to}"
+  end
+
+	def installed?(program); ! capture("whereis #{program}").sub( /#{program}:(\s)*/,"").empty? end
+	def to_screen msg; puts "\t===============#{msg}===============" end
+
+	task :write_upstart_script, :roles => :app do
+	upstart_script = <<-UPSTART
+		description "#{application}"
+
+		start on startup
+		stop on shutdown
+
+		script
+				# We found $HOME is needed. Without it, we ran into problems
+				export HOME="/home/#{admin_runner}"
+
+				cd #{current_path}
+				exec sudo -u #{admin_runner} sh -c "node #{current_path}/#{node_file} >> #{shared_path}/log/#{application}.log 2>&1"
+		end script
+
+		respawn
+UPSTART
+  put upstart_script, "/tmp/#{application}_upstart.conf"
+	run "#{try_sudo :as => 'root'} mv /tmp/#{application}_upstart.conf /etc/init/#{application}.conf"
+  end
+end
+
+before 'deploy:setup', 'deploy:create_deploy_to_with_sudo'
+after 'deploy:setup', 'deploy:write_upstart_script'
