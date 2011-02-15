@@ -21,11 +21,14 @@ default_run_options[:pty] = true
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo :as => 'root'} start #{application}"
+		run "#{try_sudo :as => 'root'} rm /data/db/mongod.lock" if file_exists?("/data/db/mongod.lock") and not running?("mongod")
+		run "#{try_sudo :as => 'root'} start mongo"
+		run "#{try_sudo :as => 'root'} start #{application}"
   end
 
   task :stop, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo :as => 'root'} stop #{application}"
+		run "#{try_sudo :as => 'root'} stop mongo"
   end
 
   task :restart, :roles => :app, :except => { :no_release => true } do
@@ -41,12 +44,13 @@ namespace :deploy do
 		run "#{try_sudo :as => 'root'} mkdir -p #{deploy_to}"
 		run "#{try_sudo :as => 'root'} chown #{admin_runner}:#{admin_runner} #{deploy_to}"
   end
-
+	def running?(program); capture("ps ax | grep -v grep | grep #{program}")[program] end
+	def file_exists?(abs_loc); ! capture("ls #{abs_loc}")['No such file or directory'] end
 	def installed?(program); ! capture("whereis #{program}").sub( /#{program}:(\s)*/,"").empty? end
 	def to_screen msg; puts "\t===============#{msg}===============" end
 
 	task :write_upstart_script, :roles => :app do
-	upstart_script = <<-UPSTART
+	site_upstart_script = <<-UPSTART
 		description "#{application}"
 
 		start on startup
@@ -62,7 +66,26 @@ namespace :deploy do
 
 		respawn
 UPSTART
-  put upstart_script, "/tmp/#{application}_upstart.conf"
+	mongo_upstart_script = <<-UPSTART
+		description "mongo"
+
+		start on startup
+		stop on shutdown
+
+		script
+				# We found $HOME is needed. Without it, we ran into problems
+				export HOME="/home/#{admin_runner}"
+
+				cd #{current_path}
+				exec sudo -u root sh -c "mongod"
+		end script
+
+		respawn
+UPSTART
+
+  put site_upstart_script, "/tmp/#{application}_upstart.conf"
+  put mongo_upstart_script, "/tmp/mongo_upstart.conf"
+	run "#{try_sudo :as => 'root'} mv /tmp/mongo_upstart.conf /etc/init/mongo.conf"
 	run "#{try_sudo :as => 'root'} mv /tmp/#{application}_upstart.conf /etc/init/#{application}.conf"
   end
 end
