@@ -8,7 +8,12 @@ $(window).load(function() {
 			case 8:  // backspace key
 			case 46: // delete key
 				$('#canvas .ui-selected').each(function() {
-					$(this).remove();
+					env.socket.send({
+					  canvas_object_delete: {
+							canvas_object: { id: $(this).attr('canvas_object_id') },
+							page:          { id: env.project.current_page }
+						}
+					});
 				});
 				break;
 			default:
@@ -36,7 +41,7 @@ $(document).ready(function(){
 
 	$('#canvas').droppable({
 		drop: function(event, ui) {
-			var $dragged_item = $(ui.draggable), template_id = $dragged_item.attr('template_id'), message = {};//,ui.position;
+			var $dragged_item = $(ui.draggable), template_id = $dragged_item.attr('template_id'), message = {}; //,ui.position;
 			// if length > 0 then the dragged item is from the sidebar so it is a new canvas_object
 			var message_type = $dragged_item.parent('.elements').length > 0 ? 'canvas_object_create' : 'canvas_object_update';
 			message[message_type] = {
@@ -54,6 +59,7 @@ $(document).ready(function(){
 
 	$('#canvas').selectable({
 		cancel: '.clear',
+		filter: '.canvas_object', // We don't actually want children to be draggable or selectable.
 	});
 
 	$(window).click(function(e) {
