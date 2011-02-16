@@ -44,7 +44,8 @@ namespace :deploy do
 		run "#{try_sudo :as => 'root'} mkdir -p #{deploy_to}"
 		run "#{try_sudo :as => 'root'} chown #{admin_runner}:#{admin_runner} #{deploy_to}"
   end
-	def running?(program); capture("ps ax | grep -v grep | grep #{program}")[program] end
+	#this is kind of a hack.  I pipe to xargs b/c capture needs some sort of output and xargs will always give a newline at least
+	def running?(program); capture("ps ax | grep -v grep | grep #{program} | xargs")[program] end
 	def file_exists?(abs_loc); ! capture("ls #{abs_loc}")['No such file or directory'] end
 	def installed?(program); ! capture("whereis #{program}").sub( /#{program}:(\s)*/,"").empty? end
 	def to_screen msg; puts "\t===============#{msg}===============" end
