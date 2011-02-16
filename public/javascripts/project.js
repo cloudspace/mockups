@@ -34,6 +34,9 @@ function Project(project_data){
   });
 }
 
+Project.prototype.canvas_object = function(id) {
+	return this.pages[this.current_page].canvas_objects[id];
+};
 Project.prototype.current_page_path = function() {
 	return this.path + '/' + this.current_page;
 };
