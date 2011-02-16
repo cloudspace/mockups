@@ -56,7 +56,7 @@ $(document).ready(function(){
 					top:         ui.position.top,
 					left:        ui.position.left,
 					id:          canvas_object_id,
-					content:     env.project.canvas_object(canvas_object_id).content
+					content:     env.project.canvas_object(canvas_object_id)? env.project.canvas_object(canvas_object_id).content: undefined
 				},
 				page:        { id: env.project.current_page }
 			};
