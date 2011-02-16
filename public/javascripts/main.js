@@ -37,14 +37,17 @@ $(document).ready(function(){
 			var id = $(this).attr('template_id');
 			var $el = $('<div></div>')
 				.addClass('canvas_object')
-				.html($(env.templates[id].render));
+				.html(Renderer.render_helper(id));
 			return $el;
 		}
 	});
 
 	$('#canvas').droppable({
 		drop: function(event, ui) {
-			var $dragged_item = $(ui.draggable), template_id = $dragged_item.attr('template_id'), message = {}; //,ui.position;
+			var $dragged_item    = $(ui.draggable), 
+					template_id      = $dragged_item.attr('template_id'),
+					canvas_object_id = $dragged_item.attr('canvas_object_id'), 
+					message          = {}; //,ui.position;
 			// if length > 0 then the dragged item is from the sidebar so it is a new canvas_object
 			var message_type = $dragged_item.parent('.elements').length > 0 ? 'canvas_object_create' : 'canvas_object_update';
 			message[message_type] = {
@@ -52,7 +55,8 @@ $(document).ready(function(){
 					template_id: template_id,
 					top:         ui.position.top,
 					left:        ui.position.left,
-					id:          $dragged_item.attr('canvas_object_id')
+					id:          canvas_object_id,
+					content:     env.project.canvas_object(canvas_object_id).content
 				},
 				page:        { id: env.project.current_page }
 			};

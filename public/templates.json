@@ -1,64 +1,60 @@
 {
   "heading": {
-    "render": "<h1>Heading</h1>"
+    "render": "Heading"
+
   },
   "paragraph": {
-    "render": "<p class=\"paragraph\">Text Paragraph</p>"
+    "render": "Paragraph"
   },
   "link": {
-    "render": "<a href=\"#\">Link</a>"
+    "render": "Link"
   },
   "list": {
-    "render": "<ul type='bulleted'><li>Item 1</li><li>Item 2</li></ul>"
+    "render": "Item 1\nItem 2"
   },
-  "input_box": {
-    "render": "<input type='text' class='inputbox' value='Input Box'/>",
-    "formLabel": "<label position='top'>Label</label>"
+	"image": {
+    "render": "/images/picture.png"
+  },
+ "input_box": {
+    "render": "Input Box"
   },
   "textarea": {
-    "render": "<textarea>Textarea</textarea>",
-    "formLabel": "<label position='top'>Label</label>"
+    "render": "Textarea"
   },
   "check_box": {
-    "render": "<form><input type='checkbox' class='check_item'/><label>Change Me</label></form>",
-    "formLabel": "<label position='top'>Label</label>"
+    "render": "Change Me\nChange Me Too"
   },
   "radio_buttons": {
-    "render": "<form><input type='radio' class='radio_item' name='radio_name'/><label>Change</label><br /><input type='radio' class='radio_item' name='radio_name'/><label>Us</label>",
-    "formLabel": "<label position='top'>Label</label>"
-  },
-  "image": {
-    "render": "<img class='image' src='/images/picture.png' alt='Image Placeholder' />"
+    "render": "Change\nUs"
   },
   "table": {
-    "render": "<table><tbody><tr class='table_row'><td class='table_cell'>Change</td><td class='table_cell'>Us</td></tr></tbody></table>"
+    "render": "Change\nValues"
   },
   "submit_button": {
-    "render": "<div class='white button'>Submit</div>"
+    "render": "Submit"
   },
   "select_menu": {
-     "render": "<select class='selectbox'><option class='option_item' value=''>Choose One</option></select>",
-      "formLabel": "<label position='top'>Label</label>"
+     "render": "Choose One"
 	},
 	"global_container": {
-		"render": "<div class='global_container'>Drop More Items in Here</div>"
+		"render": "Drop More Items in Here"
 	},
 	"main_navigation": {
-		"render": "<ul class='nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>"
+		"render": "Nav item 1\nNav item 2\nNav item 3"
 	},
 	"user_navigation": {
-		"render": "<ul class='user_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>"
+		"render": "Nav item 1\nNav item 2\nNav item 3"
 	},
 	"footer_navigation": {
-		"render": "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>"
+		"render": "Nav item 1\nNav item 2\nNav item 3"
 	},
 	"box_container": {
-		"render": "<div class='box'></div>"
+		"render": ""
 	},
 	"vertical_line": {
-		"render": "<div class='verLine'></div>"
+		"render": "" 
 	},
 	"horizontal_line": {
-		"render": "<div class='horLine'></div>"
+		"render": "" 
 	}
 }
