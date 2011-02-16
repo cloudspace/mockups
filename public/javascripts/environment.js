@@ -21,6 +21,7 @@ Environment.prototype.connect = function(){
 		$.history.init(load_hash, { 'unescape': '/' });
 	});
 	this.socket.on('disconnect', function(){
+		delete that.project;
 		$("#disconnected").fancybox({
 			'autoScale'         : false,
 			'enableEscapeButton': false,
