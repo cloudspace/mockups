@@ -32,6 +32,9 @@ Renderer = {
 
 		return this.page_element.appendTo('#canvas');
 	},
+	render_helper: function(template_id) {
+		return env.templates[template_id].render;
+	},
 
 	paragraph: function() {
 	}

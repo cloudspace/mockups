@@ -37,7 +37,7 @@ $(document).ready(function(){
 			var id = $(this).attr('template_id');
 			var $el = $('<div></div>')
 				.addClass('canvas_object')
-				.html($(env.templates[id].render));
+				.html(Renderer.render_helper(id));
 			return $el;
 		}
 	});
