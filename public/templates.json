@@ -12,7 +12,10 @@
   "list": {
     "render": "Item 1\nItem 2"
   },
-  "input_box": {
+	"image": {
+    "render": "/images/picture.png"
+  },
+ "input_box": {
     "render": "Input Box"
   },
   "textarea": {
@@ -23,9 +26,6 @@
   },
   "radio_buttons": {
     "render": "Change\nUs"
-  },
-  "image": {
-    "render": "<img class='image' src='/images/picture.png' alt='Image Placeholder' />"
   },
   "table": {
     "render": "Change\nValues"
