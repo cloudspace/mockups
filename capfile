@@ -62,7 +62,7 @@ namespace :deploy do
 				export HOME="/home/#{admin_runner}"
 
 				cd #{current_path}
-				exec sudo -u #{admin_runner} sh -c "node #{current_path}/#{node_file} >> #{shared_path}/log/#{application}.log 2>&1"
+				exec sudo -u root sh -c "node #{current_path}/#{node_file} >> #{shared_path}/log/#{application}.log 2>&1"
 		end script
 
 		respawn
