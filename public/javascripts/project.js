@@ -20,19 +20,7 @@ function Project(project_data){
     project_name_input.blur();
 		return false;
 	});
-
-	$('#mockup_pages li form').live('submit', function(){
-		var page_name_input = $(this).find('input');
-		var page_id = $(this).attr('data-id');
-		var update_message =
-			{ page_update:
-				{ id: env.project.id, hash: env.project.hash, page: { id: page_id, name: page_name_input.val()} }
-			};
-		env.socket.send(update_message);
-		page_name_input.val(that.pages[page_id].name);
-    return false;
-  });
-}
+};
 
 Project.prototype.current_page_path = function() {
 	return this.path + '/' + this.current_page;

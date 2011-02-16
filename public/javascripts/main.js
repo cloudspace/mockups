@@ -108,6 +108,22 @@ $(document).ready(function(){
 			.siblings('a').removeClass('h');
 	});
 
+	$('#mockup_pages li form').live('submit', function(){
+		var page_name_input = $(this).find('input');
+		var page_id = $(this).attr('data-id');
+		env.socket.send({
+			page_update: {
+				id: env.project.id,
+				hash: env.project.hash,
+				page: {
+					id: page_id,
+					name: page_name_input.val()
+				}
+			}
+		});
+		page_name_input.val(env.project.pages[page_id].name);
+		return false;
+	});
 });
 
 // TODO move to User
