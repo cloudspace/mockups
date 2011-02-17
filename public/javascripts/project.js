@@ -25,6 +25,14 @@ function Project(project_data){
 Project.prototype.canvas_object = function(id) {
 	return this.pages[this.current_page].canvas_objects[id];
 };
+
+Project.prototype.find_page_id_by_name = function(name) {
+	for(var i in this.pages){ 
+		if(this.pages[i] != undefined && this.pages[i].name == name){ return i; }
+	}
+	return undefined;
+};
+
 Project.prototype.current_page_path = function() {
 	return this.path + '/' + this.current_page;
 };

@@ -45,7 +45,9 @@ Renderer = {
 		return "<p>"+ this.content +"</p>";
 	},
 	link: function() {
-		return "<span class='link'>"+ this.content +"</span>";
+		var page_id = env.project.find_page_id_by_name(this.content);
+		var page_id_attr = typeof page_id == "undefined" ? "" : "page_id='"+ page_id +"'";
+		return "<span "+ page_id_attr + " class='link'>"+ this.content +"</span>";
 	},
 	list: function() {
 		var list_items = "";
