@@ -42,6 +42,24 @@ $(document).ready(function(){
 		}
 	});
 
+	$('form.canvas_object_update').live('submit',function(e){
+			var message = {}, 
+			    canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
+			message['canvas_object_update'] = {
+				canvas_object: {
+					template_id: canvas_object.template_id,
+					top:         canvas_object.top,
+					left:        canvas_object.left,
+					id:          canvas_object.id,
+					content:     $(this).find('textarea').val()
+				},
+				page:        { id: env.project.current_page }
+			};
+			env.socket.send(message);
+			$('.option_pane').remove();
+			return false;	
+	});
+
 	$('.canvas_object').live('dblclick',function(e){ 
 		$('.option_pane').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
@@ -49,10 +67,15 @@ $(document).ready(function(){
 		$("<div><form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'><textarea>"+ content +"</textarea><input type='submit' value='submit'/></form></div>")
 			.addClass("canvas_object_edit").dialog({ 
 			closeOnEscape: true,
-			dialogClass:   'option_pane'
+			dialogClass:   'option_pane',
 		});
+		$("#canvas").one('click',function(){
+			$('.option_pane').remove();
+		});
+		e.stopPropagation();
 	});
 
+	
 	get_canvas_object_content = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].default_content;
@@ -84,6 +107,7 @@ $(document).ready(function(){
 	$('#canvas').selectable({
 		cancel: '.clear',
 		filter: '.canvas_object', // We don't actually want children to be draggable or selectable.
+		delay: 10
 	});
 
 	$(window).click(function(e) {
