@@ -7,7 +7,7 @@ Renderer = {
 		if (this[canvas_object['template_id']]) { rendered_content = this[canvas_object['template_id']](); }
 		// if this call gets something back then canvas_object exists
 		this.page_element = $('#canvas div[canvas_object_id=' + canvas_object.id + ']');
-		if (this.page_element.length == 0) {//object not rendered
+		if (this.page_element.length == 0) { //object not rendered
 			this.page_element =  $('<div></div>')
 				.html(rendered_content)
 				.addClass('canvas_object')
@@ -28,11 +28,9 @@ Renderer = {
 			this.page_element.html(rendered_content);
 		}
 
-
 		if (canvas_object.left)  { this.page_element.css('left',parseInt(canvas_object.left)); }
 		if (canvas_object.top)   { this.page_element.css('top',parseInt(canvas_object.top)); }
 		if (canvas_object.color) { this.page_element.css('color',canvas_object.color); }
-
 
 		return this.page_element.appendTo('#canvas');
 	},
@@ -51,7 +49,7 @@ Renderer = {
 	},
 	list: function() {
 		var list_items = "";
-		this.content.split("\n").forEach( function(value){ list_items += "<li>"+value+"</li>"});
+		this.parse_items(this.content, function(item){ list_items += "<li>"+ item +"</li>"});
 		return "<ul type='bulleted'>"+ list_items +"</ul>";
 	},
 	image: function() {
@@ -64,18 +62,28 @@ Renderer = {
 		return "<input type='text' class='inputbox' value='Input Box'/>";
 	},
 	check_box: function(){
+		var check_boxes = "";
+		this.parse_items(this.content, function(item, is_special){
+			checked = is_special ? "checked='checked'": "";
+			check_boxes += "<input type='checkbox' "+ checked  +"name='radio'/><label>"+ item +"</label><br/>";
+		});
+		return "<form>" + check_boxes + "</form>";
+
 		return "<form><input type='checkbox' class='check_item'/><label>"+ this.content +"</label></form>";
 	},
 	radio_buttons: function(){
 		var radio_buttons = "";
-		this.content.split("\n").forEach( 
-			function(value){ radio_buttons += "<input type='radio' name='radio'/><label>"+ value +"</label><br/>"}
-		);
+		this.parse_items(this.content ,function(item, is_special){
+			checked = is_special ? "checked='checked'": "";
+			radio_buttons += "<input type='radio' "+ checked  +"name='radio'/><label>"+ item +"</label><br/>";
+		});
     return "<form>" + radio_buttons + "</form>";
 	},
 	table: function() {
 		var trs = "";
-		this.content.split("\n").forEach( function(value){ trs += "<tr><td>"+ value +"</td></tr>"});
+		this.parse_items(this.content, function(item, is_special){
+		  trs += "<tr><td>"+ item +"</td></tr>";
+		});
 		return "<table><tbody>"+ trs +"</tbody></table>";
 	},
 	submit_button: function(){
@@ -104,8 +112,16 @@ Renderer = {
 	},
 	horizontal_line: function(){
 		return "<div class='horLine'></div>";
-	}	
-	
-
+	},
+	parse_items: function( list, callback) {
+		list.split("\n").forEach( function(item){
+			var is_special = false;
+			if(item[0] == "*"){
+				is_special = true;
+				item = item.substring(1);
+			}
+			callback(item, is_special);
+		});
+	}
 };
 
