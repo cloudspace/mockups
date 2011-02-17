@@ -3,7 +3,7 @@ $(window).load(function() {
 
 	// Key bindings used so that users may delete mockup objects (with the delete key).
 	$(document).keydown(function(e) {
-		if ($(document.activeElement).is('input') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
+		if ($(document.activeElement).is('input, textarea') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
 		switch (e.keyCode) {
 			case 8:  // backspace key
 			case 46: // delete key
@@ -43,17 +43,19 @@ $(document).ready(function(){
 	});
 
 	$('.canvas_object').live('dblclick',function(e){ 
+		$('.option_pane').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
 		var content = get_canvas_object_content(canvas_object_id);
-		$("<div><form class='canvas_object_update'><textarea>"+ content +"</textarea><input type='submit' value='submit'/></form></div>")
+		$("<div><form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'><textarea>"+ content +"</textarea><input type='submit' value='submit'/></form></div>")
 			.addClass("canvas_object_edit").dialog({ 
-			closeOnEscape: true 
+			closeOnEscape: true,
+			dialogClass:   'option_pane'
 		});
 	});
 
-	function get_canvas_object_content(canvas_object_id){
+	get_canvas_object_content = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
-		return canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].render;
+		return canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].default_content;
 	}
 
 	$('#canvas').droppable({
@@ -75,7 +77,8 @@ $(document).ready(function(){
 				page:        { id: env.project.current_page }
 			};
 			env.socket.send(message);
-		}
+		},
+		accept: '.elements li, .canvas_object'
 	});
 
 	$('#canvas').selectable({
