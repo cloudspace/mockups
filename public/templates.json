@@ -13,7 +13,7 @@
     "render": "Item 1\nItem 2"
   },
 	"image": {
-    "render": "/images/picture.png"
+    "render": ""
   },
  "input_box": {
     "render": "Input Box"

@@ -55,7 +55,7 @@ Renderer = {
 		return "<ul type='bulleted'>"+ list_items +"</ul>";
 	},
 	image: function() {
-		return "<img class='image' src='"+ this.content +"' alt='Image Placeholder' />";
+		return "<img class='image' src='/images/picture.png' alt='Image Placeholder' />";
 	},
 	textarea: function() {
 		return "<textarea>"+ this.content +"</textarea>";
@@ -67,17 +67,15 @@ Renderer = {
 		var check_boxes = "";
 		this.parse_items(this.content, function(item, is_special){
 			checked = is_special ? "checked='checked'": "";
-			check_boxes += "<input type='checkbox' "+ checked  +"name='radio'/><label>"+ item +"</label><br/>";
+			check_boxes += "<input type='checkbox' "+ checked  +"name='checks'/><label>"+ item +"</label><br/>";
 		});
 		return "<form>" + check_boxes + "</form>";
-
-		return "<form><input type='checkbox' class='check_item'/><label>"+ this.content +"</label></form>";
 	},
 	radio_buttons: function(){
 		var radio_buttons = "";
 		this.parse_items(this.content ,function(item, is_special){
 			checked = is_special ? "checked='checked'": "";
-			radio_buttons += "<input type='radio' "+ checked  +"name='radio'/><label>"+ item +"</label><br/>";
+			radio_buttons += "<input type='radio' "+ checked  +"name='radio'/> <label>"+ item +"</label><br/>";
 		});
     return "<form>" + radio_buttons + "</form>";
 	},

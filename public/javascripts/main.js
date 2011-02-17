@@ -42,6 +42,20 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.canvas_object').live('dblclick',function(e){ 
+		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
+		var content = get_canvas_object_content(canvas_object_id);
+		$("<div><form class='canvas_object_update'><textarea>"+ content +"</textarea><input type='submit' value='submit'/></form></div>")
+			.addClass("canvas_object_edit").dialog({ 
+			closeOnEscape: true 
+		});
+	});
+
+	function get_canvas_object_content(canvas_object_id){
+		var canvas_object = env.project.canvas_object(canvas_object_id);
+		return canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].render;
+	}
+
 	$('#canvas').droppable({
 		drop: function(event, ui) {
 			var $dragged_item    = $(ui.draggable), 
