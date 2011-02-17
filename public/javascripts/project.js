@@ -9,9 +9,6 @@ function Project(project_data){
 	this.hash  = project_data.hash;
 	this.path  = this.id + '/' + this.hash;
 
-	// set page items
-	this.sync_mockup();
-
 	// reset any bindings
 	$('#project_name_change').unbind('submit').submit(function(){
 		var project_name_input = $(this).find('input');
