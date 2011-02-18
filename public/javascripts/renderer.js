@@ -7,9 +7,9 @@ Renderer = {
 		if (this[canvas_object['template_id']]) { rendered_content = this[canvas_object['template_id']](); }
 		// if this call gets something back then canvas_object exists
 		this.page_element = $('#canvas div[canvas_object_id=' + canvas_object.id + ']');
+
 		if (this.page_element.length == 0) { //object not rendered
 			this.page_element =  $('<div></div>')
-				.html(rendered_content)
 				.addClass('canvas_object')
 				.attr('canvas_object_id', canvas_object.id)
 				.css('position', 'absolute') 
@@ -24,13 +24,12 @@ Renderer = {
 						$(this).addClass('ui-selected').siblings().removeClass('ui-selected');
 					},
 				});
-		}else{
-			this.page_element.html(rendered_content);
 		}
+		
+		this.page_element.html(rendered_content);
 
 		if (canvas_object.left)  { this.page_element.css('left',parseInt(canvas_object.left)); }
 		if (canvas_object.top)   { this.page_element.css('top',parseInt(canvas_object.top)); }
-		if (canvas_object.color) { this.page_element.css('color',canvas_object.color); }
 
 		return this.page_element.appendTo('#canvas');
 	},
