@@ -42,7 +42,7 @@ Renderer = {
 		return "<h1>"+ this.content +"</h1>";
 	},
 	paragraph: function() {
-		return "<p>"+ this.content +"</p>";
+		return "<p>"+ this.content.split("\n").join("<br/>") +"</p>";
 	},
 	link: function() {
 		var page_id = env.project.find_page_id_by_name(this.content);

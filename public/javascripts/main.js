@@ -69,10 +69,10 @@ $(document).ready(function(){
 			closeOnEscape: true,
 			dialogClass:   'option_pane',
 		});
-		$("#canvas").one('click',function(){
+		$("#canvas").one('click',function(e){
 			$('.option_pane').remove();
+			e.stopPropagation();
 		});
-		e.stopPropagation();
 	});
 
 	
