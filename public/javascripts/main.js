@@ -79,11 +79,11 @@ $(document).ready(function(){
 
 	is_editable = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
-		return env.templates[canvas_object.template_id].editable_content;
+		return templates[canvas_object.template_id].editable_content;
 	}
 	get_canvas_object_content = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
-		return canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].default_content;
+		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	}
 
 	$('#canvas').droppable({

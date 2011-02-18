@@ -1,7 +1,7 @@
 Renderer = {
 	render: function(canvas_object) {
 		this.canvas_object = canvas_object;
-		this.content = canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].default_content;
+		this.content = canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 		var rendered_content;
 
 		if (this[canvas_object['template_id']]) { rendered_content = this[canvas_object['template_id']](); }
@@ -35,7 +35,7 @@ Renderer = {
 		return this.page_element.appendTo('#canvas');
 	},
 	render_helper: function(template_id) {
-		this.content = env.templates[template_id].default_content;
+		this.content = templates[template_id].default_content;
 		return this[template_id]();
 	},
 	heading: function() {

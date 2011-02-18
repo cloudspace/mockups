@@ -2,9 +2,6 @@ Environment = function(){
 	this.socket;
 	this.project;
 	var that = this;
-	$.get("/templates.json", function(response) {
-		that.templates = JSON.parse(response);
-	});
 };
 
 Environment.prototype.connect = function(){
