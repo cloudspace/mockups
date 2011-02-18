@@ -61,7 +61,7 @@ Renderer = {
 		return "<textarea>"+ this.content +"</textarea>";
 	},
 	input_box: function(){
-		return "<input type='text' class='inputbox' value='Input Box'/>";
+		return "<input type='text' class='inputbox' value='"+ this.content +"'/>";
 	},
 	check_box: function(){
 		var check_boxes = "";
