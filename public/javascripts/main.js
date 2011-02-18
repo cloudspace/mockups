@@ -59,11 +59,13 @@ $(document).ready(function(){
 			$('.option_pane').remove();
 			return false;	
 	});
-
+	
 	$('.canvas_object').live('dblclick',function(e){ 
 		$('.option_pane').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
 		var content = get_canvas_object_content(canvas_object_id);
+		if(!is_editable(canvas_object_id)){ return false; }
+
 		$("<div><form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'><textarea>"+ content +"</textarea><input type='submit' value='submit'/></form></div>")
 			.addClass("canvas_object_edit").dialog({ 
 			closeOnEscape: true,
@@ -75,7 +77,10 @@ $(document).ready(function(){
 		});
 	});
 
-	
+	is_editable = function(canvas_object_id){
+		var canvas_object = env.project.canvas_object(canvas_object_id);
+		return env.templates[canvas_object.template_id].editable_content;
+	}
 	get_canvas_object_content = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : env.templates[canvas_object.template_id].default_content;
