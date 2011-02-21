@@ -1,7 +1,7 @@
 Renderer = {
 	render: function(canvas_object) {
 		this.canvas_object = canvas_object;
-		this.content = canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
+		this.content = canvas_object.content ? this.escape(canvas_object.content) : templates[canvas_object.template_id].default_content;
 		var rendered_content;
 
 		if (this[canvas_object['template_id']]) { rendered_content = this[canvas_object['template_id']](); }
@@ -14,13 +14,14 @@ Renderer = {
 				.attr('canvas_object_id', canvas_object.id)
 				.css('position', 'absolute') 
 				.draggable({
-					containment: 'parent',
-					opacity    : '0.6',
-					snap       : '#canvas, #canvas .canvas_object',
-					distance   : 0,
+					containment:   'parent',
+					opacity:       '0.6',
+					snap:          '#canvas, #canvas .canvas_object',
+					snapTolerance: '5',
+					distance   :   0,
 					//revert     : true,
 					//revertDuration: 0,
-					start      : function(event, ui) {
+					start      :   function(event, ui) {
 						$(this).addClass('ui-selected').siblings().removeClass('ui-selected');
 					},
 				});
@@ -52,12 +53,14 @@ Renderer = {
 		});
 		return false;	
 	},
-
+	
 	render_helper: function(template_id) {
 		this.content = templates[template_id].default_content;
 		return this[template_id]();
 	},
-
+	escape: function(content){
+		return content.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+	},
 	heading: function() {
 		return "<h1>"+ this.content +"</h1>";
 	},

@@ -68,6 +68,7 @@ $(document).ready(function(){
 			.addClass("canvas_object_edit").dialog({ 
 			closeOnEscape: true,
 			dialogClass:   'option_pane',
+			resizable:     false
 		});
 		$("#canvas").one('click',function(e){
 			$('.option_pane').remove();
