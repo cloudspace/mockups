@@ -14,13 +14,14 @@ Renderer = {
 				.attr('canvas_object_id', canvas_object.id)
 				.css('position', 'absolute') 
 				.draggable({
-					containment: 'parent',
-					opacity    : '0.6',
-					snap       : '#canvas, #canvas .canvas_object',
-					distance   : 0,
+					containment:   'parent',
+					opacity:       '0.6',
+					snap:          '#canvas, #canvas .canvas_object',
+					snapTolerance: '5',
+					distance   :   0,
 					//revert     : true,
 					//revertDuration: 0,
-					start      : function(event, ui) {
+					start      :   function(event, ui) {
 						$(this).addClass('ui-selected').siblings().removeClass('ui-selected');
 					},
 				});
