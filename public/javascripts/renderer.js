@@ -36,7 +36,7 @@ Renderer = {
 		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
 		if (canvas_object.width)  { this.page_element.width(parseInt(canvas_object.width)); }
 		if (canvas_object.height) { this.page_element.height(parseInt(canvas_object.height)); }
-
+		if (canvas_object.fontsize) { this.page_element.css('font-size',parseInt(canvas_object.fontsize));}
 		return this.page_element.appendTo('#canvas');
 	},
 
