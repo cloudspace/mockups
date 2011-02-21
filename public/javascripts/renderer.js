@@ -4,7 +4,7 @@ Renderer = {
 		this.content = canvas_object.content ? this.escape(canvas_object.content) : templates[canvas_object.template_id].default_content;
 		var rendered_content;
 
-		if (this[canvas_object['template_id']]) { rendered_content = this[canvas_object['template_id']](); }
+		if (this[canvas_object['template_id']]) { rendered_content = $(this[canvas_object['template_id']]()).addClass('content'); }
 		// if this call gets something back then canvas_object exists
 		this.page_element = $('#canvas .canvas_object[canvas_object_id=' + canvas_object.id + ']');
 
@@ -27,35 +27,49 @@ Renderer = {
 				});
 		}
 		
-		this.page_element.html(rendered_content);
-		if (templates[canvas_object.template_id].resizable_options) {
-			this.page_element.resizable('destroy').resizable(templates[canvas_object.template_id].resizable_options);
-		}
+		this.page_element.html(rendered_content)
+			.resizable('destroy')
+			.resizable(this.resize_options(canvas_object.template_id));
 
 		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top',parseInt(canvas_object.top)); }
 		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
-		if (canvas_object.width)  { this.page_element.width(parseInt(canvas_object.width)); }
-		if (canvas_object.height) { this.page_element.height(parseInt(canvas_object.height)); }
+		if (canvas_object.width)  { this.page_element.find('.content').outerWidth(parseInt(canvas_object.width)); }
+		if (canvas_object.height) { this.page_element.find('.content').outerHeight(parseInt(canvas_object.height)); }
 
 		return this.page_element.appendTo('#canvas');
 	},
 
-	resize: function(event, ui, $canvas_object) {
-		env.socket.send({
-			canvas_object_update: {
-				canvas_object: {
-					width:       $canvas_object.width(),
-					height:      $canvas_object.height(),
-					top:         $canvas_object.css('top'),
-					left:        $canvas_object.css('left'),
-					id:          $canvas_object.attr('canvas_object_id'),
-				},
-				page:        { id: env.project.current_page }
-			}
-		});
-		return false;	
+	resize_options: function(template_id) {
+		var options = {
+			handles: 'n, ne, e, se, s, sw, w, nw',
+			containment: 'parent',
+			minWidth: 1,
+			minHeight: 1,
+			resize: function(event, ui) {
+				//$(this).find('.content').outerWidth($(this).width()).outerHeight($(this).height());
+				$(this).find('.content').outerWidth($(this).width()).outerHeight($(this).height());
+			},
+			stop: function(event, ui) {
+				env.socket.send({
+					canvas_object_update: {
+						canvas_object: {
+							width:       $(this).width(),
+							height:      $(this).height(),
+							top:         $(this).css('top'),
+							left:        $(this).css('left'),
+							id:          $(this).attr('canvas_object_id'),
+						},
+						page:        { id: env.project.current_page }
+					}
+				});
+				$(this).width('').height('');
+			},
+		};
+		if (template_id == 'vertical_line')   options.handles = 'n, s';
+		if (template_id == 'horizontal_line') options.handles = 'e, w';
+		return options;
 	},
-	
+
 	render_helper: function(template_id) {
 		this.content = templates[template_id].default_content;
 		return this[template_id]();
