@@ -32,20 +32,22 @@ Renderer = {
 			this.page_element.resizable('destroy').resizable(templates[canvas_object.template_id].resizable_options);
 		}
 
-		if (canvas_object.left)   { this.page_element.css('left',parseInt(canvas_object.left)); }
-		if (canvas_object.top)    { this.page_element.css('top',parseInt(canvas_object.top)); }
+		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top',parseInt(canvas_object.top)); }
+		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
 		if (canvas_object.width)  { this.page_element.width(parseInt(canvas_object.width)); }
 		if (canvas_object.height) { this.page_element.height(parseInt(canvas_object.height)); }
 
 		return this.page_element.appendTo('#canvas');
 	},
 
-	resize: function($canvas_object) {
+	resize: function(event, ui, $canvas_object) {
 		env.socket.send({
 			canvas_object_update: {
 				canvas_object: {
 					width:       $canvas_object.width(),
 					height:      $canvas_object.height(),
+					top:         $canvas_object.css('top'),
+					left:        $canvas_object.css('left'),
 					id:          $canvas_object.attr('canvas_object_id'),
 				},
 				page:        { id: env.project.current_page }
@@ -124,11 +126,11 @@ Renderer = {
 	},
 
 	vertical_line: function(){
-		return "<div class='verLine'></div>";
+		return "<div class='vertical_line'></div>";
 	},
 
 	horizontal_line: function(){
-		return "<div class='horLine'></div>";
+		return "<div class='horizontal_line'></div>";
 	},
 
 //	table: function() {

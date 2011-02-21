@@ -103,8 +103,8 @@ exports.canvas_object = testCase({
 		Project.create(function(project) {
 			Page.create(project, function(page) {
 				CanvasObject.create(page, { canvas_object: { template_id: 'paragraph', top: 100, left: 50 } }, function(canvas_object) {
-					canvas_object.update({ top: 101 }, function(updated_canvas_object) {
-						test.equal(updated_canvas_object.top, 101);
+					canvas_object.update({ top: 0 }, function(updated_canvas_object) {
+						test.equal(updated_canvas_object.top, 0);
 						test.equal(updated_canvas_object.left, 50);
 						test.done();
 					});
