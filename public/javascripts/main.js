@@ -48,8 +48,6 @@ $(document).ready(function(){
 			message['canvas_object_update'] = {
 				canvas_object: {
 					template_id: canvas_object.template_id,
-					top:         canvas_object.top,
-					left:        canvas_object.left,
 					id:          canvas_object.id,
 					content:     $(this).find('textarea').val()
 				},
