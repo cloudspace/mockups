@@ -31,8 +31,8 @@ Renderer = {
 			this.page_element.resizable('destroy').resizable(templates[canvas_object.template_id].resizable_options);
 		}
 
-		if (canvas_object.top)    { this.page_element.css('top',parseInt(canvas_object.top)); }
-		if (canvas_object.left)   { this.page_element.css('left',parseInt(canvas_object.left)); }
+		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top',parseInt(canvas_object.top)); }
+		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
 		if (canvas_object.width)  { this.page_element.width(parseInt(canvas_object.width)); }
 		if (canvas_object.height) { this.page_element.height(parseInt(canvas_object.height)); }
 
