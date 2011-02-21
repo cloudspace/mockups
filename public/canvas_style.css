@@ -1,25 +1,18 @@
 
-/*
-.canvas_object { padding: 2px; border: 1px solid transparent; cursor: default; }
-.canvas_object.hover { border: 1px dashed #d3d3d3; }
-.canvas_object.ui-draggable-dragging, .canvas_object.selected.hover, .canvas_object.selected { border: 1px dashed #000; cursor: move; }
-.canvas_object .ui-resizable-handle.ui-icon { background-image: none; }
-*/
 
 .canvas_object { position: absolute; z-index: 2; display: block; border: dashed 2px transparent; padding: 2px; cursor: move; }
 .canvas_object:hover { border-color: #999; }
 
+.box { width: 100px; height: 100px; border: 2px solid #222; }
+.horLine, .verLine { background: #222; width: 100px; height: 100px; padding: 0; margin: 0; border: 1px solid transparent; }
+.horline { height: 0; }
+.verLine { width: 0; }
 
 .ui-resizable-handle { position: absolute; font-size: 0.1px; z-index: 500; display: none; }
 .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
 
 /* shows resize handles when hovered, selected, or resizing */
 .ui-resizable-resizing .ui-resizable-handle, .canvas_object:hover .ui-resizable-handle, .ui-selected .ui-resizable-handle { display: block; }
-
-/*
-#canvas .ui-selecting .ui-resizable-handle, #canvas .ui-resizable-resizing .ui-resizable-handle { display: block; }
-#canvas .canvas_object.ui-resizable-resizing *, #canvas .canvas_object.ui-resizable-resizing:hover { display:none }
-*/
 
 .ui-selecting { border-color: #666; }
 .ui-selectable-helper { position: absolute; z-index: 1; border: 2px dotted #666; }
