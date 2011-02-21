@@ -6,15 +6,39 @@
 .canvas_object .ui-resizable-handle.ui-icon { background-image: none; }
 */
 
+.canvas_object { position: absolute; z-index: 2; display: block; border: dashed 2px transparent; padding: 2px; cursor: move; }
+.canvas_object:hover { border-color: #999; }
+
+
+.ui-resizable-handle { position: absolute; font-size: 0.1px; z-index: 500; display: none; }
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+
+/* shows resize handles when hovered, selected, or resizing */
+.ui-resizable-resizing .ui-resizable-handle, .canvas_object:hover .ui-resizable-handle, .ui-selected .ui-resizable-handle { display: block; }
+
+/*
+#canvas .ui-selecting .ui-resizable-handle, #canvas .ui-resizable-resizing .ui-resizable-handle { display: block; }
+#canvas .canvas_object.ui-resizable-resizing *, #canvas .canvas_object.ui-resizable-resizing:hover { display:none }
+*/
+
+.ui-selecting { border-color: #666; }
+.ui-selectable-helper { position: absolute; z-index: 1; border: 2px dotted #666; }
+.ui-selected:hover, .ui-selected { border-color: #069; }
 .ui-draggable { cursor: move; }
-.ui-selectable-helper { position: absolute; z-index: 1; border: 1px dotted #333; }
+.ui-resizable { position: relative; }
+.ui-resizable-helper { border: 2px dashed #069; z-index: 2000; }
 
-#canvas .canvas_object { position: absolute; z-index: 2; display: block; border: dashed 1px transparent; padding: 2px; cursor: move; }
-#canvas .canvas_object:hover, #canvas .ui-selecting { border-color: #999; }
-#canvas .ui-selected:hover, #canvas .ui-selected { border-color: #333; }
+.ui-resizable-n, .ui-resizable-e, .ui-resizable-s, .ui-resizable-w { background: #069; z-index: 500; }
+.ui-resizable-ne, .ui-resizable-se, .ui-resizable-sw, .ui-resizable-nw { background: #069; z-index: 1000; }
+.ui-resizable-n { cursor: n-resize; height: 2px; width: 100%; top: 0; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 2px; width: 100%; bottom: 0; left: 0; }
+.ui-resizable-e { cursor: e-resize; width: 2px; right: 0; top: 0; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 2px; left: 0; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 8px; height: 8px; right: 0; bottom: 0; }
+.ui-resizable-sw { cursor: sw-resize; width: 8px; height: 8px; left: 0; bottom: 0; }
+.ui-resizable-nw { cursor: nw-resize; width: 8px; height: 8px; left: 0; top: 0; }
+.ui-resizable-ne { cursor: ne-resize; width: 8px; height: 8px; right: 0; top: 0; }
 
-#canvas .box { width: 100px; height: 100px; border: 1px solid #333; }
-#canvas .verLine, #canvas .horLine { background: #222; width: 100px; height: 100px; padding: 0; margin: 0; border: 1px solid transparent; }
-#canvas .verLine { width: 0px; }
-#canvas .horLine { height: 0px; }
+
+
 

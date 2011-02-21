@@ -6,7 +6,7 @@ Renderer = {
 
 		if (this[canvas_object['template_id']]) { rendered_content = this[canvas_object['template_id']](); }
 		// if this call gets something back then canvas_object exists
-		this.page_element = $('#canvas div[canvas_object_id=' + canvas_object.id + ']');
+		this.page_element = $('#canvas .canvas_object[canvas_object_id=' + canvas_object.id + ']');
 
 		if (this.page_element.length == 0) { //object not rendered
 			this.page_element =  $('<div></div>')
@@ -27,49 +27,81 @@ Renderer = {
 		}
 		
 		this.page_element.html(rendered_content);
+		if (templates[canvas_object.template_id].resizable_options) {
+			this.page_element.resizable('destroy').resizable(templates[canvas_object.template_id].resizable_options);
+		}
 
 		if (canvas_object.left)  { this.page_element.css('left',parseInt(canvas_object.left)); }
 		if (canvas_object.top)   { this.page_element.css('top',parseInt(canvas_object.top)); }
 
 		return this.page_element.appendTo('#canvas');
 	},
+
+	resize: function($canvas_object) {
+/*
+			var message = {}, 
+			    canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
+			message['canvas_object_update'] = {
+				canvas_object: {
+					template_id: canvas_object.template_id,
+					top:         canvas_object.top,
+					left:        canvas_object.left,
+					id:          canvas_object.id,
+					content:     $(this).find('textarea').val()
+				},
+				page:        { id: env.project.current_page }
+			};
+			env.socket.send(message);
+			$('.option_pane').remove();
+			return false;	
+*/
+	},
+
 	render_helper: function(template_id) {
 		this.content = templates[template_id].default_content;
 		return this[template_id]();
 	},
+
 	heading: function() {
 		return "<h1>"+ this.content +"</h1>";
 	},
+
 	paragraph: function() {
 		return "<p>"+ this.content.split("\n").join("<br/>") +"</p>";
 	},
+
 	link: function() {
 		var page_id = env.project.find_page_id_by_name(this.content);
 		var page_id_attr = typeof page_id == "undefined" ? "" : "page_id='"+ page_id +"'";
 		return "<span "+ page_id_attr + " class='link'>"+ this.content +"</span>";
 	},
+
 	list: function() {
 		var list_items = "";
 		this.parse_items(this.content, function(item){ list_items += "<li>"+ item +"</li>"});
 		return "<ul type='bulleted'>"+ list_items +"</ul>";
 	},
+
 	image: function() {
 		return "<img class='image' src='/images/picture.png' alt='Image Placeholder' />";
 	},
+
 	textarea: function() {
 		return "<textarea>"+ this.content +"</textarea>";
 	},
+
 	input_box: function(){
 		return "<input type='text' class='inputbox' value='"+ this.content +"'/>";
 	},
-	check_box: function(){
-		var check_boxes = "";
-		this.parse_items(this.content, function(item, is_special){
-			checked = is_special ? "checked='checked'": "";
-			check_boxes += "<input type='checkbox' "+ checked  +"name='checks'/><label>"+ item +"</label><br/>";
-		});
-		return "<form>" + check_boxes + "</form>";
+
+	submit_button: function(){
+		return "<div class='white button'>"+ this.content + "</div>";
 	},
+
+	select_menu: function() {
+		return "<select><option value=''>"+ this.content +"</option></select>";
+	},
+
 	radio_buttons: function(){
 		var radio_buttons = "";
 		this.parse_items(this.content ,function(item, is_special){
@@ -78,40 +110,52 @@ Renderer = {
 		});
     return "<form>" + radio_buttons + "</form>";
 	},
-	table: function() {
-		var trs = "";
+
+	check_box: function(){
+		var check_boxes = "";
 		this.parse_items(this.content, function(item, is_special){
-		  trs += "<tr><td>"+ item +"</td></tr>";
+			checked = is_special ? "checked='checked'": "";
+			check_boxes += "<input type='checkbox' "+ checked  +"name='checks'/><label>"+ item +"</label><br/>";
 		});
-		return "<table><tbody>"+ trs +"</tbody></table>";
+		return "<form>" + check_boxes + "</form>";
 	},
-	submit_button: function(){
-		return "<div class='white button'>"+ this.content + "</div>";
-	},
-	select_menu: function() {
-		return "<select><option value=''>"+ this.content +"</option></select>";
-	},
-	global_container: function(){
-		return "<div class='global_container'>"+ this.content +"</div>";
-	},
-	main_navigation: function(){
-		return "<ul class='nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
-	},
-	user_navigation: function(){
-		return "<ul class='user_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
-	},
-	footer_navigation: function(){
-		return "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
-	},
+
 	box_container: function(){
 		return "<div class='box'>"+ this.content +"</div>";
 	},
+
 	vertical_line: function(){
 		return "<div class='verLine'></div>";
 	},
+
 	horizontal_line: function(){
 		return "<div class='horLine'></div>";
 	},
+
+//	table: function() {
+//		var trs = "";
+//		this.parse_items(this.content, function(item, is_special){
+//		  trs += "<tr><td>"+ item +"</td></tr>";
+//		});
+//		return "<table><tbody>"+ trs +"</tbody></table>";
+//	},
+
+	global_container: function(){
+		return "<div class='global_container'>"+ this.content +"</div>";
+	},
+
+	main_navigation: function(){
+		return "<ul class='nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
+	},
+
+	user_navigation: function(){
+		return "<ul class='user_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
+	},
+
+//	footer_navigation: function(){
+//		return "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
+//	},
+
 	parse_items: function( list, callback) {
 		list.split("\n").forEach( function(item){
 			var is_special = false;
