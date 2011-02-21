@@ -5,8 +5,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 
@@ -16,8 +15,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 
@@ -27,8 +25,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 
@@ -38,8 +35,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	image: {
@@ -47,8 +43,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	input_box: {
@@ -57,8 +52,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	textarea: {
@@ -67,8 +61,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	check_box: {
@@ -77,8 +70,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	radio_buttons: {
@@ -87,8 +79,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	table: {
@@ -97,8 +88,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	submit_button: {
@@ -107,8 +97,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	select_menu: {
@@ -117,8 +106,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 	global_container: {
@@ -139,8 +127,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 
@@ -149,8 +136,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	},
 
@@ -159,8 +145,7 @@ templates = {
 		resizable_options: {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			helper: 'ui-resizable-helper',
-			stop: function(event, ui) { Renderer.resize($(this)); },
+			stop: function(event, ui) { Renderer.resize(event, ui, $(this)); },
 		},
 	}
 }

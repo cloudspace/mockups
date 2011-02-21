@@ -39,7 +39,7 @@
  #userinfo #display_name{background:none;border:none;}
  #userinfo #display_name:focus{background:white; border:1px solid #f0f0f0;border-style:inset;}
  #resizer { position:fixed; bottom:0; left:0px; background:url('/images/resizer.png') right; width:20%; text-align:right; height:24px; line-height:24px; }
- #canvas{height:600px; overflow: visible; background: #FFF;border:solid black 3px; margin: 5px 5px 5px 259px;position:relative;}
+ #canvas{ height: 600px; overflow: visible; background: #f3f3f3; margin: 5px 5px 5px 259px; position: relative; }
  #canvas{ position: relative; }
  #tools{background: url('/images/blackbar.png') top left; height:25px; line-height:25px; border-bottom:1px solid #000; color:#fff;}
  #tools .selecturl{margin: 3px 0 0 5px;float:left;}
