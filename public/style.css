@@ -39,8 +39,7 @@
  #userinfo #display_name{background:none;border:none;}
  #userinfo #display_name:focus{background:white; border:1px solid #f0f0f0;border-style:inset;}
  #resizer { position:fixed; bottom:0; left:0px; background:url('/images/resizer.png') right; width:20%; text-align:right; height:24px; line-height:24px; }
- #canvas{height:600px; overflow: visible; background: #FFF;border:solid black 3px; margin: 5px 5px 5px 259px;position:relative;}
- #canvas{ position: relative; }
+ #canvas { height: 600px; overflow: visible; background: #fff; margin: 0 0 0 254px; position: relative; }
 
  @-webkit-keyframes slideinleft {
    from { margin-left:-30%; }

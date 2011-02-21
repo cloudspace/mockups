@@ -97,6 +97,8 @@ $(document).ready(function(){
 					template_id: template_id,
 					top:         ui.position.top,
 					left:        ui.position.left,
+					//top:         $dragged_item.css('top'),
+					//left:        $dragged_item.css('left'),
 					id:          canvas_object_id,
 					content:     env.project.canvas_object(canvas_object_id)? env.project.canvas_object(canvas_object_id).content: undefined
 				},
