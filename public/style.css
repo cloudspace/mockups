@@ -41,19 +41,6 @@
  #resizer { position:fixed; bottom:0; left:0px; background:url('/images/resizer.png') right; width:20%; text-align:right; height:24px; line-height:24px; }
  #canvas{height:600px; overflow: visible; background: #FFF;border:solid black 3px; margin: 5px 5px 5px 259px;position:relative;}
  #canvas{ position: relative; }
- #tools{background: url('/images/blackbar.png') top left; height:25px; line-height:25px; border-bottom:1px solid #000; color:#fff;}
- #tools .selecturl{margin: 3px 0 0 5px;float:left;}
- #tools p{ padding:3px 0 0 14px; }
- #tools ul { display: inline-block; float:right; padding:0; margin:0 10px 0 0; }
- #tools ul li {
-   background:-webkit-gradient( linear,  left bottom,  left top,  color-stop(0.21, rgb(167,167,167)),  color-stop(0.81, rgb(208,208,208)));
-   background: -moz-linear-gradient( center bottom,  rgb(167,167,167) 21%,  rgb(208,208,208) 81%);
-   display:inline-block; -moz-border-radius: 3px; border-radius: 3px; width:16px; height:16px; line-height:16px; text-align:center; border-top:1px solid #fff; text-shadow: #e3e3e3 0px 1px 1px; -moz-box-shadow: 0 1px 1px #000; -webkit-box-shadow: 0 1px 1px #000; color:#454545;
- }
- #tools ul li:hover {
-   background: -webkit-gradient(linear,  left bottom,  left top,  color-stop(0.81, rgb(167,167,167)),  color-stop(0.21, rgb(208,208,208)));
-   background: -moz-linear-gradient(center bottom,  rgb(167,167,167) 81%,  rgb(208,208,208) 21%);
- }
 
  @-webkit-keyframes slideinleft {
    from { margin-left:-30%; }
@@ -80,11 +67,6 @@
 #my_projects p a{ color:#636363; }
 #my_projects .project:hover{ background-color:#B3D4FF; }
 
-#new_sitemap a, #edit_sitemap a{ display:block; }
-#new_sitemap a, #edit_sitemap a{ padding-top:2px; padding-left:2px; }
-#tools a img{ cursor:pointer;border:none; }
-#edit_sitemap a{ color: #454545; text-decoration: none; }
-
 .horizontal_main{ -moz-box-shadow: 0 5px 5px black; -webkit-box-shadow: 0 5px 5px black; border: 1px solid black; display: inline; list-style-type: none; padding: 4px; }
 .horizontal{ color: #225A95; display: inline; list-style-type: none; padding: 4px; text-decoration: underline; border-right: 1px solid black; }
 
@@ -98,18 +80,6 @@
 .settings_content { border-top:1px solid black; padding-bottom:2px; }
 
 /*----------------------------------*/
-.ui-resizable { position: relative;}
-.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
-.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
-.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0px; }
-.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0px; }
-.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0px; height: 100%; }
-.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0px; height: 100%; }
-.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
-.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
-.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
-.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
-
 .ui-widget { font-family: Verdana,Arial,sans-serif/*{ffDefault}*/; font-size: 1.1em/*{fsDefault}*/; }
 .ui-widget .ui-widget { font-size: 1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif/*{ffDefault}*/; font-size:.7em; }

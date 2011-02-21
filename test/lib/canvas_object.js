@@ -99,6 +99,20 @@ exports.canvas_object = testCase({
 		});
 	},
 
+	"update: does not update attributes that were not sent": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				CanvasObject.create(page, { canvas_object: { template_id: 'paragraph', top: 100, left: 50 } }, function(canvas_object) {
+					canvas_object.update({ top: 101 }, function(updated_canvas_object) {
+						test.equal(updated_canvas_object.top, 101);
+						test.equal(updated_canvas_object.left, 50);
+						test.done();
+					});
+				});
+			});
+		});
+	},
+
 	"delete: returns the canvas_object it deleted from a project": function(test) {
 		Project.create(function(project) {
 			Page.create(project, function(page) {
