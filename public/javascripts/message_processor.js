@@ -25,6 +25,14 @@ MessageProcessor = {
 	// User receives this action only when they were the one to create the project.
 	project_create: function(created_project) {
 		env.project.created = true;
+		$('#projectinfo').after('<div id="set_password">Set a password</div>');
+		$('#set_password').click(function() {
+			var create_password = $('<div></div>');
+			create_password.dialog({
+				resizable: false,
+				modal: true,
+			});
+		});
 	},
 
 	user_update: function(data) {
