@@ -6,7 +6,7 @@
 #projectinfo #project_display_name{ background: none; border: none; }
 #projectinfo #project_display_name:focus { background: #fff; border: 1px solid #f0f0f0; border-style: inset; }
 #set_password { position: absolute; left: 550px; }
-#set_password:hover { color: red; cursor: pointer; }
+#set_password:hover { color: #000; cursor: pointer; }
 
 #flash { position: fixed; bottom: 0; right: 0; overflow: auto;  border: 1px solid #eee; font: 13px "Verdana", sans-serif; }
 #flash p { padding: 8px; margin: 0; }

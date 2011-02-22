@@ -27,7 +27,7 @@ MessageProcessor = {
 		env.project.created = true;
 		$('#projectinfo').after('<div id="set_password">Set a password</div>');
 		$('#set_password').click(function() {
-			var create_password = $('<div></div>').append('<div class="flash"></div><form></form>');
+			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
 
 			create_password.find('form')
 				.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
@@ -36,12 +36,11 @@ MessageProcessor = {
 				.submit(function() {
 					var password = $(this).find('#password').val();
 					if (password != $(this).find('#password_confirm').val()) {
-						$(this).siblings('.flash').html("Your password confirmation does not match.");
+						$(this).siblings('.flash').html('').hide().html("Your password confirmation does not match.").fadeIn();
 					} else {
 						$(this).find('input').attr('disabled', 'disabled');
-						env.so
+						env.socket.send({ project_update: { password: password } });
 					}
-					env.socket.send({ project_update: { password: password } });
 					return false;
 				});
 
@@ -53,13 +52,20 @@ MessageProcessor = {
 		});
 	},
 
+	project_set_password: function(data) {
+		if (data) {
+			$('#create_password').dialog('destroy');
+			$('#set_password').unbind('click').html('Password set.').fadeOut(5000);
+		}
+	},
+
 	user_update: function(data) {
 		env.display_name = data.name;
 		reset_display_name();
 	},
 
 	project_update: function(data) {
-		env.project.update_name(data);
+		if (data.name) env.project.update_name(data);
 	},
 
 	page_update: function(data) {
