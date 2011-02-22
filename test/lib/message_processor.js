@@ -146,6 +146,7 @@ exports.process = testCase({
 			setTimeout(function(){
 				Project.find_by_id(project._id, function (updated_project){
 					test.notEqual(updated_project.password, undefined);
+					test.notEqual(updated_project.salt, undefined);
 					test.done();
 				});
 			}, 500);
