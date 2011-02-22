@@ -1,7 +1,12 @@
 
 
-.canvas_object { position: absolute; z-index: 2; display: block; padding: 2px; cursor: move; overflow: hidden; background: #fff; }
-/*.canvas_object:hover { border-color: #999; }*/
+.canvas_object { position: absolute; z-index: 2; display: block; padding: 1px; cursor: move; }
+.canvas_object .content { overflow: hidden; display: block; }
+
+
+/* this is a hack to get select tags to conform to explicitly-set height/width values */
+.canvas_object select { background: #eee; }
+.canvas_object textarea { padding: 0; }
 
 
 .box { width: 100px; height: 100px; border: 1px solid #222; }
@@ -12,7 +17,7 @@
 .ui-resizable-handle { position: absolute; font-size: 0.1px; z-index: 500; display: none; }
 .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
 
-/* shows resize handles when hovered, selected, or resizing */
+/* shows resize handles when hovered, selected, selecting, or resizing */
 .ui-selecting .ui-resizable-handle, .ui-resizable-resizing .ui-resizable-handle, .canvas_object:hover .ui-resizable-handle, .ui-selected .ui-resizable-handle { display: block; }
 
 .ui-selecting { border-color: #666; }
@@ -26,10 +31,10 @@
 .ui-resizable-s { cursor: s-resize; height: 2px; width: 100%; bottom: 0; left: 0; }
 .ui-resizable-e { cursor: e-resize; width: 2px; right: 0; top: 0; height: 100%; }
 .ui-resizable-w { cursor: w-resize; width: 2px; left: 0; top: 0; height: 100%; }
-.ui-resizable-se { cursor: se-resize; width: 6px; height: 6px; right: 0; bottom: 0; }
-.ui-resizable-sw { cursor: sw-resize; width: 6px; height: 6px; left: 0; bottom: 0; }
-.ui-resizable-nw { cursor: nw-resize; width: 6px; height: 6px; left: 0; top: 0; }
-.ui-resizable-ne { cursor: ne-resize; width: 6px; height: 6px; right: 0; top: 0; }
+.ui-resizable-se { cursor: se-resize; width: 6px; height: 6px; right: -2px; bottom: -2px; }
+.ui-resizable-sw { cursor: sw-resize; width: 6px; height: 6px; left: -2px; bottom: -2px; }
+.ui-resizable-nw { cursor: nw-resize; width: 6px; height: 6px; left: -2px; top: -2px; }
+.ui-resizable-ne { cursor: ne-resize; width: 6px; height: 6px; right: -2px; top: -2px; }
 
 
 
