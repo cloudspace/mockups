@@ -93,6 +93,41 @@ exports.process = testCase({
 		});
 	},
 
+	"project_authorize: sends a project_load message when there is a project password ": function(test) {
+		var that = this;
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			that.client.user.created_project = true;
+			project.update({ password: "Surely you can't be serious." },function(update_statement){
+
+				MessageProcessor.process(that.client, { project_authorize: { id: project._id, password: "Surely you can't be serious." } });
+
+				setTimeout(function() {
+					test.notEqual(that.client.sent.project_load, undefined);
+					test.done();
+				}, 500);
+				});
+		});
+	},
+
+	"project_authorize: sends a project_prompt_password message when there is a project password ": function(test) {
+		var that = this;
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			that.client.user.created_project = true;
+			project.update({ password: "Surely you can't be serious." },function(update_statement){
+
+				MessageProcessor.process(that.client, { project_authorize: { id: project._id, password: "wrong password." } });
+
+				setTimeout(function() {
+					test.equal(that.client.sent.project_load, undefined);
+					test.notEqual(that.client.sent.project_prompt_password, undefined);
+					test.done();
+				}, 500);
+				});
+		});
+	},
+
 	"project_create: creates a project": function(test) {
 		var that = this;
 		MessageProcessor.process(this.client, { project_create: true });
