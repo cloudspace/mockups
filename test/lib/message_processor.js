@@ -122,6 +122,7 @@ exports.process = testCase({
 				setTimeout(function() {
 					test.equal(that.client.sent.project_load, undefined);
 					test.notEqual(that.client.sent.project_prompt_password, undefined);
+					test.notEqual(that.client.user.project_id, undefined);
 					test.done();
 				}, 500);
 				});
