@@ -27,10 +27,19 @@ MessageProcessor = {
 		env.project.created = true;
 		$('#projectinfo').after('<div id="set_password">Set a password</div>');
 		$('#set_password').click(function() {
-			var create_password = $('<div></div>');
+			var create_password = $('<div><form></form></div>');
+			create_password.find('form')
+				.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
+				.append('<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm" /> <br />')
+				.append('<input type="submit" value="Set Password" />')
+				.submit(function() {
+					// send message here
+					return false;
+				});
 			create_password.dialog({
 				resizable: false,
 				modal: true,
+				title: 'Set a Password',
 			});
 		});
 	},
