@@ -99,10 +99,19 @@ $(document).ready(function(){
 
 	$('#canvas').droppable({
 		drop: function(event, ui) {
+			$('input').blur();
+
 			var $dragged_item    = $(ui.draggable), 
 					template_id      = $dragged_item.attr('template_id'),
 					canvas_object_id = $dragged_item.attr('canvas_object_id'), 
+					canvas_object    = env.project.canvas_object(canvas_object_id),
 					message          = {}; //,ui.position;
+
+			// returns if the canvas_object's position is unchanged
+			if (canvas_object) {
+				if (ui.position.top == canvas_object.top && ui.position.left == canvas_object.left) return;
+			}
+
 			// if length > 0 then the dragged item is from the sidebar so it is a new canvas_object
 			var message_type = $dragged_item.parent('.elements').length > 0 ? 'canvas_object_create' : 'canvas_object_update';
 			message[message_type] = {
@@ -110,10 +119,7 @@ $(document).ready(function(){
 					template_id: template_id,
 					top:         ui.position.top,
 					left:        ui.position.left,
-					//top:         $dragged_item.css('top'),
-					//left:        $dragged_item.css('left'),
 					id:          canvas_object_id,
-					content:     env.project.canvas_object(canvas_object_id)? env.project.canvas_object(canvas_object_id).content: undefined
 				},
 				page:        { id: env.project.current_page }
 			};
@@ -129,6 +135,12 @@ $(document).ready(function(){
 	});
 
 	$(window).click(function(e) {
+		// #canvas has a lot of click-capturing (draggable, droppable, selectable, resizable)
+		// so we force all input boxes to blur when it is clicked since those jquery plugins
+		// hijack the clicks and prevent the default behavior from occurring
+	  $target = $(e.target);
+		if ($target.is('#canvas') || $target.parents('#canvas').length == 1) $('input').blur();
+
 		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
 	});
 

@@ -1,7 +1,7 @@
 
 
 .canvas_object { position: absolute; z-index: 2; display: block; padding: 1px; cursor: move; }
-.canvas_object .content { overflow: hidden; display: block; }
+.canvas_object .content { overflow: hidden; display: block; line-height: 120%; }
 
 
 /* this is a hack to get select tags to conform to explicitly-set height/width values */
