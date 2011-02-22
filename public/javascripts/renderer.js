@@ -86,9 +86,8 @@ Renderer = {
 	},
 
 	link: function() {
-		var page_id = env.project.find_page_id_by_name(this.content);
-		var page_id_attr = typeof page_id == "undefined" ? "" : "page_id='"+ page_id +"'";
-		return "<span "+ page_id_attr + " class='link'>"+ this.content +"</span>";
+		var live_link_attr = get_link_attr(this.content);
+		return "<span "+ live_link_attr + " class='link'>"+ this.content +"</span>";
 	},
 
 	list: function() {
@@ -159,17 +158,21 @@ Renderer = {
 		return "<div class='global_container'>"+ this.content +"</div>";
 	},
 
-	main_navigation: function(){
-		return "<ul class='nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
-	},
-
 	user_navigation: function(){
-		return "<ul class='user_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
+		var i, pages= new Array(),that = this;
+		var list_items = "";
+		for(i in env.project.pages){
+			list_items += "<li><span page_id='"+ i +"'>"+ env.project.pages[i].name +"</span></li>";
+		}
+		return "<ul class='nav'>"+ list_items +"</ul>";
 	},
-
 //	footer_navigation: function(){
 //		return "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
 //	},
+	get_link_attr: function(content){
+		var page_id = env.project.find_page_id_by_name(content);
+		return (typeof page_id == "undefined") ? "" : "page_id='"+ page_id +"'";
+	},
 
 	parse_items: function( list, callback) {
 		list.split("\n").forEach( function(item){
