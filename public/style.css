@@ -56,16 +56,6 @@
 
  a.signin {background:url("/images/down_arrow.png") no-repeat scroll 100% 57% transparent; margin-left:3px; padding-right:13px; position:relative; margin-right:4px; text-decoration:none; }
 
-#my_projects {
- -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; -moz-border-radius-bottomleft:5px; -moz-border-radius-bottomright:5px;
- -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; -webkit-border-bottom-left-radius:5px; -webkit-border-bottom-right-radius:5px;
- display:none; background-color:#FFFFFF; position:absolute; z-index:100; border:1px solid #808080; padding-top:3px; margin-top:5px; color:#789; font-size:11px; right:71px; text-align:left; top:17px; line-height:15px;
-}
-
-#my_projects p{ color:#636363; margin:2px 9px; padding:2px 0; }
-#my_projects p a{ color:#636363; }
-#my_projects .project:hover{ background-color:#B3D4FF; }
-
 .horizontal_main{ -moz-box-shadow: 0 5px 5px black; -webkit-box-shadow: 0 5px 5px black; border: 1px solid black; display: inline; list-style-type: none; padding: 4px; }
 .horizontal{ color: #225A95; display: inline; list-style-type: none; padding: 4px; text-decoration: underline; border-right: 1px solid black; }
 

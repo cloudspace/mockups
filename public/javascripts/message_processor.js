@@ -22,6 +22,11 @@ MessageProcessor = {
 		$('#project_display_name').val(project.name);
 	},
 
+	// User receives this action only when they were the one to create the project.
+	project_create: function(created_project) {
+		env.project.created = true;
+	},
+
 	user_update: function(data) {
 		env.display_name = data.name;
 		reset_display_name();

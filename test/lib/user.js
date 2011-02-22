@@ -46,6 +46,18 @@ exports.user = testCase({
 		test.done();
 	},
 
+	"assign_project: sets created_project to true when second argument passed is true": function(test) {
+		this.client.user.assign_project(3, true);
+		test.equals(this.client.user.created_project, true);
+		test.done();
+	},
+
+	"assign_project: sets created_project to false when no second argument is passed": function(test) {
+		this.client.user.assign_project(3);
+		test.equals(this.client.user.created_project, false);
+		test.done();
+	},
+
 	"subscribe: subscribes a User to a channel": function(test) {
 		this.client.user.subscribe(1);
 		test.equals(this.client.user.channels[1], true);
