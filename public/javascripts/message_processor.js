@@ -15,6 +15,7 @@ MessageProcessor = {
 	},
 
 	project_load: function(project) {
+		$('#submit_password').dialog('destroy');
 		env.project = new Project(project);
 		// set page items
 		env.project.sync_mockup();
@@ -51,7 +52,31 @@ MessageProcessor = {
 			});
 		});
 	},
-
+	project_prompt_password: function(data){
+		if(data.error){
+			$("#submit_password .flash").html(data.error);
+			$("#submit_password input").attr('disabled','');
+			return;
+		}
+		var $submit_password = $("<div id='submit_password'></div>").append("<div class='flash'>"+(data.error || "")+"</div><form></form>");
+		$submit_password.find('form')
+			.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
+			.append('<input type="submit" value="Submit Password" />')
+			.submit(function(){
+				var password = $(this).find('#password').val();
+				$(this).find('input').attr('disabled', 'disabled');
+				var project_id = window.location.hash.split('/')[0].substring(1);
+				env.socket.send({ project_authorize: { id: project_id, password: password } });
+				return false;
+			});
+		$submit_password
+			.dialog({
+				resizable:false,
+				modal: true,
+				title: 'Enter Password'
+			});
+	},
+	
 	project_set_password: function(data) {
 		if (data) {
 			$('#create_password').dialog('destroy');

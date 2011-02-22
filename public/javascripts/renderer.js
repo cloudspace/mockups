@@ -33,8 +33,8 @@ Renderer = {
 
 		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top',parseInt(canvas_object.top)); }
 		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
-		if (canvas_object.width)  { this.page_element.find('.content').outerWidth(parseInt(canvas_object.width)); }
-		if (canvas_object.height) { this.page_element.find('.content').outerHeight(parseInt(canvas_object.height)); }
+		if (canvas_object.width)  { this.page_element.find('.content').width(parseInt(canvas_object.width)); }
+		if (canvas_object.height) { this.page_element.find('.content').height(parseInt(canvas_object.height)); }
 		if (canvas_object.fontsize) { this.page_element.css('font-size',parseInt(canvas_object.fontsize));}
 		return this.page_element.appendTo('#canvas');
 	},
@@ -43,18 +43,19 @@ Renderer = {
 		var options = {
 			handles: 'n, ne, e, se, s, sw, w, nw',
 			containment: 'parent',
-			minWidth: 1,
-			minHeight: 1,
+			minWidth: 10,
+			minHeight: 10,
 			resize: function(event, ui) {
-				//$(this).find('.content').outerWidth($(this).width()).outerHeight($(this).height());
 				$(this).find('.content').outerWidth($(this).width()).outerHeight($(this).height());
 			},
 			stop: function(event, ui) {
+				$content = $(this).find('.content');
+				$content.outerWidth($(this).width()).outerHeight($(this).height());
 				env.socket.send({
 					canvas_object_update: {
 						canvas_object: {
-							width:       $(this).width(),
-							height:      $(this).height(),
+							width:       $content.width(),
+							height:      $content.height(),
 							top:         $(this).css('top'),
 							left:        $(this).css('left'),
 							id:          $(this).attr('canvas_object_id'),
@@ -62,7 +63,7 @@ Renderer = {
 						page:        { id: env.project.current_page }
 					}
 				});
-				$(this).width('').height('');
+				$(this).width('').height(''); // unset inline styles so that the object properly reloads
 			},
 		};
 		if (template_id == 'vertical_line')   options.handles = 'n, s';
