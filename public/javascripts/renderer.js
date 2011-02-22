@@ -87,7 +87,7 @@ Renderer = {
 	},
 
 	link: function() {
-		var live_link_attr = get_link_attr(this.content);
+		var live_link_attr = this.get_link_attr(this.content);
 		return "<span "+ live_link_attr + " class='link'>"+ this.content +"</span>";
 	},
 
