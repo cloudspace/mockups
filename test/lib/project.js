@@ -20,9 +20,9 @@ exports.project = testCase({
 		callback();
 	},
 
-	"authorize: returns an error when passed an invalid hash": function(test) {
+	"validate_hash: returns an error when passed an invalid hash": function(test) {
 		Project.create(function(project) {
-			project.authorize('bad hash');
+			project.validate_hash('bad hash');
 			test.notEqual(project.error, undefined);
 			test.done();
 		});
