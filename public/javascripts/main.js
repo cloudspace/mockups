@@ -43,20 +43,20 @@ $(document).ready(function(){
 	});
 
 	$('form.canvas_object_update').live('submit',function(e){
-			var message = {}, 
-			    canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
-			message['canvas_object_update'] = {
-				canvas_object: {
-					template_id: canvas_object.template_id,
-					id:          canvas_object.id,
-					content:     $(this).find('textarea').val(),
-					width:       $(this).find('input[name=width]').val(),
-					height:      $(this).find('input[name=height]').val(),
-					fontsize:    $(this).find('input[name=fontsize]').val()
-				},
-				page:        { id: env.project.current_page }
-			};
-			env.socket.send(message);
+			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
+			env.socket.send({
+				canvas_object_update: {
+					canvas_object: {
+						template_id: canvas_object.template_id,
+						id:          canvas_object.id,
+						content:     $(this).find('textarea').val(),
+						width:       $(this).find('input[name=width]').val(),
+						height:      $(this).find('input[name=height]').val(),
+						fontsize:    $(this).find('input[name=fontsize]').val()
+					},
+					page:        { id: env.project.current_page }
+				}
+			});
 			$('.option_pane').remove();
 			return false;	
 	});
@@ -140,8 +140,6 @@ $(document).ready(function(){
 		// hijack the clicks and prevent the default behavior from occurring
 	  $target = $(e.target);
 		if ($target.is('#canvas') || $target.parents('#canvas').length == 1) $('input').blur();
-
-		env.socket.send({message: "x: " + e.pageX + ", y: " + e.pageY});
 	});
 
 	// Handle user changing their display name.
