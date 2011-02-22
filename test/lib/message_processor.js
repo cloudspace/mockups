@@ -120,6 +120,38 @@ exports.process = testCase({
 		});
 	},
 
+	"project_update: drops the password if the client did not create the project": function(test) {
+		var that = this;
+		Project.create(function(project){
+			that.client.user.project_id = project._id;
+			that.client.user.created_project = false;
+			MessageProcessor.process(that.client, { project_update: { password: 'Franklin' } });
+
+			setTimeout(function(){
+				Project.find_by_id(project._id, function (updated_project){
+					test.equal(updated_project.password, undefined);
+					test.done();
+				});
+			}, 500);
+		});
+	},
+
+	"project_update: sets the password if the client created the project": function(test) {
+		var that = this;
+		Project.create(function(project){
+			that.client.user.project_id = project._id;
+			that.client.user.created_project = true;
+			MessageProcessor.process(that.client, { project_update: { password: 'Franklin' } });
+
+			setTimeout(function(){
+				Project.find_by_id(project._id, function (updated_project){
+					test.notEqual(updated_project.password, undefined);
+					test.done();
+				});
+			}, 500);
+		});
+	},
+
 	"page_create: adds a page to the project a user is on": function(test) {
 		var that = this;
 		Project.create(function(project) {
