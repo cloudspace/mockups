@@ -53,6 +53,7 @@ MessageProcessor = {
 			});
 		});
 	},
+	
 	project_prompt_password: function(data){
 
 		if(data.error){
