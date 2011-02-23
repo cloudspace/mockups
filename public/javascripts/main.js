@@ -33,7 +33,8 @@ $(document).ready(function(){
 
 	$('#sideBar .elements li').draggable({
 		appendTo: $("#canvas"),
-	  helper: function() {
+		cursorAt: { left: 0, top: 0 },
+		helper: function() {
 			var id = $(this).attr('template_id');
 			var $el = $('<div></div>')
 				.addClass('canvas_object')
