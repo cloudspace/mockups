@@ -28,6 +28,7 @@ Renderer = {
 		}
 		
 		this.page_element.html(rendered_content)
+			.append('<div class="overlay"></div>')
 			.resizable('destroy')
 			.resizable(this.resize_options(canvas_object.template_id));
 
