@@ -54,13 +54,13 @@ MessageProcessor = {
 		});
 	},
 	project_prompt_password: function(data){
-		$('.submit_password').dialog('destroy');
 
 		if(data.error){
 			$(".submit_password .flash").html(data.error);
 			$(".submit_password input").attr('disabled','');
 			return;
 		}
+		$('.submit_password').dialog('destroy');
 		var $submit_password = $("<div class='submit_password'></div>").append("<div class='flash'>"+(data.error || "")+"</div><form></form>");
 		$submit_password.find('form')
 			.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
