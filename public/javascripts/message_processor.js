@@ -15,7 +15,8 @@ MessageProcessor = {
 	},
 
 	project_load: function(project) {
-		$('#submit_password').dialog('destroy');
+		$('.submit_password').dialog('destroy');
+
 		env.project = new Project(project);
 		// set page items
 		env.project.sync_mockup();
@@ -53,12 +54,14 @@ MessageProcessor = {
 		});
 	},
 	project_prompt_password: function(data){
+		$('.submit_password').dialog('destroy');
+
 		if(data.error){
-			$("#submit_password .flash").html(data.error);
-			$("#submit_password input").attr('disabled','');
+			$(".submit_password .flash").html(data.error);
+			$(".submit_password input").attr('disabled','');
 			return;
 		}
-		var $submit_password = $("<div id='submit_password'></div>").append("<div class='flash'>"+(data.error || "")+"</div><form></form>");
+		var $submit_password = $("<div class='submit_password'></div>").append("<div class='flash'>"+(data.error || "")+"</div><form></form>");
 		$submit_password.find('form')
 			.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
 			.append('<input type="submit" value="Submit Password" />')
