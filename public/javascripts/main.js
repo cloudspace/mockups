@@ -4,6 +4,7 @@ $(window).load(function() {
 	// Key bindings used so that users may delete mockup objects (with the delete key).
 	$(document).keydown(function(e) {
 		if ($(document.activeElement).is('input, textarea') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
+		//Key bindings from: http://www.cambiaresearch.com/c4/702b8cd1-e5b0-42e6-83ac-25f0306e3e25/Javascript-Char-Codes-Key-Codes.aspx
 		switch (e.keyCode) {
 			case 8:  // backspace key
 			case 46: // delete key
@@ -16,6 +17,51 @@ $(window).load(function() {
 					});
 				});
 				break;
+			case 37:
+				$('#canvas .ui-selected').each(function() {
+					$(this).css('left', $(this).position().left - 1);
+					env.socket.send({
+					  canvas_object_update: {
+							canvas_object: { id: $(this).attr('canvas_object_id'), left: $(this).position().left },
+							page:          { id: env.project.current_page }
+						}
+					});
+				});
+			break;
+			case 38:
+				$('#canvas .ui-selected').each(function() {
+					$(this).css('top', $(this).position().top - 1);
+					env.socket.send({
+					  canvas_object_update: {
+							canvas_object: { id: $(this).attr('canvas_object_id'), top: $(this).position().top },
+							page:          { id: env.project.current_page }
+						}
+					});
+				});
+			break;
+			case 39:
+				$('#canvas .ui-selected').each(function() {
+					$(this).css('left', $(this).position().left + 1);
+					env.socket.send({
+					  canvas_object_update: {
+							canvas_object: { id: $(this).attr('canvas_object_id'), left: $(this).position().left },
+							page:          { id: env.project.current_page }
+						}
+					});
+				});
+			break;
+			case 40:
+				$('#canvas .ui-selected').each(function() {
+					$(this).css('top', $(this).position().top + 1);
+					env.socket.send({
+					  canvas_object_update: {
+							canvas_object: { id: $(this).attr('canvas_object_id'), top: $(this).position().top },
+							page:          { id: env.project.current_page }
+						}
+					});
+				});
+			break;
+
 			default:
 				return;
 		}
@@ -82,7 +128,7 @@ $(document).ready(function(){
 			.append("<label for='width'>Width:</label><input id='width' name='width' value='"+ (canvas_object.width || "") +"'type='text'/>")
 			.append("<textarea name='content'>"+ content +"</textarea>")
 			.append("<input type='submit' value='submit'/>").appendTo($option_pane);
-
+		$(".canvas_object_update textarea").focus();
 		$("#canvas").one('click',function(e){
 			$('.option_pane').remove();
 			e.stopPropagation();
