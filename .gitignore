@@ -1,2 +1,4 @@
 *.swp
 test/results/*.js.xml
+.vagrant
+Vagrantfile

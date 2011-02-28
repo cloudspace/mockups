@@ -1,5 +1,6 @@
 
 include_recipe "nginx"
+include_recipe "nodejs::default"
 include_recipe "nodejs::npm"
 
 
@@ -18,4 +19,11 @@ nginx_site "default" do
   enable false
 end
 
-npm_packages %w(mongodb@0.7.9 nodeunit@0.5.0 socket.io@0.6.8)
+%w(mongodb@0.7.9 nodeunit@0.5.0 socket.io@0.6.8).each do |name|
+  execute "npm installation of #{name}" do
+    command "npm install #{name}"
+    only_if { ::File.exists?("/usr/local/bin/npm@#{node[:nodejs][:npm]}") }
+  end
+end
+
+
