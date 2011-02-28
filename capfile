@@ -4,8 +4,11 @@ load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 # Edit these
 set :application, "mockupcreator"
 set :node_file, "app.js"
-set :host, "mockitout.com"
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "mockup.pem")]
+#set :host, "mockitout.com"
+set :host, "127.0.0.1"
+set :port, "2222"
+#ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "mockup.pem")]
+ssh_options[:keys] = ["~/.ssh/mockup.pem", "~/.ssh/id_rsa"]
 set :repository, "git@github.com:cloudspace/Mockups.git"
 set :branch, "master"
 set :deploy_to, "/srv/#{application}"
@@ -14,9 +17,9 @@ set :deploy_to, "/srv/#{application}"
 set :scm, :git
 set :deploy_via, :remote_cache
 role :app, host
-set :user, "root"
-set :use_sudo, true
-set :admin_runner, 'ubuntu'
+set :user, 'root'
+set :use_sudo, false
+set :admin_runner, 'vagrant'
 default_run_options[:pty] = true
 
 namespace :deploy do
