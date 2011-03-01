@@ -12,15 +12,17 @@ To run unit tests:
 
 ## Installation
 
-### Virtual Box Setup
+### Development Environment Setup
 Our development setup for the mockupcreator consists of
 
 * VirtualBox accessed via Vagrant
 * Chef for the setup of the development box
 
-Start a new virtual box using Ubuntu 10.04 64 bit server edition
+####Virtual Box
 
-Be sure to adjust settings before starting the box, under network settings, set the first adapter to bridged and choose your airport in the box below that appears.
+Download a new virtual box from: http://www.virtualbox.org/wiki/Downloads
+
+Start a new virtual box using Ubuntu 10.04 64 bit server edition
 
 ####Install vagrant
 
@@ -41,6 +43,7 @@ Update the Vagrantfile with your server specific settings
   gem install chef
 
 You can get a lot of good cookbooks by cloning the opscode repo
+
   git clone https://github.com/opscode/cookbooks.git
 
 All of the recipes that you need in order to get a development box up and running are in two places.
@@ -67,5 +70,7 @@ from any project that uses this structure.
 From this point you will be ready to deploy to a development environment.
 
 vagrant up #will run all of the chef commands necessary to create a working environment
-cap deploy:check_dependencies #will check to see if you have what you need
-cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
+
+  cap deploy:check_dependencies #will check to see if you have what you need
+
+  cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
