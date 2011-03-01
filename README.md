@@ -18,6 +18,14 @@ Our development setup for the mockupcreator consists of
 * VirtualBox accessed via Vagrant
 * Chef for the setup of the development box
 
+Once set up, your virtual box will have:
+
+* nginx
+* mongo
+* nodejs
+* npm + required packages
+* git
+
 ####Virtual Box
 
 Download a new virtual box from: http://www.virtualbox.org/wiki/Downloads
@@ -50,7 +58,7 @@ All of the recipes that you need in order to get a development box up and runnin
 
 1. Vagrantfile.default
 
-    Any recipes that appear as follows **chef.add_recipe('git::default')** will need to be added your opscode user account
+    Any recipes that appear as follows **chef.add_recipe('[recipe name]')** will need to be added your opscode user account
 
 2. There are site-specific cookbooks in [project_root]/site-cookbooks/ that contain site specific overrides for the default chef recipes. These can be added by editing your knife.rb config to include the path to site-cookbooks.  
   EX. ~/.chef/knife.rb
@@ -68,8 +76,6 @@ from any project that uses this structure.
   
 From this point you will be ready to deploy to a development environment.
 
-vagrant up #will run all of the chef commands necessary to create a working environment
-
+    vagrant up #will run all of the chef commands necessary to create a working environment
     cap deploy:check_dependencies #will check to see if you have what you need
-
     cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
