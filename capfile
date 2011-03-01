@@ -10,7 +10,7 @@ set :port, "2222"
 #ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "mockup.pem")]
 ssh_options[:keys] = ["~/.ssh/mockup.pem", "~/.ssh/id_rsa"]
 ssh_options[:forward_agent] = true
-set :repository, "git@github.com:cloudspace/Mockups.git"
+set :repository, "git@github.com:cloudspace/#{application}.git"
 set :branch, "master"
 set :deploy_to, "/srv/#{application}"
 ####################################
@@ -25,7 +25,7 @@ default_run_options[:pty] = true
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
-		run "#{try_sudo :as => 'root'} rm /data/db/mongod.lock" if file_exists?("/data/db/mongod.lock") and not running?("mongod")
+		run "#{try_sudo :as => 'root'} rm /var/db/mongodb/mongod.lock" if file_exists?("/var/db/mongodb/mongod.lock") and not running?("mongod")
 		run "#{try_sudo :as => 'root'} start mongo"
 		run "#{try_sudo :as => 'root'} start #{application}"
   end
