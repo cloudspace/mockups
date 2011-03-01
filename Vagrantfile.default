@@ -4,7 +4,8 @@
 Vagrant::Config.run do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "your_vagrant_box_name_here"
-  config.vm.forward_port("web", 8001, 8001)
+  config.vm.forward_port("web", 80, 8001)
+  config.vm.forward_port("nodejs", 8080, 8080)
 
   config.ssh.private_key_path = '/path/to/vagrant.pem'
 
