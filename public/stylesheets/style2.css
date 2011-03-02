@@ -1,4 +1,6 @@
 
+#canvas { background: red; height: 100%; width: 960px; height: 600px; display: block; }
+
 
 
 a {
@@ -16,11 +18,14 @@ a {
 	font-family:"Thonburi";
 	font-size:12px;
 	float:left;
+/*
 	-webkit-transition: all .1s ease;
 	-webkit-animation-name: fadein;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: .5;
 	-webkit-animation-timing-function: ease-in-out;
+*/
+	z-index: 1000000;
 }
 
 #handler {
@@ -29,6 +34,7 @@ a {
 	border-top-right-radius:5px;
 	border-bottom:1px solid #444444;
 	height:30px;
+	cursor:move;
 }
 
 #expandcollapse {
@@ -138,6 +144,7 @@ a {
 }
 
 /*fadein*/
+/*
 @-webkit-keyframes fadein {
 	0% {
 		opacity:0;
@@ -146,6 +153,7 @@ a {
 		opacity:1;
 	}
 }
+*/
 
 .sectionbreak {
 	margin:0 0 0 5px;

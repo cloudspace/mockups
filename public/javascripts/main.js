@@ -77,7 +77,7 @@ $(document).ready(function(){
 	env = new Environment();
 	env.connect();
 
-	$('#sideBar .elements li').draggable({
+	$('#tools .elements li').draggable({
 		appendTo: $("#canvas"),
 		cursorAt: { left: 0, top: 0 },
 		helper: function() {
@@ -144,6 +144,11 @@ $(document).ready(function(){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	}
+
+	$('#floatingpanel').draggable({
+		handle: '#draggable',
+		containment: 'html',
+	});
 
 	$('#canvas').droppable({
 		drop: function(event, ui) {
