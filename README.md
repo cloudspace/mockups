@@ -77,5 +77,8 @@ from any project that uses this structure.
 From this point you will be ready to deploy to a development environment.
 
     vagrant up #will run all of the chef commands necessary to create a working environment
+
+####Deploy the application
+
     cap deploy:check_dependencies #will check to see if you have what you need
     cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
