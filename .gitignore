@@ -2,3 +2,4 @@
 test/results/*.js.xml
 .vagrant
 Vagrantfile
+.fog
