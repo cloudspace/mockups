@@ -63,20 +63,19 @@ a {
 	display:inline-block;
 }
 
-#infopanel {
-	min-height:50px;
-	height:auto;
-	background:#dfe4ea;
+#settings {
+	float:left;
 	color:#70757b;
-	padding:5px 0px 5px 5px;
+	width: 200px;
+	margin: 5px 0;
 }
 
-#infopanel img {
+#settings img {
 	float:right;
 	margin: 5px 5px 0 0;
 }
 
-#infopanel input {
+#settings input {
 	background: none;
 	border: 1px solid transparent;
 	color: #70757b;
@@ -85,7 +84,7 @@ a {
 	font-family: 'Thonburi';
 }
 
-#infopanel input:focus, #infopanel input:hover {
+#settings input:focus, #settings input:hover {
 	background: white;
 	border: 1px solid #f0f0f0;
 	border-style: inset;
@@ -96,7 +95,6 @@ a {
 #tabs {
 	background:#d5d5d5;
 	height:auto;
-	min-height:100px;
 	display:block;
 	line-height:22px;
 }
@@ -108,8 +106,9 @@ a {
 	display:inline-block;
 	width:100px;
 	float:left;
-	text-align:center ;
+	text-align:center;
 	height:20px;
+	cursor:pointer;
 }
 
 #tabs ul {
@@ -147,16 +146,7 @@ a {
 	width:200px;
 	float:left;
 	text-align:center;
-	margin-top:5px;
-}
-
-#settings {
-	width:100px;
-	float:left;
-	height:30px;
-	text-align:center;
-	position:relative;
-	right:0;
+	margin:5px 0;
 }
 
 .inactive {

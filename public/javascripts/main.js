@@ -77,6 +77,13 @@ $(document).ready(function(){
 	env = new Environment();
 	env.connect();
 
+  $('#settings').hide();
+	$('#tabs h3').click(function(){
+		var id = $(this).html().toLowerCase();
+		$('div#' + id).show().siblings('div').hide();
+		$(this).removeClass('inactive').siblings('h3').addClass('inactive');
+	});
+
 	$('#tools .elements li').draggable({
 		appendTo: $("#canvas"),
 		cursorAt: { left: 0, top: 0 },

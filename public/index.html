@@ -30,63 +30,40 @@
 		<span id="expandcollapse"></span> 
 	</div> 
 	
-	<div id="infopanel"> 
-		<div id='projectinfo'>
-			<span class="project_name" >
-				<form id="project_name_change">
-					<input id="project_display_name" type="text" value="" />
-					<img src="/images/lockicon.png">
-				</form>
-			</span>
-		</div>
-
-		<hr> 
-
-		<div id="userinfo">
-			<span class="handle" >
-				<form id="name_change">
-					<input id="display_name" type="text" value="Anonymous">
-					<img src="/images/usericon.png">
-				</form>
-			</span>
-		</div>
-	
-	</div> 
-	
 	<div id="tabs"> 
-		<h3><a href="">Tools</a></h3> 
-		<h3 class="inactive"><a href="">Settings</a></h3> 
+		<h3>Tools</h3> 
+		<h3 class="inactive">Settings</h3> 
 	
 		<div id="tools"> 
-				<ul> 
-					<li> 
-						<ul class='elements'> 
-							<li template_id='heading'><img src="images/headingicon.png"><a>Heading</a></li> 
-							<li template_id='paragraph'><img src="images/paragraphicon.png"><a>Paragraph</a></li> 
-							<li template_id='link'><img src="images/linkicon.png"><a>Link</a></li> 
-							<li template_id='list'><img src="images/listicon.png"><a>List</a></li> 
-							<li template_id='image'><img src="images/imgicon.png"><a>Image</a></li> 
-						</ul> 
-					</li> 
-					<img src="images/toolssectionbreak.png" class="sectionbreak"> 
-					<li> 
-						<ul class='elements'> 
-							<li template_id='textarea'><img src="images/textareaicon.png"><a>Textarea</a></li> 
-							<li template_id='input_box'><img src="images/inputboxicon.png"><a>Input Box</a></li> 
-							<li template_id='submit_button'><img src="images/submitbuttonicon.png"><a>Submit Button</a></li> 
-							<li template_id='select_menu'><img src="images/selectmenuicon.png"><a>Select Menu</a></li> 
-							<li template_id='radio_buttons'><img src="images/radiobuttonicon.png"><a>Radio Buttons</a></li> 
-							<li template_id='check_box'><img src="images/checkboxicon.png"><a>Check Box</a></li> 
-						</ul> 
-					</li> 
-					<img src="images/toolssectionbreak.png" class="sectionbreak"> 
-					<li> 
-						<ul class='elements'> 
-							<li template_id='box_container'><img src="images/boxcontainericon.png"><a>Box Container</a></li> 
-							<li template_id='vertical_line'><img src="images/verticallineicon.png"><a>Vertical Line</a></li> 
-							<li template_id='horizontal_line'><img src="images/horizontallineicon.png"><a>Horizontal Line</a></li> 
-						</ul> 
-					</li> 
+			<ul> 
+				<li> 
+					<ul class='elements'> 
+						<li template_id='heading'><img src="images/headingicon.png"><a>Heading</a></li> 
+						<li template_id='paragraph'><img src="images/paragraphicon.png"><a>Paragraph</a></li> 
+						<li template_id='link'><img src="images/linkicon.png"><a>Link</a></li> 
+						<li template_id='list'><img src="images/listicon.png"><a>List</a></li> 
+						<li template_id='image'><img src="images/imgicon.png"><a>Image</a></li> 
+					</ul> 
+				</li> 
+				<img src="images/toolssectionbreak.png" class="sectionbreak"> 
+				<li> 
+					<ul class='elements'> 
+						<li template_id='textarea'><img src="images/textareaicon.png"><a>Textarea</a></li> 
+						<li template_id='input_box'><img src="images/inputboxicon.png"><a>Input Box</a></li> 
+						<li template_id='submit_button'><img src="images/submitbuttonicon.png"><a>Submit Button</a></li> 
+						<li template_id='select_menu'><img src="images/selectmenuicon.png"><a>Select Menu</a></li> 
+						<li template_id='radio_buttons'><img src="images/radiobuttonicon.png"><a>Radio Buttons</a></li> 
+						<li template_id='check_box'><img src="images/checkboxicon.png"><a>Check Box</a></li> 
+					</ul> 
+				</li> 
+				<img src="images/toolssectionbreak.png" class="sectionbreak"> 
+				<li> 
+					<ul class='elements'> 
+						<li template_id='box_container'><img src="images/boxcontainericon.png"><a>Box Container</a></li> 
+						<li template_id='vertical_line'><img src="images/verticallineicon.png"><a>Vertical Line</a></li> 
+						<li template_id='horizontal_line'><img src="images/horizontallineicon.png"><a>Horizontal Line</a></li> 
+					</ul> 
+				</li> 
 <!--
 					<img src="images/toolssectionbreak.png" class="sectionbreak"> 
 					<li> 
@@ -96,13 +73,27 @@
 						</ul> 
 					</li> 
 -->
-				</ul> 
+			</ul> 
 		</div> 
-<!--
-		<div id="settings"> 
-			Settings
+		<div id="settings">
+			<div id='projectinfo'>
+				<span class="project_name" >
+					<form id="project_name_change">
+						<input id="project_display_name" type="text" value="" />
+						<img src="/images/lockicon.png">
+					</form>
+				</span>
+			</div>
+			<hr> 
+			<div id="userinfo">
+				<span class="handle" >
+					<form id="name_change">
+						<input id="display_name" type="text" value="Anonymous">
+						<img src="/images/usericon.png">
+					</form>
+				</span>
+			</div>
 		</div> 
--->
 	</div> 
 </div>
 
