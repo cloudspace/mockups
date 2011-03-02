@@ -7,5 +7,14 @@ server {
   location / {
     root   /srv/mockupcreator/current/public;
     index  index.html index.htm;
+
+    if (-f $request_filename/index.html) {
+      rewrite (.*) $1/index.html break;
+    }
+
+    if (!-f $request_filename) {
+      proxy_pass  http://<%= node[:hostname] %>:8080;
+    }
   }
 }
+
