@@ -1,5 +1,6 @@
 
-#canvas { background: red; height: 100%; width: 960px; height: 600px; display: block; }
+html { background: url('/images/stripes.png') repeat top left; }
+#canvas { background: #fff; height: 100%; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
 
 
 
@@ -17,7 +18,9 @@ a {
 	text-shadow:0 1px 0 #ffffff;
 	font-family:"Thonburi";
 	font-size:12px;
-	float:left;
+	position: fixed;
+	top: 20px;
+	right: 20px;
 /*
 	-webkit-transition: all .1s ease;
 	-webkit-animation-name: fadein;
@@ -34,7 +37,6 @@ a {
 	border-top-right-radius:5px;
 	border-bottom:1px solid #444444;
 	height:30px;
-	cursor:move;
 }
 
 #expandcollapse {
@@ -51,6 +53,7 @@ a {
 	height:11px;
 	float:right;
 	margin:10px 5px;
+	cursor:move;
 }
 
 #logo {

@@ -22,7 +22,7 @@
 .ui-selecting .ui-resizable-handle, .ui-resizable-resizing .ui-resizable-handle, .canvas_object:hover .ui-resizable-handle, .ui-selected .ui-resizable-handle { display: block; }
 
 .ui-selectable-helper { position: absolute; z-index: 1; border: 2px dotted #666; }
-.ui-draggable { cursor: move; }
+#tools .ui-draggable, #canvas .ui-draggable { cursor: move; }
 .ui-resizable { position: relative; }
 
 .ui-resizable-n, .ui-resizable-e, .ui-resizable-s, .ui-resizable-w { background: #069; z-index: 500; }

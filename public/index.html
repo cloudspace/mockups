@@ -31,9 +31,25 @@
 	</div> 
 	
 	<div id="infopanel"> 
-		<span id="projectinfo">Test Project<img src="images/lockicon.png"></span> 
-	<hr> 
-	<span id="userinfo">Roozbeh Meghdadi <img src="images/usericon.png"></span> 
+		<div id='projectinfo'>
+			<span class="project_name" >
+				<form id="project_name_change">
+					<input id="project_display_name" type="text" value="" />
+					<img src="/images/lockicon.png">
+				</form>
+			</span>
+		</div>
+
+		<hr> 
+
+		<div id="userinfo">
+			<span class="handle" >
+				<form id="name_change">
+					<input id="display_name" type="text" value="Anonymous">
+					<img src="/images/usericon.png">
+				</form>
+			</span>
+		</div>
 	
 	</div> 
 	
@@ -93,25 +109,6 @@
 <!--
 	<div id="mockupCreator">
     <div id="header">
-      <div id="logo">
-        <h1>Cloudspace Mockup Creator</h1>
-      </div>
-			<div id='projectinfo'>
-				<span class="project_name" >
-					<form id="project_name_change">
-						<label for="project_display_name">Project:</label>
-						<input id="project_display_name" type="text" value="" />
-					</form>
-				</span>
-			</div>
-			<div id="userinfo">
-				<span class="handle" >
-					<form id="name_change">
-						<label for="display_name">Welcome:</label>
-						<input id="display_name" type="text" value="Anonymous" />
-					</form>
-				</span>
-			</div>
 		</div>
 			<div class="mockup_wrapper">
 				<div id="sideBar">
@@ -121,38 +118,6 @@
 							</ul>
 						</li>
 						<li id='add_page'>Create a New Page</li>
-						<li><h3>Text &amp; Media</h3>
-							<ul class='elements'>
-								<li template_id='heading'><a>Heading</a></li>
-								<li template_id='paragraph'><a>Paragraph</a></li>
-								<li template_id='link'><a>Link</a></li>
-								<li template_id='list'><a>List</a></li>
-								<li template_id='image'><a>Image</a></li>
-							</ul>
-						</li>
-						<li><h3>Forms</h3>
-							<ul class='elements'>
-								<li template_id='textarea'><a>Textarea</a></li>
-								<li template_id='input_box'><a>Input Box</a></li>
-								<li template_id='submit_button'><a>Submit Button</a></li>
-								<li template_id='select_menu'><a>Select Menu</a></li>
-								<li template_id='radio_buttons'><a>Radio Buttons</a></li>
-								<li template_id='check_box'><a>Check Box</a></li>
-							</ul>
-						</li>
-						<li><h3>Layout</h3>
-							<ul class='elements'>
-								<li template_id='box_container'><a>Box Container</a></li>
-								<li template_id='vertical_line'><a>Vertical Line</a></li>
-								<li template_id='horizontal_line'><a>Horizontal Line</a></li>
-							</ul>
-						</li>
-						<li><h3>Table</h3>
-							<ul class='elements'>
-								<li template_id='global_container'><a>G-Container</a></li>
-								<li template_id='user_navigation'><a>Navigations</a></li>
-							</ul>
-						</li>
 					</ul>
 				</div>
 			</div>
