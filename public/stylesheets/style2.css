@@ -73,8 +73,25 @@ a {
 
 #infopanel img {
 	float:right;
-	margin-right:5px;
+	margin: 5px 5px 0 0;
 }
+
+#infopanel input {
+	background: none;
+	border: 1px solid transparent;
+	color: #70757b;
+	text-shadow: 0 1px 0 #fff;
+	font-size: 12px;
+	font-family: 'Thonburi';
+}
+
+#infopanel input:focus, #infopanel input:hover {
+	background: white;
+	border: 1px solid #f0f0f0;
+	border-style: inset;
+	color: #333;
+}
+
 
 #tabs {
 	background:#d5d5d5;
