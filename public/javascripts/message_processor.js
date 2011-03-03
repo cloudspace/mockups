@@ -54,7 +54,6 @@ MessageProcessor = {
 		});
 	},
 	project_prompt_password: function(data){
-
 		if(data.error){
 			$(".submit_password .flash").html(data.error);
 			$(".submit_password input").attr('disabled','');
@@ -67,7 +66,7 @@ MessageProcessor = {
 			.append('<input type="submit" value="Submit Password" />')
 			.submit(function(){
 				var password = $(this).find('#password').val();
-				$(this).find('input').attr('disabled', 'disabled');
+				$(this).find('input').attr('disabled', 'disabled').blur();
 				var project_id = window.location.hash.split('/')[0].substring(1);
 				env.socket.send({ project_authorize: { id: project_id, password: password } });
 				return false;
@@ -76,7 +75,8 @@ MessageProcessor = {
 			.dialog({
 				resizable:false,
 				modal: true,
-				title: 'Enter Password'
+				title: 'Enter Password',
+				closeOnEscape: false,
 			});
 	},
 	
