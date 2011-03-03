@@ -78,7 +78,41 @@ From this point you will be ready to deploy to a development environment.
 
     vagrant up #will run all of the chef commands necessary to create a working environment
 
-####Deploy the application
+####Deploy the Application
 
     cap deploy:check_dependencies #will check to see if you have what you need
     cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
+
+###EC2 Deployment
+
+Add your EC2 credentials to your .bash_profile(or .bashrc). This should look something like the following:
+    export AWS_ACCESS_KEY_ID=[KEY_ID]
+    export AWS_SECRET_ACCESS_KEY=[SECRET_ACCESS_KEY]
+
+Then call the launch instances script:
+
+    ./launch_instances ami-98e515f1 --key ec2_keypair_name -f ~/userdata.json  --tags Name mockupcreator.com -w
+
+In this call ami-98e515f1 is a 32-bit amazon image with chef installed on it.
+The file userdata.json contains the following json:
+    {"validation_key": "Your organizations chef validation ssh private key"}
+The tag Name will allow elastifox to see the name of mockupcreator.com on for your box.
+
+
+After creating the box, the script should spit out a domain name.  Ssh into the box and add your personal public key to the authorized_hosts file in both /root/.ssh/ and ~/.ssh/ . This will allow you to login without having to use the box's pem. 
+
+On the ec2 box run: chef-client #as root
+
+This will set the current box up as a node for your opscode organization.  Once that is done:
+
+* Log into manage.opscode.com
+* Go to Roles -> Create
+* The Vagrantfile in your local project directory will contain all of the recipes needed for you to create a role.
+* Add those recipes to the role you are creating.
+* Add that role to the node that was just added.
+* Back on your ec2 box run: chef-client #again.  This will install all of the server applications necessary.
+
+####Deploy the Application
+
+    cap staging deploy:check_dependencies #will check to see if you have what you need
+    cap staging deploy:setup && cap deploy #will set up and start up your application on the box you just set up
