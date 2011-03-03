@@ -72,36 +72,6 @@
 
 .settings_content { border-top: 1px solid black; padding-bottom: 2px; }
 
-/*----------------------------------*/
-.ui-widget { font-family: Verdana,Arial,sans-serif/*{ ffDefault}*/; font-size: 1.1em/*{fsDefault}*/; }
-.ui-widget .ui-widget { font-size: 1em; }
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif/*{ ffDefault}*/; font-size: .7em; }
-.ui-widget textarea { width: 298px; height: 95px; }
-.ui-widget-content { border: 1px solid #aaaaaa/*{ borderColorContent}*/; background: #ffffff/*{bgColorContent}*/ /*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/; color: #222222/*{fcContent}*/; }
-.ui-widget-content a { color: #222222/*{ fcContent}*/; }
-.ui-widget-header { border: 1px solid #aaaaaa/*{ borderColorHeader}*/; background: #cccccc/*{bgColorHeader}*//*{bgImgUrlHeader}*/ 50%/*{bgHeaderXPos}*/ 50%/*{bgHeaderYPos}*/ repeat-x/*{bgHeaderRepeat}*/; color: #222222/*{fcHeader}*/; font-weight: bold; }
-.ui-widget-header a { color: #222222/*{ fcHeader}*/; }
-
-.ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
-.ui-dialog .ui-dialog-titlebar { padding: .5em 1em .3em; position: relative;  }
-.ui-dialog .ui-dialog-title { } 
-.ui-dialog .ui-dialog-titlebar-close { position: absolute; right: 30px; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
-.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
-.ui-dialog .ui-dialog-titlebar-close:hover { color: #c33; }
-.ui-dialog .ui-dialog-content { position: relative; border: 0; padding: 0; background: none;  zoom: 1; }
-.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
-.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float: right; }
-.ui-dialog .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
-.ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
-.ui-draggable .ui-dialog-titlebar { cursor: move; }
-
-.canvas_object_edit { overflow: hidden; }
-/*----------------------------------*/
-
-#dialog { display: none; }
-
-/****** sidebar begin ******/
-
 
 
 
@@ -149,7 +119,4 @@
 #mockup_pages li a.h, #mockup_pages li form input.h { display: none; }
 
 
-.clear { clear: both; height: 1px; }
-.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.ui-widget-overlay { background: #666666; opacity: .50; filter: Alpha(Opacity=50); }
 

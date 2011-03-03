@@ -130,10 +130,10 @@ $(document).ready(function(){
 		});
 
 		$("<form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'></form>")
-			.append("<label for='font-size'>Font Size:</label><input id='font-size' name='fontsize' type='text' value='"+(canvas_object.fontsize || "") +"'/>")
-			.append("<label for='height'>Height:</label><input id='height' name='height' value='" + (canvas_object.height || "")+ "'type='text'/>")
-			.append("<label for='width'>Width:</label><input id='width' name='width' value='"+ (canvas_object.width || "") +"'type='text'/>")
-			.append("<textarea name='content'>"+ content +"</textarea>")
+			.append("<label for='font-size'>Font Size</label><input id='font-size' name='fontsize' type='text' value='"+(canvas_object.fontsize || "") +"'/><br />")
+			.append("<label for='height'>Height</label><input id='height' name='height' value='" + (canvas_object.height || "")+ "'type='text'/><br />")
+			.append("<label for='width'>Width</label><input id='width' name='width' value='"+ (canvas_object.width || "") +"'type='text'/><br />")
+			.append("<label for='content'>Content</label><textarea id='content' name='content'>"+ content +"</textarea><br />")
 			.append("<input type='submit' value='submit'/>").appendTo($option_pane);
 		$(".canvas_object_update textarea").focus();
 		$("#canvas").one('click',function(e){
