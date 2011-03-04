@@ -196,6 +196,8 @@ a { text-decoration:none; color:#3c3c3c; }
 .ui-widget-overlay { background: #666; opacity: .50; filter: Alpha(Opacity=50); }
 .ui-dialog-titlebar-close { display: none; }
 
+#connecting label { display: inline-block; margin-left: 10px; }
+
 /*
 .ui-widget { font-family: "Verdana", "Arial", sans-serif; font-size: 1.1em; }
 .ui-widget .ui-widget { font-size: 1em; }
