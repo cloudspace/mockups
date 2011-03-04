@@ -53,6 +53,9 @@ a { text-decoration:none; color:#3c3c3c; }
 	margin:10px 5px;
 }
 
+#expandcollapse.collapsed{
+	background:url(/images/expandicon.png);
+}
 #draggable {
 	background:url(/images/draggableicon.png);
 	width:19px;
