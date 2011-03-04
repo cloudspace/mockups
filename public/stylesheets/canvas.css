@@ -2,6 +2,7 @@
 
 .canvas_object { position: absolute; z-index: 2; display: block; padding: 1px; cursor: move; }
 .canvas_object .content { overflow: hidden; display: block; line-height: 120%; }
+.canvas_object .overlay { position: absolute; top: 0; left: 0; background: transparent; z-index: 3; width: 100%; height: 100%; }
 
 
 /* this is a hack to get select tags to conform to explicitly-set height/width values */
@@ -21,7 +22,7 @@
 .ui-selecting .ui-resizable-handle, .ui-resizable-resizing .ui-resizable-handle, .canvas_object:hover .ui-resizable-handle, .ui-selected .ui-resizable-handle { display: block; }
 
 .ui-selectable-helper { position: absolute; z-index: 1; border: 2px dotted #666; }
-.ui-draggable { cursor: move; }
+#tools .ui-draggable, #canvas .ui-draggable { cursor: move; }
 .ui-resizable { position: relative; }
 
 .ui-resizable-n, .ui-resizable-e, .ui-resizable-s, .ui-resizable-w { background: #069; z-index: 500; }

@@ -1,52 +1,55 @@
-load 'deploy' if respond_to?(:namespace) # cap2 differentiator
-
-##################################
-# Edit these
+require 'capistrano/ext/multistage'
 set :application, "mockupcreator"
-set :node_file, "app.js"
-set :host, "mockitout.com"
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "mockup.pem")]
-set :repository, "git@github.com:cloudspace/Mockups.git"
-set :branch, "master"
-set :deploy_to, "/srv/#{application}"
-####################################
+set :repository,  "git@github.com:cloudspace/#{application}.git"
 
 set :scm, :git
+set :branch, "master"
 set :deploy_via, :remote_cache
-role :app, host
-set :user, "root"
-set :use_sudo, true
-set :admin_runner, 'ubuntu'
+
+set :node_file, "app.js"
+set :deploy_to, "/srv/#{application}"
+set :stages, %w(development staging production)
+set :default_stage, 'development'
+
+set :user, 'root'
+set :use_sudo, false
+
 default_run_options[:pty] = true
+ssh_options[:keys] = ["~/.ssh/mockup.pem", "~/.ssh/id_rsa"]
+ssh_options[:forward_agent] = true
+
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
-		run "#{try_sudo :as => 'root'} rm /data/db/mongod.lock" if file_exists?("/data/db/mongod.lock") and not running?("mongod")
-		run "#{try_sudo :as => 'root'} start mongo"
-		run "#{try_sudo :as => 'root'} start #{application}"
+		run "rm /var/db/mongodb/mongod.lock" if file_exists?("/var/db/mongodb/mongod.lock") and not running?("mongod")
+		run "start mongo"
+		run "start #{application}"
   end
 
   task :stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo :as => 'root'} stop #{application}"
-		run "#{try_sudo :as => 'root'} stop mongo"
+    run "stop #{application}"
+		run "stop mongo"
   end
 
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo :as => 'root'} restart #{application} || #{try_sudo :as => 'root'} start #{application}"
+    run "restart #{application} || #{try_sudo :as => 'root'} start #{application}"
   end
+	task :check_dependencies, :roles => :app do
+			to_screen "Checking dependencies..."
+			to_screen "Mongo is not installed"  unless installed? "mongo"
+			to_screen "NPM is not installed"    unless installed? "npm"
+			to_screen "Nginx is not set up"		  unless file_exists?("ls -d /etc/nginx/sites-enabled")
+			to_screen "What do you think you should do?"
+	end
 
 	task :create_deploy_to_with_sudo, :roles => :app do
-		to_screen "Checking dependencies..."
-		to_screen "Mongo not installed"  unless installed? "mongo"
-		to_screen "NPM is not installed" unless installed? "npm"
-		to_screen "Nginx not set up"			 if capture("ls -d /etc/nginx/sites-enabled")['No such file or directory']
-		to_screen "I think you're good to go"
-		run "#{try_sudo :as => 'root'} mkdir -p #{deploy_to}"
-		run "#{try_sudo :as => 'root'} chown #{admin_runner}:#{admin_runner} #{deploy_to}"
+		run "mkdir -p #{deploy_to}"
+		run "chown #{admin_runner}:#{admin_runner} #{deploy_to}"
   end
+
 	#this is kind of a hack.  I pipe to xargs b/c capture needs some sort of output and xargs will always give a newline at least
 	def running?(program); capture("ps ax | grep -v grep | grep #{program} | xargs")[program] end
-	def file_exists?(abs_loc); ! capture("ls #{abs_loc}")['No such file or directory'] end
+	def file_exists?(abs_loc); ! capture("ls #{abs_loc} | xargs")['No such file or directory'] end
 	def installed?(program); ! capture("whereis #{program}").sub( /#{program}:(\s)*/,"").empty? end
 	def to_screen msg; puts "\t===============#{msg}===============" end
 
@@ -86,8 +89,8 @@ UPSTART
 
   put site_upstart_script, "/tmp/#{application}_upstart.conf"
   put mongo_upstart_script, "/tmp/mongo_upstart.conf"
-	run "#{try_sudo :as => 'root'} mv /tmp/mongo_upstart.conf /etc/init/mongo.conf"
-	run "#{try_sudo :as => 'root'} mv /tmp/#{application}_upstart.conf /etc/init/#{application}.conf"
+	run "mv /tmp/mongo_upstart.conf /etc/init/mongo.conf"
+	run "mv /tmp/#{application}_upstart.conf /etc/init/#{application}.conf"
   end
 end
 

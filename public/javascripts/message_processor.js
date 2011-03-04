@@ -27,7 +27,7 @@ MessageProcessor = {
 	// User receives this action only when they were the one to create the project.
 	project_create: function(created_project) {
 		env.project.created = true;
-		$('#projectinfo').after('<div id="set_password">Set a password</div>');
+		$('#projectinfo input').after('<img id="set_password" src="/images/lockicon.png">');
 		$('#set_password').click(function() {
 			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
 
@@ -55,7 +55,6 @@ MessageProcessor = {
 	},
 	
 	project_prompt_password: function(data){
-
 		if(data.error){
 			$(".submit_password .flash").html(data.error);
 			$(".submit_password input").attr('disabled','');
@@ -68,7 +67,7 @@ MessageProcessor = {
 			.append('<input type="submit" value="Submit Password" />')
 			.submit(function(){
 				var password = $(this).find('#password').val();
-				$(this).find('input').attr('disabled', 'disabled');
+				$(this).find('input').attr('disabled', 'disabled').blur();
 				var project_id = window.location.hash.split('/')[0].substring(1);
 				env.socket.send({ project_authorize: { id: project_id, password: password } });
 				return false;
@@ -77,7 +76,8 @@ MessageProcessor = {
 			.dialog({
 				resizable:false,
 				modal: true,
-				title: 'Enter Password'
+				title: 'Enter Password',
+				closeOnEscape: false,
 			});
 	},
 	
@@ -136,15 +136,17 @@ MessageProcessor = {
 	},
 
 	connected: function() {
-		$('#flash').html('');
+		//$('#flash').html('');
+		$('#connecting').dialog('destroy');//html('Connected!').dialog('option', 'closeOnEscape', true);
 	},
 
+	// TODO growl
 	announcement: function(data) {
-		$('#flash').html('<p><strong>' + data + '</strong></p>');
+		//$('#flash').html('<p><strong>' + data + '</strong></p>');
 	},
 
 	message: function(data) {
-		$('#flash').html('<p>' + data + '</p>');
+		//$('#flash').html('<p>' + data + '</p>');
 	},
 
 };

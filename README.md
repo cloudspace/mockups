@@ -1,4 +1,3 @@
-
 # Cloudspace Mockup Creator
 
 ## Description
@@ -13,93 +12,107 @@ To run unit tests:
 
 ## Installation
 
-#### Virtual Box Setup
+### Development Environment Setup
+Our development setup for the mockupcreator consists of
+
+* VirtualBox accessed via Vagrant
+* Chef for the setup of the development box
+
+Once set up, your virtual box will have:
+
+* nginx
+* mongo
+* nodejs
+* npm + required packages
+* git
+
+####Virtual Box
+
+Download a new virtual box from: http://www.virtualbox.org/wiki/Downloads
 
 Start a new virtual box using Ubuntu 10.04 64 bit server edition
 
-Be sure to adjust settings before starting the box, under network settings, set the first adapter to bridged and choose your airport in the box below that appears.
+####Install vagrant
 
-#### Basic package installation
+http://vagrantup.com/docs/getting-started/index.html
 
-SSH into your virtual box.
+Clone the mockup creator repo:
 
-    sudo apt-get update
-    sudo apt-get install build-essential libssl-dev openssl curl nginx dkms -y
+    git clone git@github.com:cloudspace/mockupcreator.git
 
-#### Install node.js
+In the mockupcreator project directory:
 
-Download the newest stable version of node.js (v0.2.6 as of 2011-01-19), unpack, and install it:
+    cp Vagrantfile.default Vagrantfile
 
-    cd /tmp
-    wget http://nodejs.org/dist/node-v0.2.6.tar.gz
-    tar -xvzf node-v0.2.6.tar.gz
-    cd node-v0.2.6
-    ./configure
-    make
-    sudo make install
+Update the Vagrantfile with your server specific settings
+
+####Set up Chef
+
+    gem install chef
+
+You can get a lot of good cookbooks by cloning the opscode repo
+
+    git clone https://github.com/opscode/cookbooks.git
+
+All of the recipes that you need in order to get a development box up and running are in two places.
+
+1. Vagrantfile.default
+
+    Any recipes that appear as follows **chef.add_recipe('[recipe name]')** will need to be added your opscode user account
+
+2. There are site-specific cookbooks in [project_root]/site-cookbooks/ that contain site specific overrides for the default chef recipes. These can be added by editing your knife.rb config to include the path to site-cookbooks.  
+  EX. ~/.chef/knife.rb
+
+    .
+    .
+    cookbook_path   ["#{ENV['HOME']}/cookbooks",'./site-cookbooks']
+    .
+
+Here I have added a secondary directory based on the current directory I'm in that will look in site-cookbooks.  This way I can call:
+
+    knife cookbook upload [recipe]
+
+from any project that uses this structure.
+  
+From this point you will be ready to deploy to a development environment.
+
+    vagrant up #will run all of the chef commands necessary to create a working environment
+
+####Deploy the Application
+
+    cap deploy:check_dependencies #will check to see if you have what you need
+    cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
+
+###EC2 Deployment
+
+Add your EC2 credentials to your .bash_profile(or .bashrc). This should look something like the following:
+    export AWS_ACCESS_KEY_ID=[KEY_ID]
+    export AWS_SECRET_ACCESS_KEY=[SECRET_ACCESS_KEY]
+
+Then call the launch instances script:
+
+    ./launch_instances ami-98e515f1 --key ec2_keypair_name -f ~/userdata.json  --tags Name mockupcreator.com -w
+
+In this call ami-98e515f1 is a 32-bit amazon image with chef installed on it.
+The file userdata.json contains the following json:
+    {"validation_key": "Your organizations chef validation ssh private key"}
+The tag Name will allow elastifox to see the name of mockupcreator.com on for your box.
 
 
-#### Install npm and modules
+After creating the box, the script should spit out a domain name.  Ssh into the box and add your personal public key to the authorized_hosts file in both /root/.ssh/ and ~/.ssh/ . This will allow you to login without having to use the box's pem. 
 
-    cd /tmp
-    curl http://npmjs.org/install.sh | sudo sh
-    sudo npm install socket.io@0.6.8
-    sudo npm install nodeunit@0.5.0
-    sudo npm install mongodb@0.7.9
+On the ec2 box run: chef-client #as root
 
-**Note:** there is a potential 'gotcha' for updated versions of Socket.IO (we use 0.6.8). The repository contains a public/socket.io.js file, which is the client-side code to get Socket.IO working. It was copied directly from the Socket.IO library. That file can change for newer versions of Socket.IO, so we would have to copy the socket.io.js file from the library into our repository when picking a newer version. *We mainly want nginx serving static content which is why we don't use node.js + Socket.IO's default behavior of managing the socket.io.js file.*
+This will set the current box up as a node for your opscode organization.  Once that is done:
 
-#### Configure SSH Keys
+* Log into manage.opscode.com
+* Go to Roles -> Create
+* The Vagrantfile in your local project directory will contain all of the recipes needed for you to create a role.
+* Add those recipes to the role you are creating.
+* Add that role to the node that was just added.
+* Back on your ec2 box run: chef-client #again.  This will install all of the server applications necessary.
 
-(You do not want to be root for this step)
-Add your github account authorized key to the virtual box in the folder /home/ubuntu/.ssh (public and private key files) and then add your public key to the authorized keys file (which you may have to create)
+####Deploy the Application
 
-#### Clone the repo
-
-(You do not want to be root for this step)
-Go into the /srv folder and clone the repo
-
-    git clone git@github.com:cloudspace/Mockups.git 
-
-#### Set up nginx
-
-Nginx should already be installed (from the earlier apt-get). Just be sure to set up the server. For example, set up the following location block in /etc/nginx/sites-enabled/default:
-
-    location / { 
-      root   /srv/Mockups/public;
-      index  index.html index.htm;
-    }
-
-Restart nginx
-
-    sudo service nginx restart
-
-#### Start the nodejs application
-
-Run the following commands:
-
-    cd /srv/Mockups
-    sudo node app.js
-
-#### Update Your Local Hosts File
-
-On your computer update your hosts file to add an entry matching the IP of your vbox to a url that you will use for development, such as mockups.dev
-
-#### MongoDB installation
-
-    sudo cd /tmp
-    sudo wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-1.6.5.tgz
-    sudo tar -xvzf mongodb-linux-x86_64-1.6.5.tgz
-    sudo cp mongodb-linux-x86_64-1.6.5/bin/* /usr/local/bin/
-    sudo mkdir -p /data/db
-
-#### Running MongoDB
-
-Run MongoDB:
-
-    sudo mongod
-
-This will start the server (not as a daemon, logging to STDOUT) in your current terminal.  If it runs, kill the process with CTRL + C and then run it in the background:
-
-  sudo mongod &
-
+    cap staging deploy:check_dependencies #will check to see if you have what you need
+    cap staging deploy:setup && cap deploy #will set up and start up your application on the box you just set up
