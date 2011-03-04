@@ -74,10 +74,26 @@ $(window).load(function() {
 
 
 $(document).ready(function(){
+	$connecting = $('<div id="connecting"></div>');
+	$connecting
+		.dialog({
+			resizable: false,
+			modal: true,
+			title: 'Connecting',
+			closeOnEscape: false,
+		});
+
 	env = new Environment();
 	env.connect();
 
-	$('#sideBar .elements li').draggable({
+  $('#settings').hide();
+	$('#tabs h3').click(function(){
+		var id = $(this).html().toLowerCase();
+		$('div#' + id).show().siblings('div').hide();
+		$(this).removeClass('inactive').siblings('h3').addClass('inactive');
+	});
+
+	$('#tools .elements li').draggable({
 		appendTo: $("#canvas"),
 		cursorAt: { left: 0, top: 0 },
 		helper: function() {
@@ -123,10 +139,10 @@ $(document).ready(function(){
 		});
 
 		$("<form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'></form>")
-			.append("<label for='font-size'>Font Size:</label><input id='font-size' name='fontsize' type='text' value='"+(canvas_object.fontsize || "") +"'/>")
-			.append("<label for='height'>Height:</label><input id='height' name='height' value='" + (canvas_object.height || "")+ "'type='text'/>")
-			.append("<label for='width'>Width:</label><input id='width' name='width' value='"+ (canvas_object.width || "") +"'type='text'/>")
-			.append("<textarea name='content'>"+ content +"</textarea>")
+			.append("<label for='font-size'>Font Size</label><input id='font-size' name='fontsize' type='text' value='"+(canvas_object.fontsize || "") +"'/><br />")
+			.append("<label for='height'>Height</label><input id='height' name='height' value='" + (canvas_object.height || "")+ "'type='text'/><br />")
+			.append("<label for='width'>Width</label><input id='width' name='width' value='"+ (canvas_object.width || "") +"'type='text'/><br />")
+			.append("<label for='content'>Content</label><textarea id='content' name='content'>"+ content +"</textarea><br />")
 			.append("<input type='submit' value='submit'/>").appendTo($option_pane);
 		$(".canvas_object_update textarea").focus();
 		$("#canvas").one('click',function(e){
@@ -144,6 +160,11 @@ $(document).ready(function(){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	}
+
+	$('#floatingpanel').draggable({
+		handle: '#draggable',
+		containment: 'html',
+	});
 
 	$('#canvas').droppable({
 		drop: function(event, ui) {

@@ -3,10 +3,11 @@
 	<head>
 		<title>Mock It Out</title>
 		<link rel="icon" href="/cloudspacefavicon.png" type="image/png">
-		<link rel="stylesheet" type="text/css" href="reset.css" media="screen"/>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" media="screen"/>
 		<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox-1.3.2.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="/style.css" media="screen"/>
-		<link rel="stylesheet" type="text/css" href="/canvas_style.css" media="screen"/>
+		<!--<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>-->
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style2.css" media="screen"/>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/canvas.css" media="screen"/>
 		<script src="/javascripts/jquery-1.4.4.min.js"></script>
 		<script src="/javascripts/jquery-ui-1.8.9.custom.min.js"></script>
 		<script src="/javascripts/environment.js"></script>
@@ -19,77 +20,101 @@
 		<script src="/javascripts/message_processor.js"></script>
 		<script src="/javascripts/main.js"></script>
 	</head>
+
 	<body>
-	<div id="mockupCreator">
-    <div id="header">
-      <div id="logo">
-        <h1>Cloudspace Mockup Creator</h1>
-      </div>
+
+<div id="floatingpanel" class="rad5"> 
+	<div id="handler" class="rad5 se sw"> 
+		<h1 id="logo">Mockups</h1> 
+		<span id="draggable"></span> 
+		<span id="expandcollapse"></span> 
+	</div> 
+	
+	<div id="tabs"> 
+		<h3>Tools</h3> 
+		<h3 class="inactive">Settings</h3> 
+	
+		<div id="tools"> 
+			<ul> 
+				<li> 
+					<ul class='elements'> 
+						<li template_id='heading'><img src="images/headingicon.png"><a>Heading</a></li> 
+						<li template_id='paragraph'><img src="images/paragraphicon.png"><a>Paragraph</a></li> 
+						<li template_id='link'><img src="images/linkicon.png"><a>Link</a></li> 
+						<li template_id='list'><img src="images/listicon.png"><a>List</a></li> 
+						<li template_id='image'><img src="images/imgicon.png"><a>Image</a></li> 
+					</ul> 
+				</li> 
+				<img src="images/toolssectionbreak.png" class="sectionbreak"> 
+				<li> 
+					<ul class='elements'> 
+						<li template_id='textarea'><img src="images/textareaicon.png"><a>Textarea</a></li> 
+						<li template_id='input_box'><img src="images/inputboxicon.png"><a>Input Box</a></li> 
+						<li template_id='submit_button'><img src="images/submitbuttonicon.png"><a>Submit Button</a></li> 
+						<li template_id='select_menu'><img src="images/selectmenuicon.png"><a>Select Menu</a></li> 
+						<li template_id='radio_buttons'><img src="images/radiobuttonicon.png"><a>Radio Buttons</a></li> 
+						<li template_id='check_box'><img src="images/checkboxicon.png"><a>Check Box</a></li> 
+					</ul> 
+				</li> 
+				<img src="images/toolssectionbreak.png" class="sectionbreak"> 
+				<li> 
+					<ul class='elements'> 
+						<li template_id='box_container'><img src="images/boxcontainericon.png"><a>Box Container</a></li> 
+						<li template_id='vertical_line'><img src="images/verticallineicon.png"><a>Vertical Line</a></li> 
+						<li template_id='horizontal_line'><img src="images/horizontallineicon.png"><a>Horizontal Line</a></li> 
+					</ul> 
+				</li> 
+<!--
+					<img src="images/toolssectionbreak.png" class="sectionbreak"> 
+					<li> 
+						<ul class='elements'> 
+							<li template_id='global_container'><img src="images/gcontainericon.png"><a>G-Container</a></li> 
+							<li template_id='user_navigation'><img src="images/navigationicon.png"><a>Navigations</a></li> 
+						</ul> 
+					</li> 
+-->
+			</ul> 
+		</div> 
+		<div id="settings">
 			<div id='projectinfo'>
 				<span class="project_name" >
 					<form id="project_name_change">
-						<label for="project_display_name">Project:</label>
 						<input id="project_display_name" type="text" value="" />
 					</form>
 				</span>
 			</div>
+			<hr> 
 			<div id="userinfo">
 				<span class="handle" >
 					<form id="name_change">
-						<label for="display_name">Welcome:</label>
-						<input id="display_name" type="text" value="Anonymous" />
+						<input id="display_name" type="text" value="Anonymous">
+						<img src="/images/usericon.png">
 					</form>
 				</span>
 			</div>
+			<hr>
+			<ul>
+				<li id='add_page'>Create a new page</li>
+				<li> <ul id='mockup_pages'></ul> </li>
+			</ul>
+		</div> 
+	</div> 
+</div>
+
+<!--
+	<div id="mockupCreator">
+    <div id="header">
 		</div>
 			<div class="mockup_wrapper">
 				<div id="sideBar">
-					<ul>
-						<li><h3>Mockup Pages</h3>
-							<ul id='mockup_pages'>
-							</ul>
-						</li>
-						<li id='add_page'>Create a New Page</li>
-						<li><h3>Text &amp; Media</h3>
-							<ul class='elements'>
-								<li template_id='heading'><a>Heading</a></li>
-								<li template_id='paragraph'><a>Paragraph</a></li>
-								<li template_id='link'><a>Link</a></li>
-								<li template_id='list'><a>List</a></li>
-								<li template_id='image'><a>Image</a></li>
-							</ul>
-						</li>
-						<li><h3>Forms</h3>
-							<ul class='elements'>
-								<li template_id='textarea'><a>Textarea</a></li>
-								<li template_id='input_box'><a>Input Box</a></li>
-								<li template_id='submit_button'><a>Submit Button</a></li>
-								<li template_id='select_menu'><a>Select Menu</a></li>
-								<li template_id='radio_buttons'><a>Radio Buttons</a></li>
-								<li template_id='check_box'><a>Check Box</a></li>
-							</ul>
-						</li>
-						<li><h3>Layout</h3>
-							<ul class='elements'>
-								<li template_id='box_container'><a>Box Container</a></li>
-								<li template_id='vertical_line'><a>Vertical Line</a></li>
-								<li template_id='horizontal_line'><a>Horizontal Line</a></li>
-							</ul>
-						</li>
-						<li><h3>Table</h3>
-							<ul class='elements'>
-								<li template_id='global_container'><a>G-Container</a></li>
-								<li template_id='user_navigation'><a>Navigations</a></li>
-							</ul>
-						</li>
-					</ul>
 				</div>
-				<div id='canvas'>&nbsp;</div>
 			</div>
 		</div>
   </div>
+-->
 
-		<div id="flash"><p>Connecting...</p></div>
+		<div id='canvas'>&nbsp;</div>
+		<!--<div id="flash"><p>Connecting...</p></div>-->
 
 		<div style="display: none;">
 			<div id="disconnected">
