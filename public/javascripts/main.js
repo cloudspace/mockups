@@ -111,7 +111,7 @@ $(document).ready(function(){
 	});
 
 	$("#expandcollapse").click(function(){
-		  $("#tools").slideToggle(300);
+		  $("#tabs").slideToggle(300);
 			  $(this).toggleClass('collapsed');
 	});
 

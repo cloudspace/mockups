@@ -18,7 +18,6 @@ a { text-decoration:none; color:#3c3c3c; }
 
 #floatingpanel {
 	width:200px;
-	min-height:100px;
 	background:#d5d5d5;
 	border:1px solid #444444;
 	text-shadow:0 1px 0 #ffffff;
@@ -107,6 +106,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	height:auto;
 	display:block;
 	line-height:22px;
+	margin-top:0px;
 }
 
 #tabs h3 {
@@ -155,12 +155,14 @@ a { text-decoration:none; color:#3c3c3c; }
 	width:200px;
 	float:left;
 	text-align:center;
-	margin:5px 0;
+	margin:0;
 }
 
 .inactive {
 	background:#b3b3b3;
+	margin:0;
 }
+
 
 /*fadein*/
 /*
