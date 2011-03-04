@@ -136,8 +136,20 @@ MessageProcessor = {
 	},
 
 	connected: function() {
-		//$('#flash').html('');
-		$('#connecting').dialog('destroy');//html('Connected!').dialog('option', 'closeOnEscape', true);
+		if ($.cookie('skipconnect')) {
+			$('#connecting').dialog('destroy');
+		} else {
+			$('#connecting')
+				.html('<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br><br><input type="submit" value="Start Mocking"></form>')
+				.dialog('option', 'closeOnEscape', true)
+				.dialog('option', 'title', 'Connected')
+				.find('form').submit(function() {
+					var checked = $(this).find('input[type=checkbox]').attr('checked');
+					if (checked) $.cookie('skipconnect', true);
+					$('#connecting').dialog('destroy');
+					return false;
+				});
+		}
 	},
 
 	// TODO growl
