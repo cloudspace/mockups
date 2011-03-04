@@ -18,7 +18,7 @@ $(window).load(function() {
 					});
 				});
 				break;
-			case 37:
+/*			case 37:
 				$('#canvas .ui-selected').each(function() {
 					$(this).css('left', $(this).position().left - 1);
 					env.socket.send({
@@ -62,6 +62,7 @@ $(window).load(function() {
 					});
 				});
 			break;
+*/
 			//look at last_key_pressed
 			case 67://c implement copy mockup object
 			break;
@@ -107,6 +108,11 @@ $(document).ready(function(){
 				.html(Renderer.render_helper(id));
 			return $el;
 		}
+	});
+
+	$("#expandcollapse").click(function(){
+		  $("#tools").slideToggle(300);
+			  $(this).toggleClass('collapsed');
 	});
 
 	$('form.canvas_object_update').live('submit',function(e){

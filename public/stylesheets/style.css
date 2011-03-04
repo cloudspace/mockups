@@ -22,22 +22,7 @@
 
  #logo { position: absolute; left: 20px; font-size: 12px; }
  #logo h1 { font-size: 17px; padding: 0; margin: 0; }
- #nav { position: absolute; left: 300px; font-size: 12px; }
- #nav ul { padding: 0; margin: 0; }
- #nav li { display: inline-block; padding: 0 5px 0 5px; }
- #nav li a { color: #454545; text-shadow: #fff 0px 1px 1px; text-decoration: none; display: block; padding: 0 5px 0 5px; cursor: pointer; }
- #nav .defaulttab a{ color: #fff; text-shadow: #000 0px 1px 1px; }
- #nav li a:hover { color: #fff; text-shadow: #000 0px 1px 1px; }
- #nav a{ cursor: pointer; }
- #nav li:hover {
-   background: -webkit-gradient(linear,  left bottom,  left top,  color-stop(0, rgb(20,84,171)),  color-stop(0.95, rgb(29,143,213)),  color-stop(1, rgb(255,255,255)));
-   background: -moz-linear-gradient( center bottom,  rgb(20,84,171) 0%,  rgb(29,143,213) 90%,  rgb(255,255,255) 100%); color: #fff; text-shadow: #000 0px 1px 1px;
- }
- #nav .defaulttab {
-   background: -webkit-gradient(linear,  left bottom,  left top,  color-stop(0, rgb(20,84,171)),  color-stop(0.95, rgb(29,143,213)),  color-stop(1, rgb(255,255,255)));
-   background: -moz-linear-gradient(center bottom,  rgb(20,84,171) 0%,  rgb(29,143,213) 90%,  rgb(255,255,255) 100%);
-   color: #fff; text-shadow: #000 0px 1px 1px;
- }
+ 
  #userinfo { color: #454545; position: absolute; right: 20px; font-size: 12px; }
  #userinfo a { color: #454545; text-decoration: none; }
  #userinfo #display_name { background: none; border: none; }
