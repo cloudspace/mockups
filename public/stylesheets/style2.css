@@ -43,6 +43,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:#b3b3b3;
 	border-bottom:1px solid #444444;
 	height:30px;
+	cursor: move;
 }
 
 #expandcollapse {
@@ -51,8 +52,12 @@ a { text-decoration:none; color:#3c3c3c; }
 	height:11px;
 	float:right;
 	margin:10px 5px;
+	cursor:pointer;
 }
 
+#expandcollapse.collapsed{
+	background:url(/images/expandicon.png);
+}
 #draggable {
 	background:url(/images/draggableicon.png);
 	width:19px;
@@ -104,6 +109,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	height:auto;
 	display:block;
 	line-height:22px;
+	margin-top:0px;
 }
 
 #tabs h3 {
@@ -152,12 +158,14 @@ a { text-decoration:none; color:#3c3c3c; }
 	width:200px;
 	float:left;
 	text-align:center;
-	margin:5px 0;
+	margin:0;
 }
 
 .inactive {
 	background:#b3b3b3;
+	margin:0;
 }
+
 
 /*fadein*/
 /*
@@ -173,6 +181,7 @@ a { text-decoration:none; color:#3c3c3c; }
 
 .sectionbreak {
 	margin:0 0 0 5px;
+	cursor:pointer;
 }
 
 
