@@ -43,6 +43,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:#b3b3b3;
 	border-bottom:1px solid #444444;
 	height:30px;
+	cursor: move;
 }
 
 #expandcollapse {
@@ -51,6 +52,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	height:11px;
 	float:right;
 	margin:10px 5px;
+	cursor:pointer;
 }
 
 #expandcollapse.collapsed{
@@ -179,6 +181,7 @@ a { text-decoration:none; color:#3c3c3c; }
 
 .sectionbreak {
 	margin:0 0 0 5px;
+	cursor:pointer;
 }
 
 
