@@ -135,15 +135,17 @@ MessageProcessor = {
 	},
 
 	connected: function() {
-		$('#flash').html('');
+		//$('#flash').html('');
+		$('#connecting').dialog('destroy');//html('Connected!').dialog('option', 'closeOnEscape', true);
 	},
 
+	// TODO growl
 	announcement: function(data) {
-		$('#flash').html('<p><strong>' + data + '</strong></p>');
+		//$('#flash').html('<p><strong>' + data + '</strong></p>');
 	},
 
 	message: function(data) {
-		$('#flash').html('<p>' + data + '</p>');
+		//$('#flash').html('<p>' + data + '</p>');
 	},
 
 };

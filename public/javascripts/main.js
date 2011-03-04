@@ -74,6 +74,15 @@ $(window).load(function() {
 
 
 $(document).ready(function(){
+	$connecting = $('<div id="connecting"></div>');
+	$connecting
+		.dialog({
+			resizable: false,
+			modal: true,
+			title: 'Connecting',
+			closeOnEscape: false,
+		});
+
 	env = new Environment();
 	env.connect();
 
