@@ -154,11 +154,11 @@ MessageProcessor = {
 
 	// TODO growl
 	announcement: function(data) {
-		//$('#flash').html('<p><strong>' + data + '</strong></p>');
+		new Growl(data);
 	},
 
 	message: function(data) {
-		//$('#flash').html('<p>' + data + '</p>');
+		new Growl(data);
 	},
 
 };
