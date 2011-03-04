@@ -79,7 +79,7 @@ $(window).load(function() {
 });
 
 $(document).ready(function(){
-	$connecting = $('<div id="connecting"></div>');
+	$connecting = $('<div id="connecting"><div id="wait"></div></div>');
 	$connecting
 		.dialog({
 			resizable: false,
