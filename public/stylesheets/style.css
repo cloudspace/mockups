@@ -1,4 +1,4 @@
-html { background: url('/images/stripes.png') repeat top left; font-family: 'Verdana', sans-serif; }
+html { background: url('/images/stripes.png') repeat top left; font-family: 'Verdana', sans-serif; height:100%}
 a { text-decoration:none; color:#3c3c3c; }
 #connecting { text-align: center; }
 	#wait { background: transparent url('/images/333.gif') no-repeat top left; margin: 30px auto; width: 32px; height: 32px; }
