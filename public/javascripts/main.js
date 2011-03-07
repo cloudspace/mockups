@@ -133,6 +133,7 @@ $(document).ready(function(){
 				}
 			});
 			$('.option_pane').remove();
+			$('.canvas_object_edit').remove();
 			return false;	
 	});
 	
@@ -147,7 +148,8 @@ $(document).ready(function(){
 			.addClass("canvas_object_edit").dialog({ 
 			closeOnEscape: true,
 			dialogClass:   'option_pane',
-			resizable:     false
+			resizable:     false,
+			title:         'Edit Element'
 		});
 
 		$("<form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'></form>")
@@ -159,6 +161,7 @@ $(document).ready(function(){
 		$(".canvas_object_update textarea").focus();
 		$("#canvas").one('click',function(e){
 			$('.option_pane').remove();
+			$('.canvas_object_edit').remove();
 			e.stopPropagation();
 		});
 	});
