@@ -15,7 +15,7 @@ MessageProcessor = {
 	},
 
 	project_load: function(project) {
-		$('.submit_password').dialog('destroy');
+		$('#submit_password').dialog('destroy');
 
 		env.project = new Project(project);
 		// set page items
@@ -32,9 +32,9 @@ MessageProcessor = {
 			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
 
 			create_password.find('form')
-				.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
-				.append('<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm" /> <br />')
-				.append('<input type="submit" value="Set Password" />')
+				.append('<label for="password">Password</label> <input type="password" id="password"> <br>')
+				.append('<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm"> <br>')
+				.append('<input type="submit" value="Set Password">')
 				.submit(function() {
 					var password = $(this).find('#password').val();
 					if (password != $(this).find('#password_confirm').val()) {
@@ -54,31 +54,35 @@ MessageProcessor = {
 		});
 	},
 	
-	project_prompt_password: function(data){
-		if(data.error){
-			$(".submit_password .flash").html(data.error);
-			$(".submit_password input").attr('disabled','');
+	project_prompt_password: function(data) {
+		if (data.error) {
+			$('#submit_password form').before('<div class="flash">' + data.error + '</div>').hide().fadeIn();
+			$("#submit_password input").attr('disabled','');
 			return;
 		}
-		$('.submit_password').dialog('destroy');
-		var $submit_password = $("<div class='submit_password'></div>").append("<div class='flash'>"+(data.error || "")+"</div><form></form>");
-		$submit_password.find('form')
-			.append('<label for="password">Password</label> <input type="password" id="password" /> <br />')
-			.append('<input type="submit" value="Submit Password" />')
-			.submit(function(){
+
+		$('#submit_password').dialog('destroy');
+		var $submit_password = $("<div id='submit_password'></div>")
+			.append("<form></form>")
+			.dialog({
+				resizable: false,
+				modal: true,
+				title: 'Enter Password',
+				minHeight: 50,
+				closeOnEscape: false,
+			})
+			.find('form')
+			.append('<label for="password">Password</label> <input type="password" id="password"> <br>')
+			.append('<input type="submit" value="Submit Password">')
+			.submit(function() {
 				var password = $(this).find('#password').val();
+				$(this).siblings('.flash').remove();
 				$(this).find('input').attr('disabled', 'disabled').blur();
 				var project_id = window.location.hash.split('/')[0].substring(1);
 				env.socket.send({ project_authorize: { id: project_id, password: password } });
 				return false;
-			});
-		$submit_password
-			.dialog({
-				resizable:false,
-				modal: true,
-				title: 'Enter Password',
-				closeOnEscape: false,
-			});
+			})
+		$('#connecting').dialog('destroy');
 	},
 	
 	project_set_password: function(data) {
@@ -140,7 +144,8 @@ MessageProcessor = {
 			$('#connecting').dialog('destroy');
 		} else {
 			$('#connecting')
-				.html('<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br><br><input type="submit" value="Start Mocking"></form>')
+				.html('<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br><input type="submit" value="Start Mocking"></form>')
+				.dialog('option', 'minHeight', 50)
 				.dialog('option', 'closeOnEscape', true)
 				.dialog('option', 'title', 'Connected')
 				.find('form').submit(function() {
@@ -152,7 +157,6 @@ MessageProcessor = {
 		}
 	},
 
-	// TODO growl
 	announcement: function(data) {
 		new Growl(data);
 	},
