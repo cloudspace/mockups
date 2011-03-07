@@ -86,7 +86,7 @@ Project.prototype.sync_pages = function(page_id) {
 					'</a>' +
 					'<input class="h" type="text" value="' + page.name + '"/>' +
 				'</form>' +
-				'<span page_id="' + index + '" class="delete"> delete </span>' +
+				'<span page_id="' + index + '" class="delete"> <img src="/images/deleteicon.png"/> </span>' +
 			'</li>'
 		);
 	}
