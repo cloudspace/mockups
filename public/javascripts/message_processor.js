@@ -38,7 +38,7 @@ MessageProcessor = {
 				.submit(function() {
 					var password = $(this).find('#password').val();
 					if (password != $(this).find('#password_confirm').val()) {
-						$(this).siblings('.flash').html('').hide().html("Your password confirmation does not match.").fadeIn();
+						$(this).siblings('.flash').html('').hide().html("<div class='active'>Your password confirmation does not match.</div>").fadeIn();
 					} else {
 						$(this).find('input').attr('disabled', 'disabled');
 						env.socket.send({ project_update: { password: password } });
