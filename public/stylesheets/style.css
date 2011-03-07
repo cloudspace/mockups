@@ -1,7 +1,6 @@
 .status{ width: 250px; height: 60px; overflow: auto; text-align: center; }
 .status .reconnect, .status .countdown{ display: block; }
 #name_change{ display: inline; }
-
 #projectinfo { position: absolute; left: 350px; }
 #projectinfo #project_display_name{ background: none; border: none; }
 #projectinfo #project_display_name:focus { background: #fff; border: 1px solid #f0f0f0; border-style: inset; }
