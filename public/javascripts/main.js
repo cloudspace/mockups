@@ -238,6 +238,9 @@ $(document).ready(function(){
 		reset_display_name();
 	});
 
+	$('#mockup_pages > li').live('hover',function(){
+		$(this).find('.delete').toggleClass('active');
+	});
 	$('#mockup_pages .delete').live('click', function() {
 		if ($('#mockup_pages .delete').length == 1) {
 			alert("You can't delete the last page on a project.");

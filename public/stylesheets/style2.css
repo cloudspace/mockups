@@ -5,18 +5,20 @@ a { text-decoration:none; color:#3c3c3c; }
 #canvas { background: #fff; height: 100%; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
 #set_password { cursor: pointer; }
 
-#add_page { margin: 0 0 5px 10px; color: #333; }
-#add_page:hover { color: #000;  }
+#add_page { margin: 0 0 5px 10px; color: #333;} 
+#add_page:hover { color: #000;background:url("/images/plusicon.png") no-repeat scroll 150px 3px transparent;}
 #mockup_pages li, #add_page { padding: 0; cursor: pointer; height: 25px;  }
-#mockup_pages li form.name_update { display: inline-block; width: 130px; }
+#mockup_pages li form.name_update { width:155px; display: inline-block;  }
 #mockup_pages li a { display: inline-block; }
 #mockup_pages a { line-height: 17px; height: 20px; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0;}
 #mockup_pages a.selected { color: #000; font-weight: bold; }
-#mockup_pages .delete { line-height: 20px; display: inline-block; vertical-align: top; }
+#mockup_pages .delete{display:none;}
+#mockup_pages .delete.active { line-height: 20px; display: inline-block; vertical-align: top; }
 #mockup_pages li form.name_update input { margin-bottom: 0; margin-right: 0; height: 19px; width: 120px; background: white; border: none; color: black; text-decoration: none; }
 #mockup_pages li a.h, #mockup_pages li form input.h { display: none; }
 
 
+#userinfo{background: url('/images/usericon.png') no-repeat 160px 0; }
 #floatingpanel {
 	width:200px;
 	background:#d5d5d5;
