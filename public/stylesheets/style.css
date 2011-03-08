@@ -10,13 +10,12 @@ a { text-decoration:none; color:#3c3c3c; }
 #mockup_pages li{position:relative;}
 #mockup_pages li, #add_page { padding: 0; height: 25px;  }
 #add_page{cursor:pointer;}
-#tabs #settings #mockup_pages li:hover{background:none; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0;}
+#tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0; }
 #mockup_pages li form.name_update { width:155px; display: inline-block;  }
 #mockup_pages li a { display: inline-block;cursor:pointer; }
 #mockup_pages a { line-height: 17px; height: 20px; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0;}
 #mockup_pages a.selected { color: #000; font-weight: bold; }
-#mockup_pages .delete{display:none;}
-#mockup_pages .active { cursor:pointer; position:absolute; top:4px; right:0;line-height: 20px; display: inline-block; vertical-align: top; }
+#mockup_pages .delete{cursor:pointer; position:absolute; top:4px; right:0;line-height: 20px; display: inline-block; vertical-align: top; }
 #mockup_pages li form.name_update input { margin-bottom: 0; margin-right: 0; height: 19px; width: 120px; background: white; border: none; color: black; text-decoration: none; }
 #mockup_pages li a.h, #mockup_pages li form input.h { display: none; }
 
