@@ -53,6 +53,7 @@ Project.prototype.select_page = function(page_id) {
 	}
 	jQuery.history.load(this.current_page_path());
 
+	$('#mockup_pages').find('input').blur();
 	$('#canvas .canvas_object').remove();
 	for (var i in this.pages[this.current_page].canvas_objects) {
 		Renderer.render(this.pages[this.current_page].canvas_objects[i]);

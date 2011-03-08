@@ -263,11 +263,6 @@ $(document).ready(function(){
 		var $tgt = $(e.target), page_id = $tgt.parent().attr('page_id');
 		$tgt.addClass('h').siblings('a').removeClass('h');
 		$tgt.val(env.project.pages[page_id].name);
-	}).live('focus', function(e) {
-		var $tgt = $(e.target);
-		$tgt.parents('#mockup_pages').find('input').each(function(index, element) {
-			if (element != e.target) $(element).blur();
-		});
 	});
 
 
