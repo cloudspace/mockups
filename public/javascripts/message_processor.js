@@ -43,6 +43,7 @@ MessageProcessor = {
 						$(this).find('input').attr('disabled', 'disabled');
 						env.socket.send({ project_update: { password: password } });
 					}
+					$('#password').focus();
 					return false;
 				});
 
@@ -56,11 +57,10 @@ MessageProcessor = {
 	
 	project_prompt_password: function(data) {
 		if (data.error) {
-			$('#submit_password form').before('<div class="flash">' + data.error + '</div>').hide().fadeIn();
-			$("#submit_password input").attr('disabled','');
+			$('#submit_password form').before('<div class="flash"><div class="active">' + data.error + '</div></div>').hide().fadeIn();
+			$('input[type=password]').text('').focus();
 			return;
 		}
-
 		$('#submit_password').dialog('destroy');
 		var $submit_password = $("<div id='submit_password'></div>")
 			.append("<form></form>")
@@ -72,16 +72,17 @@ MessageProcessor = {
 				closeOnEscape: false,
 			})
 			.find('form')
-			.append('<label for="password">Password</label> <input type="password" id="password"> <br>')
+			.append('<label for="password">Password</label> <input type="password" id="password" > <br/>')
 			.append('<input type="submit" value="Submit Password">')
 			.submit(function() {
 				var password = $(this).find('#password').val();
 				$(this).siblings('.flash').remove();
-				$(this).find('input').attr('disabled', 'disabled').blur();
+				$(this).find('input').blur();
 				var project_id = window.location.hash.split('/')[0].substring(1);
 				env.socket.send({ project_authorize: { id: project_id, password: password } });
 				return false;
-			})
+			});
+		$('input[type=password]').focus();
 		$('#connecting').dialog('destroy');
 	},
 	
