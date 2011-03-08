@@ -136,8 +136,8 @@ $(document).ready(function(){
 			return false;	
 	});
 	
-	$('.canvas_object').live('dblclick',function(e){ 
-		$('.option_pane').remove();
+	$('.canvas_object').live('dblclick', function(e){
+		$('.canvas_object_edit').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
 		var content = get_canvas_object_content(canvas_object_id);
 		var canvas_object = env.project.canvas_object(canvas_object_id);
@@ -222,7 +222,11 @@ $(document).ready(function(){
 		// so we force all input boxes to blur when it is clicked since those jquery plugins
 		// hijack the clicks and prevent the default behavior from occurring
 		$target = $(e.target);
-		if ($target.is('#canvas') || $target.parents('#canvas').length == 1) $('input').blur();
+		if ($target.is('#canvas') || $target.parents('#canvas').length == 1) {
+			$('input').blur();
+			$('#canvas .ui-selected').removeClass('ui-selected');
+			//$('.option_pane').remove();
+		}
 	});
 
 	// Handle user changing their display name.
