@@ -5,7 +5,7 @@ server {
   access_log  <%= node[:nginx][:log_dir] %>/localhost.access.log;
 
   location / {
-    root   /srv/mockupcreator/current/public;
+    root   /srv/mockups/current/public;
     index  index.html index.htm;
 
     if (-f $request_filename/index.html) {
