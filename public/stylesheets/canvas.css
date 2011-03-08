@@ -25,8 +25,8 @@
 #tools .ui-draggable, #canvas .ui-draggable { cursor: move; }
 .ui-resizable { position: relative; }
 
-.ui-resizable-n, .ui-resizable-e, .ui-resizable-s, .ui-resizable-w { z-index: 9000; border: 0px solid #0073aa; }
-.ui-resizable-ne, .ui-resizable-se, .ui-resizable-sw, .ui-resizable-nw { z-index: 9001; width: 18px; height: 18px; }
+.ui-resizable-n, .ui-resizable-e, .ui-resizable-s, .ui-resizable-w { border: 0px solid #0073aa; }
+.ui-resizable-ne, .ui-resizable-se, .ui-resizable-sw, .ui-resizable-nw { width: 18px; height: 18px; background-repeat: none; }
 
 .ui-resizable-n { cursor: n-resize; height: 11px; width: 100%; top: -11px; left: 0; background: transparent url('/images/tophandle.png') no-repeat center 1px; border-bottom-width: 2px; }
 .ui-resizable-s { cursor: s-resize; height: 11px; width: 100%; bottom: -11px; left: 0; background: transparent url('/images/bottomhandle.png') no-repeat center -1px; border-top-width: 2px; }
