@@ -80,8 +80,17 @@ From this point you will be ready to deploy to a development environment.
 
 ####Deploy the Application
 
+If you would like to test the deployment through capistrano then run:
+
     cap deploy:check_dependencies #will check to see if you have what you need
     cap deploy:setup && cap deploy #will set up and start up your application on the box you just set up
+
+Otherwise, log in to the box and run:
+
+		git checkout git@github.com:cloudspace/mockupcreator.git
+		cd mockupcreator
+		sudo mongod &    #run mongo as a daemon
+		sudo node app.js #call node on the file that controls the application
 
 ###EC2 Deployment
 
