@@ -1,4 +1,3 @@
-
 $(window).load(function() {
 
 	// Key bindings used so that users may delete mockup objects (with the delete key).
@@ -241,13 +240,6 @@ $(document).ready(function(){
 		reset_display_name();
 	});
 
-	$('#mockup_pages > li').live('mouseover mouseout',function(event){
-		if (event.type == 'mouseover') {	
-			$(this).find('.delete').addClass('active');
-		} else {
-			$(this).find('.delete').removeClass('active');
-		}
-	});
 	
 	$('#mockup_pages .delete').live('click', function() {
 		if ($('#mockup_pages .delete').length == 1) {
