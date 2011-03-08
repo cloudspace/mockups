@@ -222,7 +222,7 @@ $(document).ready(function(){
 		// #canvas has a lot of click-capturing (draggable, droppable, selectable, resizable)
 		// so we force all input boxes to blur when it is clicked since those jquery plugins
 		// hijack the clicks and prevent the default behavior from occurring
-	  $target = $(e.target);
+		$target = $(e.target);
 		if ($target.is('#canvas') || $target.parents('#canvas').length == 1) $('input').blur();
 	});
 
@@ -268,17 +268,21 @@ $(document).ready(function(){
 
 
 	$('#mockup_pages .name_update input').live('blur', function(e) {
-		var $tgt = $(e.target),page_id = $tgt.parent().attr('page_id');
-		$tgt.addClass('h')
-			.siblings('a').removeClass('h');
-		
+		var $tgt = $(e.target), page_id = $tgt.parent().attr('page_id');
+		$tgt.addClass('h').siblings('a').removeClass('h');
 		$tgt.val(env.project.pages[page_id].name);
+	}).live('focus', function(e) {
+		var $tgt = $(e.target);
+		$tgt.parents('#mockup_pages').find('input').each(function(index, element) {
+			if (element != e.target) $(element).blur();
+		});
 	});
 
+
+
 	$('#mockup_pages li form.name_update').live('submit', function(){
-		var $page_name_input = $(this).find('input');
-		var page_id = $(this).attr('page_id');
-		if($page_name_input.val() == "") return false;
+		var $page_name_input = $(this).find('input'), page_id = $(this).attr('page_id');
+		if ($page_name_input.val() == "") return false;
 		env.socket.send({
 			page_update: {
 				id: env.project.id,

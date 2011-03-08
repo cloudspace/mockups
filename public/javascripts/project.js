@@ -108,8 +108,7 @@ Project.prototype.update_page_name = function(page){
 };
 
 Project.prototype.open_input_box = function($target){
-	$target.addClass('h')
-		.siblings('input').removeClass('h').focus();
+	$target.addClass('h').siblings('input').removeClass('h').focus();
 };
 
 Project.prototype.set_canvas_object = function(new_canvas_object){
