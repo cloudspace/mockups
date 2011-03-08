@@ -1,5 +1,5 @@
 require 'capistrano/ext/multistage'
-set :application, "mockupcreator"
+set :application, "mockups"
 set :repository,  "git@github.com:cloudspace/#{application}.git"
 
 set :scm, :git

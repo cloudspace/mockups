@@ -1,8 +1,8 @@
-# Cloudspace Mockup Creator
+# Cloudspace Mockups
 
 ## Description
 
-The goal of the mockup creator is to serve a way of creating and editing mockups collaboratively. The server should run off of node.js, and data is stored with mongodb. Static files are served in nginx in our default setup.
+The goal of Cloudspace Mockups is to serve a way of creating and editing mockups collaboratively. The server should run off of node.js, and data is stored with mongodb. Static files are served in nginx in our default setup.
   
 ## Tests
 
@@ -13,7 +13,7 @@ To run unit tests:
 ## Installation
 
 ### Development Environment Setup
-Our development setup for the mockupcreator consists of
+Our development setup for Cloudspace Mockups consists of
 
 * VirtualBox accessed via Vagrant
 * Chef for the setup of the development box
@@ -36,11 +36,11 @@ Start a new virtual box using Ubuntu 10.04 64 bit server edition
 
 http://vagrantup.com/docs/getting-started/index.html
 
-Clone the mockup creator repo:
+Clone the Cloudspace Mockups repo:
 
-    git clone git@github.com:cloudspace/mockupcreator.git
+    git clone git@github.com:cloudspace/mockups.git
 
-In the mockupcreator project directory:
+In the Cloudspace Mockups project directory:
 
     cp Vagrantfile.default Vagrantfile
 
@@ -87,8 +87,8 @@ If you would like to test the deployment through capistrano then run:
 
 Otherwise, log in to the box and run:
 
-		git checkout git@github.com:cloudspace/mockupcreator.git
-		cd mockupcreator
+		git checkout git@github.com:cloudspace/mockups.git
+		cd mockups
 		sudo mongod &    #run mongo as a daemon
 		sudo node app.js #call node on the file that controls the application
 
@@ -100,12 +100,12 @@ Add your EC2 credentials to your .bash_profile(or .bashrc). This should look som
 
 Then call the launch instances script:
 
-    ./launch_instances ami-98e515f1 --key ec2_keypair_name -f ~/userdata.json  --tags Name mockupcreator.com -w
+    ./launch_instances ami-98e515f1 --key ec2_keypair_name -f ~/userdata.json  --tags Name Mockups -w
 
 In this call ami-98e515f1 is a 32-bit amazon image with chef installed on it.
 The file userdata.json contains the following json:
     {"validation_key": "Your organizations chef validation ssh private key"}
-The tag Name will allow elastifox to see the name of mockupcreator.com on for your box.
+The tag Name will allow elastifox to see the name of Mockups on for your box.
 
 
 After creating the box, the script should spit out a domain name.  Ssh into the box and add your personal public key to the authorized_hosts file in both /root/.ssh/ and ~/.ssh/ . This will allow you to login without having to use the box's pem. 
