@@ -10,7 +10,7 @@ a { text-decoration:none; color:#3c3c3c; }
 #mockup_pages li{position:relative;}
 #mockup_pages li, #add_page { padding: 0; height: 25px;  }
 #add_page{cursor:pointer;}
-#tabs #settings #mockup_pages li:hover{background:none; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0;}
+#tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0; }
 #mockup_pages li form.name_update { width:155px; display: inline-block;  }
 #mockup_pages li a { display: inline-block;cursor:pointer; }
 #mockup_pages a { line-height: 17px; height: 20px; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0;}
