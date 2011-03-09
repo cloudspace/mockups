@@ -3,6 +3,7 @@
 .canvas_object { position: absolute; z-index: 2000; display: block; padding: 0px; cursor: move; border: 2px solid transparent; }
 .canvas_object .content { overflow: hidden; display: block; line-height: 120%; }
 .canvas_object .overlay { position: absolute; top: 0; left: 0; background: transparent; z-index: 2001; width: 100%; height: 100%; }
+.canvas_object_edit .delete { float: right; }
 
 
 /* this is a hack to get select tags to conform to explicitly-set height/width values */

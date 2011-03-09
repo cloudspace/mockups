@@ -140,9 +140,6 @@ $(document).ready(function(){
 	$('.canvas_object').live('dblclick', function(e){
 		$('.canvas_object_edit').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
-		var content = get_canvas_object_content(canvas_object_id);
-		var canvas_object = env.project.canvas_object(canvas_object_id);
-		if(!is_editable(canvas_object_id)){ return false; }
 
 		var $option_pane = $("<div></div>")
 			.addClass("canvas_object_edit").dialog({ 
@@ -150,26 +147,16 @@ $(document).ready(function(){
 			dialogClass:   'option_pane',
 			resizable:     false,
 			title:         'Edit Element'
-		});
+		}).html(Views.canvas_object_edit(canvas_object_id));
 
-		$("<form canvas_object_id='"+ canvas_object_id +"' class='canvas_object_update'></form>")
-			.append("<label for='font-size'>Font Size</label><input id='font-size' name='fontsize' type='text' value='"+(canvas_object.fontsize || "") +"'/><br />")
-			.append("<label for='height'>Height</label><input id='height' name='height' value='" + (canvas_object.height || "")+ "'type='text'/><br />")
-			.append("<label for='width'>Width</label><input id='width' name='width' value='"+ (canvas_object.width || "") +"'type='text'/><br />")
-			.append("<label for='content'>Content</label><textarea id='content' name='content'>"+ content +"</textarea><br />")
-			.append("<input type='submit' value='submit'/>").appendTo($option_pane);
 		$(".canvas_object_update textarea").focus();
-		$("#canvas").one('click',function(e){
+
+		$("#canvas").one('click', function(e) {
 			$('.option_pane').remove();
 			$('.canvas_object_edit').remove();
 			e.stopPropagation();
 		});
 	});
-
-	is_editable = function(canvas_object_id){
-		var canvas_object = env.project.canvas_object(canvas_object_id);
-		return templates[canvas_object.template_id].editable_content;
-	}
 
 	get_canvas_object_content = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
