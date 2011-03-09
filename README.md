@@ -23,18 +23,19 @@ To make this all happen Cloudspace Mockups runs off of node.js, using sockets to
 
 These are the features that we are planning on introducing.
 
-1. Copy and paste canvas objects
-1. Create a new page from an old one
-1. Canvas Objects snap to grid
-1. Save page as pdf
-1. API:
+1. Table elements
+2. Nudging
+3. Copy and paste canvas objects
+4. Duplicate page
+5. Canvas objects snap to grid
+6. Export page as pdf, png
+7. API
 	1. Retrieve list of page elements
-	1. Retrieve sitemap
-1. Starting templates
-1. Integrate an open icon library set
-1. Upload images
-1. Auto-resizing text
-1. Nudging
+	2. Retrieve sitemap
+8. Duplicate project
+9. Integrate an open icon library set
+19. Upload images
+11. Auto-resizing text
 
 ### Guidelines
 

@@ -17,51 +17,7 @@ $(window).load(function() {
 					});
 				});
 				break;
-/*			case 37:
-				$('#canvas .ui-selected').each(function() {
-					$(this).css('left', $(this).position().left - 1);
-					env.socket.send({
-					  canvas_object_update: {
-							canvas_object: { id: $(this).attr('canvas_object_id'), left: $(this).position().left },
-							page:          { id: env.project.current_page }
-						}
-					});
-				});
-			break;
-			case 38:
-				$('#canvas .ui-selected').each(function() {
-					$(this).css('top', $(this).position().top - 1);
-					env.socket.send({
-					  canvas_object_update: {
-							canvas_object: { id: $(this).attr('canvas_object_id'), top: $(this).position().top },
-							page:          { id: env.project.current_page }
-						}
-					});
-				});
-			break;
-			case 39:
-				$('#canvas .ui-selected').each(function() {
-					$(this).css('left', $(this).position().left + 1);
-					env.socket.send({
-					  canvas_object_update: {
-							canvas_object: { id: $(this).attr('canvas_object_id'), left: $(this).position().left },
-							page:          { id: env.project.current_page }
-						}
-					});
-				});
-			break;
-			case 40:
-				$('#canvas .ui-selected').each(function() {
-					$(this).css('top', $(this).position().top + 1);
-					env.socket.send({
-					  canvas_object_update: {
-							canvas_object: { id: $(this).attr('canvas_object_id'), top: $(this).position().top },
-							page:          { id: env.project.current_page }
-						}
-					});
-				});
-			break;
-*/
+
 			//look at last_key_pressed
 			case 67://c implement copy mockup object
 			break;
@@ -136,8 +92,21 @@ $(document).ready(function(){
 			$('.canvas_object_edit').remove();
 			return false;	
 	});
+
+	$('.canvas_object_edit .delete').live('click', function(e) {
+		$('.canvas_object_edit').remove();
+		$(this).each(function() {
+			env.socket.send({
+				canvas_object_delete: {
+					canvas_object: { id: $(this).parents('form').attr('canvas_object_id') },
+					page:          { id: env.project.current_page }
+				}
+			});
+		});
+		return false;
+	});
 	
-	$('.canvas_object').live('dblclick', function(e){
+	$('.canvas_object').live('dblclick', function(e) {
 		$('.canvas_object_edit').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
 
