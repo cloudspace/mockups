@@ -199,6 +199,6 @@ a { text-decoration:none; color:#3c3c3c; }
 .rad5.se, .ui-dialog-titlebar { border-bottom-right-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-right-radius: 0; }
 .rad5.sw, .ui-dialog-titlebar { border-bottom-left-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-left-radius: 0; }
 
-
+.option_pane input[type=text]{ width: 50px; }
 
 

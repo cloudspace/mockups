@@ -2,15 +2,16 @@
 Views = {
 
 	canvas_object_edit: function(canvas_object_id) {
-		var canvas_object = env.project.canvas_object(canvas_object_id);
-		var content = get_canvas_object_content(canvas_object_id);
-		var html = '<form canvas_object_id="'+ canvas_object_id +'" class="canvas_object_update">';
-		var template = templates[canvas_object.template_id];
+		var canvas_object = env.project.canvas_object(canvas_object_id),
+				content       = get_canvas_object_content(canvas_object_id),
+				html          = '<form canvas_object_id="'+ canvas_object_id +'" class="canvas_object_update">',
+				attributes    = templates[canvas_object.template_id].attributes,
+				$element      = $('.canvas_object[canvas_object_id=' + canvas_object_id + ']').find('.content');
 
-		if (template.attributes.height)   html += "<label for='height'>Height</label><input id='height' name='height' value='" + (canvas_object.height || "") + "'type='text'/><br />";
-		if (template.attributes.width)    html += "<label for='width'>Width</label><input id='width' name='width' value='" + (canvas_object.width || "") + "'type='text'/><br />";
-		if (template.attributes.fontsize) html += "<label for='font-size'>Font Size</label><input id='font-size' name='fontsize' type='text' value='" + (canvas_object.fontsize || "") + "'/><br />";
-		if (template.attributes.content)  html += "<label for='content'>Content</label><textarea id='content' name='content'>" + content + "</textarea><br />";
+		if (attributes.height)   html += "<label for='height'>Height</label><input id='height' name='height' value='" + (canvas_object.height || parseInt($element.css('height')) ) + "'type='text'/> px<br />";
+		if (attributes.width)    html += "<label for='width'>Width</label><input id='width' name='width' value='" + (canvas_object.width || parseInt($element.css('width')) ) + "'type='text'/> px<br />";
+		if (attributes.fontsize) html += "<label for='font-size'>Font Size</label><input id='font-size' name='fontsize' type='text' value='" + (canvas_object.fontsize || parseInt($element.css('font-size')) ) + "'/> px<br />";
+		if (attributes.content)  html += "<label for='content'>Content</label><textarea id='content' name='content'>" + content + "</textarea><br />";
 		html += "<input type='submit' value='submit'/><input type='submit' class='delete' value='delete this object' />"
 		html += "</form>";
 
