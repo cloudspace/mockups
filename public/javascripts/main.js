@@ -225,7 +225,6 @@ $(document).ready(function(){
 		if ($target.is('#canvas') || $target.parents('#canvas').length == 1) {
 			$('input').blur();
 			$('#canvas .ui-selected').removeClass('ui-selected');
-			//$('.option_pane').remove();
 		}
 	});
 
