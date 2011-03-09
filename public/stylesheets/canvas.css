@@ -27,14 +27,14 @@
 .ui-resizable { position: relative; }
 
 .ui-resizable-n, .ui-resizable-e, .ui-resizable-s, .ui-resizable-w { border: 0px solid #0073aa; }
-.ui-resizable-ne, .ui-resizable-se, .ui-resizable-sw, .ui-resizable-nw { width: 18px; height: 18px; background-repeat: none; }
+.ui-resizable-ne, .ui-resizable-se, .ui-resizable-sw, .ui-resizable-nw { width: 18px; height: 18px; background-repeat: no-repeat; }
 
 .ui-resizable-n { cursor: n-resize; height: 11px; width: 100%; top: -11px; left: 0; background: transparent url('/images/tophandle.png') no-repeat center 1px; border-bottom-width: 2px; }
 .ui-resizable-s { cursor: s-resize; height: 11px; width: 100%; bottom: -11px; left: 0; background: transparent url('/images/bottomhandle.png') no-repeat center -1px; border-top-width: 2px; }
 .ui-resizable-e { cursor: e-resize; width: 11px; height: 100%; right: -11px; top: 0; background: transparent url('/images/rightcenterhandle.png') no-repeat -1px center; border-left-width: 2px; }
 .ui-resizable-w { cursor: w-resize; width: 11px; height: 100%; left: -11px; top: 0; background: transparent url('/images/leftcenterhandle.png') no-repeat 1px center; border-right-width: 2px; }
 
-.ui-resizable-se { cursor: se-resize; right: -11px; bottom: -11px; background-image: url('/images/bottomrighthandle.png'); }
+.ui-resizable-se { width: 32px; height: 32px; cursor: se-resize; right: -25px; bottom: -25px; background-image: url('/images/bottomrighthandle.png'); }
 .ui-resizable-sw { cursor: sw-resize; left: -9px; bottom: -9px; background-image: url('/images/bottomlefthandle.png'); }
 .ui-resizable-nw { cursor: nw-resize; left: -9px; top: -9px; background-image: url('/images/toplefthandle.png'); }
 .ui-resizable-ne { cursor: ne-resize; right: -9px; top: -9px; background-image: url('/images/toprighthandle.png'); }
