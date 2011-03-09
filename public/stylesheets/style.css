@@ -5,22 +5,21 @@ a { text-decoration:none; color:#3c3c3c; }
 #canvas { background: #fff; height: 100%; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
 #set_password { cursor: pointer; }
 
-#add_page { margin: 0 0 5px 10px; color: #333;} 
-#add_page:hover { color: #000;background:url("/images/plusicon.png") no-repeat scroll 150px 3px transparent;}
-#mockup_pages li{position:relative;}
-#mockup_pages li, #add_page { padding: 0; height: 25px;  }
-#add_page{cursor:pointer;}
+/* TODO clean this mess up */
 #tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0; }
-#mockup_pages li form.name_update { width:155px; display: inline-block;  }
-#mockup_pages li a { display: inline-block;cursor:pointer; }
+#mockup_pages li { position: relative; }
+#mockup_pages li, #add_page { padding: 0; height: 25px; }
+#mockup_pages { height: 200px; overflow-y: scroll; }
+#mockup_pages li a { display: inline-block; cursor: pointer; width: 145px; overflow: hidden; }
 #mockup_pages a { line-height: 17px; height: 20px; text-decoration: none; color: #777; overflow: hidden; text-shadow: 0 0 0;}
 #mockup_pages a.selected { color: #000; font-weight: bold; }
-#mockup_pages .delete{cursor:pointer; position:absolute; top:4px; right:0;line-height: 20px; display: inline-block; vertical-align: top; }
+#mockup_pages .delete { cursor: pointer; position: absolute; top: 4px; right: 0; line-height: 20px; display: inline-block; vertical-align: top; }
 #mockup_pages li form.name_update input { margin-bottom: 0; margin-right: 0; height: 19px; width: 120px; background: white; border: none; color: black; text-decoration: none; }
 #mockup_pages li a.h, #mockup_pages li form input.h { display: none; }
+#add_page { cursor: pointer; margin: 0 0 5px 10px; color: #333;} 
+#add_page:hover { color: #000; background: url("/images/plusicon.png") no-repeat scroll 150px 5px transparent; }
 
 
-#userinfo{background: url('/images/usericon.png') no-repeat 160px 0; }
 #floatingpanel {
 	width:200px;
 	background:#d5d5d5;
@@ -79,8 +78,9 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 
 #settings img {
-	float:right;
-	margin: 5px 28px 0 0;
+	float: right;
+	vertical-align: middle;
+	margin: 3px 10px 0 0;
 }
 
 #settings input {
