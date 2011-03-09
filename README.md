@@ -6,7 +6,7 @@ The goal of Cloudspace Mockups is to serve a way of creating and editing mockups
 
 ## Technical Description
 
-To make this all happen Cloudspace Mockups runs off of node.js, using sockets to allow for the collaboration of many users.  The data is passed between the front-end and back-end as json and therefore is stored in mongodb. Static files are served in nginx in our default setup. Our buddy [[Hudson|http://hudson-ci.org/]] takes care of the continuous integration.
+To make this all happen Cloudspace Mockups runs off of node.js, using sockets to allow for the collaboration of many users.  The data is passed between the front-end and back-end as json and therefore is stored in mongodb. Static files are served in nginx in our default setup. Our buddy [Hudson](http://hudson-ci.org/) takes care of the continuous integration.
 
 ## Cloudspace Mockups - Features
 
