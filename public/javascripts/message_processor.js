@@ -51,6 +51,7 @@ MessageProcessor = {
 				resizable: false,
 				modal: true,
 				title: 'Set a Password',
+				zIndex: 9001,
 			});
 		});
 	},
@@ -67,6 +68,7 @@ MessageProcessor = {
 			.dialog({
 				resizable: false,
 				modal: true,
+				zIndex: 9001,
 				title: 'Enter Password',
 				minHeight: 50,
 				closeOnEscape: false,

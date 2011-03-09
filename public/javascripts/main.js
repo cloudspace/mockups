@@ -83,6 +83,7 @@ $(document).ready(function(){
 		.dialog({
 			resizable: false,
 			modal: true,
+			zIndex: 9001,
 			title: 'Connecting',
 			closeOnEscape: false,
 		});
