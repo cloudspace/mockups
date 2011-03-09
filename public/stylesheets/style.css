@@ -31,7 +31,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	position: fixed;
 	top: 20px;
 	right: 20px;
-	z-index: 1000;
+	z-index: 100000;
 }
 
 #floatingpanel hr { width: 160px; }
@@ -204,31 +204,6 @@ color:white;
 .ui-dialog-titlebar-close { display: none; }
 
 #connecting label { display: inline-block; margin-left: 10px; }
-
-/*
-.ui-widget { font-family: "Verdana", "Arial", sans-serif; font-size: 1.1em; }
-.ui-widget .ui-widget { font-size: 1em; }
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: "Verdana", "Arial", sans-serif; font-size: .7em; }
-.ui-widget textarea { width: 298px; height: 95px; }
-.ui-widget-content { border: 1px solid #aaa; background: #fff 50% 50% repeat-x; color: #222; }
-.ui-widget-content a { color: #222; }
-.ui-widget-header { border: 1px solid #aaa; background: #ccc 50% 50% repeat-x; color: #222; font-weight: bold; }
-.ui-widget-header a { color: #222; }
-
-.ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
-.ui-dialog .ui-dialog-titlebar { padding: .5em 1em .3em; position: relative;  }
-.ui-dialog .ui-dialog-title { } 
-.ui-dialog .ui-dialog-titlebar-close { position: absolute; right: 30px; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
-.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
-.ui-dialog .ui-dialog-titlebar-close:hover { color: #c33; }
-.ui-dialog .ui-dialog-content { position: relative; border: 0; padding: 0; background: none; zoom: 1; }
-.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
-.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float: right; }
-.ui-dialog .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
-.ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
-.ui-draggable .ui-dialog-titlebar { cursor: move; }
-*/
-
 
 .clear { clear: both; height: 1px; }
 

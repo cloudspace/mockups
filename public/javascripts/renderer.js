@@ -18,10 +18,10 @@ Renderer = {
 					opacity:       '0.6',
 					snap:          '#canvas, #canvas .canvas_object',
 					snapTolerance: '5',
-					distance   :   0,
+					distance:   0,
 					//revert     : true,
 					//revertDuration: 0,
-					start      :   function(event, ui) {
+					start:   function(event, ui) {
 						$(this).addClass('ui-selected').siblings().removeClass('ui-selected');
 					},
 				});
@@ -30,7 +30,7 @@ Renderer = {
 		this.page_element.html(rendered_content)
 			.append('<div class="overlay"></div>')
 			.resizable('destroy')
-			.resizable(this.resize_options(canvas_object.template_id));
+			.resizable(this.resize_options(canvas_object.template_id)).find('.ui-resizable-handle').css('display', '');
 
 		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top',parseInt(canvas_object.top)); }
 		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
@@ -42,7 +42,8 @@ Renderer = {
 
 	resize_options: function(template_id) {
 		var options = {
-			handles: 'n, e, s, w, nw, ne, sw, se',
+			//handles: 'n, e, s, w, nw, ne, sw, se',
+			handles: 'se',
 			containment: 'parent',
 			minWidth: 10,
 			minHeight: 10,
@@ -99,7 +100,7 @@ Renderer = {
 	},
 
 	image: function() {
-		return "<img class='image' src='/images/picture.png' alt='Image Placeholder' />";
+		return "<img class='image' src='/images/picture.png' />";
 	},
 
 	textarea: function() {
