@@ -3,3 +3,4 @@ test/results/*.js.xml
 .vagrant
 Vagrantfile
 .fog
+config/servers.yml
