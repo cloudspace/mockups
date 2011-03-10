@@ -222,13 +222,16 @@ exports.process = testCase({
 
 	"page_update: sends an error message when a page is not found": function(test) {
 		var that = this;
-		this.client.user.project_id = 5;
-		MessageProcessor.process(this.client, { page_update: { page: { name: 'Franklin' } } });
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			MessageProcessor.process(that.client, { page_update: { page: { id: 1, name: 'Franklin' } } });
 
-		setTimeout(function(){
-				test.notEqual(that.client.sent.error, undefined);
+			setTimeout(function() {
+				test.equal(that.client.sent, undefined);
 				test.done();
-		}, 500);
+			}, 500);
+		});
 	},
 
 	"page_update: can update the page name": function(test) {
@@ -246,13 +249,25 @@ exports.process = testCase({
 		});
 	},
 
+	"page_delete: sends an error message when a page is not found": function(test) {
+		var that = this;
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			MessageProcessor.process(that.client, { page_delete: { page_id: 1 } });
+
+			setTimeout(function() {
+				test.equal(that.client.sent, undefined);
+				test.done();
+			}, 500);
+		});
+	},
+
 	"page_delete: doesn't delete the final page": function(test) {
 		var that = this;
 		Project.create(function(project) {
-			// asign client to project
 			that.client.user.project_id = project._id;
 			that.client.user.subscribe(project._id);
-			// delete page
 			MessageProcessor.process(that.client, { page_delete: { page_id: 0 } });
 
 			setTimeout(function() {
@@ -265,11 +280,9 @@ exports.process = testCase({
 	"page_delete: deletes a page to the project a user is on": function(test) {
 		var that = this;
 		Project.create(function(project) {
-			// assign client to project
 			that.client.user.project_id = project._id;
 			that.client.user.subscribe(project._id);
 			Page.create(project, function(page){
-				// delete page
 				MessageProcessor.process(that.client, { page_delete: { page_id: 1 } });
 
 				setTimeout(function() {
@@ -298,24 +311,30 @@ exports.process = testCase({
 
 	"canvas_object_update: sends an error message when a canvas object is not found": function(test) {
 		var that = this;
-		this.client.user.project_id = 5;
-		MessageProcessor.process(this.client, { canvas_object_update: { page: { id: 0 }, canvas_object: { id: 1, top: 333 } } });
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			MessageProcessor.process(that.client, { canvas_object_update: { page: { id: 0 }, canvas_object: { id: 0, top: 333 } } });
 
-		setTimeout(function(){
-				test.notEqual(that.client.sent.error, undefined);
+			setTimeout(function() {
+				test.equal(that.client.sent, undefined);
 				test.done();
-		}, 500);
+			}, 500);
+		});
 	},
 
-	"canvas_object_update: sends an error message when a page is not found": function(test) {
+	"canvas_object_delete: sends an error message when a canvas object is not found": function(test) {
 		var that = this;
-		this.client.user.project_id = 5;
-		MessageProcessor.process(this.client, { canvas_object_update: { page: { id: 'not an id' }, canvas_object: { id: 1, top: 333 } } });
+		Project.create(function(project) {
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			MessageProcessor.process(that.client, { canvas_object_delete: { page: { id: 0 }, canvas_object: { id: 0 } } });
 
-		setTimeout(function(){
-				test.notEqual(that.client.sent.error, undefined);
+			setTimeout(function() {
+				test.equal(that.client.sent, undefined);
 				test.done();
-		}, 500);
+			}, 500);
+		});
 	},
 
 	"canvas_object_update: can update the canvas object": function(test) {
