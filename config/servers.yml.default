@@ -1,0 +1,4 @@
+development:
+  location: 127.0.0.1 
+staging:
+  location: ec2coolforschool 
