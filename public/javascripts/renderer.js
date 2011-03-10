@@ -26,6 +26,7 @@ Renderer = {
 					},
 				});
 		}
+	
 		
 		this.page_element.html(rendered_content)
 			.append('<div class="overlay"></div>')
@@ -96,7 +97,7 @@ Renderer = {
 	list: function() {
 		var list_items = "";
 		this.parse_items(this.content, function(item){ list_items += "<li>"+ item +"</li>"});
-		return "<ul type='bulleted'>"+ list_items +"</ul>";
+		return "<ul>"+ list_items +"</ul>";
 	},
 
 	image: function() {
@@ -104,15 +105,15 @@ Renderer = {
 	},
 
 	textarea: function() {
-		return "<textarea>"+ this.content +"</textarea>";
+		return "<textarea>" + this.content + "</textarea>";
 	},
 
 	input_box: function(){
-		return "<input type='text' class='inputbox' value='"+ this.content +"'/>";
+		return "<input type='text' class='inputbox' value='" + this.content + "'/>";
 	},
 
 	submit_button: function(){
-		return "<div class='white button'>"+ this.content + "</div>";
+		return "<input type='submit' class='submit' value='" + this.content + "'/>";
 	},
 
 	select_menu: function() {

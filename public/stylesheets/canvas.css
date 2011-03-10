@@ -1,13 +1,14 @@
 
 
-.canvas_object { position: absolute; z-index: 2000; display: block; padding: 0px; cursor: move; border: 2px solid transparent; }
+.canvas_object { position: absolute; z-index: 2000; display: block; padding: 0px; cursor: move; border: 2px solid transparent; font-size:12px; }
 .canvas_object .content { overflow: hidden; display: block; line-height: 120%; }
 .canvas_object .overlay { position: absolute; top: 0; left: 0; background: transparent; z-index: 2001; width: 100%; height: 100%; }
 .canvas_object_edit .delete { float: right; }
-
+.canvas_object ul{ list-style: disc inside; padding-left:1px;}
+.canvas_object .link{ color: blue; text-decoration: underline; }
 
 /* this is a hack to get select tags to conform to explicitly-set height/width values */
-.canvas_object select { background: #eee; }
+.canvas_object select, .canvas_object .submit { background: #eee; }
 .canvas_object textarea { padding: 0; }
 .box_container{ z-index: 0;}
 
