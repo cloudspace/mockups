@@ -9,7 +9,7 @@ Renderer = {
 		this.page_element = $('#canvas .canvas_object[canvas_object_id=' + canvas_object.id + ']');
 
 		if (this.page_element.length == 0) { //object not rendered
-			this.page_element =  $('<div></div>')
+			this.page_element =  $('<div class="' + canvas_object.template_id + '"></div>')
 				.addClass('canvas_object')
 				.attr('canvas_object_id', canvas_object.id)
 				.css('position', 'absolute') 

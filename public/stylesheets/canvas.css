@@ -9,7 +9,7 @@
 /* this is a hack to get select tags to conform to explicitly-set height/width values */
 .canvas_object select { background: #eee; }
 .canvas_object textarea { padding: 0; }
-
+.box_container{ z-index: 0;}
 
 .box { width: 100px; height: 100px; border: 1px solid #222; }
 .horizontal_line, .vertical_line { background: #222; width: 100px; height: 100px; padding: 1px; margin: 0; }
