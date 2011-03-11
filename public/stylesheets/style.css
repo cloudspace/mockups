@@ -134,7 +134,7 @@ a { text-decoration:none; color:#3c3c3c; }
 #tabs li ul li:hover {
 	background: -webkit-gradient(linear,  left bottom,  left top,  color-stop(0, rgb(20,84,171)),  color-stop(0.95, rgb(29,143,213)),  color-stop(1, rgb(255,255,255)));
 	background: -moz-linear-gradient( center bottom,  rgb(20,84,171) 0%,  rgb(29,143,213) 90%,  rgb(255,255,255) 100%); color: #fff; text-shadow: #000 0px 1px 1px;
-	color:white;
+	color: white;
 }
 
 #tabs li ul.elements li:hover a { color: #fff; }
