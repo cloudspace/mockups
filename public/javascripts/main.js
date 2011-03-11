@@ -70,9 +70,11 @@ $(document).ready(function(){
 		  $("#tabs").slideToggle(300);
 			  $(this).toggleClass('collapsed');
 	});
-	$(".sectionbreak").click(function(){
+	
+	$(".section_break").click(function(){
 		$(this).toggleClass('collapsed').next().slideToggle(300);
 	});
+
 	$('form.canvas_object_update').live('submit',function(e){
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({

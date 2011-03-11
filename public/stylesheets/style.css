@@ -54,6 +54,8 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:url(/images/expandicon.png);
 }
 
+.section_break { background:url('/images/sectionbreak.png') 10px 0 no-repeat; text-indent: -9999px; cursor:pointer; }
+.section_break.collapsed{ background: url('/images/sectionbreakclosed.png') 10px 0 no-repeat;}
 #draggable {
 	background:url(/images/draggableicon.png);
 	width:19px;
