@@ -39,7 +39,7 @@ $(document).ready(function(){
 		.dialog({
 			resizable: false,
 			modal: true,
-			zIndex: 9001,
+			zIndex: 10001,
 			title: 'Connecting',
 			closeOnEscape: false,
 		});
