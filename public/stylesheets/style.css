@@ -169,7 +169,7 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 
 
-#growl { position: fixed; bottom: 0; right: 0; overflow: hidden; font-size: 11px; font-family: 'Thonburi', 'Verdana', sans-serif; }
+#growl { z-index: 2002; position: fixed; bottom: 0; right: 0; overflow: hidden; font-size: 11px; font-family: 'Thonburi', 'Verdana', sans-serif; }
 #growl .notify { background: #a1acb6; width: 190px; overflow: hidden; padding: 5px; margin: 0 5px 5px 0; border: 1px solid #333; }
 
 #flash { position: fixed; bottom: 0; right: 0; overflow: auto;  border: 1px solid #eee; font-size: 13px, sans-serif; }
