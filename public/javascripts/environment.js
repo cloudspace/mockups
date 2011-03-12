@@ -7,17 +7,19 @@ Environment = function(){
 Environment.prototype.connect = function(){
 	var that = this;
 
-	this.socket = new io.Socket(null, {port: 8080, rememberTransport: false, tryTransportsOnConnectTimeout: false});
-	this.socket.connect();
+	this.socket = new io.Socket(null, {port: 8080, rememberTransport: true, tryTransportsOnConnectTimeout: true});
 
-	this.socket.on('message', function(obj) { MessageProcessor.process(obj); });
-	this.socket.on('connect',function(obj) {
+	this.socket
+	.on('message', function(obj) {
+		MessageProcessor.process(obj);
+	})
+	.on('connect',function(obj) {
 		$.fancybox.close();
 		that.display_name = 'Anonymous';
 		reset_display_name();
 		$.history.init(load_hash, { 'unescape': '/' });
-	});
-	this.socket.on('disconnect', function(){
+	})
+	.on('disconnect', function(){
 		delete that.project;
 		$("#disconnected").fancybox({
 			'autoScale'         : false,
@@ -28,7 +30,8 @@ Environment.prototype.connect = function(){
 			'content'           : $("#disconnected").html()
 		}).trigger("click");
 		that.initialize_reconnect.call(that);
-	});
+	}).connect();
+
 	return true;
 };
 

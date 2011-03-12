@@ -31,9 +31,6 @@ $(window).load(function() {
 		return false;
 	});
 
-});
-
-$(document).ready(function(){
 	$connecting = $('<div id="connecting"><div id="wait"></div></div>');
 	$connecting
 		.dialog({
@@ -46,6 +43,9 @@ $(document).ready(function(){
 
 	env = new Environment();
 	env.connect();
+});
+
+$(document).ready(function(){
 
   $('#settings').hide();
 	$('#tabs h3').click(function(){
