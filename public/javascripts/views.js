@@ -1,6 +1,15 @@
 
 Views = {
 
+	reconnect: function(initial_time) {
+	 return '<div id="reconnect">' +
+						'Attempting to reconnect in <span class="wait">' + initial_time + ' </span> seconds. <br><br>' +
+						'<form onsubmit="env.initialize_reconnect(); return false;">' +
+							'<input type="submit" value="Reconnect Now" />' +
+						'</form>' +
+					'</div>';
+	},
+
 	// Generates the dialog box for editing a canvas object
 	canvas_object_edit: function(canvas_object_id) {
 		var canvas_object = env.project.canvas_object(canvas_object_id),
