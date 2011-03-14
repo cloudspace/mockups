@@ -46,6 +46,9 @@ $(document).ready(function(){
 
 	env = new Environment();
 	env.connect();
+});
+
+$(document).ready(function(){
 
   $('#settings').hide();
 	$('#tabs h3').click(function(){

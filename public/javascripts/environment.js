@@ -1,4 +1,5 @@
 Environment = function(){
+	this.connected = false;
 	this.socket;
 	this.project;
 	var that = this;
@@ -7,42 +8,57 @@ Environment = function(){
 Environment.prototype.connect = function(){
 	var that = this;
 
-	this.socket = new io.Socket(null, {port: 8080, rememberTransport: false, tryTransportsOnConnectTimeout: false});
-	this.socket.connect();
+	this.socket = new io.Socket(null, { port: 8080, rememberTransport: true, tryTransportsOnConnectTimeout: true });
 
-	this.socket.on('message', function(obj) { MessageProcessor.process(obj); });
-	this.socket.on('connect',function(obj) {
-		$.fancybox.close();
+	this.socket
+	.on('message', function(obj) {
+		MessageProcessor.process(obj);
+	})
+	.on('connect',function(obj) {
+		$('#reconnect').dialog('destroy').remove();
+		if (that.show_countdown_timer) clearTimeout(that.show_countdown_timer);
+		if (that.countdown_timer) clearTimeout(that.countdown_timer);
+		if (that.reconnect_timer) clearTimeout(that.reconnect_timer);
+
 		that.display_name = 'Anonymous';
 		reset_display_name();
 		$.history.init(load_hash, { 'unescape': '/' });
-	});
-	this.socket.on('disconnect', function(){
+	})
+	.on('disconnect', function(){
 		delete that.project;
-		$("#disconnected").fancybox({
-			'autoScale'         : false,
-			'enableEscapeButton': false,
-			'showCloseButton'   : false,
-			'hideOnOverlayClick': false,
-			'hideOnContentClick': false,
-			'content'           : $("#disconnected").html()
-		}).trigger("click");
+		$('#canvas').html('');
+		$('.canvas_object_edit').remove();
+
 		that.initialize_reconnect.call(that);
 	});
+
+	this.socket.connect();
+
+	// retry connection
+	// socket.io's timeout and retry don't seem to work well w/firefox
+	this.connected = setInterval(function() {
+		if (that.socket.connected == true) {
+			clearInterval(that.connected);
+		} else {
+			that.socket.connect();
+		}
+	}, 2000);
+
 	return true;
 };
 
-Environment.prototype.initialize_reconnect = function(){
+Environment.prototype.initialize_reconnect = function() {
 	if (this.show_countdown_timer) clearTimeout(this.show_countdown_timer);
 	if (this.countdown_timer) clearTimeout(this.countdown_timer);
 	if (this.reconnect_timer) clearTimeout(this.reconnect_timer);
 	this.reset_time = 4000;
 	this.attempt_reconnect.call(this);
 	this.countdown.call(this);
-}
 
-Environment.prototype.attempt_reconnect = function(){
-	if(this.socket.connected == true) return;
+};
+
+Environment.prototype.attempt_reconnect = function() {
+	if (this.socket.connected == true) return;
 	var that = this;
 
 	this.reconnect_timer = setTimeout(function(){
@@ -58,24 +74,35 @@ Environment.prototype.attempt_reconnect = function(){
 };
 
 Environment.prototype.show_countdown = function(){
-	$('#fancybox-content .wait_time').text((this.reset_time + 1000)/1000);
-	$('#fancybox-content .reconnect').hide();
-	this.reset_time = this.reset_time * 2 < 29000 ? this.reset_time * 2 : 29000;
-	$('#fancybox-content .countdown').show();
+	$('#reconnect').dialog('destroy').remove();
+	$(Views.reconnect( Math.ceil((this.reset_time + 1000) / 1000) )).dialog({
+		title: 'Connection Lost',
+		resizable: false,
+		minHeight: 50,
+		modal: true,
+		zIndex: 10000,
+	});
+	this.reset_time = this.reset_time * 2 < 30000 ? this.reset_time * 2 : 30000;
 };
 
 Environment.prototype.hide_countdown = function(){
-	$('#fancybox-content .reconnect').show();
-	$('#fancybox-content .countdown').hide();
+	$('#reconnect').dialog('destroy').remove();
+	$('<div id="reconnect">Reconnecting.<br><div id="wait"></div></div>').dialog({
+		title: 'Connection Lost',
+		resizable: false,
+		minHeight: 50,
+		modal: true,
+		zIndex: 10000,
+	});
 };
 
 Environment.prototype.countdown = function(){
-	if(this.socket.connected == true) return;
-	var time_span = $("#fancybox-content .wait_time"),
+	if (this.socket.connected == true) return;
+	var time_span = $("#reconnect .wait"),
 			that = this,
 			time = parseInt(time_span.text());
 
-	time = time > 0? time - 1: 0;
+	time = time > 0 ? time - 1 : 0;
 	time_span.text(time);
 	this.countdown_timer = setTimeout(function(){
 		that.countdown.call(that);

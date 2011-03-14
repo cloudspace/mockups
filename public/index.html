@@ -4,7 +4,6 @@
 		<title>Mock It Out</title>
 		<link rel="icon" href="/cloudspacefavicon.png" type="image/png">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" media="screen"/>
-		<link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox-1.3.2.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/canvas.css" media="screen"/>
 		<script src="/javascripts/jquery-1.4.4.min.js"></script>
@@ -18,7 +17,6 @@
 		<script src="/javascripts/growl.js"></script>
 		<script src="/javascripts/views.js"></script>
 		<script src="/javascripts/jquery.history.js"></script>
-		<script src="/javascripts/fancybox/jquery.fancybox-1.3.2.pack.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="/javascripts/message_processor.js"></script>
 		<script src="/javascripts/main.js"></script>
@@ -98,22 +96,6 @@
 
 		<div id='canvas'>&nbsp;</div>
 		<div id='growl'></div>
-
-		<div style="display: none;">
-			<div id="disconnected">
-				<div class='status'>
-					<strong>Your connection has been lost.</strong>
-					<div class='countdown'>
-						Next connection attempt in <span class='wait_time'>&nbsp;</span>s.
-						<form onsubmit='env.initialize_reconnect();return false;'>
-							<input type="submit" value="Reconnect Now" />
-						</form>
-					</div>
-					<span class='reconnect'>Attempting to reconnect.</span>
-				</div>
-			</div>
-		</div>
-
 	</body>
 </html>
 

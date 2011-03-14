@@ -5,6 +5,7 @@ a { text-decoration:none; color:#3c3c3c; }
 #connecting p{ text-align: left; font-size: 15px; line-height: 20px; margin-top: 25px; }
 #connecting label, #connected label { display: inline-block; margin-left: 10px; }
 #connected p{ margin: 5px 0 10px;text-align: left; font-size: 15px; line-height: 20px; }
+#reconnect, #connecting { text-align: center; }
 #canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
 #set_password { cursor: pointer; }
 
