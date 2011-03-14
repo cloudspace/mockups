@@ -8,8 +8,8 @@ Renderer = {
 		// if this call gets something back then canvas_object exists
 		this.page_element = $('#canvas .canvas_object[canvas_object_id=' + canvas_object.id + ']');
 
-		if (this.page_element.length == 0) { //object not rendered
-			//this bothers me as much as it does you.  We can get rid of it when we implement box containers better.  Until then, I don't want to hear you complain.
+		if (this.page_element.length == 0) { // object not rendered
+			// this bothers me as much as it does you.  We can get rid of it when we implement box containers better.  Until then, I don't want to hear you complain.
 			var element_class = canvas_object.template_id == 'box_container'? 'class="box_container"':'';
 			this.page_element =  $('<div ' + element_class  + '></div>')
 				.addClass('canvas_object')
@@ -20,10 +20,8 @@ Renderer = {
 					opacity:       '0.6',
 					snap:          '#canvas, #canvas .canvas_object',
 					snapTolerance: '5',
-					distance:   0,
-					//revert     : true,
-					//revertDuration: 0,
-					start:   function(event, ui) {
+					distance:      0,
+					start:         function(event, ui) {
 						$(this).addClass('ui-selected').siblings().removeClass('ui-selected');
 					},
 				});
@@ -71,6 +69,7 @@ Renderer = {
 				$(this).width('').height(''); // unset inline styles so that the object properly reloads
 			},
 		};
+		if (template_id == 'select_menu')     options.minWidth = 32;
 		if (template_id == 'vertical_line')   options.handles = 'n, s';
 		if (template_id == 'horizontal_line') options.handles = 'e, w';
 		return options;
@@ -119,7 +118,7 @@ Renderer = {
 	},
 
 	select_menu: function() {
-		return "<select><option value=''>"+ this.content +"</option></select>";
+		return "<div class='rad5 select'><div class='select_inner'><div class='select_text'>" + this.content + "</div></div><div class='select_right_outer rad5 sw nw'><div class='select_right'><div class='select_right_inner'><div class='select_click'><div class='select_click_inner'></div></div></div></div></div></div>";
 	},
 
 	radio_buttons: function(){
