@@ -191,7 +191,7 @@ a { text-decoration:none; color:#3c3c3c; }
 .ui-dialog-content textarea { width: 200px; height: 60px; }
 .ui-dialog-content input, .ui-dialog-content textarea { margin: 3px 0 6px 0; }
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.ui-widget-overlay { background: #666; opacity: .50; filter: Alpha(Opacity=50); }
+.ui-widget-overlay { background: url(/images/tutorial-overlay.png) center center #2F2F2F no-repeat; }
 .ui-dialog-titlebar-close { display: none; }
 
 
