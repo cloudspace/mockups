@@ -34,8 +34,9 @@ These are the features that we are planning on introducing.
 	2. Retrieve sitemap
 8. Duplicate project
 9. Integrate an open icon library set
-19. Upload images
+10. Upload images
 11. Auto-resizing text
+12. Layered canvas objects
 
 ### Guidelines
 
