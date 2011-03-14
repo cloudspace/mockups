@@ -143,21 +143,24 @@ MessageProcessor = {
 	},
 
 	connected: function() {
-		if ($.cookie('skipconnect')) {
-			$('#connecting').dialog('destroy');
-		} else {
-			$('#connecting')
-				.html('<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br><input type="submit" value="Start Mocking"></form>')
-				.dialog('option', 'minHeight', 50)
-				.dialog('option', 'closeOnEscape', true)
-				.dialog('option', 'title', 'Connected')
-				.find('form').submit(function() {
+		$('#connecting').dialog('destroy');
+//		if (true){ //!$.cookie('skipconnect')) {
+
+  		$connected = $(Views.connected());
+			$connected
+				.dialog({
+						minHeight: 50,
+						closeOnEscape: true,
+						title: 'Connected',
+						modal: true,
+						zIndex: 10001
+				}).find('form').submit(function() {
 					var checked = $(this).find('input[type=checkbox]').attr('checked');
 					if (checked) $.cookie('skipconnect', true);
-					$('#connecting').dialog('destroy');
+					$('#connected').dialog('destroy');
 					return false;
 				});
-		}
+//		}
 	},
 
 	announcement: function(data) {
