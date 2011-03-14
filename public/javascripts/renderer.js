@@ -10,8 +10,8 @@ Renderer = {
 
 		if (this.page_element.length == 0) { //object not rendered
 			//this bothers me as much as it does you.  We can get rid of it when we implement box containers better.  Until then, I don't want to hear you complain.
-			var class = canvas_object.template_id == 'box_container'? 'class="box_container"':'';
-			this.page_element =  $('<div ' + class  + '></div>')
+			var element_class = canvas_object.template_id == 'box_container'? 'class="box_container"':'';
+			this.page_element =  $('<div ' + element_class  + '></div>')
 				.addClass('canvas_object')
 				.attr('canvas_object_id', canvas_object.id)
 				.css('position', 'absolute') 
