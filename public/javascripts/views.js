@@ -46,6 +46,18 @@ Views = {
 
 		return html;
 	},
-
+	connecting: function(){
+		return '<div id="connecting"><div id="wait"></div><p>Connecting to the Cloudspace Mockups.</p></div>';
+	},
+	connected: function(){
+	html = 
+		'<div id="connected">' +
+		'<p>Welcome to the Cloudspace Mockups!</p>' +
+		'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
+		'<input type="submit" value="Start Mocking">' +
+		'</form>' +
+		'</div>';
+	return html;
+	},
 }
 

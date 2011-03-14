@@ -31,7 +31,10 @@ $(window).load(function() {
 		return false;
 	});
 
-	$connecting = $('<div id="connecting"><div id="wait"></div></div>');
+});
+
+$(document).ready(function(){
+  $connecting = $(Views.connecting());
 	$connecting
 		.dialog({
 			resizable: false,
