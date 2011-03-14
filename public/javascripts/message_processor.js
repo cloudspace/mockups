@@ -149,6 +149,7 @@ MessageProcessor = {
   		$connected = $(Views.connected());
 			$connected
 				.dialog({
+						resizable: false,
 						minHeight: 50,
 						closeOnEscape: true,
 						title: 'Connected',

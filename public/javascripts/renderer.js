@@ -46,7 +46,7 @@ Renderer = {
 	resize_options: function(template_id) {
 		var options = {
 			//handles: 'n, e, s, w, nw, ne, sw, se',
-			handles: 'se',
+			handles: 'ne, se, sw, nw',
 			containment: 'parent',
 			minWidth: 10,
 			minHeight: 10,
