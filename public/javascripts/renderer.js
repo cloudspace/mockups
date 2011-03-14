@@ -115,7 +115,7 @@ Renderer = {
 	},
 
 	submit_button: function(){
-		return "<input type='submit' class='submit' value='" + this.content + "'/>";
+		return "<div class='rad5 submit'><div class='submit_inner'><div class='submit_text'>" + this.content + "</div></div></div>";
 	},
 
 	select_menu: function() {
