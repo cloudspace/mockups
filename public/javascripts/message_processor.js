@@ -144,7 +144,7 @@ MessageProcessor = {
 
 	connected: function() {
 		$('#connecting').dialog('destroy');
-		if (true){ !$.cookie('skipconnect')) {
+		if (!$.cookie('skipconnect')) {
 
   		$connected = $(Views.connected());
 			$connected
