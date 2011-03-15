@@ -38,12 +38,12 @@
 .ui-resizable-w { cursor: w-resize; width: 11px; height: 100%; left: -11px; top: 0; background: transparent url('/images/leftcenterhandle.png') no-repeat 1px center; border-right-width: 2px; }
 
 .ui-resizable-se { width: 32px; height: 32px; cursor: se-resize; right: -25px; bottom: -25px; background: url('/images/bottomrighthandle.png') top left no-repeat; }
-.ui-resizable-sw { cursor: sw-resize; left: -25px; bottom: -25px; background: url('/images/bottomlefthandle.png') top right no-repeat; }
-.ui-resizable-nw { cursor: nw-resize; left: -25px; top: -25px; background: url('/images/toplefthandle.png') bottom right no-repeat; }
-.ui-resizable-ne { cursor: ne-resize; right: -25px; top: -25px; background: url('/images/toprighthandle.png') bottom left no-repeat; }
+.ui-resizable-sw { cursor: sw-resize; left: -25px; bottom: -25px; background: transparent; }
+.ui-resizable-nw { cursor: nw-resize; left: -25px; top: -25px; background: transparent; }
+.ui-resizable-ne { cursor: ne-resize; right: -25px; top: -25px; background: transparent; }
 
-.vertical_line ~ .ui-resizable-handle { width: 21px; height: 11px; left: -9px; }
-.horizontal_line ~ .ui-resizable-handle { width: 11px; height: 21px; top: -9px; }
+.vertical_line ~ .ui-resizable-handle { border-color: transparent; background: url('/images/handle.png') no-repeat; width: 21px; height: 23px; left: -8px; }
+.horizontal_line ~ .ui-resizable-handle { border-color: transparent; background: url('/images/handle.png') no-repeat; width: 11px; height: 21px; top: -9px; }
 
 
 
