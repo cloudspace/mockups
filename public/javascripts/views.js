@@ -17,8 +17,6 @@ Views = {
 				html          = '<form canvas_object_id="'+ canvas_object_id +'" class="canvas_object_update">',
 				attributes    = templates[canvas_object.template_id].attributes,
 				$element      = $('.canvas_object[canvas_object_id=' + canvas_object_id + ']').find('.content');
-
-		html += ' <input type="submit" class="delete" value="delete this object">'
 	
 		if (attributes.height) {
 			html += '<label for="height">Height</label> ' +
@@ -43,6 +41,7 @@ Views = {
 				'<br />';
 		}
 		html += '<input type="submit" value="submit">';
+		html += ' <a class="delete" href="javascript:">delete this object</a>'
 		html += '</form>';
 
 		return html;
