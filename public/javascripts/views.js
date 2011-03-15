@@ -18,12 +18,14 @@ Views = {
 				attributes    = templates[canvas_object.template_id].attributes,
 				$element      = $('.canvas_object[canvas_object_id=' + canvas_object_id + ']').find('.content');
 
+		html += ' <input type="submit" class="delete" value="delete this object">'
+	
 		if (attributes.height) {
 			html += '<label for="height">Height</label> ' +
 				'<input id="height" name="height" value="' + (canvas_object.height || parseInt($element.css('height'))) + '" type="text"> px ' +
 				'<br>';
 		}
-
+		
 		if (attributes.width) {
 			html += '<label for="width">Width</label>' +
 				'<input id="width" name="width" value="' + (canvas_object.width || parseInt($element.css('width'))) + '" type="text"> px ' +
@@ -40,8 +42,7 @@ Views = {
 				'<textarea id="content" name="content">' + content + '</textarea>' +
 				'<br />';
 		}
-
-		html += '<input type="submit" value="submit"> <input type="submit" class="delete" value="delete this object">'
+		html += '<input type="submit" value="submit">';
 		html += '</form>';
 
 		return html;
