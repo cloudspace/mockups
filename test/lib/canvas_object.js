@@ -142,6 +142,16 @@ exports.canvas_object = testCase({
 			});
 		});
 	},
+	"name: returns the canvas_object template_id without underscores": function(test) {
+		Project.create(function(project) {
+			Page.create(project, function(page) {
+				CanvasObject.create(page, { canvas_object: {template_id: "frank_drebbin_policeman"} }, function(canvas_object) {
+					test.equal(canvas_object.name(), "frank drebbin policeman");
+					test.done();
+				});
+			});
+		});
+	},
 
 	"CanvasObject.find: returns a canvas_object": function(test) {
 		Project.create(function(project) {
