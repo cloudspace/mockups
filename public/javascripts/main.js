@@ -123,7 +123,7 @@ $(document).ready(function(){
 			title:         'Edit Element'
 		}).html(Views.canvas_object_edit(canvas_object_id));
 
-		$(".canvas_object_update textarea").focus();
+		$(".canvas_object_update textarea").select();
 
 		$("#canvas").one('click', function(e) {
 			$('.option_pane').remove();
