@@ -61,8 +61,11 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:url(/images/expandicon.png);
 }
 
-.section_break { background:url('/images/sectionbreak.png') 10px 0 no-repeat; text-indent: -9999px; cursor:pointer; }
+.section_break { height: 15px; background:url('/images/sectionbreak.png') 10px 0 no-repeat; text-indent: -9999px; cursor:pointer; }
 .section_break.collapsed{ background: url('/images/sectionbreakclosed.png') 10px 0 no-repeat;}
+
+.home{ color:blue; font-size:10px; }
+
 #draggable {
 	background:url(/images/draggableicon.png);
 	width:19px;
@@ -208,5 +211,4 @@ a { text-decoration:none; color:#3c3c3c; }
 .rad5.sw, .ui-dialog-titlebar { border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0; }
 
 .option_pane input[type=text]{ width: 50px; }
-
 
