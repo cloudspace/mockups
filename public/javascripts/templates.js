@@ -15,8 +15,8 @@ templates = {
 		},
 	},
 
-	paragraph: {
-		default_content: "Paragraph",
+	text: {
+		default_content: "Text",
 		attributes: {
 			fontsize: 'text',
 			width: 'text',

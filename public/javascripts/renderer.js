@@ -86,7 +86,7 @@ Renderer = {
 		return "<h1>"+ this.content +"</h1>";
 	},
 
-	paragraph: function() {
+	text: function() {
 		return "<p>"+ this.content.split("\n").join("<br/>") +"</p>";
 	},
 
