@@ -2,5 +2,12 @@
 test/results/*.js.xml
 .vagrant
 Vagrantfile
+REVISION
 .fog
 config/servers.yml
+tmp/*
+log/*
+log
+public/system
+public/system/*
+
