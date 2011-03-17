@@ -47,8 +47,13 @@ a { text-decoration:none; color:#3c3c3c; }
 	border-bottom: 1px solid #444444;
 	height: 30px;
 	cursor: move;
-}
+background: #C8C8C8; /* old browsers */
+background: -moz-linear-gradient(top, #C8C8C8 0%, #C8C8C8 46%, #939393 94%); /* firefox */
 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C8C8C8), color-stop(46%,#C8C8C8), color-stop(94%,#939393)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C8C8C8', endColorstr='#939393',GradientType=0 ); /* ie */
+}
 #expandcollapse {
 	background:url(/images/collapseicon.png);
 	width:11px;
@@ -62,10 +67,10 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:url(/images/expandicon.png);
 }
 
-.section_break { height: 15px; background:url('/images/sectionbreak.png') 10px 0 no-repeat; text-indent: -9999px; cursor:pointer; }
-.section_break.collapsed{ background: url('/images/sectionbreakclosed.png') 10px 0 no-repeat;}
+.section_break { padding-top: 10px; height: 10px; background:url('/images/hr-open.png') 0 8px no-repeat; text-indent: -9999px; cursor:pointer; }
+.section_break.collapsed{ background: url('/images/hr-closed.png') 0 8px no-repeat;padding-top:10px;}
 
-.home{ color:blue; font-size:10px; }
+.home{ color:#469AC6; text-decoration: underline; font:10px;font-weight:bold; }
 
 #help {
 	width:19px;

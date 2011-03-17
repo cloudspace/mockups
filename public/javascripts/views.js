@@ -66,7 +66,7 @@ Views = {
 		html = 
 		'<div id="overlay_wrapper" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay" >&nbsp;</div>'+
 		'<div id="overlay_contents" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay">'+
-		'<img  style="margin-top:50px;" src="/images/overlay_image.png"/>' +
+		'<img src="/images/overlay_image.png"/>' +
 		'<h2 class="overlay_header">Welcome to Cloudspace Mockups <a target="_blank" href="http://github.com/cloudspace/mockups">http://github.com/cloudspace/mockups</a></h2>'+
 		'</div>';
 		return html;
