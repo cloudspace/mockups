@@ -1,6 +1,5 @@
 
 var testCase         = require('nodeunit').testCase,
-    it               = require('../test_helper').it,
     db               = require('../test_helper').db,
     ObjectID         = require('mongodb').ObjectID,
     Project          = require('../../lib/project').Project;
