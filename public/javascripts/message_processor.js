@@ -22,6 +22,7 @@ MessageProcessor = {
 		env.project.sync_mockup();
 		jQuery.history.load(env.project.current_page_path());
 		$('#project_display_name').val(project.name);
+		show_connected_screen();
 	},
 
 	// User receives this action only when they were the one to create the project.
@@ -143,7 +144,6 @@ MessageProcessor = {
 	},
 
 	connected: function() {
-		show_connected_screen();
 	},
 
 	announcement: function(data) {
