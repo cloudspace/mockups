@@ -1,5 +1,4 @@
 var testCase         = require('nodeunit').testCase,
-    it               = require('../test_helper').it,
 	  db               = require('../test_helper').db,
     Client           = require('../test_helper').Client;
 
