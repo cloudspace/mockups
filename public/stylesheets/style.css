@@ -66,13 +66,13 @@ a { text-decoration:none; color:#3c3c3c; }
 
 .home{ color:blue; font-size:10px; }
 
-#draggable {
-	background:url(/images/draggableicon.png);
+#help {
 	width:19px;
 	height:11px;
 	float:right;
 	margin:10px 5px;
-	cursor:move;
+	cursor: pointer;
+	font-weight: bold;
 }
 
 #logo {

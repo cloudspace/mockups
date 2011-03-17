@@ -143,25 +143,7 @@ MessageProcessor = {
 	},
 
 	connected: function() {
-		$('#connecting').dialog('destroy');
-		if (!$.cookie('skipconnect')) {
-
-  		$connected = $(Views.connected());
-			$connected
-				.dialog({
-						resizable: false,
-						minHeight: 50,
-						closeOnEscape: true,
-						title: 'Connected',
-						modal: true,
-						zIndex: 10001
-				}).find('form').submit(function() {
-					var checked = $(this).find('input[type=checkbox]').attr('checked');
-					if (checked) $.cookie('skipconnect', true);
-					$('#connected').dialog('destroy');
-					return false;
-				});
-		}
+		show_connected_screen();
 	},
 
 	announcement: function(data) {
