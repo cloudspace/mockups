@@ -1,7 +1,6 @@
 
 var testCase         = require('nodeunit').testCase,
     db               = require('../test_helper').db,
-    ObjectID         = require('mongodb').ObjectID,
     Project          = require('../../lib/project').Project,
     Page             = require('../../lib/page').Page,
     CanvasObject     = require('../../lib/canvas_object').CanvasObject;
@@ -50,9 +49,10 @@ exports.canvas_object = testCase({
 	},
 
 	"create: updates the canvas_objects_created counter": function(test) {
+		var that = this;
 		test.equal(this.project.canvas_objects_created, 0);
 		CanvasObject.create(this.page, { canvas_object: {} }, function(canvas_object) {
-			Project.find_by_id(this.project._id, function(project) {
+			Project.find_by_id(that.project._id, function(project) {
 				test.equal(project.canvas_objects_created, 1);
 				test.done();
 			});
