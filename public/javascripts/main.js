@@ -123,7 +123,7 @@ $(document).ready(function(){
 			title:         'Edit Element'
 		}).html(Views.canvas_object_edit(canvas_object_id));
 
-		$(".canvas_object_update textarea").focus();
+		$(".canvas_object_update textarea").select();
 
 		$("#canvas").one('click', function(e) {
 			$('.option_pane').remove();
@@ -135,8 +135,33 @@ $(document).ready(function(){
 	get_canvas_object_content = function(canvas_object_id){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
-	}
-
+	};
+	show_connected_screen = function(){
+		$('#connecting').dialog('destroy');
+		$('.ui-dialog').remove();
+			$connected = $(Views.connected());
+			$connected
+				.dialog({
+						minHeight: 50,
+						resizable: false,
+						closeOnEscape: true,
+						title: 'Connected',
+						modal: true,
+						zIndex: 10001
+				}).find('form').submit(function() {
+					var checked = $(this).find('input[type=checkbox]').attr('checked');
+					if (checked) $.cookie('skipconnect', true);
+					$('#connected').dialog('destroy');
+					$('.ui-dialog').remove();
+					return false;
+				});
+	};
+	
+	$('#help').live('click', function(e){
+	
+		show_connected_screen();
+	});
+	
 	$('#floatingpanel').draggable({
 		handle: '#handler',
 		containment: 'html',

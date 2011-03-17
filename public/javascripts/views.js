@@ -21,27 +21,27 @@ Views = {
 		if (attributes.height) {
 			html += '<label for="height">Height</label> ' +
 				'<input id="height" name="height" value="' + (canvas_object.height || parseInt($element.css('height'))) + '" type="text"> px ' +
-				'<br>';
+				'<br/>';
 		}
 		
 		if (attributes.width) {
 			html += '<label for="width">Width</label>' +
 				'<input id="width" name="width" value="' + (canvas_object.width || parseInt($element.css('width'))) + '" type="text"> px ' +
-				'<br>';
+				'<br/>';
 		}
 
 		if (attributes.fontsize) {
 			html += '<label for="font-size">Font Size</label>' +
 				'<input id="font-size" name="fontsize" type="text" value="' + (canvas_object.fontsize || parseInt($element.css('font-size'))) + '"> px ' +
-				'<br>';
+				'<br/>';
 		}
 		if (attributes.content) {
 			html += '<label for="content">Content</label>' +
 				'<textarea id="content" name="content">' + content + '</textarea>' +
 				'<br />';
 		}
-		html += '<input type="submit" value="submit">';
-		html += ' <a class="delete" href="javascript:">delete this object</a>'
+		html += '<input type="submit" value="Submit" class="rad5 submit">';
+		html += '<a class="delete" href="javascript:">delete this object</a>'
 		html += '</form>';
 
 		return html;
@@ -54,7 +54,7 @@ Views = {
 		'<div id="connected">' +
 		'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup>!</p>' +
 		'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
-		'<input type="submit" value="Start Mocking">' +
+		'<input type="submit" value="Start Mocking" class="start" />' +
 		'</form>' +
 		'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
 		'</div>';
