@@ -19,7 +19,7 @@ nginx_site "default" do
   enable false
 end
 
-%w(mongodb@0.7.9 nodeunit@0.5.0 socket.io@0.6.15).each do |name|
+%w(mongodb@0.7.9 nodeunit@0.5.1 socket.io@0.6.15).each do |name|
   execute "npm installation of #{name}" do
     command "npm install #{name}"
     only_if { ::File.exists?("/usr/local/bin/npm@#{node[:nodejs][:npm]}") }
