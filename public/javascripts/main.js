@@ -1,3 +1,4 @@
+
 $(window).load(function() {
 
 	// Key bindings used so that users may delete mockup objects (with the delete key).
@@ -139,6 +140,7 @@ $(document).ready(function(){
 	show_connected_screen = function(){
 		$('#connecting').dialog('destroy');
 		$('.ui-dialog').remove();
+		if (!$.cookie('skipconnect')) {
 			$connected = $(Views.connected());
 			$connected
 				.dialog({
@@ -155,6 +157,7 @@ $(document).ready(function(){
 					$('.ui-dialog').remove();
 					return false;
 				});
+		}
 	};
 	
 	$('#help').live('click', function(e){
@@ -284,12 +287,12 @@ function load_hash(hash) {
 	if (hash) {
 		hash = hash.split('/');
 		if (typeof env.project == 'undefined') {
-			env.socket.send({ project_find: { id: hash[0], hash: hash[1] } });
-		} else if (env.project.id != hash[0]) {
+			env.socket.send({ project_find: { id: hash[1], hash: hash[2] } });
+		} else if (env.project.id != hash[1]) {
 			env.project = undefined;
-			env.socket.send({ project_find: { id: hash[0], hash: hash[1] } });
+			env.socket.send({ project_find: { id: hash[1], hash: hash[2] } });
 		} else {
-			env.project.select_page(hash[2]);
+			env.project.select_page(hash[3]);
 		}
 	} else {
 		env.project = undefined;

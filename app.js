@@ -24,18 +24,17 @@ var http = require('http')
   , sys = require(process.binding('natives').util ? 'util' : 'sys')
   , server
   , clients = []
-  , Db = require('mongodb').Db
-  , Server = require('mongodb').Server;
+	, mongoose = require('mongoose');
 
-exports.sys			 = sys;
-exports.fs			 = fs;
+//exports.sys			 = sys;
+//exports.fs			 = fs;
 exports.clients  = clients;
-exports.db       = new Db('mockups', new Server("127.0.0.1", 27017, {}));
+exports.mongoose = mongoose.connect('mongodb://127.0.0.1/mockups');
 
 var User = require('./lib/user').User
   , Project = require('./lib/project').Project
-  , Page = require('./lib/page').Page
-  , CanvasObject = require('./lib/canvas_object').CanvasObject
+  //, Page = require('./lib/page').Page
+  //, CanvasObject = require('./lib/canvas_object').CanvasObject
   , MessageProcessor = require('./lib/message_processor').MessageProcessor;
 
 server = http.createServer(function(req, res){
@@ -74,7 +73,6 @@ io.on('connection', function(client){
 
 	client.on('disconnect', function(){
 		client.user.unsubscribe_all();
-		// TODO restrict this to a project
 		//client.broadcast({ announcement: client.user.ip + ' disconnected' });
 	});
 });

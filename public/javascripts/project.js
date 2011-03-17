@@ -31,7 +31,7 @@ Project.prototype.find_page_id_by_name = function(name) {
 };
 
 Project.prototype.current_page_path = function() {
-	return this.path + '/' + this.current_page;
+	return '/' + this.path + '/' + this.current_page;
 };
 
 // set current_page based on page_id

@@ -16,7 +16,6 @@ MessageProcessor = {
 
 	project_load: function(project) {
 		$('#submit_password').dialog('destroy');
-
 		env.project = new Project(project);
 		// set page items
 		env.project.sync_mockup();
