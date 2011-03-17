@@ -137,6 +137,7 @@ $(document).ready(function(){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
+
 	show_connected_screen = function(){
 		$('#connecting').dialog('destroy');
 		$('.ui-dialog').remove();
@@ -161,7 +162,6 @@ $(document).ready(function(){
 	};
 	
 	$('#help').live('click', function(e){
-	
 		show_connected_screen();
 	});
 	
@@ -219,7 +219,6 @@ $(document).ready(function(){
 	});
 
 	// Handle user changing their display name.
-	// TODO move to User
 	$('#name_change').submit(function(){
 		env.socket.send({ user_update: { name: $('#display_name').val() } });
 		$('#display_name').blur();
@@ -228,11 +227,9 @@ $(document).ready(function(){
 
 	// Resets input field to current display_name.
 	// The only way this should get
-	// TODO move to User
 	$('#display_name').blur(function(){
 		reset_display_name();
 	});
-
 	
 	$('#mockup_pages .delete').live('click', function() {
 		if ($('#mockup_pages .delete').length == 1) {
