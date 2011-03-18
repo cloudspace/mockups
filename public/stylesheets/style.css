@@ -1,4 +1,5 @@
-html { background: url('/images/stripes.png') repeat top left; font-family: 'Verdana', sans-serif; height:100%}
+html { background: url('/images/stripes.png') repeat top left; font-family: 'Verdana', sans-serif; height:100%;width:100%;}
+body{ position:relative;height: 100%; width:100% }
 a { text-decoration:none; color:#3c3c3c; }
 #connecting, #connected { text-align: center; }
 	#wait { background: transparent url('/images/loading.gif') no-repeat top left; margin: 30px 20px; width: 32px; height: 32px;float:left; }
@@ -46,8 +47,13 @@ a { text-decoration:none; color:#3c3c3c; }
 	border-bottom: 1px solid #444444;
 	height: 30px;
 	cursor: move;
-}
+background: #C8C8C8; /* old browsers */
+background: -moz-linear-gradient(top, #C8C8C8 0%, #C8C8C8 46%, #939393 94%); /* firefox */
 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C8C8C8), color-stop(46%,#C8C8C8), color-stop(94%,#939393)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C8C8C8', endColorstr='#939393',GradientType=0 ); /* ie */
+}
 #expandcollapse {
 	background:url(/images/collapseicon.png);
 	width:11px;
@@ -61,10 +67,10 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:url(/images/expandicon.png);
 }
 
-.section_break { height: 15px; background:url('/images/sectionbreak.png') 10px 0 no-repeat; text-indent: -9999px; cursor:pointer; }
-.section_break.collapsed{ background: url('/images/sectionbreakclosed.png') 10px 0 no-repeat;}
+.section_break { padding-top: 10px; height: 10px; background:url('/images/hr-open.png') 0 8px no-repeat; text-indent: -9999px; cursor:pointer; }
+.section_break.collapsed{ background: url('/images/hr-closed.png') 0 8px no-repeat;padding-top:10px;}
 
-.home{ color:blue; font-size:10px; }
+.home{ color:#469AC6; text-decoration: underline; font:10px;font-weight:bold; }
 
 #help {
 	width:19px;
@@ -197,10 +203,13 @@ a { text-decoration:none; color:#3c3c3c; }
 .ui-dialog-content textarea { width: 200px; height: 60px; }
 .ui-dialog-content input, .ui-dialog-content textarea { margin: 3px 0 6px 0; }
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.ui-widget-overlay { background: url(/images/tutorial-overlay.png) center center #2F2F2F no-repeat; }
+.ui-widget-overlay { background: #2F2F2F;opacity:0.6;filter:alpha(opacity=60) }
 .ui-dialog-titlebar-close { display: none; }
 
-
+#overlay_wrapper{z-index:10001;height:100% ;width: 100%;position:absolute;top:0;opacity:0.4;filter:alpha(opacity=40);background:black;}
+#overlay_contents{z-index:10002;height:100%;width:100%;position:absolute;top:0;}
+.overlay_header{position:absolute;top:570px;width:900px;font-size:25px;}
+.overlay_header a{color:blue;font-size:15px;}
 .clear { clear: both; height: 1px; }
 
 /* border radius styles */

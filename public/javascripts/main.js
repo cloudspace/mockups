@@ -142,7 +142,10 @@ $(document).ready(function(){
 		$('#connecting').dialog('destroy');
 		$('.ui-dialog').remove();
 		if (!$.cookie('skipconnect')) {
-			$connected = $(Views.connected());
+			$(Views.overlay()).appendTo('body');
+			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
+/*
+	$connected = $(Views.connected());
 			$connected
 				.dialog({
 						minHeight: 50,
@@ -158,8 +161,14 @@ $(document).ready(function(){
 					$('.ui-dialog').remove();
 					return false;
 				});
+*/
 		}
 	};
+
+	$('.overlay').live('click',function(){
+		$(".overlay").remove();
+		$("#canvas .canvas_object, #floatingpanel, #growl").show();
+	});
 	
 	$('#help').live('click', function(e){
 		show_connected_screen();
