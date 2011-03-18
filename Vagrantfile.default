@@ -15,7 +15,7 @@ Vagrant::Config.run do |config|
     chef.validation_key_path = '/path/to/validation.pem'
 
     chef.node_name = "mockups"
-
+		chef.add_recipe('apt')
     chef.add_recipe('git::default')
     chef.add_recipe('nodejs::default')
     chef.add_recipe('nodejs::npm')
