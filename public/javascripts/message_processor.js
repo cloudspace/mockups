@@ -114,13 +114,11 @@ MessageProcessor = {
 	},
 
 	page_create: function(data) {
-		var page = data.page;
-
-		env.project.pages[page._id] = page;
+		env.project.pages.push(data.page);
 		if (data.focus) {
 			// This should occur for the user who added the page.
 			// Adds focus to the new page element.
-			env.project.sync_pages(page._id);
+			env.project.sync_pages(env.project.pages.length - 1);
 			env.project.open_input_box($('.selected'));
 		} else {
 			// This should occur for users who did not add the page.
