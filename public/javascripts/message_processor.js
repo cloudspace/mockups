@@ -1,5 +1,5 @@
 MessageProcessor = {
-	error: function(message) {
+	error: function (message) {
 		if (message == '404') {
 			$('body').html('<div id="error_404"><p>Sorry, that project could not be found.</p><p><a href="/">Create a new project.</a></p><div>');
 		} else {
@@ -7,14 +7,14 @@ MessageProcessor = {
 		}
 	},
 
-	process: function(message) {
+	process: function (message) {
 		for (var action in message) {
 			if (this[action]) { this[action](message[action]); }
 			else              { console.log("Undefined action: " + action); }
 		}
 	},
 
-	project_load: function(project) {
+	project_load: function (project) {
 		$('#submit_password').dialog('destroy');
 		env.project = new Project(project);
 		// set page items
@@ -25,17 +25,17 @@ MessageProcessor = {
 	},
 
 	// User receives this action only when they were the one to create the project.
-	project_create: function(created_project) {
+	project_create: function (created_project) {
 		env.project.created = true;
 		$('#projectinfo input').after('<img id="set_password" src="/images/lockicon.png">');
-		$('#set_password').click(function() {
+		$('#set_password').click(function () {
 			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
 
 			create_password.find('form')
 				.append('<label for="password">Password</label> <input type="password" id="password"> <br>')
 				.append('<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm"> <br>')
 				.append('<input type="submit" value="Set Password">')
-				.submit(function() {
+				.submit(function () {
 					var password = $(this).find('#password').val();
 					if (password != $(this).find('#password_confirm').val()) {
 						$(this).siblings('.flash').html('').hide().html("<div class='active'>Your password confirmation does not match.</div>").fadeIn();
@@ -56,7 +56,7 @@ MessageProcessor = {
 		});
 	},
 	
-	project_prompt_password: function(data) {
+	project_prompt_password: function (data) {
 		if (data.error) {
 			$('#submit_password form').before('<div class="flash"><div class="active">' + data.error + '</div></div>').hide().fadeIn();
 			$('input[type=password]').text('').focus();
@@ -76,7 +76,7 @@ MessageProcessor = {
 			.find('form')
 			.append('<label for="password">Password</label> <input type="password" id="password" > <br/>')
 			.append('<input type="submit" value="Submit Password">')
-			.submit(function() {
+			.submit(function () {
 				var password = $(this).find('#password').val();
 				$(this).siblings('.flash').remove();
 				$(this).find('input').blur();
@@ -88,32 +88,32 @@ MessageProcessor = {
 		$('#connecting').dialog('destroy');
 	},
 	
-	project_set_password: function(data) {
+	project_set_password: function (data) {
 		if (data) {
 			$('#create_password').dialog('destroy');
 			$('#set_password').unbind('click').html('Password set.').fadeOut(5000);
 		}
 	},
 
-	user_update: function(data) {
+	user_update: function (data) {
 		env.display_name = data.name;
 		reset_display_name();
 	},
 
-	project_update: function(data) {
+	project_update: function (data) {
 		if (data.name) env.project.update_name(data);
 	},
 
-	page_update: function(data) {
+	page_update: function (data) {
 		env.project.update_page_name(data.page);
 	},
 
-	page_delete: function(data) {
-		delete env.project.pages[data.page._id];
+	page_delete: function (data) {
+		delete env.project.pages[env.project.find_page_index_by_id(data.page._id)];
 		env.project.sync_pages();
 	},
 
-	page_create: function(data) {
+	page_create: function (data) {
 		env.project.pages.push(data.page);
 		if (data.focus) {
 			// This should occur for the user who added the page.
@@ -127,23 +127,23 @@ MessageProcessor = {
 		}
 	},
 
-	canvas_object_create: function(data) {
+	canvas_object_create: function (data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
-	canvas_object_update: function(data) {
+	canvas_object_update: function (data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
-	canvas_object_delete: function(data) {
+	canvas_object_delete: function (data) {
 		delete env.project.pages[data.canvas_object.page._id].canvas_objects[data.canvas_object._id];
 		$('#canvas div[canvas_object_id=' + data.canvas_object._id + ']').remove();
 	},
 
-	connected: function() {
+	connected: function () {
 	},
 
-	message: function(data) {
+	message: function (data) {
 		new Growl(data);
 	},
 
