@@ -72,8 +72,8 @@ io.on('connection', function(client){
 	});
 
 	client.on('disconnect', function(){
+		//client.user.broadcast_to_project({ message: client.user.handle() + ' disconnected.' });
 		client.user.unsubscribe_all();
-		//client.broadcast({ announcement: client.user.ip + ' disconnected' });
 	});
 });
 

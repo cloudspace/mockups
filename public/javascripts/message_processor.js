@@ -109,18 +109,18 @@ MessageProcessor = {
 	},
 
 	page_delete: function(data) {
-		delete env.project.pages[data.page.id];
+		delete env.project.pages[data.page._id];
 		env.project.sync_pages();
 	},
 
 	page_create: function(data) {
-		var page=data.page;
+		var page = data.page;
 
-		env.project.pages[page.id] = page;
+		env.project.pages[page._id] = page;
 		if (data.focus) {
 			// This should occur for the user who added the page.
 			// Adds focus to the new page element.
-			env.project.sync_pages(page.id);
+			env.project.sync_pages(page._id);
 			env.project.open_input_box($('.selected'));
 		} else {
 			// This should occur for users who did not add the page.
@@ -138,15 +138,11 @@ MessageProcessor = {
 	},
 
 	canvas_object_delete: function(data) {
-		delete env.project.pages[data.canvas_object.page.id].canvas_objects[data.canvas_object.id];
-		$('#canvas div[canvas_object_id=' + data.canvas_object.id + ']').remove();
+		delete env.project.pages[data.canvas_object.page._id].canvas_objects[data.canvas_object._id];
+		$('#canvas div[canvas_object_id=' + data.canvas_object._id + ']').remove();
 	},
 
 	connected: function() {
-	},
-
-	announcement: function(data) {
-		new Growl(data);
 	},
 
 	message: function(data) {

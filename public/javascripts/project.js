@@ -82,7 +82,7 @@ Project.prototype.sync_pages = function(page_id) {
 		    '<form page_id="' + index + '" class="name_update">' + // TODO remove h for current_page
 					'<a page_id="' + index + '" id="page_' + index + '" ' +
 					'   title="' + page.name.replace('"', '&quot;') + '" ' +
-					'   href="#' + this.id + '/' + this.hash + '/' + index + '">' +
+					'   href="#/' + this.id + '/' + this.hash + '/' + index + '">' +
 						page_name +
 					'</a>' +
 					'<input class="h" type="text" value="' + page.name + '"/>' +
@@ -104,7 +104,7 @@ Project.prototype.update_name = function(data){
 };
 
 Project.prototype.update_page_name = function(page){
-	this.pages[page.id].name = page.name;
+	this.pages[page._id].name = page.name;
 	this.sync_pages(this.current_page);
 };
 
@@ -113,10 +113,11 @@ Project.prototype.open_input_box = function($target){
 };
 
 Project.prototype.set_canvas_object = function(new_canvas_object){
-	var page_id = new_canvas_object.page.id;
+	var page_id = new_canvas_object.page._id;
 	delete new_canvas_object.page;
 
 	var current_canvas_objects = this.pages[page_id].canvas_objects;
-	current_canvas_objects[new_canvas_object.id] = new_canvas_object;
+	current_canvas_objects[new_canvas_object._id] = new_canvas_object;
 	if (this.current_page == page_id) Renderer.render(new_canvas_object);
 };
+
