@@ -1,20 +1,20 @@
-Environment = function(){
+Environment = function () {
 	this.connected = false;
 	this.socket;
 	this.project;
 	var that = this;
 };
 
-Environment.prototype.connect = function(){
+Environment.prototype.connect = function () {
 	var that = this;
 
 	this.socket = new io.Socket(null, { port: 8080, rememberTransport: true, tryTransportsOnConnectTimeout: true });
 
 	this.socket
-	.on('message', function(obj) {
+	.on('message', function (obj) {
 		MessageProcessor.process(obj);
 	})
-	.on('connect',function(obj) {
+	.on('connect',function (obj) {
 		$('#reconnect').dialog('destroy').remove();
 		if (that.show_countdown_timer) clearTimeout(that.show_countdown_timer);
 		if (that.countdown_timer) clearTimeout(that.countdown_timer);
@@ -24,7 +24,7 @@ Environment.prototype.connect = function(){
 		reset_display_name();
 		$.history.init(load_hash, { 'unescape': '/' });
 	})
-	.on('disconnect', function(){
+	.on('disconnect', function () {
 		delete that.project;
 		$('#canvas').html('');
 		$('.canvas_object_edit').remove();
@@ -36,7 +36,7 @@ Environment.prototype.connect = function(){
 
 	// retry connection
 	// socket.io's timeout and retry don't seem to work well w/firefox
-	this.connected = setInterval(function() {
+	this.connected = setInterval(function () {
 		if (that.socket.connected == true) {
 			clearInterval(that.connected);
 		} else {
@@ -47,7 +47,7 @@ Environment.prototype.connect = function(){
 	return true;
 };
 
-Environment.prototype.initialize_reconnect = function() {
+Environment.prototype.initialize_reconnect = function () {
 	if (this.show_countdown_timer) clearTimeout(this.show_countdown_timer);
 	if (this.countdown_timer) clearTimeout(this.countdown_timer);
 	if (this.reconnect_timer) clearTimeout(this.reconnect_timer);
@@ -57,23 +57,23 @@ Environment.prototype.initialize_reconnect = function() {
 
 };
 
-Environment.prototype.attempt_reconnect = function() {
+Environment.prototype.attempt_reconnect = function () {
 	if (this.socket.connected == true) return;
 	var that = this;
 
-	this.reconnect_timer = setTimeout(function(){
+	this.reconnect_timer = setTimeout(function () {
 		that.attempt_reconnect.call(that);
 	}, this.reset_time + 2000);
 
 	this.hide_countdown();
-	this.show_countdown_timer = setTimeout(function(){
+	this.show_countdown_timer = setTimeout(function () {
 		that.show_countdown.call(that);
 	}, 2000);
 
 	this.socket.connect();
 };
 
-Environment.prototype.show_countdown = function(){
+Environment.prototype.show_countdown = function () {
 	$('#reconnect').dialog('destroy').remove();
 	$(Views.reconnect( Math.ceil((this.reset_time + 1000) / 1000) )).dialog({
 		title: 'Connection Lost',
@@ -85,7 +85,7 @@ Environment.prototype.show_countdown = function(){
 	this.reset_time = this.reset_time * 2 < 30000 ? this.reset_time * 2 : 30000;
 };
 
-Environment.prototype.hide_countdown = function(){
+Environment.prototype.hide_countdown = function () {
 	$('#reconnect').dialog('destroy').remove();
 	$('<div id="reconnect">Reconnecting.<br><div id="wait"></div></div>').dialog({
 		title: 'Connection Lost',
@@ -96,7 +96,7 @@ Environment.prototype.hide_countdown = function(){
 	});
 };
 
-Environment.prototype.countdown = function(){
+Environment.prototype.countdown = function () {
 	if (this.socket.connected == true) return;
 	var time_span = $("#reconnect .wait"),
 			that = this,
@@ -104,7 +104,7 @@ Environment.prototype.countdown = function(){
 
 	time = time > 0 ? time - 1 : 0;
 	time_span.text(time);
-	this.countdown_timer = setTimeout(function(){
+	this.countdown_timer = setTimeout(function () {
 		that.countdown.call(that);
 	},1000);
 };

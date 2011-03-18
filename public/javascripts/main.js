@@ -1,15 +1,15 @@
 
-$(window).load(function() {
+$(window).load(function () {
 
 	// Key bindings used so that users may delete mockup objects (with the delete key).
-	$(document).keydown(function(e) {
+	$(document).keydown(function (e) {
 		last_key_pressed = e.keyCode || "";
 		if ($(document.activeElement).is('input, textarea') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
 		//Key bindings from: http://www.cambiaresearch.com/c4/702b8cd1-e5b0-42e6-83ac-25f0306e3e25/Javascript-Char-Codes-Key-Codes.aspx
 		switch (e.keyCode) {
 			case 8:  // backspace key
 			case 46: // delete key
-				$('#canvas .ui-selected').each(function() {
+				$('#canvas .ui-selected').each(function () {
 					env.socket.send({
 					  canvas_object_delete: {
 							canvas_object: { id: $(this).attr('canvas_object_id') },
@@ -34,8 +34,8 @@ $(window).load(function() {
 
 });
 
-$(document).ready(function(){
-  $connecting = $(Views.connecting());
+$(document).ready(function () {
+	$connecting = $(Views.connecting());
 	$connecting
 		.dialog({
 			resizable: false,
@@ -49,9 +49,9 @@ $(document).ready(function(){
 	env.connect();
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-	$('form.canvas_object_update').live('submit',function(e){
+	$('form.canvas_object_update').live('submit',function (e) {
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({
 				canvas_object_update: {
@@ -71,9 +71,9 @@ $(document).ready(function(){
 			return false;	
 	});
 
-	$('.canvas_object_edit .delete').live('click', function(e) {
+	$('.canvas_object_edit .delete').live('click', function (e) {
 		$('.canvas_object_edit').remove();
-		$(this).each(function() {
+		$(this).each(function () {
 			env.socket.send({
 				canvas_object_delete: {
 					canvas_object: { id: $(this).parents('form').attr('canvas_object_id') },
@@ -84,7 +84,7 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$('.canvas_object').live('dblclick', function(e) {
+	$('.canvas_object').live('dblclick', function (e) {
 		$('.canvas_object_edit').remove();
 		var $tgt = $(e.target), canvas_object_id = $(this).attr('canvas_object_id');
 
@@ -98,19 +98,19 @@ $(document).ready(function(){
 
 		$(".canvas_object_update textarea").select();
 
-		$("#canvas").one('click', function(e) {
+		$("#canvas").one('click', function (e) {
 			$('.option_pane').remove();
 			$('.canvas_object_edit').remove();
 			e.stopPropagation();
 		});
 	});
 
-	get_canvas_object_content = function(canvas_object_id){
+	get_canvas_object_content = function (canvas_object_id) {
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
 
-	show_connected_screen = function(){
+	show_connected_screen = function () {
 		$('#connecting').dialog('destroy');
 		$('.ui-dialog').remove();
 		if (!$.cookie('skipconnect')) {
@@ -126,7 +126,7 @@ $(document).ready(function(){
 						title: 'Connected',
 						modal: true,
 						zIndex: 10001
-				}).find('form').submit(function() {
+				}).find('form').submit(function () {
 					var checked = $(this).find('input[type=checkbox]').attr('checked');
 					if (checked) $.cookie('skipconnect', true);
 					$('#connected').dialog('destroy');
@@ -137,13 +137,13 @@ $(document).ready(function(){
 		}
 	};
 
-	$('.overlay').live('click',function(){
+	$('.overlay').live('click',function () {
 		$(".overlay").remove();
 		$("#canvas .canvas_object, #floatingpanel, #growl").show();
 	});
 	
 	$('#canvas').droppable({
-		drop: function(event, ui) {
+		drop: function (event, ui) {
 			$('input').blur();
 
 			var $dragged_item    = $(ui.draggable), 
@@ -179,7 +179,7 @@ $(document).ready(function(){
 		delay: 10
 	});
 
-	$(window).click(function(e) {
+	$(window).click(function (e) {
 		// #canvas has a lot of click-capturing (draggable, droppable, selectable, resizable)
 		// so we force all input boxes to blur when it is clicked since those jquery plugins
 		// hijack the clicks and prevent the default behavior from occurring

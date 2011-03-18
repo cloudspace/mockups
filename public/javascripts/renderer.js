@@ -1,5 +1,5 @@
 Renderer = {
-	render: function(canvas_object) {
+	render: function (canvas_object) {
 		this.canvas_object = canvas_object;
 		this.content = canvas_object.content ? this.escape(canvas_object.content) : templates[canvas_object.template_id].default_content;
 		var rendered_content;
@@ -16,12 +16,12 @@ Renderer = {
 				.attr('canvas_object_id', canvas_object.id)
 				.css('position', 'absolute') 
 				.draggable({
-					containment:   'parent',
-					opacity:       '0.6',
-					snap:          '#canvas, #canvas .canvas_object',
-					snapTolerance: '5',
-					distance:      0,
-					start:         function(event, ui) {
+					containment   : 'parent',
+					opacity       : '0.6',
+					snap          : '#canvas, #canvas .canvas_object',
+					snapTolerance : '5',
+					distance      : 0,
+					start         : function (event, ui) {
 						$(this).addClass('ui-selected').siblings().removeClass('ui-selected');
 					},
 				});
@@ -41,30 +41,30 @@ Renderer = {
 		return this.page_element.appendTo('#canvas');
 	},
 
-	resize_options: function(template_id) {
+	resize_options: function (template_id) {
 		var options = {
 			//handles: 'n, e, s, w, nw, ne, sw, se',
-			handles: 'ne, se, sw, nw',
-			containment: 'parent',
-			minWidth: 10,
-			minHeight: 10,
-			resize: function(event, ui) {
+			handles     : 'ne, se, sw, nw',
+			containment : 'parent',
+			minWidth    : 10,
+			minHeight   : 10,
+			resize      : function (event, ui) {
 				$(this).find('.content').outerWidth($(this).width()).outerHeight($(this).height());
 			},
-			stop: function(event, ui) {
+			stop        : function (event, ui) {
 				$content = $(this).find('.content');
 				$content.outerWidth($(this).width()).outerHeight($(this).height());
 				env.socket.send({
-					canvas_object_update: {
-						canvas_object: {
-							width:       $content.width(),
-							height:      $content.height(),
-							top:         $(this).css('top'),
-							left:        $(this).css('left'),
-							id:          $(this).attr('canvas_object_id'),
+					page                 : { id: env.project.current_page },
+					canvas_object_update : {
+						canvas_object : {
+							id     : $(this).attr('canvas_object_id'),
+							top    : $(this).css('top'),
+							left   : $(this).css('left'),
+							width  : $content.width(),
+							height : $content.height(),
 						},
-						page:        { id: env.project.current_page }
-					}
+					},
 				});
 				$(this).width('').height(''); // unset inline styles so that the object properly reloads
 			},
@@ -75,110 +75,110 @@ Renderer = {
 		return options;
 	},
 
-	render_helper: function(template_id) {
+	render_helper: function (template_id) {
 		this.content = templates[template_id].default_content;
 		return this[template_id]();
 	},
-	escape: function(content){
+	escape: function (content) {
 		return content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	},
-	heading: function() {
+	heading: function () {
 		return "<h1>" + this.content + "</h1>";
 	},
 
-	text: function() {
+	text: function () {
 		return "<p>" + this.content.split("\n").join("<br/>") + "</p>";
 	},
 
-	link: function() {
+	link: function () {
 		return "<span class='link'>" + this.content + "</span>";
 	},
 
-	list: function() {
+	list: function () {
 		var list_items = "";
-		this.parse_items(this.content, function(item){ list_items += "<li>" + item + "</li>"});
+		this.parse_items(this.content, function (item) { list_items += "<li>" + item + "</li>"});
 		return "<ul>" + list_items + "</ul>";
 	},
 
-	image: function() {
+	image: function () {
 		return "<img class='image' src='/images/picture.png' />";
 	},
 
-	textarea: function() {
+	textarea: function () {
 		return "<textarea>" + this.content + "</textarea>";
 	},
 
-	input_box: function(){
+	input_box: function () {
 		return "<input type='text' class='inputbox' value='" + this.content + "'/>";
 	},
 
-	submit_button: function(){
+	submit_button: function () {
 		return "<div class='rad5 submit'><div class='submit_inner'><div class='submit_text'>" + this.content + "</div></div></div>";
 	},
 
-	select_menu: function() {
+	select_menu: function () {
 		return "<div class='rad5 select'><div class='select_inner'><div class='select_text'>" + this.content + "</div></div><div class='select_right_outer rad5 sw nw'><div class='select_right'><div class='select_right_inner'><div class='select_click'><div class='select_click_inner'></div></div></div></div></div></div>";
 	},
 
-	radio_buttons: function(){
+	radio_buttons: function () {
 		var radio_buttons = "";
-		this.parse_items(this.content ,function(item, is_special){
+		this.parse_items(this.content ,function (item, is_special) {
 			checked = is_special ? "checked='checked'": "";
 			radio_buttons += "<input type='radio' "+ checked  +"name='radio'/> <label>"+ item +"</label><br/>";
 		});
-    return "<form>" + radio_buttons + "</form>";
+		return "<form>" + radio_buttons + "</form>";
 	},
 
-	check_box: function(){
+	check_box: function () {
 		var check_boxes = "";
-		this.parse_items(this.content, function(item, is_special){
+		this.parse_items(this.content, function (item, is_special) {
 			checked = is_special ? "checked='checked'": "";
 			check_boxes += "<input type='checkbox' "+ checked  +"name='checks'/><label>"+ item +"</label><br/>";
 		});
 		return "<form>" + check_boxes + "</form>";
 	},
 
-	box_container: function(){
+	box_container: function () {
 		return "<div class='box'>"+ this.content +"</div>";
 	},
 
-	vertical_line: function(){
+	vertical_line: function () {
 		return "<div class='vertical_line'></div>";
 	},
 
-	horizontal_line: function(){
+	horizontal_line: function () {
 		return "<div class='horizontal_line'></div>";
 	},
 
-//	table: function() {
+//	table: function () {
 //		var trs = "";
-//		this.parse_items(this.content, function(item, is_special){
+//		this.parse_items(this.content, function (item, is_special) {
 //		  trs += "<tr><td>"+ item +"</td></tr>";
 //		});
 //		return "<table><tbody>"+ trs +"</tbody></table>";
 //	},
 
-	global_container: function() {
+	global_container: function () {
 		return "<div class='global_container'>"+ this.content +"</div>";
 	},
 
-	user_navigation: function() {
+	user_navigation: function () {
 		var i, pages= new Array(),that = this;
 		var list_items = "";
-		for(i in env.project.pages){
+		for (i in env.project.pages) {
 			list_items += "<li><span page_id='"+ i +"'>"+ env.project.pages[i].name +"</span></li>";
 		}
 		return "<ul class='nav'>"+ list_items +"</ul>";
 	},
 
-//	footer_navigation: function(){
+//	footer_navigation: function () {
 //		return "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
 //	},
 
-	parse_items: function( list, callback) {
-		list.split("\n").forEach( function(item){
+	parse_items: function (list, callback) {
+		list.split("\n").forEach(function (item) {
 			var is_special = false;
-			if(item[0] == "*"){
+			if (item[0] == "*") {
 				is_special = true;
 				item = item.substring(1);
 			}
