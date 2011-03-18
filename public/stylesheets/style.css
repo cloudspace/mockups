@@ -2,7 +2,8 @@ html { background: url('/images/stripes.png') repeat top left; font-family: 'Ver
 body{ position:relative;height: 100%; width:100% }
 a { text-decoration:none; color:#3c3c3c; }
 #connecting, #connected { text-align: center; }
-	#wait { background: transparent url('/images/loading.gif') no-repeat top left; margin: 30px 20px; width: 32px; height: 32px;float:left; }
+#reconnect #wait{ background: transparent url('/images/loading.gif') no-repeat top left; margin: 0 auto; width: 32px; height: 32px;}
+#connecting #wait { background: transparent url('/images/loading.gif') no-repeat top left; margin: 30px 20px; width: 32px; height: 32px;float:left; }
 #connecting p{ text-align: left; font-size: 15px; line-height: 20px; margin-top: 25px; }
 #connecting label, #connected label { display: inline-block; margin-left: 10px; }
 #connected p{ margin: 5px 0 10px;text-align: center; font-size: 15px; line-height: 20px; }
