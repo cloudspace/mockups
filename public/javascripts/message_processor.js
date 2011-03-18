@@ -79,7 +79,7 @@ MessageProcessor = {
 				var password = $(this).find('#password').val();
 				$(this).siblings('.flash').remove();
 				$(this).find('input').blur();
-				var project_id = window.location.hash.split('/')[0].substring(1);
+				var project_id = window.location.hash.split('/')[1];
 				env.socket.send({ project_authorize: { id: project_id, password: password } });
 				return false;
 			});
