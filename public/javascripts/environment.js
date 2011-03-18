@@ -87,7 +87,7 @@ Environment.prototype.show_countdown = function(){
 
 Environment.prototype.hide_countdown = function(){
 	$('#reconnect').dialog('destroy').remove();
-	$('<div id="reconnect">Reconnecting.<br><div id="wait"></div></div>').dialog({
+	$('<div id="reconnect">Reconnecting.<br/><div id="wait"></div></div>').dialog({
 		title: 'Connection Lost',
 		resizable: false,
 		minHeight: 50,
