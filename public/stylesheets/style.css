@@ -12,7 +12,7 @@ a { text-decoration:none; color:#3c3c3c; }
 #connected .contribute a{ color: blue; }
 #reconnect, #connecting { text-align: center; }
 #canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
-#set_password { cursor: pointer; }
+#settings #set_password { margin-right: 16px; cursor: pointer; }
 
 /* TODO clean this mess up */
 #tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; }
@@ -42,6 +42,7 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 
 #floatingpanel hr { width: 160px; }
+.handle #name_change img{margin-right: 25px;}
 
 #handler {
 	background: #b3b3b3;
