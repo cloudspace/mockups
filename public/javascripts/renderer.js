@@ -80,25 +80,24 @@ Renderer = {
 		return this[template_id]();
 	},
 	escape: function(content){
-		return content.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+		return content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	},
 	heading: function() {
-		return "<h1>"+ this.content +"</h1>";
+		return "<h1>" + this.content + "</h1>";
 	},
 
 	text: function() {
-		return "<p>"+ this.content.split("\n").join("<br/>") +"</p>";
+		return "<p>" + this.content.split("\n").join("<br/>") + "</p>";
 	},
 
 	link: function() {
-		var live_link_attr = this.get_link_attr(this.content);
-		return "<span "+ live_link_attr + " class='link'>"+ this.content +"</span>";
+		return "<span class='link'>" + this.content + "</span>";
 	},
 
 	list: function() {
 		var list_items = "";
-		this.parse_items(this.content, function(item){ list_items += "<li>"+ item +"</li>"});
-		return "<ul>"+ list_items +"</ul>";
+		this.parse_items(this.content, function(item){ list_items += "<li>" + item + "</li>"});
+		return "<ul>" + list_items + "</ul>";
 	},
 
 	image: function() {
@@ -159,11 +158,11 @@ Renderer = {
 //		return "<table><tbody>"+ trs +"</tbody></table>";
 //	},
 
-	global_container: function(){
+	global_container: function() {
 		return "<div class='global_container'>"+ this.content +"</div>";
 	},
 
-	user_navigation: function(){
+	user_navigation: function() {
 		var i, pages= new Array(),that = this;
 		var list_items = "";
 		for(i in env.project.pages){
@@ -171,13 +170,10 @@ Renderer = {
 		}
 		return "<ul class='nav'>"+ list_items +"</ul>";
 	},
+
 //	footer_navigation: function(){
 //		return "<ul class='footer_nav'><li>Nav item 1</li><li>Nav item 2</li><li>Nav item 3</li></ul>";
 //	},
-	get_link_attr: function(content){
-		var page_id = env.project.find_page_id_by_name(content);
-		return (typeof page_id == "undefined") ? "" : "page_id='"+ page_id +"'";
-	},
 
 	parse_items: function( list, callback) {
 		list.split("\n").forEach( function(item){

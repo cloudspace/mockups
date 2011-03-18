@@ -51,34 +51,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-  $('#settings').hide();
-	$('#tabs h3').click(function(){
-		var id = $(this).html().toLowerCase();
-		$('div#' + id).show().siblings('div').hide();
-		$(this).removeClass('inactive').siblings('h3').addClass('inactive');
-	});
-
-	$('#tools .elements li').draggable({
-		appendTo: $("#canvas"),
-		cursorAt: { left: 0, top: 0 },
-		helper: function() {
-			var id = $(this).attr('template_id');
-			var $el = $('<div></div>')
-				.addClass('canvas_object')
-				.html(Renderer.render_helper(id));
-			return $el;
-		}
-	});
-
-	$("#expandcollapse").click(function(){
-		  $("#tabs").slideToggle(300);
-			  $(this).toggleClass('collapsed');
-	});
-	
-	$(".section_break").click(function(){
-		$(this).toggleClass('collapsed').next().slideToggle(300);
-	});
-
 	$('form.canvas_object_update').live('submit',function(e){
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({
@@ -170,15 +142,6 @@ $(document).ready(function(){
 		$("#canvas .canvas_object, #floatingpanel, #growl").show();
 	});
 	
-	$('#help').live('click', function(e){
-		show_connected_screen();
-	});
-	
-	$('#floatingpanel').draggable({
-		handle: '#handler',
-		containment: 'html',
-	});
-
 	$('#canvas').droppable({
 		drop: function(event, ui) {
 			$('input').blur();
@@ -227,67 +190,7 @@ $(document).ready(function(){
 		}
 	});
 
-	// Handle user changing their display name.
-	$('#name_change').submit(function(){
-		env.socket.send({ user_update: { name: $('#display_name').val() } });
-		$('#display_name').blur();
-		return false;
-	});
-
-	// Resets input field to current display_name.
-	// The only way this should get
-	$('#display_name').blur(function(){
-		reset_display_name();
-	});
-	
-	$('#mockup_pages .delete').live('click', function() {
-		if ($('#mockup_pages .delete').length == 1) {
-			alert("You can't delete the last page on a project.");
-		} else {
-			env.socket.send({ page_delete: { page_id: $(this).attr('page_id') } });
-		}
-	});
-
-	$('#add_page').live('click', function() {
-		env.socket.send({ page_create: true });
-	});
-
-	$('#mockup_pages a.selected').live('click', function(e) {
-		env.project.open_input_box($(e.target));
-		return false;
-	});
-
-
-	$('#mockup_pages .name_update input').live('blur', function(e) {
-		var $tgt = $(e.target), page_id = $tgt.parent().attr('page_id');
-		$tgt.addClass('h').siblings('a').removeClass('h');
-		$tgt.val(env.project.pages[page_id].name);
-	});
-
-
-
-	$('#mockup_pages li form.name_update').live('submit', function(){
-		var $page_name_input = $(this).find('input'), page_id = $(this).attr('page_id');
-		if ($page_name_input.val() == "") return false;
-		env.socket.send({
-			page_update: {
-				id: env.project.id,
-				hash: env.project.hash,
-				page: {
-					id: page_id,
-					name: $page_name_input.val()
-				}
-			}
-		});
-		$page_name_input.val(env.project.pages[page_id].name);
-		return false;
-	});
 });
-
-// TODO move to User
-function reset_display_name() {
-	$('#display_name').val(env.display_name);
-}
 
 function load_hash(hash) {
 	if (hash) {

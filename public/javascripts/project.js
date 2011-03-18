@@ -7,7 +7,7 @@ function Project(project_data){
 	this.name  = project_data.name;
 	this.id    = project_data._id;
 	this.hash  = project_data.hash;
-	this.path  = this.id + '/' + this.hash;
+	this.path  = '/' + this.id + '/' + this.hash;
 
 	// reset any bindings
 	$('#project_name_change').unbind('submit').submit(function(){
@@ -17,21 +17,22 @@ function Project(project_data){
     project_name_input.blur();
 		return false;
 	});
+
 };
 
 Project.prototype.canvas_object = function(id) {
 	return this.pages[this.current_page].canvas_objects[id];
 };
 
-Project.prototype.find_page_id_by_name = function(name) {
-	for(var i in this.pages){ 
-		if(this.pages[i] != undefined && this.pages[i].name == name){ return i; }
+Project.prototype.find_page_by_id = function(id) {
+	for (var i in this.pages) { 
+		if (this.pages[i] != undefined && this.pages[i]._id == id) { return this.pages[i]; }
 	}
 	return undefined;
 };
 
 Project.prototype.current_page_path = function() {
-	return '/' + this.path + '/' + this.current_page;
+	return this.path + '/' + this.current_page;
 };
 
 // set current_page based on page_id
@@ -98,13 +99,14 @@ Project.prototype.sync_name = function() {
 	$('#project_name_change').find('input').val(this.name);
 };
 
-Project.prototype.update_name = function(data){
+Project.prototype.update_name = function(data) {
 	this.name = data.name;
 	this.sync_name();
 };
 
-Project.prototype.update_page_name = function(page){
-	this.pages[page._id].name = page.name;
+// TODO Abstract to 'update_page' ???
+Project.prototype.update_page_name = function(page) {
+	this.find_page_by_id(page._id).name = page.name;
 	this.sync_pages(this.current_page);
 };
 
