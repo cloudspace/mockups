@@ -136,37 +136,23 @@ $(document).ready(function(){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
-	show_connected_screen = function(){
-		$('#connecting').dialog('destroy');
-		$('.ui-dialog').remove();
-		$(Views.overlay()).appendTo('body');
-		$("#canvas .canvas_object, #floatingpanel, #growl").hide();
-/*		$connected = $(Views.connected());
-			$connected
-				.dialog({
-						minHeight: 50,
-						resizable: false,
-						closeOnEscape: true,
-						title: 'Connected',
-						modal: true,
-						zIndex: 10001
-				}).find('form').submit(function() {
-					var checked = $(this).find('input[type=checkbox]').attr('checked');
-					if (checked) $.cookie('skipconnect', true);
-					$('#connected').dialog('destroy');
-					$('.ui-dialog').remove();
-					return false;
-				});
-				*/
+	show_connected_screen = function(override){
+	$('#connecting').dialog('destroy');
+	$('.ui-dialog').remove();
+	if (!$.cookie('skipconnect') || override){
+			$(Views.overlay()).appendTo('body');
+			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
+		}
 	};
 
 	$('.overlay').live('click',function(){
 		$(".overlay").remove();
 		$("#canvas .canvas_object, #floatingpanel, #growl").show();
+		$.cookie('skipconnect', true); 
 	});
 	
 	$('#help').live('click', function(e){
-		show_connected_screen();
+		show_connected_screen(true);
 	});
 	
 	$('#floatingpanel').draggable({
