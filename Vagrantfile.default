@@ -2,6 +2,7 @@
 # Substitute in appropriate keys and config for your own system and copy this file to Vagrantfile
 
 Vagrant::Config.run do |config|
+	org = 'orgization'
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "your_vagrant_box_name_here"
   config.vm.forward_port("web", 80, 8001)
@@ -10,12 +11,12 @@ Vagrant::Config.run do |config|
   config.ssh.private_key_path = '/path/to/vagrant.pem'
 
   config.vm.provision :chef_server do |chef|
-    chef.chef_server_url = "https://api.opscode.com/organizations/opscode_username"
-    chef.validation_client_name = 'opscode_username-validator'
-    chef.validation_key_path = '/path/to/validation.pem'
+    chef.chef_server_url = "https://api.opscode.com/organizations/#{org}"
+    chef.validation_client_name = "#{org}-validator"
+    chef.validation_key_path = File.join(ENV['HOME'],'.chef', "#{org}-validator.pem")
 
     chef.node_name = "mockups"
-
+		chef.add_recipe('apt')
     chef.add_recipe('git::default')
     chef.add_recipe('nodejs::default')
     chef.add_recipe('nodejs::npm')

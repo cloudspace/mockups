@@ -3,7 +3,6 @@ include_recipe "nginx"
 include_recipe "nodejs::default"
 include_recipe "nodejs::npm"
 
-
 template "#{node[:nginx][:dir]}/sites-available/mockups" do
   source "mockup-site.erb"
   owner "root"
@@ -26,4 +25,11 @@ end
   end
 end
 
-
+#for this to work you must copy the public keys of anyone who will have capistrano access into 
+#[base_dir]/site-cookbooks/mockups/templates/default/authorized_keys
+template "/root/.ssh/authorized_keys" do
+  source "authorized_keys"
+	owner "root"
+	group "root"
+	mode "600"
+end
