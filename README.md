@@ -43,7 +43,16 @@ These are the features that we are planning on introducing.
 If you would like to help please follow our guidelines for adding features:
 
 1. If your feature is not on our wishlist please contact us before you do any work to ensure that it is a feature we would be interested in adding.
-2. Make sure there are tests! We will not accept any patch that is not tested.
+2. Make sure there are [tests](https://github.com/cloudspace/mockups/wiki/Testing)! We will not accept any patch that is not tested.
    It's a rare time when explicit tests aren't needed. If you have questions
    about writing tests for Cloudspace Mockups, please email us.
 
+### Getting Started
+
+* You can get started in setting up a [development environment](https://github.com/cloudspace/mockups/wiki/Development-Setup "Development") or a [production environment](https://github.com/cloudspace/mockups/wiki/EC2-Setup "Production") by going to our [wiki](https://github.com/cloudspace/mockups/wiki "wiki").
+* You can use our app for free at [CloudspaceMockups.com](http://cloudspacemockups.com "Make Some Mockups!")
+
+### Major Contributors
+
+* [Adrian Bravo](https://github.com/adrianbravo)
+* [Austin Flores](https://github.com/unflores)
