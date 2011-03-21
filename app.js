@@ -65,7 +65,6 @@ io.on('connection', function(client){
 	// These happen on the initial connection of a client.
 	clients.push(client);           // Add client to clients list
 	client.user = new User(client); // Set up client.user
-	client.send({ connected: '' }); // Respond with 'connected' message
 
 	client.on('message', function(message){
 		MessageProcessor.process(client, message);

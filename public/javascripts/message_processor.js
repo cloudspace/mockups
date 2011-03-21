@@ -14,11 +14,14 @@ MessageProcessor = {
 		}
 	},
 
+	// TODO rename this
 	project_load: function (project) {
 		$('#submit_password').dialog('destroy');
 		env.project = new Project(project);
-		// set page items
-		env.project.sync_mockup();
+		env.project.sync_name();
+		env.project.page_index();
+		// fix this to select the page denoted in the hash if there is one
+		// this needs to occur before current_page is reset (which occurs in page_index)
 		jQuery.history.load(env.project.current_page_path());
 		$('#project_display_name').val(project.name);
 		show_connected_screen();
@@ -110,23 +113,21 @@ MessageProcessor = {
 
 	page_delete: function (data) {
 		delete env.project.pages[env.project.find_page_index_by_id(data.page._id)];
-		env.project.sync_pages();
+		env.project.page_index();
 	},
 
 	page_create: function (data) {
 		env.project.pages.push(data.page);
 		if (data.focus) {
-			// This should occur for the user who added the page.
-			// Adds focus to the new page element.
-			env.project.sync_pages(env.project.pages.length - 1);
+			env.project.current_page = env.project.pages[env.project.pages.length - 1]
+			env.project.page_index();
 			env.project.open_input_box($('.selected'));
 		} else {
-			// This should occur for users who did not add the page.
-			// Just re-sync their page list and select whatever page they're already editing.
-			env.project.sync_pages(env.project.current_page);
+			env.project.page_index();
 		}
 	},
 
+/*
 	canvas_object_create: function (data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
@@ -139,6 +140,7 @@ MessageProcessor = {
 		delete env.project.pages[data.canvas_object.page._id].canvas_objects[data.canvas_object._id];
 		$('#canvas div[canvas_object_id=' + data.canvas_object._id + ']').remove();
 	},
+*/
 
 	connected: function () {
 	},

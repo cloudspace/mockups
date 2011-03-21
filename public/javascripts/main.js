@@ -1,6 +1,7 @@
 
 $(window).load(function () {
 
+/*
 	// Key bindings used so that users may delete mockup objects (with the delete key).
 	$(document).keydown(function (e) {
 		last_key_pressed = e.keyCode || "";
@@ -31,6 +32,7 @@ $(window).load(function () {
 		if (e.stopPropagation) e.stopPropagation();
 		return false;
 	});
+*/
 
 });
 
@@ -51,6 +53,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
+/*
 	$('form.canvas_object_update').live('submit',function (e) {
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({
@@ -109,39 +112,23 @@ $(document).ready(function () {
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
+*/
 
 	show_connected_screen = function () {
 		$('#connecting').dialog('destroy');
 		$('.ui-dialog').remove();
 		if (!$.cookie('skipconnect')) {
 			$(Views.overlay()).appendTo('body');
-			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
-/*
-	$connected = $(Views.connected());
-			$connected
-				.dialog({
-						minHeight: 50,
-						resizable: false,
-						closeOnEscape: true,
-						title: 'Connected',
-						modal: true,
-						zIndex: 10001
-				}).find('form').submit(function () {
-					var checked = $(this).find('input[type=checkbox]').attr('checked');
-					if (checked) $.cookie('skipconnect', true);
-					$('#connected').dialog('destroy');
-					$('.ui-dialog').remove();
-					return false;
-				});
-*/
+//			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
 		}
 	};
 
 	$('.overlay').live('click',function () {
 		$(".overlay").remove();
-		$("#canvas .canvas_object, #floatingpanel, #growl").show();
+		///$("#canvas .canvas_object, #floatingpanel, #growl").show();
 	});
 	
+	/*
 	$('#canvas').droppable({
 		drop: function (event, ui) {
 			$('input').blur();
@@ -189,6 +176,7 @@ $(document).ready(function () {
 			$('#canvas .ui-selected').removeClass('ui-selected');
 		}
 	});
+	*/
 
 });
 
@@ -201,7 +189,7 @@ function load_hash(hash) {
 			env.project = undefined;
 			env.socket.send({ project_find: { id: hash[1], hash: hash[2] } });
 		} else {
-			env.project.select_page(hash[3]);
+			env.project.select_page(env.project.find_page_by_id(hash[3]));
 		}
 	} else {
 		env.project = undefined;

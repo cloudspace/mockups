@@ -41,35 +41,51 @@ Views = {
 				'<br />';
 		}
 		html += '<input type="submit" value="Submit" class="rad5 submit">';
-		html += '<a class="delete" href="javascript:">delete this object</a>'
+		html += '<a class="delete" href="javascript:">delete this object</a>';
 		html += '</form>';
 
 		return html;
 	},
+
 	connecting: function () {
 		return '<div id="connecting"><div id="wait"></div><p>Connecting to the Cloudspace Mockups.</p></div>';
 	},
+
 	connected: function () {
-	html = 
-		'<div id="connected">' +
-		'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup>!</p>' +
-		'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
-		'<input type="submit" value="Start Mocking" class="start" />' +
-		'</form>' +
-		'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
-		'</div>';
-	return html;
+		return '<div id="connected">' +
+				'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup>!</p>' +
+				'<form>' +
+					'<input type="checkbox" id="closeconnect"> <label for="closeconnect">Close this automatically next time.</label><br>' +
+					'<input type="submit" value="Start Mocking" class="start">' +
+				'</form>' +
+				'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
+			'</div>';
 	},
+
 	overlay: function () {
 		var height = $("#canvas").height(), width = $("#canvas").width();
-
-		html = 
-		'<div id="overlay_wrapper" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay" >&nbsp;</div>'+
-		'<div id="overlay_contents" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay">'+
-		'<img src="/images/overlay_image.png"/>' +
-		'<h2 class="overlay_header">Welcome to Cloudspace Mockups <a target="_blank" href="http://github.com/cloudspace/mockups">http://github.com/cloudspace/mockups</a></h2>'+
+		return '<div id="overlay_wrapper" style="min-height: ' + height + 'px; min-width: ' + width + 'px;" class="overlay">&nbsp;</div>' +
+		'<div id="overlay_contents" style="min-height: ' + height + 'px; min-width: ' + width + 'px;" class="overlay">' +
+			'<img src="/images/overlay_image.png">' +
+			'<h2 class="overlay_header">' +
+				'Welcome to Cloudspace Mockups <a target="_blank" href="http://github.com/cloudspace/mockups">http://github.com/cloudspace/mockups</a>' +
+			'</h2>' +
 		'</div>';
-		return html;
+	},
+
+	page_listing: function(page) {
+		//page_name = page.name ? page.name : '&nbsp;';
+		return '<li>' +
+		    '<form page_id="' + page._id + '" class="name_update">' +
+					'<a page_id="' + page._id + '" id="page_' + page._id + '" ' +
+					'   title="' + page.name.replace('"', '&quot;') + '" ' +
+					'   href="#' + env.project.path + '/' + page._id + '">' +
+						page.name +
+					'</a>' +
+					'<input class="h" type="text" value="' + page.name + '">' +
+				'</form>' +
+				'<span page_id="' + page._id + '" class="delete"> <img src="/images/deleteicon.png"/> </span>' +
+			'</li>';
 	},
 }
 

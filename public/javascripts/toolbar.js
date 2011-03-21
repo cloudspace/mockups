@@ -36,6 +36,14 @@ $(document).ready(function () {
 		return false;
 	});
 
+	$('#project_name_change').submit(function () {
+		var project_name_input = $(this).find('input');
+    env.socket.send({ project_update: { name: project_name_input.val() } });
+		project_name_input.val(env.project.name);
+    project_name_input.blur();
+		return false;
+	});
+
 	$('#display_name').blur(function () {
 		reset_display_name();
 	});
@@ -52,7 +60,7 @@ $(document).ready(function () {
 	$('#mockup_pages .name_update input').live('blur', function (e) {
 		var $tgt = $(e.target), page_id = $tgt.parent().attr('page_id');
 		$tgt.addClass('h').siblings('a').removeClass('h');
-		$tgt.val(env.project.pages[page_id].name);
+		$tgt.val(env.project.find_page_by_id(page_id).name);
 	});
 
 	$('#mockup_pages li form.name_update').live('submit', function () {
@@ -74,7 +82,7 @@ $(document).ready(function () {
 		if ($('#mockup_pages li .delete').length == 1) {
 			alert("You can't delete the last page on a project.");
 		} else {
-			env.socket.send({ page_delete: { page: { _id: env.project.pages[$(this).attr('page_id')]._id } } });
+			env.socket.send({ page_delete: { page: { _id: $(this).attr('page_id') } } });
 		}
 	});
 
