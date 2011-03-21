@@ -60,7 +60,7 @@ MessageProcessor = {
 	project_prompt_password: function(data) {
 		if (data.error) {
 			$('#submit_password form').before('<div class="flash"><div class="active">' + data.error + '</div></div>').hide().fadeIn();
-			$('input[type=password]').text('').focus();
+			$('input[type=password]').val('').focus();
 			return;
 		}
 		$('#submit_password').dialog('destroy');
@@ -75,8 +75,8 @@ MessageProcessor = {
 				closeOnEscape: false,
 			})
 			.find('form')
-			.append('<label for="password">Password</label> <input type="password" id="password" > <br/>')
-			.append('<input type="submit" value="Submit Password">')
+			.append('<label for="password">Password</label> <input type="password" id="password" /> <br/>')
+			.append('<input type="submit" value="Submit Password" />')
 			.submit(function() {
 				var password = $(this).find('#password').val();
 				$(this).siblings('.flash').remove();
