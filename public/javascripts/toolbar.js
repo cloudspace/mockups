@@ -38,10 +38,14 @@ $(document).ready(function () {
 
 	$('#project_name_change').submit(function () {
 		var project_name_input = $(this).find('input');
-    env.socket.send({ project_update: { name: project_name_input.val() } });
+		env.socket.send({ project_update: { name: project_name_input.val() } });
 		project_name_input.val(env.project.name);
-    project_name_input.blur();
+		project_name_input.blur();
 		return false;
+	});
+
+	$('#project_display_name').blur(function () {
+		$(this).val(env.project.name);
 	});
 
 	$('#display_name').blur(function () {
