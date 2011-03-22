@@ -151,7 +151,7 @@ $(document).ready(function () {
 					template_id : template_id,
 					top         : ui.position.top,
 					left        : ui.position.left,
-					id          : canvas_object_id,
+					_id         : canvas_object_id,
 				},
 			};
 			env.socket.send(message);

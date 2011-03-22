@@ -33,11 +33,11 @@ Renderer = {
 			.resizable('destroy')
 			.resizable(this.resize_options(canvas_object.template_id)).find('.ui-resizable-handle').css('display', '');
 
-		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top',parseInt(canvas_object.top)); }
-		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left',parseInt(canvas_object.left)); }
+		if (typeof canvas_object.top != 'undefined')  { this.page_element.css('top', parseInt(canvas_object.top)); }
+		if (typeof canvas_object.left != 'undefined') { this.page_element.css('left', parseInt(canvas_object.left)); }
 		if (canvas_object.width)  { this.page_element.find('.content').width(parseInt(canvas_object.width)); }
 		if (canvas_object.height) { this.page_element.find('.content').height(parseInt(canvas_object.height)); }
-		if (canvas_object.fontsize) { this.page_element.children().css('font-size',parseInt(canvas_object.fontsize));}
+		if (canvas_object.fontsize) { this.page_element.children().css('font-size', parseInt(canvas_object.fontsize));}
 		return this.page_element.appendTo('#canvas');
 	},
 

@@ -132,11 +132,11 @@ MessageProcessor = {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
-/*
 	canvas_object_update: function (data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
+/*
 	canvas_object_delete: function (data) {
 		delete env.project.pages[data.canvas_object.page._id].canvas_objects[data.canvas_object._id];
 		$('#canvas div[canvas_object_id=' + data.canvas_object._id + ']').remove();
