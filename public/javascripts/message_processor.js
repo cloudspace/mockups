@@ -2,15 +2,16 @@ MessageProcessor = {
 	error: function (message) {
 		if (message == '404') {
 			$('body').html(Views.error_404());
-		} else {
-			$('#flash').html('<p>Error: ' + message + '</p>');
 		}
 	},
 
 	process: function (message) {
 		for (var action in message) {
-			if (this[action]) { this[action](message[action]); }
-			else              { console.log("Undefined action: " + action); }
+			if (this[action]) {
+				this[action](message[action]);
+			} else {
+				console.log("Undefined action: " + action);
+			}
 		}
 	},
 
@@ -129,19 +130,31 @@ MessageProcessor = {
 	},
 
 	canvas_object_create: function (data) {
-		env.project.set_canvas_object(data.canvas_object);
+		var canvas_object = data.canvas_object
+		, page = env.project.find_page_by_id(canvas_object.page._id)
+		, canvas_objects = page.canvas_objects;
+		delete canvas_object.page;
+		canvas_objects.push(canvas_object);
+		if (env.project.current_page == page) Renderer.render(canvas_object);
 	},
 
 	canvas_object_update: function (data) {
-		env.project.set_canvas_object(data.canvas_object);
+		var canvas_object = data.canvas_object
+		, page = env.project.find_page_by_id(canvas_object.page._id)
+		, canvas_objects = page.canvas_objects;
+		delete canvas_object.page;
+		//delete page.canvas_objects[env.project.find_canvas_
+		canvas_objects.push(canvas_object);
+		if (env.project.current_page == page) Renderer.render(canvas_object);
 	},
 
-/*
 	canvas_object_delete: function (data) {
+/*
+		console.log(data);
 		delete env.project.pages[data.canvas_object.page._id].canvas_objects[data.canvas_object._id];
 		$('#canvas div[canvas_object_id=' + data.canvas_object._id + ']').remove();
-	},
 */
+	},
 
 	connected: function () {
 	},
