@@ -180,13 +180,14 @@ Renderer = {
 	},
 
 	parse_items: function( list, callback) {
-		list.split("\n").forEach( function(item){
+		var items = list.split("\n");
+		items.forEach( function(item){
 			var is_special = false;
 			if(item[0] == "*"){
 				is_special = true;
 				item = item.substring(1);
 			}
-			callback(item, is_special);
+			if(item != "") callback(item, is_special);
 		});
 	}
 };
