@@ -63,9 +63,6 @@ a { text-decoration:none; color:#3c3c3c; }
 	background:url(/images/expandicon.png);
 }
 
-.section_break { padding-top: 10px; height: 10px; background:url('/images/hr-open.png') 0 8px no-repeat; text-indent: -9999px; cursor:pointer; }
-.section_break.collapsed{ background: url('/images/hr-closed.png') 0 8px no-repeat;padding-top:10px;}
-
 .home{ color:#469AC6; text-decoration: underline; font:10px;font-weight:bold; }
 
 #help {
