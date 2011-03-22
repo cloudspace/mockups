@@ -30,12 +30,11 @@ MessageProcessor = {
 		env.project.created = true;
 		$('#projectinfo input').after('<img id="set_password" src="/images/lockicon.png">');
 		$('#set_password').click(function() {
+			$('.ui-dialog').remove();
 			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
 
 			create_password.find('form')
-				.append('<label for="password">Password</label> <input type="password" id="password"> <br>')
-				.append('<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm"> <br>')
-				.append('<input type="submit" value="Set Password">')
+				.append(Views.new_password_inputs())
 				.submit(function() {
 					var password = $(this).find('#password').val();
 					if (password != $(this).find('#password_confirm').val()) {
@@ -43,16 +42,18 @@ MessageProcessor = {
 					} else {
 						$(this).find('input').attr('disabled', 'disabled');
 						env.socket.send({ project_update: { password: password } });
+						$('.ui-dialog').remove();
 					}
 					$('#password').focus();
 					return false;
 				});
 
 			create_password.dialog({
-				resizable: false,
-				modal: true,
-				title: 'Set a Password',
-				zIndex: 10001,
+				resizable:   false,
+				modal:       true,
+				title:       'Set a Password',
+				zIndex:      10001,
+				dialogClass: 'new_password',
 			});
 		});
 	},
