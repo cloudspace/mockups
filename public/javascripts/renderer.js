@@ -18,7 +18,7 @@ Renderer = {
 				.draggable({
 					containment:   'parent',
 					opacity:       '0.6',
-					snap:          '#canvas, #canvas .canvas_object',
+					snap:          '#canvas',
 					snapTolerance: '5',
 					distance:      0,
 					start:         function(event, ui) {

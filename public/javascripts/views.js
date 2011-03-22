@@ -19,20 +19,20 @@ Views = {
 				$element      = $('.canvas_object[canvas_object_id=' + canvas_object_id + ']').find('.content');
 	
 		if (attributes.height) {
-			html += '<label for="height">Height</label> ' +
-				'<input id="height" name="height" value="' + (canvas_object.height || parseInt($element.css('height'))) + '" type="text"> px ' +
+			html += '<label for="height">Height <span class="unit">(px)</span></label> ' +
+				'<input id="height" name="height" value="' + (canvas_object.height || parseInt($element.css('height'))) + '" type="text">' +
 				'<br/>';
 		}
 		
 		if (attributes.width) {
-			html += '<label for="width">Width</label>' +
-				'<input id="width" name="width" value="' + (canvas_object.width || parseInt($element.css('width'))) + '" type="text"> px ' +
+			html += '<label for="width">Width <span class="unit">(px)</span></label>' +
+				'<input id="width" name="width" value="' + (canvas_object.width || parseInt($element.css('width'))) + '" type="text">' +
 				'<br/>';
 		}
 
 		if (attributes.fontsize) {
-			html += '<label for="font-size">Font Size</label>' +
-				'<input id="font-size" name="fontsize" type="text" value="' + (canvas_object.fontsize || parseInt($element.css('font-size'))) + '"> px ' +
+			html += '<label for="font-size">Font Size <span class="unit">(px)</span> </label>' +
+				'<input id="font-size" name="fontsize" type="text" value="' + (canvas_object.fontsize || parseInt($element.css('font-size'))) + '">' +
 				'<br/>';
 		}
 		if (attributes.content) {
@@ -40,7 +40,7 @@ Views = {
 				'<textarea id="content" name="content">' + content + '</textarea>' +
 				'<br />';
 		}
-		html += '<input type="submit" value="Submit" class="rad5 submit">';
+		html += '<input type="submit" value="Apply" class="rad5 submit">';
 		html += '<a class="delete" href="javascript:">delete this object</a>'
 		html += '</form>';
 
