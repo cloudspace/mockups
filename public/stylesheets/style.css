@@ -29,6 +29,30 @@ a { text-decoration:none; color:#3c3c3c; }
 #add_page:hover { color: #000; background: url("/images/plusicon.png") no-repeat scroll 150px 5px transparent; }
 
 
+#error_404{ width:350px; margin: 0 auto; padding: 200px 0; }
+#error_404 p { text-align: center; }
+#error_404 p.new_project a{ 
+	padding: 0px 10px;
+  -webkit-border-radius: 5px;
+  border: solid 1px rgb(153, 153, 153);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(255,255,255,1);
+  line-height: 1;
+  -webkit-transition: -webkit-box-shadow .2s ease;
+	text-align: center;
+}
+
+#error_404 p:first{
+	color: #5a5a5a;
+	text-align: center;
+	text-shadow: 0px 1px 1px rgba(,255,255,1);
+}
+
 #floatingpanel {
 	width: 200px;
 	background: #d5d5d5;

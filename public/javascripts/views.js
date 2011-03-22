@@ -71,5 +71,8 @@ Views = {
 		'</div>';
 		return html;
 	},
+	error_404: function(){
+		return '<div id="error_404"><p>Sorry, that project could not be found.</p><p class="new_project"><a href="/">Create a new project.</a></p><div>';
+	},
 }
 
