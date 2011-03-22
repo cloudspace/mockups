@@ -53,7 +53,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-	$('form.canvas_object_update').live('submit',function (e) {
+	$('form.canvas_object_update').live('submit', function (e) {
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({
 				canvas_object_update: {
@@ -112,10 +112,10 @@ $(document).ready(function () {
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
 
-	show_connected_screen = function () {
+	show_connected_screen = function (override) {
 		$('#connecting').dialog('destroy');
 		$('.ui-dialog').remove();
-		if (!$.cookie('skipconnect')) {
+		if (!$.cookie('skipconnect') || override){
 			$(Views.overlay()).appendTo('body');
 			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
 		}
@@ -124,6 +124,7 @@ $(document).ready(function () {
 	$('.overlay').live('click',function () {
 		$(".overlay").remove();
 		$("#canvas .canvas_object, #floatingpanel, #growl").show();
+		$.cookie('skipconnect', true); 
 	});
 	
 	$('#canvas').droppable({

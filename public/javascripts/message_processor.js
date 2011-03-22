@@ -1,7 +1,7 @@
 MessageProcessor = {
 	error: function (message) {
 		if (message == '404') {
-			$('body').html('<div id="error_404"><p>Sorry, that project could not be found.</p><p><a href="/">Create a new project.</a></p><div>');
+			$('body').html(Views.error_404());
 		} else {
 			$('#flash').html('<p>Error: ' + message + '</p>');
 		}
@@ -32,29 +32,29 @@ MessageProcessor = {
 		env.project.created = true;
 		$('#projectinfo input').after('<img id="set_password" src="/images/lockicon.png">');
 		$('#set_password').click(function () {
+			$('.ui-dialog').remove();
 			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
-
 			create_password.find('form')
-				.append('<label for="password">Password</label> <input type="password" id="password"> <br>')
-				.append('<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm"> <br>')
-				.append('<input type="submit" value="Set Password">')
-				.submit(function () {
+				.append(Views.new_password_inputs())
+				.submit(function() {
 					var password = $(this).find('#password').val();
 					if (password != $(this).find('#password_confirm').val()) {
 						$(this).siblings('.flash').html('').hide().html("<div class='active'>Your password confirmation does not match.</div>").fadeIn();
 					} else {
 						$(this).find('input').attr('disabled', 'disabled');
 						env.socket.send({ project_update: { password: password } });
+						$('.ui-dialog').remove();
 					}
 					$('#password').focus();
 					return false;
 				});
 
 			create_password.dialog({
-				resizable: false,
-				modal: true,
-				title: 'Set a Password',
-				zIndex: 10001,
+				resizable:   false,
+				modal:       true,
+				title:       'Set a Password',
+				zIndex:      10001,
+				dialogClass: 'new_password',
 			});
 		});
 	},
@@ -62,7 +62,7 @@ MessageProcessor = {
 	project_prompt_password: function (data) {
 		if (data.error) {
 			$('#submit_password form').before('<div class="flash"><div class="active">' + data.error + '</div></div>').hide().fadeIn();
-			$('input[type=password]').text('').focus();
+			$('input[type=password]').val('').focus();
 			return;
 		}
 		$('#submit_password').dialog('destroy');
@@ -77,7 +77,7 @@ MessageProcessor = {
 				closeOnEscape: false,
 			})
 			.find('form')
-			.append('<label for="password">Password</label> <input type="password" id="password" > <br/>')
+			.append('<label for="password">Password</label> <input type="password" id="password"> <br/>')
 			.append('<input type="submit" value="Submit Password">')
 			.submit(function () {
 				var password = $(this).find('#password').val();

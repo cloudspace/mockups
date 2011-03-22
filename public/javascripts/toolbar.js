@@ -91,7 +91,7 @@ $(document).ready(function () {
 	});
 
 	$('#help').live('click', function (e) {
-		show_connected_screen();
+		show_connected_screen(true);
 	});
 	
 	$('#floatingpanel').draggable({

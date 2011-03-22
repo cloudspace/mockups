@@ -87,5 +87,15 @@ Views = {
 				'<span page_id="' + page._id + '" class="delete"> <img src="/images/deleteicon.png"/> </span>' +
 			'</li>';
 	},
+	error_404: function(){
+		return '<div id="error_404"><p>Sorry, that project could not be found.</p><p class="new_project"><a href="/">Create a new project.</a></p><div>';
+	},
+	new_password_inputs: function(){
+		html = 
+			'<label for="password">Password</label> <input type="password" id="password"/> <br/>' +
+			'<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm"/> <br/>' +
+			'<input type="submit" value="Set Password"/>';
+		return html;
+	},
 }
 

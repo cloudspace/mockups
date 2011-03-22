@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
-
+#
+#launch_instances 2.0.2 (c) 2010 Josh Lindsey
+#Took Josh's script.  Prolly has some changes.  Thanks Josh.
+#
 # Require gems with versions
 begin
   require 'logger'
@@ -44,7 +47,7 @@ ami = ARGV.pop
 AccessKeyID = ENV['AWS_ACCESS_KEY_ID']
 SecretAccessKey = ENV['AWS_SECRET_ACCESS_KEY']
 if AccessKeyID.nil? or SecretAccessKey.nil?
-  $stderr.puts "Error: must set the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY"
+  $stderr.puts "Error: must set the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.( Add them to your .bashrc)"
   exit 1
 end
 

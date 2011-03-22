@@ -10,4 +10,4 @@ log/*
 log
 public/system
 public/system/*
-
+site-cookbooks/mockups/templates/default/authorized_keys
