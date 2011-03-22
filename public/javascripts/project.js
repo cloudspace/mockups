@@ -15,7 +15,10 @@ function Project(project_data) {
 };
 
 Project.prototype.canvas_object = function (id) {
-	return this.current_page.canvas_objects[id];
+	for (var i in this.current_page.canvas_objects) { 
+		if (this.current_page.canvas_objects[i] != undefined && this.current_page.canvas_objects[i]._id == id) return this.current_page.canvas_objects[i];
+	}
+	return undefined;
 };
 
 // TODO force this to use find_page_index_by_id()

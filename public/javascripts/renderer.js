@@ -55,8 +55,8 @@ Renderer = {
 				$content = $(this).find('.content');
 				$content.outerWidth($(this).width()).outerHeight($(this).height());
 				env.socket.send({
-					page                 : { id: env.project.current_page },
 					canvas_object_update : {
+						page          : { _id: env.project.current_page._id },
 						canvas_object : {
 							_id      : $(this).attr('canvas_object_id')
 							, top    : $(this).css('top')

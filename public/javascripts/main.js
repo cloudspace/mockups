@@ -53,20 +53,19 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-/*
 	$('form.canvas_object_update').live('submit',function (e) {
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({
 				canvas_object_update: {
-					canvas_object: {
-						template_id: canvas_object.template_id,
-						id:          canvas_object.id,
-						content:     $(this).find('textarea').val(),
-						width:       $(this).find('input[name=width]').val(),
-						height:      $(this).find('input[name=height]').val(),
-						fontsize:    $(this).find('input[name=fontsize]').val()
+					page          : { _id: env.project.current_page._id },
+					canvas_object : {
+						template_id : canvas_object.template_id
+						, _id       : canvas_object._id
+						, content   : $(this).find('textarea').val()
+						, width     : $(this).find('input[name=width]').val()
+						, height    : $(this).find('input[name=height]').val()
+						, fontsize  : $(this).find('input[name=fontsize]').val()
 					},
-					page:        { id: env.project.current_page }
 				}
 			});
 			$('.option_pane').remove();
@@ -79,8 +78,8 @@ $(document).ready(function () {
 		$(this).each(function () {
 			env.socket.send({
 				canvas_object_delete: {
-					canvas_object: { id: $(this).parents('form').attr('canvas_object_id') },
-					page:          { id: env.project.current_page }
+					page:          { _id: env.project.current_page._id },
+					canvas_object: { _id: $(this).parents('form').attr('canvas_object_id') },
 				}
 			});
 		});
@@ -112,7 +111,6 @@ $(document).ready(function () {
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
-*/
 
 	show_connected_screen = function () {
 		$('#connecting').dialog('destroy');
@@ -159,7 +157,6 @@ $(document).ready(function () {
 		accept: '.elements li, .canvas_object'
 	});
 
-	/*
 	$('#canvas').selectable({
 		cancel: '.clear',
 		filter: '.canvas_object', // We don't actually want children to be draggable or selectable.
@@ -176,7 +173,6 @@ $(document).ready(function () {
 			$('#canvas .ui-selected').removeClass('ui-selected');
 		}
 	});
-	*/
 
 });
 
