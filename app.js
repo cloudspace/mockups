@@ -26,15 +26,11 @@ var http = require('http')
   , clients = []
 	, mongoose = require('mongoose');
 
-//exports.sys			 = sys;
-//exports.fs			 = fs;
 exports.clients  = clients;
 exports.mongoose = mongoose.connect('mongodb://127.0.0.1/mockups');
 
 var User = require('./lib/user').User
   , Project = require('./lib/project').Project
-  //, Page = require('./lib/page').Page
-  //, CanvasObject = require('./lib/canvas_object').CanvasObject
   , MessageProcessor = require('./lib/message_processor').MessageProcessor;
 
 server = http.createServer(function(req, res){
