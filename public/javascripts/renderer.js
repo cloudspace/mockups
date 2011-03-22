@@ -6,14 +6,14 @@ Renderer = {
 
 		if (this[canvas_object['template_id']]) { rendered_content = $(this[canvas_object['template_id']]()).addClass('content'); }
 		// if this call gets something back then canvas_object exists
-		this.page_element = $('#canvas .canvas_object[canvas_object_id=' + canvas_object.id + ']');
+		this.page_element = $('#canvas .canvas_object[canvas_object_id=' + canvas_object._id + ']');
 
 		if (this.page_element.length == 0) { // object not rendered
-			// this bothers me as much as it does you.  We can get rid of it when we implement box containers better.  Until then, I don't want to hear you complain.
-			var element_class = canvas_object.template_id == 'box_container'? 'class="box_container"':'';
+			// We can get rid of this when we improve our box container implementation.
+			var element_class = canvas_object.template_id == 'box_container' ? 'class="box_container"' : '';
 			this.page_element =  $('<div ' + element_class  + '></div>')
 				.addClass('canvas_object')
-				.attr('canvas_object_id', canvas_object.id)
+				.attr('canvas_object_id', canvas_object._id)
 				.css('position', 'absolute') 
 				.draggable({
 					containment   : 'parent',
@@ -58,11 +58,11 @@ Renderer = {
 					page                 : { id: env.project.current_page },
 					canvas_object_update : {
 						canvas_object : {
-							id     : $(this).attr('canvas_object_id'),
-							top    : $(this).css('top'),
-							left   : $(this).css('left'),
-							width  : $content.width(),
-							height : $content.height(),
+							_id      : $(this).attr('canvas_object_id')
+							, top    : $(this).css('top')
+							, left   : $(this).css('left')
+							, width  : $content.width()
+							, height : $content.height()
 						},
 					},
 				});

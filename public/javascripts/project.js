@@ -8,13 +8,15 @@ function Project(project_data) {
 	this.path  = '/' + this.id + '/' + this.hash;
 	this.current_page = this.find_page_by_id(window.location.hash.split('/')[3]);
 	if (!this.current_page) this.current_page = this.pages[0];
+
+	for (var i in this.pages) {
+		if (typeof this.pages[i].canvas_objects == 'undefined') this.pages[i].canvas_objects = [];
+	}
 };
 
-/*
 Project.prototype.canvas_object = function (id) {
-	return this.pages[this.current_page].canvas_objects[id];
+	return this.current_page.canvas_objects[id];
 };
-*/
 
 // TODO force this to use find_page_index_by_id()
 Project.prototype.find_page_by_id = function (id) {
@@ -38,7 +40,6 @@ Project.prototype.current_page_path = function () {
 // set current_page based on page_id
 // sending an invalid page_id will make it default to the first page
 Project.prototype.select_page = function (page) {
-	//this.current_page = page;
 	if (!page) page = this.current_page;
 	$('#mockup_pages a').removeClass('selected');
 
@@ -55,12 +56,10 @@ Project.prototype.select_page = function (page) {
 	jQuery.history.load(this.current_page_path());
 
 	$('#mockup_pages').find('input').blur();
-	/*
 	$('#canvas .canvas_object').remove();
-	for (var i in this.pages[this.current_page].canvas_objects) {
-		Renderer.render(this.pages[this.current_page].canvas_objects[i]);
+	for (var i in this.current_page.canvas_objects) {
+		Renderer.render(this.current_page.canvas_objects[i]);
 	}
-	*/
 
 	$('#page_' + this.current_page._id).addClass('selected');
 };
@@ -93,14 +92,13 @@ Project.prototype.open_input_box = function ($target) {
 	$target.addClass('h').siblings('input').removeClass('h').focus();
 };
 
-/*
-Project.prototype.set_canvas_object = function (new_canvas_object) {
-	var page_id = new_canvas_object.page._id;
-	delete new_canvas_object.page;
+Project.prototype.set_canvas_object = function (canvas_object) {
+	var page = this.find_page_by_id(canvas_object.page._id)
+	, canvas_objects = page.canvas_objects;
 
-	var current_canvas_objects = this.pages[page_id].canvas_objects;
-	current_canvas_objects[new_canvas_object._id] = new_canvas_object;
-	if (this.current_page == page_id) Renderer.render(new_canvas_object);
+	delete canvas_object.page;
+	canvas_objects.push(canvas_object);
+	if (this.current_page == page) Renderer.render(canvas_object);
 };
-*/
+
 

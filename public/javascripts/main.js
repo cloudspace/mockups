@@ -119,16 +119,15 @@ $(document).ready(function () {
 		$('.ui-dialog').remove();
 		if (!$.cookie('skipconnect')) {
 			$(Views.overlay()).appendTo('body');
-//			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
+			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
 		}
 	};
 
 	$('.overlay').live('click',function () {
 		$(".overlay").remove();
-		///$("#canvas .canvas_object, #floatingpanel, #growl").show();
+		$("#canvas .canvas_object, #floatingpanel, #growl").show();
 	});
 	
-	/*
 	$('#canvas').droppable({
 		drop: function (event, ui) {
 			$('input').blur();
@@ -147,19 +146,20 @@ $(document).ready(function () {
 			// if length > 0 then the dragged item is from the sidebar so it is a new canvas_object
 			var message_type = $dragged_item.parent('.elements').length > 0 ? 'canvas_object_create' : 'canvas_object_update';
 			message[message_type] = {
-				canvas_object: {
-					template_id: template_id,
-					top:         ui.position.top,
-					left:        ui.position.left,
-					id:          canvas_object_id,
+				page          : { _id: env.project.current_page._id },
+				canvas_object : {
+					template_id : template_id,
+					top         : ui.position.top,
+					left        : ui.position.left,
+					id          : canvas_object_id,
 				},
-				page:        { id: env.project.current_page }
 			};
 			env.socket.send(message);
 		},
 		accept: '.elements li, .canvas_object'
 	});
 
+	/*
 	$('#canvas').selectable({
 		cancel: '.clear',
 		filter: '.canvas_object', // We don't actually want children to be draggable or selectable.

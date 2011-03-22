@@ -117,6 +117,7 @@ MessageProcessor = {
 	},
 
 	page_create: function (data) {
+		if (typeof data.page.canvas_objects == 'undefined') data.page.canvas_objects = [];
 		env.project.pages.push(data.page);
 		if (data.focus) {
 			env.project.current_page = env.project.pages[env.project.pages.length - 1]
@@ -127,11 +128,11 @@ MessageProcessor = {
 		}
 	},
 
-/*
 	canvas_object_create: function (data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
 
+/*
 	canvas_object_update: function (data) {
 		env.project.set_canvas_object(data.canvas_object);
 	},
