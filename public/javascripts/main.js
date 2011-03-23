@@ -133,12 +133,36 @@ $(document).ready(function(){
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
 	show_connected_screen = function(override){
-	$('#connecting').dialog('destroy');
+
+		if (!$.cookie('skipconnect')) { 
+
+			$connected = $(Views.connected());
+			$connected
+				.dialog({
+						resizable: false,  
+						minHeight: 50,     
+						closeOnEscape: true,            
+						title: 'Connected',
+						modal: true,       
+						zIndex: 10001,
+						minWidth: 450
+				}).find('form').submit(function() {
+					var checked = $(this).find('input[type=checkbox]').attr('checked');
+					if (checked) $.cookie('skipconnect', true);
+					$('.ui-dialog').remove();
+					return false;        
+				});
+		}
+
+
+
+/*	$('#connecting').dialog('destroy');
 	$('.ui-dialog').remove();
 	if (!$.cookie('skipconnect') || override){
 			$(Views.overlay()).appendTo('body');
 			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
 		}
+*/
 	};
 
 	$('.overlay').live('click',function(){

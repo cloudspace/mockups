@@ -52,9 +52,15 @@ Views = {
 	connected: function(){
 	html = 
 		'<div id="connected">' +
-		'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup>!</p>' +
+		'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup></p>' +
+		'<ol>' +
+		'<li>Save the url.  It\'s your only way to get back to this page!</li>' +
+		'<li>Drag and drop elements on to the canvas.</li>' +
+		'<li>The toolbar contains the page elements you will use.</li>' +
+		'<li>Make a name, project password, and new pages in settings.</li>' +
+		'</ol>' +
 		'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
-		'<input type="submit" value="Start Mocking" class="start" />' +
+		'<input type="submit" value="Start Mocking" class="start rad5" />' +
 		'</form>' +
 		'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
 		'</div>';
@@ -71,9 +77,16 @@ Views = {
 		'</div>';
 		return html;
 	},
+
 	error_404: function(){
-		return '<div id="error_404"><p>Sorry, that project could not be found.</p><p class="new_project"><a href="/">Create a new project.</a></p><div>';
+		html =
+		'<div id="error_404">' +
+		'<p>Sorry, that project could not be found.</p>' +
+		'<p class="new_project"><a href="/">Create a new project.</a></p>' +
+		'<div>';
+		return html;
 	},
+
 	new_password_inputs: function(){
 		html = 
 			'<label for="password">Password</label> <input type="password" id="password"/> <br/>' +
