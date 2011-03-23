@@ -94,6 +94,45 @@ $(document).ready(function(){
 			return false;	
 	});
 
+
+	/*****password events begin*****/
+	$('#create_password form').live('submit',function() {
+		var password = $(this).find('#password').val();
+		if (password != $(this).find('#password_confirm').val()) {
+			$(this).siblings('.flash').html('').hide().html("<div class='active'>Your password confirmation does not match.</div>").fadeIn();
+		} else {
+			$(this).find('input').attr('disabled', 'disabled');
+			env.socket.send({ project_update: { password: password } });
+			$('.ui-dialog').remove();
+		}
+		$('#password').focus();
+		return false;
+	});
+	
+	$("#submit_password").live('submit',function() {
+		var password = $(this).find('#password').val();
+		$(this).siblings('.flash').remove();
+		$(this).find('input').blur();
+		var project_id = window.location.hash.split('/')[0].substring(1);
+		env.socket.send({ project_authorize: { id: project_id, password: password } });
+		return false;
+	});
+
+	$('#set_password').click(function() {
+		$('.ui-dialog').remove();
+		var $create_password = $(Views.password_create());
+		
+		$create_password.dialog({
+			resizable:   false,
+			modal:       true,
+			title:       'Set a Password',
+			zIndex:      10001,
+			dialogClass: 'new_password',
+		});
+	});	
+	
+	/****password events end*****/
+
 	$('.canvas_object_edit .delete').live('click', function(e) {
 		$('.canvas_object_edit').remove();
 		$(this).each(function() {
@@ -134,7 +173,7 @@ $(document).ready(function(){
 	};
 	show_connected_screen = function(override){
 
-		if (!$.cookie('skipconnect')) { 
+		if (!$.cookie('skipconnect') || override) { 
 
 			$connected = $(Views.connected());
 			$connected
@@ -154,15 +193,6 @@ $(document).ready(function(){
 				});
 		}
 
-
-
-/*	$('#connecting').dialog('destroy');
-	$('.ui-dialog').remove();
-	if (!$.cookie('skipconnect') || override){
-			$(Views.overlay()).appendTo('body');
-			$("#canvas .canvas_object, #floatingpanel, #growl").hide();
-		}
-*/
 	};
 
 	$('.overlay').live('click',function(){
