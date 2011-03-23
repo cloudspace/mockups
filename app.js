@@ -17,14 +17,18 @@
 
 require.paths.unshift(".");
 var http = require('http')
-  , path = require('path')
-  , url = require('url')
-  , io = require('socket.io')
-  , server
-  , clients = []
-  , Db = require('mongodb').Db
-  , Server = require('mongodb').Server;
+, path = require('path')
+, url = require('url')
+, fs = require('fs')
+, io = require('socket.io')
+, sys = require(process.binding('natives').util ? 'util' : 'sys')
+, server
+, clients = []
+, Db = require('mongodb').Db
+, Server = require('mongodb').Server;
 
+exports.sys = sys;
+exports.fs = fs;
 exports.clients  = clients;
 exports.db       = new Db('mockups', new Server("127.0.0.1", 27017, {}));
 
