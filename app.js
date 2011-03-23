@@ -25,8 +25,6 @@ var http = require('http')
   , Db = require('mongodb').Db
   , Server = require('mongodb').Server;
 
-exports.sys			 = sys;
-exports.fs			 = fs;
 exports.clients  = clients;
 exports.db       = new Db('mockups', new Server("127.0.0.1", 27017, {}));
 
