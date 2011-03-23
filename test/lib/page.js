@@ -1,7 +1,6 @@
 
 var testCase         = require('nodeunit').testCase,
     db               = require('../test_helper').db,
-    ObjectID         = require('mongodb').ObjectID,
     Project          = require('../../lib/project').Project,
     Page             = require('../../lib/page').Page;
 
@@ -28,6 +27,7 @@ exports.page = testCase({
 	},
 
 	tearDown: function (callback) {
+		db.close();
 		callback();
 	},
 

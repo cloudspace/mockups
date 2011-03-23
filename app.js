@@ -19,9 +19,7 @@ require.paths.unshift(".");
 var http = require('http')
   , path = require('path')
   , url = require('url')
-  , fs = require('fs')
   , io = require('socket.io')
-  , sys = require(process.binding('natives').util ? 'util' : 'sys')
   , server
   , clients = []
   , Db = require('mongodb').Db
