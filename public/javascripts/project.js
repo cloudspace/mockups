@@ -30,8 +30,12 @@ Project.prototype.find_page_id_by_name = function(name) {
 	return undefined;
 };
 
+Project.prototype.page_path = function( page_index ){
+	return this.path + '/' + page_index;
+};
+
 Project.prototype.current_page_path = function() {
-	return this.path + '/' + this.current_page;
+	return this.page_path(this.current_page);
 };
 
 // set current_page based on page_id
@@ -76,20 +80,8 @@ Project.prototype.sync_mockup = function(property){
 Project.prototype.sync_pages = function(page_id) {
 	var $mockup_pages = $("#mockup_pages").html("");
 	for (var index in this.pages) {
-		var page = this.pages[index], page_name = page.name ? page.name : '&nbsp;';
-		$mockup_pages.append(
-			'<li>' +
-		    '<form page_id="' + index + '" class="name_update">' + // TODO remove h for current_page
-					'<a page_id="' + index + '" id="page_' + index + '" ' +
-					'   title="' + page.name.replace('"', '&quot;') + '" ' +
-					'   href="#' + this.id + '/' + this.hash + '/' + index + '">' +
-						page_name +
-					'</a>' +
-					'<input class="h" type="text" value="' + page.name + '"/>' +
-				'</form>' +
-				'<span page_id="' + index + '" class="delete"> <img src="/images/deleteicon.png"/> </span>' +
-			'</li>'
-		);
+		var page = this.pages[index];
+		$mockup_pages.append(Views.page(index, page));
 	}
 	this.select_page(page_id);
 };

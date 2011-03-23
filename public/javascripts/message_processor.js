@@ -15,7 +15,7 @@ MessageProcessor = {
 	},
 
 	project_load: function(project) {
-		$('#submit_password').dialog('destroy');
+		$('.ui-dialog').remove();
 
 		env.project = new Project(project);
 		// set page items
@@ -29,44 +29,18 @@ MessageProcessor = {
 	project_create: function(created_project) {
 		env.project.created = true;
 		$('#projectinfo input').after('<img id="set_password" src="/images/lockicon.png">');
-		$('#set_password').click(function() {
-			$('.ui-dialog').remove();
-			var create_password = $('<div id="create_password"></div>').append('<div class="flash"></div><form></form>');
-
-			create_password.find('form')
-				.append(Views.new_password_inputs())
-				.submit(function() {
-					var password = $(this).find('#password').val();
-					if (password != $(this).find('#password_confirm').val()) {
-						$(this).siblings('.flash').html('').hide().html("<div class='active'>Your password confirmation does not match.</div>").fadeIn();
-					} else {
-						$(this).find('input').attr('disabled', 'disabled');
-						env.socket.send({ project_update: { password: password } });
-						$('.ui-dialog').remove();
-					}
-					$('#password').focus();
-					return false;
-				});
-
-			create_password.dialog({
-				resizable:   false,
-				modal:       true,
-				title:       'Set a Password',
-				zIndex:      10001,
-				dialogClass: 'new_password',
-			});
-		});
 	},
 	
 	project_prompt_password: function(data) {
 		if (data.error) {
+			$('.flash').remove();
 			$('#submit_password form').before('<div class="flash"><div class="active">' + data.error + '</div></div>').hide().fadeIn();
 			$('input[type=password]').val('').focus();
 			return;
 		}
-		$('#submit_password').dialog('destroy');
-		var $submit_password = $("<div id='submit_password'></div>")
-			.append("<form></form>")
+
+		$('.ui-dialog').remove();
+		var $submit_password = $(Views.password_submit())
 			.dialog({
 				resizable: false,
 				modal: true,
@@ -74,25 +48,14 @@ MessageProcessor = {
 				title: 'Enter Password',
 				minHeight: 50,
 				closeOnEscape: false,
-			})
-			.find('form')
-			.append('<label for="password">Password</label> <input type="password" id="password" /> <br/>')
-			.append('<input type="submit" value="Submit Password" />')
-			.submit(function() {
-				var password = $(this).find('#password').val();
-				$(this).siblings('.flash').remove();
-				$(this).find('input').blur();
-				var project_id = window.location.hash.split('/')[0].substring(1);
-				env.socket.send({ project_authorize: { id: project_id, password: password } });
-				return false;
 			});
+			
 		$('input[type=password]').focus();
-		$('#connecting').dialog('destroy');
 	},
 	
 	project_set_password: function(data) {
 		if (data) {
-			$('#create_password').dialog('destroy');
+			$('.ui-dialog').remove();
 			$('#set_password').unbind('click').html('Password set.').fadeOut(5000);
 		}
 	},

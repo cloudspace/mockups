@@ -40,9 +40,9 @@ Views = {
 				'<textarea id="content" name="content">' + content + '</textarea>' +
 				'<br />';
 		}
-		html += '<input type="submit" value="Apply" class="rad5 submit">';
-		html += '<a class="delete" href="javascript:">delete this object</a>'
-		html += '</form>';
+		html += '<input type="submit" value="Apply" class="rad5 submit">' +
+			'<a class="delete" href="javascript:">delete this object</a>' +
+			'</form>';
 
 		return html;
 	},
@@ -50,49 +50,71 @@ Views = {
 		return '<div id="connecting"><div id="wait"></div><p>Connecting to the Cloudspace Mockups.</p></div>';
 	},
 	connected: function(){
-	html = 
-		'<div id="connected">' +
-		'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup></p>' +
-		'<ol>' +
-		'<li>Save the url.  It\'s your only way to get back to this page!</li>' +
-		'<li>Drag and drop elements on to the canvas.</li>' +
-		'<li>The toolbar contains the page elements you will use.</li>' +
-		'<li>Make a name, project password, and new pages in settings.</li>' +
-		'</ol>' +
-		'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
-		'<input type="submit" value="Start Mocking" class="start rad5" />' +
-		'</form>' +
-		'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
-		'</div>';
-	return html;
+		var html = '<div id="connected">' +
+			'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup></p>' +
+			'<ol>' +
+			'<li>Save the url.  It\'s your only way to get back to this page!</li>' +
+			'<li>Drag and drop elements on to the canvas.</li>' +
+			'<li>The toolbar contains the page elements you will use.</li>' +
+			'<li>Make a name, project password, and new pages in settings.</li>' +
+			'</ol>' +
+			'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
+			'<input type="submit" value="Start Mocking" class="start rad5" />' +
+			'</form>' +
+			'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
+			'</div>';
+		return html;
 	},
 	overlay: function(){
 		var height = $("#canvas").height(), width = $("#canvas").width();
 
-		html = 
-		'<div id="overlay_wrapper" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay" >&nbsp;</div>'+
-		'<div id="overlay_contents" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay">'+
-		'<img src="/images/overlay_image.png"/>' +
-		'<h2 class="overlay_header">Welcome to Cloudspace Mockups <a target="_blank" href="http://github.com/cloudspace/mockups">http://github.com/cloudspace/mockups</a></h2>'+
-		'</div>';
+		var html = '<div id="overlay_wrapper" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay" >&nbsp;</div>'+
+			'<div id="overlay_contents" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay">'+
+			'<img src="/images/overlay_image.png"/>' +
+			'<h2 class="overlay_header">Welcome to Cloudspace Mockups <a target="_blank" href="http://github.com/cloudspace/mockups">http://github.com/cloudspace/mockups</a></h2>'+
+			'</div>';
 		return html;
 	},
 
 	error_404: function(){
-		html =
-		'<div id="error_404">' +
-		'<p>Sorry, that project could not be found.</p>' +
-		'<p class="new_project"><a href="/">Create a new project.</a></p>' +
-		'<div>';
+		var html = '<div id="error_404">' +
+			'<p>Sorry, that project could not be found.</p>' +
+			'<p class="new_project"><a href="/">Create a new project.</a></p>' +
+			'<div>';
 		return html;
 	},
-
-	new_password_inputs: function(){
-		html = 
+	password_submit: function(){
+		var html = '<div id="submit_password">' +
+			'<form>' +
+			'<label for="password">Password</label> <input type="password" id="password" /><br/>' +
+			'<input type="submit" value="Submit Password" />' +
+			'</form>' +
+			'</div>';
+		return html;
+	},
+	password_create: function(){
+		var html = '<div id="create_password"><div class="flash"></div>' +
+			'<form>' +
 			'<label for="password">Password</label> <input type="password" id="password"/> <br/>' +
 			'<label for="password_confirm">Password Confirm</label> <input type="password" id="password_confirm"/> <br/>' +
-			'<input type="submit" value="Set Password"/>';
+			'<input type="submit" value="Set Password"/>' +
+			'<form>' +
+			'</div>';
 		return html;
+	},
+	page: function(index, page){
+	  var page_name = page.name ? page.name.replace('"', '&quot;') : '&nbsp;';
+		var html = '<li>' +
+		  '<form page_id="' + index + '" class="name_update">' + // TODO remove h for current_page
+			'<a page_id="' + index + '" id="page_' + index + '" ' +
+			'   title="' + page_name + '" ' +
+			'   href="#' + env.project.page_path(index) + '">' + page_name + '</a>' +
+			'<input class="h" type="text" value="' + page_name + '"/>' +
+			'</form>' +
+			'<span page_id="' + index + '" class="delete"> <img src="/images/deleteicon.png"/> </span>' +
+			'</li>';
+			return html;
+
 	},
 }
 
