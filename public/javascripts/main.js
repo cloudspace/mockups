@@ -176,9 +176,8 @@ $(document).ready(function(){
 		if (!$.cookie('skipconnect') || override) { 
 			$('body')
 				.append("<div class='instructional_marker first'>1 <span>URL</span></div>")
-				.append("<div class='instructional_marker second'>2 <span>Canvas</span></div>");
-			$('#floatingpanel')
-				.append("<div class='instructional_marker third'>3 <span>Tools</span></div>")
+				.append("<div class='instructional_marker second'>3 <span>Canvas</span></div>")
+				.append("<div class='instructional_marker third'>2 <span>Tools</span></div>")
 				.append("<div class='instructional_marker fourth'>4 <span>Settings</span></div>");
 
 			$('#canvas .canvas_object').hide();
@@ -193,6 +192,7 @@ $(document).ready(function(){
 					modal: true,       
 					zIndex: 10001,
 					minWidth: 450,
+					dialogClass: 'welcome',
 					close: close_connected_dialog 
 				}).find('form').submit(function() {
 					var checked = $(this).find('input[type=checkbox]').attr('checked');

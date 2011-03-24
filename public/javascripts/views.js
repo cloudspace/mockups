@@ -51,17 +51,18 @@ Views = {
 	},
 	connected: function(){
 		var html = '<div id="connected" class="connected">' +
-			'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup></p>' +
+			'<h2>Cloudspace Mockups<sup> alpha </sup></h2>' +
 			'<ol>' +
 			'<li>Save the url.  It\'s your only way to get back to this page!</li>' +
-			'<li>Drag and drop elements on to the canvas.</li>' +
 			'<li>The toolbar contains the page elements you will use.</li>' +
-			'<li>Make a name, project password, and new pages in settings.</li>' +
+			'<li>Drag and drop elements on to the canvas.</li>' +
+			'<li>Set a name, project password, and new pages in settings.</li>' +
 			'</ol>' +
-			'<form><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this automatically next time.</label><br/>' +
-			'<input type="submit" value="Start Mocking" class="start rad5" />' +
+			'<form>' +
+			'<input type="submit" value="Start Mocking" class="start rad5" /><br/>' +
+			'<div><p class="hide_dialog"><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this next time.</label></p>' +
+			'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p></div>' +
 			'</form>' +
-			'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p>' +
 			'</div>';
 		return html;
 	},
