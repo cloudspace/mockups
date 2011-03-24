@@ -7,16 +7,16 @@ a { text-decoration:none; color:#3c3c3c; }
 #connecting #wait { background: transparent url('/images/loading.gif') no-repeat top left; margin: 30px 20px; width: 32px; height: 32px;float:left; }
 #connecting p { text-align: left; font-size: 15px; line-height: 20px; margin-top: 25px; }
 #connecting label, #connected label { display: inline-block; margin-left: 10px; }
-#connected p{ margin: 5px 0 10px; text-align: center; font-size: 15px; line-height: 20px; }
-#connected h2{ margin: 5px 0 10px; text-align: center; font-size: 20px; line-height: 20px; }
-#connected sup{ font-size: 10px;vertical-align:bottom;}
-#connected ol{list-style: decimal outside; text-align: left; line-height: 25px; padding: 0 0 0 20px; margin: 0 auto 5px; width: 375px; font-size: 13px;}
+#connected p { margin: 5px 0 10px; text-align: center; font-size: 15px; line-height: 20px; }
+#connected h2 { margin: 5px 0 10px; text-align: center; font-size: 20px; line-height: 20px; }
+#connected sup { font-size: 10px;vertical-align:bottom;}
+#connected ol{ list-style: decimal outside; text-align: left; line-height: 25px; padding: 0 0 0 20px; margin: 0 auto 5px; width: 375px; font-size: 13px;}
 #connected .contribute{ float: right; text-decoration: underline;font-size:10px;} 
 #connected .hide_dialog{float: left;font-size:10px;}
 .welcome {
-	-webkit-box-shadow: 0 0 20px #888;
-	-moz-box-shadow: 0 0 20px #888;
-	box-shadow: 0 0 20px #888;
+	-webkit-box-shadow: 0 0 25px #000;
+	-moz-box-shadow: 0 0 25px #000;
+	box-shadow: 0 0 25px #000;
 }
 #reconnect, #connecting { text-align: center; }
 #canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0;
@@ -33,9 +33,12 @@ a { text-decoration:none; color:#3c3c3c; }
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-timing-function: ease-in-out;
 	-webkit-animation-direction: alternate;
+	-webkit-box-shadow: 0px 0px 5px #111;
+	-moz-box-shadow: 0px 0px 5px #111;
+	box-shadow: 0px 0px 5px #111;
 }
 
-.instructional_marker span { display: block; font-size: 14px; position: relative; left: -15px; width: 60px; font-weight: bold; color: #333; }
+.instructional_marker span { display: block; font-size: 14px; position: relative; left: -15px; width: 60px; font-weight: bold; color: #333; text-shadow: 1px 1px 1px #fff; }
 .first{ top: 5px; left: 265px; }
 .second{ top: 100px; left: 50px; }
 .third{ position: absolute; top: 159px; left: 79px;}
@@ -104,35 +107,34 @@ a { text-decoration:none; color:#3c3c3c; }
 	cursor: move;
 	background: #C8C8C8; /* old browsers */
 }
-#expandcollapse {
-	background:url(/images/collapseicon.png);
-	width:11px;
-	height:11px;
-	float:right;
-	margin:10px 5px;
-	cursor:pointer;
-}
-
-#expandcollapse.collapsed {
-	background:url(/images/expandicon.png);
-}
 
 .home { color:#469AC6; text-decoration: underline; font:10px;font-weight:bold; }
 
-#help {
-	width:19px;
-	height:11px;
-	float:right;
-	margin:10px 5px;
+#expandcollapse, #help {
+	width: 10px;
+	height: 10px;
+	padding: 2px;
+	text-align: center;
+	font-size: 10px;
+	line-height: 8px;
+	margin: 8px 2px;
+	background: #666;
 	cursor: pointer;
 	font-weight: bold;
-	color:#393939;
+	color: #ddd;
+	float: right;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	font-family: sans-serif;
 }
+#help { margin-right: 8px; line-height: 9px; }
+#expandcollapse:hover, #help:hover { background: #333; }
+
 
 #logo {
 	font-size: 13px;
-	padding: 0;
-	margin: 5px;
+	padding: 5px 10px;
 	display: inline-block;
 	line-height: 20px;
 }

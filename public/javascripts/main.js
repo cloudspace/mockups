@@ -72,6 +72,7 @@ $(document).ready(function(){
 	$("#expandcollapse").click(function(){
 		$("#tabs").slideToggle(300);
 		$(this).toggleClass('collapsed');
+		$(this).hasClass('collapsed') ? $(this).html('+') : $(this).html('&ndash;');
 	});
 	
 	$('form.canvas_object_update').live('submit',function(e){
