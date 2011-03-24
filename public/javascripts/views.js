@@ -50,7 +50,7 @@ Views = {
 		return '<div id="connecting"><div id="wait"></div><p>Connecting to the Cloudspace Mockups.</p></div>';
 	},
 	connected: function(){
-		var html = '<div id="connected">' +
+		var html = '<div id="connected" class="connected">' +
 			'<p>Welcome to the <br/> Cloudspace Mockups<sup style="font-size: 8px; font-weight: bold;vertical-align:bottom;"> alpha </sup></p>' +
 			'<ol>' +
 			'<li>Save the url.  It\'s your only way to get back to this page!</li>' +
@@ -65,17 +65,6 @@ Views = {
 			'</div>';
 		return html;
 	},
-	overlay: function(){
-		var height = $("#canvas").height(), width = $("#canvas").width();
-
-		var html = '<div id="overlay_wrapper" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay" >&nbsp;</div>'+
-			'<div id="overlay_contents" style="min-height:'+height+'px; min-width: '+width+'px;" class="overlay">'+
-			'<img src="/images/overlay_image.png"/>' +
-			'<h2 class="overlay_header">Welcome to Cloudspace Mockups <a target="_blank" href="http://github.com/cloudspace/mockups">http://github.com/cloudspace/mockups</a></h2>'+
-			'</div>';
-		return html;
-	},
-
 	error_404: function(){
 		var html = '<div id="error_404">' +
 			'<p>Sorry, that project could not be found.</p>' +
@@ -114,7 +103,6 @@ Views = {
 			'<span page_id="' + index + '" class="delete"> <img src="/images/deleteicon.png"/> </span>' +
 			'</li>';
 			return html;
-
 	},
 }
 
