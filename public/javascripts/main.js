@@ -173,7 +173,7 @@ $(document).ready(function(){
 	};
 	show_connected_screen = function(override){
 
-		if (!$.cookie('skipconnect') || override) { 
+		if (!($.cookie('skipconnect') == 'true') || override) { 
 			var panel_pos = $('#floatingpanel').position(),
 			settings_pos  = { left: 180, top:30},
 			tools_pos     = { left: 115, top:160};
@@ -206,6 +206,7 @@ $(document).ready(function(){
 				}).find('form').submit(function() {
 					var checked = $(this).find('input[type=checkbox]').attr('checked');
 					if (checked) $.cookie('skipconnect', true);
+					else $.cookie('skipconnect',false);
 					close_connected_dialog();
 					return false;  
 				});
