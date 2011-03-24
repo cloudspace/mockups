@@ -18,21 +18,18 @@ a { text-decoration:none; color:#3c3c3c; }
 #canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; box-shadow: 1px 1px 20px #444; }
 #settings #set_password { margin-right: 16px; cursor: pointer; }
 
-.instructional_marker { position: fixed; border: 3px solid #333; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: normal; font-size: 22px; background: #333; z-index:11000; color: #fff;
--webkit-animation-name: zoom;
--webkit-animation-duration: .4s;
--webkit-animation-iteration-count: 1;
--webkit-animation-timing-function: ease-in-out;
--webkit-animation-direction: alternate;
+.instructional_marker {
+	position: fixed; border: 3px solid #333; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: normal; font-size: 22px; background: #333; z-index:11000; color: #fff;
+	-webkit-animation-name: zoom;
+	-webkit-animation-duration: .4s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-direction: alternate;
 }
-
-
-
-
 
 .instructional_marker span { display: block; font-size: 14px; position: relative; left: -15px; width: 60px; font-weight: bold; color: #333; }
 .first{ top: 5px; left: 265px; }
-.second{ top: 180px; left: 975px; }
+.second{ top: 100px; left: 50px; }
 .third{ position: absolute; top: 159px; left: 79px;}
 .fourth{ position: absolute; top: 50px; left: 1040px; }
 /* TODO clean this mess up */

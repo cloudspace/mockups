@@ -174,11 +174,20 @@ $(document).ready(function(){
 	show_connected_screen = function(override){
 
 		if (!$.cookie('skipconnect') || override) { 
+			var panel_pos = $('#floatingpanel').position(),
+			settings_pos  = { left: 180, top:30},
+			tools_pos     = { left: 115, top:160};
+			
 			$('body')
 				.append("<div class='instructional_marker first'>1 <span>URL</span></div>")
-				.append("<div class='instructional_marker second'>3 <span>Canvas</span></div>")
-				.append("<div class='instructional_marker third'>2 <span>Tools</span></div>")
+				.append("<div class='instructional_marker second'>2 <span>Canvas</span></div>")
+				.append("<div class='instructional_marker third'>3 <span>Tools</span></div>")
 				.append("<div class='instructional_marker fourth'>4 <span>Settings</span></div>");
+			$('.fourth').css('left', settings_pos.left + panel_pos.left);
+			$('.fourth').css('top', settings_pos.top + panel_pos.top);
+
+			$('.third').css('left', tools_pos.left + panel_pos.left);
+			$('.third').css('top', tools_pos.top + panel_pos.top);
 
 			$('#canvas .canvas_object').hide();
 			$connected = $(Views.connected());
