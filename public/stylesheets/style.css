@@ -20,7 +20,7 @@ a { text-decoration:none; color:#3c3c3c; }
 
 .instructional_marker { position: fixed; border: 3px solid black; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: normal; font-size: 22px; background: white; z-index:11000;}
 .first{ top: 0; left: 265px; }
-.second{ top: 180px; left: 975px; }
+.second{ top: 100px; left: 50px; }
 .third{ position: absolute; top: 159px; left: 79px;}
 .fourth{ position: absolute; top: 50px; left: 1040px; }
 /* TODO clean this mess up */
