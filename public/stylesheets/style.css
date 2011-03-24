@@ -16,10 +16,11 @@ a { text-decoration:none; color:#3c3c3c; }
 #canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; box-shadow: 1px 1px 20px #444; }
 #settings #set_password { margin-right: 16px; cursor: pointer; }
 
-.instructional_marker { position: fixed; border: 3px solid black; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: bold; font-size: 22px; background: white; z-index:11000;}
-.first{ top: 0; left: 265px; }
+.instructional_marker { position: fixed; border: 3px solid #333; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: bold; font-size: 22px; background: #333; z-index: 11000; color: #fff; }
+.instructional_marker span { display: block; font-size: 14px; position: relative; left: -15px; width: 60px; font-weight: bold; color: #333; }
+.first{ top: 5px; left: 265px; }
 .second{ top: 50px; left: 50px; }
-.third{ position: absolute; top: 159px; left: 79px;}
+.third{ position: absolute; top: 150px; left: 110px;}
 .fourth{ position: absolute; top: 30px; right: -25px; }
 /* TODO clean this mess up */
 #tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; }

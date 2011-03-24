@@ -175,25 +175,25 @@ $(document).ready(function(){
 
 		if (!$.cookie('skipconnect') || override) { 
 			$('body')
-				.append("<div class='instructional_marker first'>1</div>")
-				.append("<div class='instructional_marker second'>2</div>");
+				.append("<div class='instructional_marker first'>1 <span>URL</span></div>")
+				.append("<div class='instructional_marker second'>2 <span>Canvas</span></div>");
 			$('#floatingpanel')
-				.append("<div class='instructional_marker third'>3</div>")
-				.append("<div class='instructional_marker fourth'>4</div>");
+				.append("<div class='instructional_marker third'>3 <span>Tools</span></div>")
+				.append("<div class='instructional_marker fourth'>4 <span>Settings</span></div>");
 
 			$('#canvas .canvas_object').hide();
 			$connected = $(Views.connected());
 
 			$connected
 				.dialog({
-						resizable: false,  
-						minHeight: 50,     
-						closeOnEscape: true,            
-						title: 'Connected',
-						modal: true,       
-						zIndex: 10001,
-						minWidth: 450,
-						close: close_connected_dialog 
+					resizable: false,  
+					minHeight: 50,     
+					closeOnEscape: true,            
+					title: 'Connected',
+					modal: true,       
+					zIndex: 10001,
+					minWidth: 450,
+					close: close_connected_dialog 
 				}).find('form').submit(function() {
 					var checked = $(this).find('input[type=checkbox]').attr('checked');
 					if (checked) $.cookie('skipconnect', true);
