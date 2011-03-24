@@ -4,8 +4,27 @@
 .canvas_object .overlay { position: absolute; top: 0; left: 0; background: transparent; z-index: 2001; width: 100%; height: 100%; }
 .canvas_object_edit .delete { padding-left: 5px; text-decoration: underline; color: #069; font-size: 11px; cursor: pointer; line-height: 28px; }
 .start, .canvas_object_edit .submit{ font-size: 13px; border: 1px solid #666666; color: #333333; text-align: center; text-shadow: 0pt 1px 1px #FFF;height: 25px; padding: 0 6px;
-	background: -webkit-gradient(linear, left bottom, left top,  color-stop(0, rgb(160,160,160)),  color-stop(1, rgb(220,220,220)));
-	background: -moz-linear-gradient(center bottom , #A0A0A0 0%, #DCDCDC 100%) repeat scroll 0pt 0pt transparent; }
+	background: -webkit-gradient(linear, left bottom, left top,  color-stop(0, #a0a0a0),  color-stop(1, #dcdcdc));
+	background: -moz-linear-gradient(center bottom, #a0a0a0 0%, #dcdcdc 100%) repeat scroll 0pt 0pt transparent;
+}
+.start {
+	outline: none;
+	color: #fff;
+	border: 1px solid #339;
+	text-shadow: 1px 1px 1px #111;
+	background: -webkit-gradient(linear, left bottom, left top,  color-stop(0, #1e5799),  color-stop(1, #7db9e8));
+	background: -moz-linear-gradient(center bottom, #1e5799 0%, #7db9e8 100%) repeat scroll 0pt 0pt transparent;
+}
+.start:hover, .start:focus {
+	color: #fff;
+	background: -webkit-gradient(linear, left bottom, left top,  color-stop(0, #0e4789),  color-stop(1, #6da9d8));
+	background: -moz-linear-gradient(center bottom, #0e4789 0%, #6da9d8 100%) repeat scroll 0pt 0pt transparent;
+}
+.start:active {
+	color: #fff;
+	background: -webkit-gradient(linear, left bottom, left top,  color-stop(0, #69a9d8),  color-stop(1, #0e4789));
+	background: -moz-linear-gradient(center bottom, #69a9d8 0%, #0e4789 100%) repeat scroll 0pt 0pt transparent;
+}
 .canvas_object_edit .unit{ font-size: 10px; font-weight: bolder;  }
 .canvas_object ul.content{ list-style: disc inside; padding-left:1px; line-height: 150%; }
 .canvas_object .link{ color: blue; text-decoration: underline; }

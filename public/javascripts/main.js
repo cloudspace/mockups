@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-  $('#settings').hide();
+	$('#settings').hide();
 	$('#tabs h3').click(function(){
 		var id = $(this).html().toLowerCase();
 		$('div#' + id).show().siblings('div').hide();
@@ -70,8 +70,8 @@ $(document).ready(function(){
 	});
 
 	$("#expandcollapse").click(function(){
-		  $("#tabs").slideToggle(300);
-			  $(this).toggleClass('collapsed');
+		$("#tabs").slideToggle(300);
+		$(this).toggleClass('collapsed');
 	});
 	
 	$('form.canvas_object_update').live('submit',function(e){
@@ -188,6 +188,11 @@ $(document).ready(function(){
 
 			$('.third').css('left', tools_pos.left + panel_pos.left);
 			$('.third').css('top', tools_pos.top + panel_pos.top);
+
+			// Force tab on tools
+			// TODO This 'tab' logic should really be abstracted. (check jquery ui)
+			$('#tools').show().siblings('div').hide();
+			$('#tabs h3:first').removeClass('inactive').siblings('h3').addClass('inactive');
 
 			$('#canvas .canvas_object').hide();
 			$connected = $(Views.connected());
