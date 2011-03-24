@@ -174,8 +174,16 @@ $(document).ready(function(){
 	show_connected_screen = function(override){
 
 		if (!$.cookie('skipconnect') || override) { 
+			$('body')
+				.append("<div class='instructional_marker first'>1</div>")
+				.append("<div class='instructional_marker second'>2</div>");
+			$('#floatingpanel')
+				.append("<div class='instructional_marker third'>3</div>")
+				.append("<div class='instructional_marker fourth'>4</div>");
 
+			$('#canvas .canvas_object').hide();
 			$connected = $(Views.connected());
+
 			$connected
 				.dialog({
 						resizable: false,  
@@ -184,16 +192,25 @@ $(document).ready(function(){
 						title: 'Connected',
 						modal: true,       
 						zIndex: 10001,
-						minWidth: 450
+						minWidth: 450,
+						close: close_connected_dialog 
 				}).find('form').submit(function() {
 					var checked = $(this).find('input[type=checkbox]').attr('checked');
 					if (checked) $.cookie('skipconnect', true);
-					$('.ui-dialog').remove();
-					return false;        
+					close_connected_dialog();
+					return false;  
 				});
 		}
-
 	};
+
+	function close_connected_dialog(){
+		$('#canvas .canvas_object').show(); 
+		$('.connected').remove(); 
+		$('.ui-dialog').remove(); 
+		$('.instructional_marker').hide().remove(); 
+	}
+
+
 
 	$('.overlay').live('click',function(){
 		$(".overlay").remove();

@@ -15,6 +15,11 @@ a { text-decoration:none; color:#3c3c3c; }
 #canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
 #settings #set_password { margin-right: 16px; cursor: pointer; }
 
+.instructional_marker { position: fixed; border: 3px solid black; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: bold; font-size: 22px; background: white; z-index:11000;}
+.first{ top: 0; left: 265px; }
+.second{ top: 50px; left: 50px; }
+.third{ position: absolute; top: 159px; left: 79px;}
+.fourth{ position: absolute; top: 30px; right: -25px; }
 /* TODO clean this mess up */
 #tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages li { position: relative; }
@@ -62,7 +67,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	font-size: 12px;
 	position: fixed;
 	top: 20px;
-	right: 20px;
+	left: 860px;
 	z-index: 9000;
 	padding-bottom: 10px;
 }
@@ -224,11 +229,11 @@ a { text-decoration:none; color:#3c3c3c; }
 .ui-dialog-content input, .ui-dialog-content textarea { margin: 3px 0 6px 0;  }
 .ui-dialog-content input:focus, .ui-dialog-content textarea:focus {outline: 2px auto -webkit-focus-ring-color;}
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.ui-widget-overlay { background: #2F2F2F;opacity:0.6;filter:alpha(opacity=60) }
+.ui-widget-overlay {/* background: #2F2F2F;opacity:0.5;filter:alpha(opacity=50)*/ }
 .ui-dialog-titlebar-close{display:none;}
 .option_pane .ui-dialog-titlebar-close, .new_password .ui-dialog-titlebar-close { position: absolute; top: 4px; right: 5px; display: block;}
 
-#overlay_wrapper{z-index:10001;height:100% ;width: 100%;position:absolute;top:0;opacity:0.4;filter:alpha(opacity=40);background:black;}
+#overlay_wrapper{z-index:10001;height:100% ;width: 100%;position:absolute;top:0;/*opacity:0.4;filter:alpha(opacity=40);background:black;*/}
 #overlay_contents{z-index:10002;height:100%;width:100%;position:absolute;top:0;}
 .overlay_header{position:absolute;top:570px;width:900px;font-size:25px;}
 .overlay_header a{color:blue;font-size:15px;}
