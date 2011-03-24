@@ -1,18 +1,19 @@
 html { background: url('/images/stripes.png') repeat top left; font-family: 'Verdana', sans-serif; height:100%;width:100%;}
 body{ position:relative;height: 100%; width:100% }
 a { text-decoration:none; color:#3c3c3c; }
+
 #connecting, #connected { text-align: center; }
 #reconnect #wait{ background: transparent url('/images/loading.gif') no-repeat top left; margin: 0 auto; width: 32px; height: 32px;}
 #connecting #wait { background: transparent url('/images/loading.gif') no-repeat top left; margin: 30px 20px; width: 32px; height: 32px;float:left; }
-#connecting p{ text-align: left; font-size: 15px; line-height: 20px; margin-top: 25px; }
+#connecting p { text-align: left; font-size: 15px; line-height: 20px; margin-top: 25px; }
 #connecting label, #connected label { display: inline-block; margin-left: 10px; }
-#connected p{ margin: 5px 0 10px;text-align: center; font-size: 15px; line-height: 20px; }
-#connected sup{ font-size: 10px;vertical-align:bottom;}
-#connected ol{list-style: decimal outside; text-align: left; line-height: 25px; padding: 0 0 0 20px; margin: 0 auto 20px; width: 375px; font-size: 13px;}
-#connected .contribute{ text-align: right; font-size: 11px; font-weight: bold; padding-right: 1px; }
-#connected .contribute a{ color: blue; }
+#connected p { margin: 5px 0 10px;text-align: center; font-size: 15px; line-height: 20px; }
+#connected sup { font-size: 10px;vertical-align:bottom;}
+#connected ol {list-style: decimal outside; text-align: left; line-height: 25px; padding: 0 0 0 20px; margin: 0 auto 20px; width: 375px; font-size: 13px;}
+#connected .contribute { text-align: right; font-size: 11px; font-weight: bold; padding-right: 1px; }
+#connected .contribute a { color: blue; }
 #reconnect, #connecting { text-align: center; }
-#canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; }
+#canvas { background: #fff; width: 960px; height: 600px; display: block; border: 1px solid #999; border-top: 0; border-left: 0; box-shadow: 1px 1px 20px #444; }
 #settings #set_password { margin-right: 16px; cursor: pointer; }
 
 /* TODO clean this mess up */
@@ -30,28 +31,28 @@ a { text-decoration:none; color:#3c3c3c; }
 #add_page:hover { color: #000;  }
 
 
-#error_404{ width:350px; margin: 0 auto; padding: 200px 0; }
+#error_404 { width: 350px; margin: 0 auto; padding: 200px 0; }
 #error_404 p { text-align: center; }
-#error_404 p.new_project a{ 
+#error_404 p.new_project a {
 	padding: 0px 10px;
-  -webkit-border-radius: 5px;
-  border: solid 1px rgb(153, 153, 153);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
-  color: #333;
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  text-shadow: 0px 1px 1px rgba(255,255,255,1);
-  line-height: 1;
-  -webkit-transition: -webkit-box-shadow .2s ease;
+	border: solid 1px rgb(153, 153, 153);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255,255,255)), to(rgb(221,221,221)));
+	background: -moz-linear-gradient( center bottom, rgb(255,255,255) 0%, rgb(221,221,221) 100%);
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
+	line-height: 1;
+	-webkit-transition: -webkit-box-shadow .2s ease;
 	text-align: center;
 }
 
-#error_404 p:first{
+#error_404 p:first {
 	color: #5a5a5a;
 	text-align: center;
-	text-shadow: 0px 1px 1px rgba(,255,255,1);
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
 }
 
 #floatingpanel {
@@ -65,10 +66,11 @@ a { text-decoration:none; color:#3c3c3c; }
 	right: 20px;
 	z-index: 9000;
 	padding-bottom: 10px;
+	box-shadow: 1px 1px 15px #ccc;
 }
 
 #floatingpanel hr { width: 160px; border: none; border-top: 1px solid #999; } 
-.handle #name_change img{margin-right: 25px;}
+.handle #name_change img { margin-right: 25px; }
 
 #handler {
 	border-bottom: 1px solid #999;
@@ -85,11 +87,11 @@ a { text-decoration:none; color:#3c3c3c; }
 	cursor:pointer;
 }
 
-#expandcollapse.collapsed{
+#expandcollapse.collapsed {
 	background:url(/images/expandicon.png);
 }
 
-.home{ color:#469AC6; text-decoration: underline; font:10px;font-weight:bold; }
+.home { color:#469AC6; text-decoration: underline; font:10px;font-weight:bold; }
 
 #help {
 	width:19px;
@@ -168,8 +170,8 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 
 #tabs li ul li:hover {
-	background: -webkit-gradient(linear,  left bottom,  left top,  color-stop(0, rgb(20,84,171)),  color-stop(0.95, rgb(29,143,213)),  color-stop(1, rgb(255,255,255)));
-	background: -moz-linear-gradient( center bottom,  rgb(20,84,171) 0%,  rgb(29,143,213) 90%,  rgb(255,255,255) 100%); color: #fff; text-shadow: #000 0px 1px 1px;
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(20,84,171)), color-stop(0.95, rgb(29,143,213)), color-stop(1, rgb(255,255,255)));
+	background: -moz-linear-gradient(center bottom, rgb(20,84,171) 0%, rgb(29,143,213) 90%, rgb(255,255,255) 100%); color: #fff; text-shadow: #000 0px 1px 1px;
 	color: white;
 }
 
@@ -178,32 +180,32 @@ a { text-decoration:none; color:#3c3c3c; }
 	margin:5px;
 }
 
-#tabs li ul li  {
-	line-height:20px;
-	vertical-align:middle;
-	padding-left:5px;
+#tabs li ul li {
+	line-height: 20px;
+	vertical-align: middle;
+	padding-left: 5px;
 }
 
 #tabs li ul li * {
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 #tools {
-	width:200px;
-	float:left;
-	text-align:center;
-	margin:0;
-	text-shadow:0 1px 0 #ffffff;
+	width: 200px;
+	float: left;
+	text-align: center;
+	margin: 0;
+	text-shadow: 0 1px 0 #fff;
 }
 
 .inactive {
-	background:#b3b3b3;
-	margin:0;
+	background: #b3b3b3;
+	margin: 0;
 }
 
 .sectionbreak {
-	margin:0 0 0 5px;
-	cursor:pointer;
+	margin: 0 0 0 5px;
+	cursor: pointer;
 }
 
 
@@ -228,10 +230,10 @@ a { text-decoration:none; color:#3c3c3c; }
 .ui-dialog-titlebar-close{display:none;}
 .option_pane .ui-dialog-titlebar-close, .new_password .ui-dialog-titlebar-close { position: absolute; top: 4px; right: 5px; display: block;}
 
-#overlay_wrapper{z-index:10001;height:100% ;width: 100%;position:absolute;top:0;opacity:0.4;filter:alpha(opacity=40);background:black;}
-#overlay_contents{z-index:10002;height:100%;width:100%;position:absolute;top:0;}
-.overlay_header{position:absolute;top:570px;width:900px;font-size:25px;}
-.overlay_header a{color:blue;font-size:15px;}
+#overlay_wrapper { z-index: 10001; height: 100%; width: 100%; position: absolute; top: 0; opacity: 0.4; filter: alpha(opacity=40); background: black; }
+#overlay_contents { z-index: 10002; height: 100%; width: 100%; position: absolute; top: 0; }
+.overlay_header { position: absolute; top: 570px; width: 900px; font-size: 25px; }
+.overlay_header a { color: blue; font-size: 15px; }
 .clear { clear: both; height: 1px; }
 
 /* border radius styles */
