@@ -176,8 +176,7 @@ $(document).ready(function(){
 		if (!$.cookie('skipconnect') || override) { 
 			$('body')
 				.append("<div class='instructional_marker first'>1</div>")
-				.append("<div class='instructional_marker second'>3</div>");
-			$('#floatingpanel')
+				.append("<div class='instructional_marker second'>3</div>")
 				.append("<div class='instructional_marker third'>2</div>")
 				.append("<div class='instructional_marker fourth'>4</div>");
 

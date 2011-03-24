@@ -20,9 +20,9 @@ a { text-decoration:none; color:#3c3c3c; }
 
 .instructional_marker { position: fixed; border: 3px solid black; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: normal; font-size: 22px; background: white; z-index:11000;}
 .first{ top: 0; left: 265px; }
-.second{ top: 50px; left: 50px; }
+.second{ top: 180px; left: 975px; }
 .third{ position: absolute; top: 159px; left: 79px;}
-.fourth{ position: absolute; top: 30px; right: -25px; }
+.fourth{ position: absolute; top: 50px; left: 1040px; }
 /* TODO clean this mess up */
 #tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages li { position: relative; }
@@ -139,6 +139,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	font-size: 12px;
 	font-family: 'Thonburi', 'Verdana', sans-serif;
 	margin-left: 5px;
+	padding-left: 5px;
 }
 
 #settings input:focus, #settings input:hover {
@@ -147,7 +148,9 @@ a { text-decoration:none; color:#3c3c3c; }
 	border-style: inset;
 	color: #333;
 }
-
+#settings input:hover{
+	border: 1px solid #f0f0f0;
+}
 
 #tabs {
 	background:#d5d5d5;
