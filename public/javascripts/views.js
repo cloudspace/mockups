@@ -60,7 +60,7 @@ Views = {
 			'</ol>' +
 			'<form>' +
 			'<input type="submit" value="Start Mocking" class="start rad5" /><br/>' +
-			'<div><p class="hide_dialog"><input type="checkbox" id="closeconnect"><label for="closeconnect">Close this next time.</label></p>' +
+			'<div><p class="hide_dialog"><input type="checkbox" '+ ($.cookie('skipconnect') == 'true' ? 'checked="checked"' : '') +' id="closeconnect"><label for="closeconnect">Close this next time.</label></p>' +
 			'<p class="contribute"><a href="http://github.com/cloudspace/mockups">Want to contribute?</a></p></div>' +
 			'</form>' +
 			'</div>';
