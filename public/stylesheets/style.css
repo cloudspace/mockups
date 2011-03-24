@@ -33,10 +33,11 @@ a { text-decoration:none; color:#3c3c3c; }
 .third{ position: absolute; top: 159px; left: 79px;}
 .fourth{ position: absolute; top: 50px; left: 1040px; }
 /* TODO clean this mess up */
-#tabs #settings #mockup_pages li:hover { background: none; text-decoration: none; color: #777; overflow: hidden; }
+#tabs #settings #mockup_pages li:hover { text-shadow: 0px 1px 1px white; background:none; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages li { position: relative; }
+#mockup_pages > :nth-child(even), #tabs #settings #mockup_pages > :nth-child(even):hover{background: #ccc;}
 #mockup_pages li, #add_page { padding: 0; height: 25px; }
-#floatingpanel #mockup_pages { height: 200px; overflow-y: scroll; background: #ddd; }
+#floatingpanel #mockup_pages { border-top: 1px solid #888; border-bottom: 1px solid #888;height: 200px; overflow-y: scroll; background: #ddd; }
 #mockup_pages li a { display: inline-block; cursor: pointer; width: 145px; overflow: hidden; }
 #mockup_pages a { line-height: 17px; height: 20px; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages a.selected { color: #000; font-weight: bold; }
