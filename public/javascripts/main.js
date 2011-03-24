@@ -197,7 +197,7 @@ $(document).ready(function(){
 					resizable: false,  
 					minHeight: 50,     
 					closeOnEscape: true,            
-					title: 'Connected',
+					title: 'Welcome',
 					modal: true,       
 					zIndex: 10001,
 					minWidth: 450,
