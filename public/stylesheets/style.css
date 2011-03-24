@@ -166,7 +166,6 @@ a { text-decoration:none; color:#3c3c3c; }
 	float:left;
 	text-align:center;
 	height:20px;
-	cursor:pointer;
 }
 
 #tabs ul {
@@ -206,8 +205,15 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 
 .inactive {
-	background: #b3b3b3;
+	background: #aaa;
+	color: #666;
 	margin: 0;
+	cursor: pointer;
+}
+
+.inactive:hover {
+	background: #666;
+	color: #ccc;
 }
 
 .sectionbreak {
