@@ -163,6 +163,34 @@ exports.canvas_object = testCase({
 			});
 		});
 	},
+	
+	"CanvasObject.format_data: strips alpha from numeric required data": function(test) {
+		var message = { template_id: 'text', fontsize: '5shoes'};
+		return_data = CanvasObject.format_data(message);
+		test.equal(return_data['fontsize'], 5 );
+		test.done();
+	},
+	
+	"CanvasObject.format_data: doesnt affect non numeric required fields": function(test) {
+		var message = { template_id: 'text', content: '5shoes'};
+		return_data = CanvasObject.format_data(message);
+		test.equal(return_data['content'], '5shoes' );
+		test.done();
+	},
+
+	"CanvasObject.format_data: sets NaN data to ''": function(test) {
+		var message = { template_id: 'text', fontsize: 'pants5pants'};
+		return_data = CanvasObject.format_data(message);
+		test.equal(return_data['fontsize'], '' );
+		test.done();
+	},
+
+	"CanvasObject.format_data: removes blank lines from newline restricted templates": function(test) {
+		var message = { template_id: 'radio_buttons', content: "lindy\n\n\nhopper\n" };
+		return_data = CanvasObject.format_data(message);
+		test.equal(return_data['content'], "lindy\nhopper" );
+		test.done();
+	},
 
 });
 
