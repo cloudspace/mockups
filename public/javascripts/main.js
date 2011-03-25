@@ -281,50 +281,43 @@ $(document).ready(function(){
 		var canvas_object = env.project.canvas_object(canvas_object_id);
 		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
 	};
-	show_connected_screen = function(override){
 
+	show_connected_screen = function(override){
 		if (!($.cookie('skipconnect') == 'true') || override) { 
 			var panel_pos = $('#floatingpanel').position(),
-			settings_pos  = { left: 180, top:30},
-			tools_pos     = { left: 115, top:160};
+			settings_pos  = { left: 180, top: 30 },
+			tools_pos     = { left: 115, top: 160 };
 			
-			$('body')
-				.append("<div class='instructional_marker first'>1 <span>URL</span></div>")
-				.append("<div class='instructional_marker second'>2 <span>Tools</span></div>")
-				.append("<div class='instructional_marker third'>3 <span>Canvas</span></div>")
-				.append("<div class='instructional_marker fourth'>4 <span>Settings</span></div>");
-			$('.fourth').css('left', settings_pos.left + panel_pos.left);
-			$('.fourth').css('top', settings_pos.top + panel_pos.top);
-
-			$('.second').css('left', tools_pos.left + panel_pos.left);
-			$('.second').css('top', tools_pos.top + panel_pos.top);
-
 			// Force tab on tools
 			// TODO This 'tab' logic should really be abstracted. (check jquery ui)
-			$('#tools').show().siblings('div').hide();
-			$('#tabs h3:first').removeClass('inactive').siblings('h3').addClass('inactive');
-			if($('#expandcollapse').hasClass('collapsed')) $('#expandcollapse').click();
+			$('#tabs h3:first').click();
+
+			if ($('#expandcollapse').hasClass('collapsed')) $('#expandcollapse').click();
 			$('#canvas .canvas_object').hide();
 			$connected = $(Views.connected());
 
-			$connected
-				.dialog({
-					resizable: false,  
-					minHeight: 50,     
-					closeOnEscape: true,            
-					title: 'Welcome',
-					modal: true,       
-					zIndex: 10001,
-					minWidth: 450,
-					dialogClass: 'welcome',
-					close: close_connected_dialog 
-				}).find('form').submit(function() {
-					var checked = $(this).find('input[type=checkbox]').attr('checked');
-					if (checked) $.cookie('skipconnect', true);
-					else $.cookie('skipconnect',false);
-					close_connected_dialog();
-					return false;  
-				});
+
+			$connected.dialog({
+				resizable: false,  
+				minHeight: 50,     
+				closeOnEscape: true,            
+				title: 'Welcome',
+				modal: true,       
+				zIndex: 10001,
+				minWidth: 550,
+				dialogClass: 'welcome',
+				close: close_connected_dialog 
+			}).find('form').submit(function() {
+				var checked = $(this).find('input[type=checkbox]').attr('checked');
+				if (checked) $.cookie('skipconnect', true);
+				else $.cookie('skipconnect',false);
+				close_connected_dialog();
+				return false;  
+			});
+			$('.fourth').css('left', settings_pos.left + panel_pos.left);
+			$('.fourth').css('top', settings_pos.top + panel_pos.top);
+			$('.second').css('left', tools_pos.left + panel_pos.left);
+			$('.second').css('top', tools_pos.top + panel_pos.top);
 		}
 	};
 

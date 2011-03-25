@@ -55,13 +55,18 @@ Views = {
 
 	connected: function(){
 		return '<div id="connected" class="connected">' +
-			'<h2>Cloudspace Mockups<sup> alpha </sup></h2>' +
+			'<h2>Cloudspace Mockups <sup>alpha</sup></h2>' +
 			'<ol>' +
-			'<li>Save the <strong>url</strong>.  It\'s your only way to get back to this page!</li>' +
-			'<li>The <strong>toolbar</strong> contains the page elements you will use.</li>' +
-			'<li>Drag and drop elements on to the <strong>canvas</strong>.</li>' +
-			'<li>Set a name, project password, and new pages in <strong>settings</strong>.</li>' +
+			'<li class="rad5"><span class="number">1</span> Save the <strong>url</strong>.  It\'s your only way to get back to this page!' +
+			'<div class="instructional_marker first">1 <span>URL</span></div></li>' +
+			'<li class="rad5"><span class="number">2</span> The <strong>toolbar</strong> contains the page elements you will use.' +
+			'<div class="instructional_marker second">2 <span>Tools</span></div></li>' +
+			'<li class="rad5"><span class="number">3</span> Drag and drop elements on to the <strong>canvas</strong>.' +
+			'<div class="instructional_marker third">3 <span>Canvas</span></div></li>' +
+			'<li class="rad5"><span class="number">4</span> Set a name, project password, and new pages in <strong>settings</strong>.' +
+			'<div class="instructional_marker fourth">4 <span>Settings</span></div></li>' +
 			'</ol>' +
+			'<div class="clear"></div>' +
 			'<form>' +
 			'<input type="submit" value="Start Mocking" class="start rad5" /><br/>' +
 			'<div><p class="hide_dialog"><input type="checkbox" ' + ($.cookie('skipconnect') == 'true' ? 'checked="checked"' : '') + ' id="closeconnect"><label for="closeconnect">Close this next time.</label></p>' +
