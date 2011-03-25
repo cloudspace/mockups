@@ -33,17 +33,6 @@ Environment.prototype.connect = function(){
 	});
 
 	this.socket.connect();
-
-	// retry connection
-	// socket.io's timeout and retry don't seem to work well w/firefox
-	this.connected = setInterval(function() {
-		if (that.socket.connected == true) {
-			clearInterval(that.connected);
-		} else {
-			that.socket.connect();
-		}
-	}, 2000);
-
 	return true;
 };
 
