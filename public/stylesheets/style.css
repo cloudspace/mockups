@@ -58,10 +58,10 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 
 .instructional_marker span { display: block; font-size: 14px; position: relative; left: -15px; width: 60px; font-weight: bold; color: #333; text-shadow: 1px 1px 1px #fff; }
-.first{ top: 5px; left: 265px; }
-.second{ top: 100px; left: 50px; }
-.third{ position: absolute; top: 159px; left: 79px;}
-.fourth{ position: absolute; top: 50px; left: 1040px; }
+.first { top: 5px; left: 265px; }
+.second { position: absolute; top: 159px; left: 79px;}
+.third { top: 100px; left: 50px; }
+.fourth { position: absolute; top: 50px; left: 1040px; }
 /* TODO clean this mess up */
 #tabs #settings #mockup_pages li:hover { text-shadow: 0px 1px 1px white; background:none; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages li { position: relative; }

@@ -95,8 +95,6 @@ $(document).ready(function(){
 			return false;	
 	});
 
-
-	/*****password events begin*****/
 	$('#create_password form').live('submit',function() {
 		var password = $(this).find('#password').val();
 		if (password != $(this).find('#password_confirm').val()) {
@@ -110,7 +108,7 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$("#submit_password").live('submit',function() {
+	$("#submit_password").live('submit', function() {
 		var password = $(this).find('#password').val();
 		$(this).siblings('.flash').remove();
 		$(this).find('input').blur();
@@ -119,7 +117,7 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$('#set_password').click(function() {
+	$('#set_password').live('click', function() {
 		$('.ui-dialog').remove();
 		var $create_password = $(Views.password_create());
 		
@@ -131,8 +129,6 @@ $(document).ready(function(){
 			dialogClass: 'new_password',
 		});
 	});	
-	
-	/****password events end*****/
 
 	$('.canvas_object_edit .delete').live('click', function(e) {
 		$('.canvas_object_edit').remove();
@@ -181,14 +177,14 @@ $(document).ready(function(){
 			
 			$('body')
 				.append("<div class='instructional_marker first'>1 <span>URL</span></div>")
-				.append("<div class='instructional_marker second'>2 <span>Canvas</span></div>")
-				.append("<div class='instructional_marker third'>3 <span>Tools</span></div>")
+				.append("<div class='instructional_marker second'>2 <span>Tools</span></div>")
+				.append("<div class='instructional_marker third'>3 <span>Canvas</span></div>")
 				.append("<div class='instructional_marker fourth'>4 <span>Settings</span></div>");
 			$('.fourth').css('left', settings_pos.left + panel_pos.left);
 			$('.fourth').css('top', settings_pos.top + panel_pos.top);
 
-			$('.third').css('left', tools_pos.left + panel_pos.left);
-			$('.third').css('top', tools_pos.top + panel_pos.top);
+			$('.second').css('left', tools_pos.left + panel_pos.left);
+			$('.second').css('top', tools_pos.top + panel_pos.top);
 
 			// Force tab on tools
 			// TODO This 'tab' logic should really be abstracted. (check jquery ui)
