@@ -13,8 +13,8 @@ strong { font-weight: bold; }
 #connected h2 { margin: 5px 0 10px; text-align: center; font-size: 20px; line-height: 20px; }
 #connected sup { font-size: 10px; vertical-align: bottom; }
 #connected ol { text-align: left; line-height: 25px; font-size: 13px; background: red; display: block;  }
-#connected ol li { display: inline-block; float: left; margin: 5px 0 5px 10px; padding: 5px; background: #444; color: #fff; width: 240px; }
-#connected ol li .number { font-size: 24px; margin-right: 5px; }
+#connected ol li { display: inline-block; float: left; margin: 5px 0 5px 10px; padding: 5px 10px 5px 5px; background: #444; color: #fff; width: 240px; }
+#connected ol li .number { font-size: 24px; height: 48px; float: left;  margin-right: 10px; }
 #connected ol li:hover, #connected ol li:hover .instructional_marker { background: #069; }
 #connected ol li:hover .instructional_marker {
 	-webkit-transform: scale(2);
@@ -66,6 +66,7 @@ strong { font-weight: bold; }
 }
 
 .instructional_marker {
+	text-transform: uppercase;
 	position: fixed; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: normal; font-size: 22px; background: #333; z-index:11000; color: #fff; padding: 3px;
 	-webkit-animation-name: zoom;
 	-webkit-animation-duration: .4s;
@@ -129,7 +130,7 @@ strong { font-weight: bold; }
 	border: 1px solid #888;
 	font-family: 'Thonburi', 'Verdana', sans-serif;
 	font-size: 12px;
-	position: absolute;
+	position: fixed;
 	top: 20px;
 	left: 860px;
 	z-index: 9000;

@@ -60,8 +60,8 @@ Views = {
 			'<li class="rad5"><span class="number">1</span> Save the <strong>url</strong>.  It\'s your only way to get back to this page!' +
 			'<div class="instructional_marker first">1 <span>URL</span></div></li>' +
 			'<li class="rad5"><span class="number">2</span> The <strong>toolbar</strong> contains the page elements you will use.' +
-			'<div class="instructional_marker second">2 <span>Tools</span></div></li>' +
-			'<li class="rad5"><span class="number">3</span> Drag and drop elements on to the <strong>canvas</strong>.' +
+			'<div class="instructional_marker second">2 <span>Toolbar</span></div></li>' +
+			'<li class="rad5"><span class="number">3</span> Drag and drop elements from the toolbar onto the <strong>canvas</strong>.' +
 			'<div class="instructional_marker third">3 <span>Canvas</span></div></li>' +
 			'<li class="rad5"><span class="number">4</span> Set a name, project password, and new pages in <strong>settings</strong>.' +
 			'<div class="instructional_marker fourth">4 <span>Settings</span></div></li>' +
