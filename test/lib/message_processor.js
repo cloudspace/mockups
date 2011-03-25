@@ -378,6 +378,27 @@ exports.process = testCase({
 		});
 	},
 
+	"canvas_object_delete: ignores invalid canvas_object ids": function(test) {
+		var that = this;
+		Project.create(function(project) {
+			// assign client to project
+			that.client.user.project_id = project._id;
+			that.client.user.subscribe(project._id);
+			Page.create(project, function(page) {
+				CanvasObject.create(page, { canvas_object: {} }, function(canvas_object) {
+					// delete canvas object
+					MessageProcessor.process(that.client, { canvas_object_delete: { page: { id: 1 }, canvas_objects: [{ id: 1 }, { id: 0 }] } });
+
+					setTimeout(function() {
+						test.equal(that.client.sent.error, undefined);
+						test.notEqual(that.client.sent.canvas_object_delete, undefined);
+						test.done();
+					}, 500);
+				});
+			});
+		});
+	},
+
 	"user_update: changes a user's name": function(test) {
 		MessageProcessor.process(this.client, { user_update: { name: 'Doug' } });
 		test.equals(this.client.user.name, 'Doug');
