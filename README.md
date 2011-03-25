@@ -56,3 +56,9 @@ If you would like to help please follow our guidelines for adding features:
 
 * [Adrian Bravo](https://github.com/adrianbravo)
 * [Austin Flores](https://github.com/unflores)
+
+### Other Credits
+
+* [Michael Orr](https://github.com/imightbeinatree) was indispensible during much of the early planning stages.
+* [Roozbeh Megdhadi](http://www.roozbehmeghdadi.com/) provided us with a good deal of the design and helped a lot in making this app more usable.
+* A lot of inspiration was drawn from an earlier application that was developed through the good work done by our friends at [koombea](http://koombea.com/).
