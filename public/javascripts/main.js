@@ -194,7 +194,7 @@ $(document).ready(function(){
 			// TODO This 'tab' logic should really be abstracted. (check jquery ui)
 			$('#tools').show().siblings('div').hide();
 			$('#tabs h3:first').removeClass('inactive').siblings('h3').addClass('inactive');
-
+			if($('#expandcollapse').hasClass('collapsed')) $('#expandcollapse').click();
 			$('#canvas .canvas_object').hide();
 			$connected = $(Views.connected());
 
