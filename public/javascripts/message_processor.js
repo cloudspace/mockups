@@ -110,10 +110,6 @@ MessageProcessor = {
 	connected: function() {
 	},
 
-	announcement: function(data) {
-		new Growl(data);
-	},
-
 	message: function(data) {
 		new Growl(data);
 	},

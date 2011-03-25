@@ -366,7 +366,7 @@ exports.process = testCase({
 			Page.create(project, function(page) {
 				CanvasObject.create(page, { canvas_object: {} }, function(canvas_object) {
 					// delete canvas object
-					MessageProcessor.process(that.client, { canvas_object_delete: { page: { id: 1 }, canvas_object: { id: 0 } } });
+					MessageProcessor.process(that.client, { canvas_object_delete: { page: { id: 1 }, canvas_objects: [{ id: 0 }] } });
 
 					setTimeout(function() {
 						test.equal(that.client.sent.error, undefined);

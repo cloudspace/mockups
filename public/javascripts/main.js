@@ -1,28 +1,26 @@
 $(window).load(function() {
 
-	// Key bindings used so that users may delete mockup objects (with the delete key).
+	// Key bindings
+	// Referenced http://www.cambiaresearch.com/c4/702b8cd1-e5b0-42e6-83ac-25f0306e3e25/Javascript-Char-Codes-Key-Codes.aspx
 	$(document).keydown(function(e) {
 		last_key_pressed = e.keyCode || "";
 		if ($(document.activeElement).is('input, textarea') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return true;
-		//Key bindings from: http://www.cambiaresearch.com/c4/702b8cd1-e5b0-42e6-83ac-25f0306e3e25/Javascript-Char-Codes-Key-Codes.aspx
+
 		switch (e.keyCode) {
 			case 8:  // backspace key
 			case 46: // delete key
+				var canvas_objects = [];
 				$('#canvas .ui-selected').each(function() {
-					env.socket.send({
-					  canvas_object_delete: {
-							canvas_object: { id: $(this).attr('canvas_object_id') },
-							page:          { id: env.project.current_page }
-						}
-					});
+					canvas_objects.push({ id: $(this).attr('canvas_object_id') });
 				});
+				env.socket.send({ canvas_object_delete: { canvas_objects : canvas_objects, page : { id: env.project.current_page } } });
 				break;
 
-			//look at last_key_pressed
-			case 67://c implement copy mockup object
-			break;
-			case 86://v implement paste mockup object
-			break; 
+			// look at last_key_pressed
+			case 67:// c implement copy mockup object, may need to add ctrl as well
+				break;
+			case 86:// v implement paste mockup object
+				break; 
 			default:
 				return;
 		}
