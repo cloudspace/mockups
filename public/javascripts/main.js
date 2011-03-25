@@ -82,9 +82,9 @@ $(document).ready(function(){
 	});
 
 	// Handle user changing their display name.
-	// TODO move to User
 	$('#name_change').submit(function(){
 		env.socket.send({ user_update: { name: $('#display_name').val() } });
+		$.cookie('display_name', $('#display_name').val() );
 		$('#display_name').blur();
 		return false;
 	});
@@ -341,6 +341,13 @@ $(document).ready(function(){
 function reset_display_name() {
 	$('#display_name').val(env.display_name);
 }
+
+initialize_name = function(){
+	if($.cookie('display_name')){
+		$('#display_name').val($.cookie('display_name'));
+		$('#name_change').submit();
+	}
+};
 
 function load_hash(hash) {
 	if (hash) {

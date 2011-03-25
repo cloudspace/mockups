@@ -22,6 +22,7 @@ MessageProcessor = {
 		env.project.sync_mockup();
 		jQuery.history.load(env.project.current_page_path());
 		$('#project_display_name').val(project.name);
+		initialize_name();
 		show_connected_screen();
 	},
 
