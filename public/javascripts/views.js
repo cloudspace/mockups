@@ -5,7 +5,7 @@ Views = {
 	 return '<div id="reconnect">' +
 						'Attempting to reconnect in <span class="wait">' + initial_time + ' </span> seconds. <br><br>' +
 						'<form onsubmit="env.initialize_reconnect(); return false;">' +
-							'<input type="submit" value="Reconnect Now" />' +
+							'<input class="rad5 ui_button" type="submit" value="Reconnect Now" />' +
 						'</form>' +
 					'</div>';
 	},
