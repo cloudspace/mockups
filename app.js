@@ -74,8 +74,7 @@ io.on('connection', function(client){
 
 	client.on('disconnect', function(){
 		client.user.unsubscribe_all();
-		// TODO restrict this to a project
-		//client.broadcast({ announcement: client.user.ip + ' disconnected' });
+		//client.broadcast({ message: client.user.ip + ' disconnected' });
 	});
 });
 
