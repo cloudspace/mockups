@@ -40,7 +40,7 @@ Views = {
 				'<textarea id="content" name="content">' + content + '</textarea>' +
 				'<br />';
 		}
-		html += '<input type="submit" value="Apply" class="rad5 submit">' +
+		html += '<input type="submit" value="Apply" class="rad5 ui_button">' +
 			'<a class="delete" href="javascript:">delete this object</a>' +
 			'</form>';
 
@@ -69,7 +69,7 @@ Views = {
 	error_404: function(){
 		var html = '<div id="error_404">' +
 			'<p>Sorry, that project could not be found.</p>' +
-			'<p class="new_project"><a href="/" class="rad5">Create a new project.</a></p>' +
+			'<p class="new_project"><a href="/" class="rad5 light_button">Create a new project.</a></p>' +
 			'<div>';
 		return html;
 	},

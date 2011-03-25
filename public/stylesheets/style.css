@@ -26,6 +26,25 @@ a { text-decoration:none; color:#3c3c3c; }
 }
 #settings #set_password { margin-right: 16px; cursor: pointer; }
 
+.light_button{
+	background: #eeeeee; /* old browsers */
+	background: -moz-linear-gradient(top, #eeeeee 0%, #D6D6D6 49%, #BCBCBC 95%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(49%,#D6D6D6), color-stop(95%,#BCBCBC)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#BCBCBC',GradientType=0 ); /* ie */
+}
+.light_button:hover{
+	background: #D3D3D3; /* old browsers */
+	background: -moz-linear-gradient(top, #D3D3D3 0%, #BABABA 50%, #A0A0A0 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#D3D3D3), color-stop(50%,#BABABA), color-stop(100%,#A0A0A0)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D3D3D3', endColorstr='#A0A0A0',GradientType=0 ); /* ie */
+}
+.light_button:active{
+	background: #BCBCBC; /* old browsers */
+	background: -moz-linear-gradient(top, #BCBCBC 1%, #D6D6D6 50%, #EEEEEE 99%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#BCBCBC), color-stop(50%,#D6D6D6), color-stop(99%,#EEEEEE)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#BCBCBC', endColorstr='#EEEEEE',GradientType=0 ); /* ie */
+}
+
 .instructional_marker {
 	position: fixed; -moz-border-radius: 20px; -webkit-border-radius: 20px; height: 30px; width: 30px; margin-top: 0; line-height: 30px; text-align: center; font-weight: normal; font-size: 22px; background: #333; z-index:11000; color: #fff; padding: 3px;
 	-webkit-animation-name: zoom;
@@ -47,25 +66,22 @@ a { text-decoration:none; color:#3c3c3c; }
 #tabs #settings #mockup_pages li:hover { text-shadow: 0px 1px 1px white; background:none; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages li { position: relative; }
 #mockup_pages > :nth-child(even), #tabs #settings #mockup_pages > :nth-child(even):hover{background: #ccc;}
-#mockup_pages li, #add_page { padding: 0; height: 25px; }
 #floatingpanel #mockup_pages { border-top: 1px solid #888; border-bottom: 1px solid #888;height: 200px; overflow-y: scroll; background: #ddd; }
 #mockup_pages li a { display: inline-block; cursor: pointer; width: 145px; overflow: hidden; }
 #mockup_pages a { line-height: 17px; height: 20px; text-decoration: none; color: #777; overflow: hidden; }
 #mockup_pages a.selected { color: #000; font-weight: bold; }
 #mockup_pages .delete { cursor: pointer; position: absolute; top: 4px; right: 0; line-height: 20px; display: inline-block; vertical-align: top; }
-#mockup_pages li form.name_update input { margin-bottom: 0; margin-right: 0; height: 19px; width: 120px; background: white; border: none; color: black; text-decoration: none; }
+#mockup_pages li form.name_update input { margin: 3px 0px 6px -1px; height: 19px; width: 120px; background: white; border: none; color: black; text-decoration: none; }
 #mockup_pages li a.h, #mockup_pages li form input.h { display: none; }
-#add_page { cursor: pointer; margin: 0 0 5px 10px; color: #333;background: url("/images/plusicon.png") no-repeat scroll 150px 5px transparent;}
-#add_page:hover { color: #000;  }
 
+#add_page_wrapper{ margin: 5px 0 0 5px;}
 
 #error_404 { width: 350px; margin: 0 auto; padding: 200px 0; }
-#error_404 p { text-align: center; }
+#error_404 p { text-align: center; text-shadow: 2px 2px 2px black;  color: #fff; font-weight: bold;}
 #error_404 p.new_project a {
-	padding: 0px 10px;
-	border: solid 1px rgb(153, 153, 153);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255,255,255)), to(rgb(221,221,221)));
-	background: -moz-linear-gradient( center bottom, rgb(255,255,255) 0%, rgb(221,221,221) 100%);
+	padding: 3px 10px 5px;
+	line-height: 20px;
+	border: solid 1px #555;
 	color: #333;
 	text-decoration: none;
 	cursor: pointer;
@@ -75,6 +91,7 @@ a { text-decoration:none; color:#3c3c3c; }
 	line-height: 1;
 	-webkit-transition: -webkit-box-shadow .2s ease;
 	text-align: center;
+	margin-top: 20px;
 }
 
 #error_404 p:first {
