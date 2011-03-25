@@ -96,6 +96,7 @@ $(document).ready(function(){
 
 	
 	$('#mockup_pages .delete').live('click', function() {
+		try { _gaq.push(['_trackEvent', 'click', 'Page Delete']); } catch(err) {}
 		if ($('#mockup_pages .delete').length == 1) {
 			alert("You can't delete the last page on a project.");
 		} else {
@@ -104,6 +105,7 @@ $(document).ready(function(){
 	});
 
 	$('#add_page').live('click', function() {
+		try { _gaq.push(['_trackEvent', 'click', 'Page Create']); } catch(err) {}
 		env.socket.send({ page_create: true });
 	});
 
@@ -277,71 +279,63 @@ $(document).ready(function(){
 	});
 
 });
-	get_canvas_object_content = function(canvas_object_id){
-		var canvas_object = env.project.canvas_object(canvas_object_id);
-		return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
-	};
-	show_connected_screen = function(override){
 
-		if (!($.cookie('skipconnect') == 'true') || override) { 
-			var panel_pos = $('#floatingpanel').position(),
-			settings_pos  = { left: 180, top:30},
-			tools_pos     = { left: 115, top:160};
-			
-			$('body')
-				.append("<div class='instructional_marker first'>1 <span>URL</span></div>")
-				.append("<div class='instructional_marker second'>2 <span>Tools</span></div>")
-				.append("<div class='instructional_marker third'>3 <span>Canvas</span></div>")
-				.append("<div class='instructional_marker fourth'>4 <span>Settings</span></div>");
-			$('.fourth').css('left', settings_pos.left + panel_pos.left);
-			$('.fourth').css('top', settings_pos.top + panel_pos.top);
+function get_canvas_object_content(canvas_object_id) {
+	var canvas_object = env.project.canvas_object(canvas_object_id);
+	return canvas_object.content ? canvas_object.content : templates[canvas_object.template_id].default_content;
+};
 
-			$('.second').css('left', tools_pos.left + panel_pos.left);
-			$('.second').css('top', tools_pos.top + panel_pos.top);
+function show_connected_screen(override) {
+	if (!($.cookie('skipconnect') == 'true') || override) { 
+		var panel_pos = $('#floatingpanel').position(),
+		settings_pos  = { left: 180, top: 30 },
+		tools_pos     = { left: 115, top: 160 };
+		
+		$('#tabs h3:first').click();
+		if ($('#expandcollapse').hasClass('collapsed')) $('#expandcollapse').click();
 
-			// Force tab on tools
-			// TODO This 'tab' logic should really be abstracted. (check jquery ui)
-			$('#tools').show().siblings('div').hide();
-			$('#tabs h3:first').removeClass('inactive').siblings('h3').addClass('inactive');
-			if($('#expandcollapse').hasClass('collapsed')) $('#expandcollapse').click();
-			$('#canvas .canvas_object').hide();
-			$connected = $(Views.connected());
+		$('#canvas .canvas_object').hide();
+		$connected = $(Views.connected());
 
-			$connected
-				.dialog({
-					resizable: false,  
-					minHeight: 50,     
-					closeOnEscape: true,            
-					title: 'Welcome',
-					modal: true,       
-					zIndex: 10001,
-					minWidth: 450,
-					dialogClass: 'welcome',
-					close: close_connected_dialog 
-				}).find('form').submit(function() {
-					var checked = $(this).find('input[type=checkbox]').attr('checked');
-					if (checked) $.cookie('skipconnect', true);
-					else $.cookie('skipconnect',false);
-					close_connected_dialog();
-					return false;  
-				});
-		}
-	};
 
-	function close_connected_dialog(){
-		$('#canvas .canvas_object').show(); 
-		$('.connected').remove(); 
-		$('.ui-dialog').remove(); 
-		$('.instructional_marker').hide().remove(); 
+		$connected.dialog({
+			resizable: false,  
+			minHeight: 50,     
+			closeOnEscape: true,            
+			title: 'Welcome',
+			modal: true,       
+			zIndex: 10001,
+			minWidth: 550,
+			dialogClass: 'welcome',
+			close: close_connected_dialog 
+		}).find('form').submit(function() {
+			if ($(this).find('input[type=checkbox]').attr('checked')) $.cookie('skipconnect', true);
+			else $.cookie('skipconnect',false);
+
+			try { _gaq.push(['_trackEvent', 'click', 'Start Mocking']); } catch(err) {}
+			close_connected_dialog();
+			return false;  
+		});
+		$('.fourth').css('left', settings_pos.left + panel_pos.left);
+		$('.fourth').css('top', settings_pos.top + panel_pos.top);
+		$('.second').css('left', tools_pos.left + panel_pos.left);
+		$('.second').css('top', tools_pos.top + panel_pos.top);
 	}
+}
 
-// TODO move to User
+function close_connected_dialog() {
+	$('#canvas .canvas_object').show(); 
+	$('.connected').remove(); 
+	$('.ui-dialog').remove(); 
+	$('.instructional_marker').hide().remove(); 
+}
+
 function reset_display_name() {
 	$('#display_name').val(env.display_name);
 }
 
-initialize_name = function(){
-	if($.cookie('display_name')){
+function initialize_name() {
+	if ($.cookie('display_name')) {
 		$('#display_name').val($.cookie('display_name'));
 		$('#name_change').submit();
 	}
