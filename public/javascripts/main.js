@@ -89,7 +89,6 @@ $(document).ready(function(){
 
 	// Resets input field to current display_name.
 	// The only way this should get
-	// TODO move to User
 	$('#display_name').blur(function(){
 		reset_display_name();
 	});

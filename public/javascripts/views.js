@@ -100,7 +100,7 @@ Views = {
 	page: function(index, page){
 		var page_name = page.name ? page.name.replace('"', '&quot;') : '&nbsp;';
 		return '<li>' +
-			'<form page_id="' + index + '" class="name_update">' + // TODO remove h for current_page
+			'<form page_id="' + index + '" class="name_update">' +
 			'<a page_id="' + index + '" id="page_' + index + '" ' +
 			'   title="' + page_name + '" ' +
 			'   href="#' + env.project.page_path(index) + '">' + page_name + '</a>' +
