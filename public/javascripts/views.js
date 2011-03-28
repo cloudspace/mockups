@@ -20,25 +20,25 @@ Views = {
 	
 		if (attributes.height) {
 			html += '<label for="height">Height <span class="unit">(px)</span></label> ' +
-				'<input id="height" name="height" value="' + (canvas_object.height || parseInt($element.css('height'))) + '" type="text">' +
+				'<input maxlength=4 id="height" name="height" value="' + (canvas_object.height || parseInt($element.css('height'))) + '" type="text">' +
 				'<br>';
 		}
 		
 		if (attributes.width) {
 			html += '<label for="width">Width <span class="unit">(px)</span></label>' +
-				'<input id="width" name="width" value="' + (canvas_object.width || parseInt($element.css('width'))) + '" type="text">' +
+				'<input maxlength=4 id="width" name="width" value="' + (canvas_object.width || parseInt($element.css('width'))) + '" type="text">' +
 				'<br>';
 		}
 
 		if (attributes.fontsize) {
 			html += '<label for="font-size">Font Size <span class="unit">(px)</span> </label>' +
-				'<input id="font-size" name="fontsize" type="text" value="' + (canvas_object.fontsize || parseInt($element.css('font-size'))) + '">' +
+				'<input maxlength=4 id="font-size" name="fontsize" type="text" value="' + (canvas_object.fontsize || parseInt($element.css('font-size'))) + '">' +
 				'<br>';
 		}
 
 		if (attributes.content) {
 			html += '<label for="content">Content</label>' +
-				'<textarea id="content" name="content">' + content + '</textarea>' +
+				'<textarea maxlength=1024 id="content" name="content">' + content + '</textarea>' +
 				'<br>';
 		}
 
@@ -74,12 +74,14 @@ Views = {
 			'</form>' +
 			'</div>';
 	},
+
 	error_404: function() {
 		return '<div id="error_404">' +
 			'<p>Sorry, that project could not be found.</p>' +
 			'<p class="new_project"><a href="/" class="rad5 light_button">Create a new project.</a></p>' +
 			'<div>';
 	},
+
 	password_submit: function() {
 		return '<div id="submit_password">' +
 			'<form>' +
@@ -88,6 +90,7 @@ Views = {
 			'</form>' +
 			'</div>';
 	},
+
 	password_create: function() {
 		return '<div id="create_password"><div class="flash"></div>' +
 			'<form>' +
@@ -97,6 +100,7 @@ Views = {
 			'<form>' +
 			'</div>';
 	},
+
 	page: function(index, page) {
 		var page_name = page.name ? page.name.replace('"', '&quot;') : '&nbsp;';
 		return '<li>' +
