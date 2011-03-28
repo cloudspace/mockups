@@ -6,7 +6,23 @@ The goal of Cloudspace Mockups is to serve a way of creating and editing mockups
 
 ## Technical Description
 
-To make this all happen Cloudspace Mockups runs off of [node.js](http://nodejs.org/), using sockets to allow for the collaboration of many users.  The data is passed between the front-end and back-end as json and therefore is stored in [MongoDB](http://www.mongodb.org/). Static files are served in nginx in our default setup. Our buddy [Hudson](http://hudson-ci.org/) takes care of the continuous integration.
+To make this all happen Cloudspace Mockups runs off of [node.js](http://nodejs.org/), using sockets to allow for the collaboration of many users.  The data is passed between the front-end and back-end as json and therefore is stored in [MongoDB](http://www.mongodb.org/). Static files are served in nginx in our default setup. Our buddy [Jenkins](http://jenkins-ci.org/) takes care of the continuous integration.
+
+### Technologies Used
+
+* [node.js](http://nodejs.org)
+* [MongoDB](http://www.mongodb.org/)
+* [Nginx](http://wiki.nginx.org/)
+* [Jenkins Integration Server](http://jenkins-ci.org/)
+* [npm](http://npmjs.org/)
+* [nodeunit](https://github.com/caolan/nodeunit)
+* [Mongo DB Native](https://github.com/christkv/node-mongodb-native)
+* [Socket.IO](http://socket.io/)
+* [Capistrano](https://github.com/capistrano/capistrano/wiki)
+* [Chef](http://opscode.com/)
+* [EC2](http://aws.amazon.com/ec2/)
+* [Vagrant](http://vagrantup.com/)
+
 
 ## Cloudspace Mockups - Features
 
