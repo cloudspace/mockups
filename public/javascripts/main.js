@@ -211,7 +211,7 @@ $(document).ready(function(){
 		var password = $(this).find('#password').val();
 		$(this).siblings('.flash').remove();
 		$(this).find('input').blur();
-		var project_id = window.location.hash.split('/')[0].substring(1);
+		var project_id = window.location.hash.split('/')[1];
 		env.socket.send({ project_authorize: { id: project_id, password: password } });
 		return false;
 	});
@@ -345,12 +345,12 @@ function load_hash(hash) {
 	if (hash) {
 		hash = hash.split('/');
 		if (typeof env.project == 'undefined') {
-			env.socket.send({ project_find: { id: hash[0], hash: hash[1] } });
-		} else if (env.project.id != hash[0]) {
+			env.socket.send({ project_find: { id: hash[1], hash: hash[2] } });
+		} else if (env.project.id != hash[1]) {
 			env.project = undefined;
-			env.socket.send({ project_find: { id: hash[0], hash: hash[1] } });
+			env.socket.send({ project_find: { id: hash[1], hash: hash[2] } });
 		} else {
-			env.project.select_page(hash[2]);
+			env.project.select_page(hash[3]);
 		}
 	} else {
 		env.project = undefined;

@@ -7,14 +7,14 @@ function Project(project_data){
 	this.name  = project_data.name;
 	this.id    = project_data._id;
 	this.hash  = project_data.hash;
-	this.path  = this.id + '/' + this.hash;
+	this.path  = '/' + this.id + '/' + this.hash;
 
 	// reset any bindings
 	$('#project_name_change').unbind('submit').submit(function(){
 		var project_name_input = $(this).find('input');
-    env.socket.send({ project_update: { name: project_name_input.val() } });
+		env.socket.send({ project_update: { name: project_name_input.val() } });
 		project_name_input.val(that.name);
-    project_name_input.blur();
+		project_name_input.blur();
 		return false;
 	});
 };
