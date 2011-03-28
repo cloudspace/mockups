@@ -31,7 +31,7 @@ $(window).load(function() {
 
 });
 
-$(document).ready(function(){
+$(document).ready(function() {
   $connecting = $(Views.connecting());
 	$connecting
 		.dialog({
@@ -46,7 +46,7 @@ $(document).ready(function(){
 	env.connect();
 
 	$('#settings').hide();
-	$('#tabs h3').click(function(){
+	$('#tabs h3').click(function() {
 		var id = $(this).html().toLowerCase();
 		$('div#' + id).show().siblings('div').hide();
 		$(this).removeClass('inactive').siblings('h3').addClass('inactive');
@@ -64,13 +64,13 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#expandcollapse").click(function(){
+	$("#expandcollapse").click(function() {
 		$("#tabs").slideToggle(300);
 		$(this).toggleClass('collapsed');
 		$(this).hasClass('collapsed') ? $(this).html('+') : $(this).html('&ndash;');
 	});
 	
-	$('#help').live('click', function(e){
+	$('#help').live('click', function(e) {
 		show_connected_screen(true);
 	});
 	
@@ -80,7 +80,7 @@ $(document).ready(function(){
 	});
 
 	// Handle user changing their display name.
-	$('#name_change').submit(function(){
+	$('#name_change').submit(function() {
 		env.socket.send({ user_update: { name: $('#display_name').val() } });
 		$.cookie('display_name', $('#display_name').val() );
 		$('#display_name').blur();
@@ -89,7 +89,7 @@ $(document).ready(function(){
 
 	// Resets input field to current display_name.
 	// The only way this should get
-	$('#display_name').blur(function(){
+	$('#display_name').blur(function() {
 		reset_display_name();
 	});
 
@@ -121,7 +121,7 @@ $(document).ready(function(){
 	});
 
 
-	$('#mockup_pages li form.name_update').live('submit', function(){
+	$('#mockup_pages li form.name_update').live('submit', function() {
 		var $page_name_input = $(this).find('input'), page_id = $(this).attr('page_id');
 		if ($page_name_input.val() == "") return false;
 		env.socket.send({
@@ -139,7 +139,7 @@ $(document).ready(function(){
 	});
 
 
-	$('form.canvas_object_update').live('submit',function(e){
+	$('form.canvas_object_update').live('submit',function(e) {
 			var canvas_object = env.project.canvas_object($(this).attr('canvas_object_id'));
 			env.socket.send({
 				canvas_object_update: {

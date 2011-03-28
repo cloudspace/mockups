@@ -1,4 +1,4 @@
-function Project(project_data){
+function Project(project_data) {
 	var that = this;
 
 	// set this objs
@@ -10,7 +10,7 @@ function Project(project_data){
 	this.path  = '/' + this.id + '/' + this.hash;
 
 	// reset any bindings
-	$('#project_name_change').unbind('submit').submit(function(){
+	$('#project_name_change').unbind('submit').submit(function() {
 		var project_name_input = $(this).find('input');
 		env.socket.send({ project_update: { name: project_name_input.val() } });
 		project_name_input.val(that.name);
@@ -24,13 +24,13 @@ Project.prototype.canvas_object = function(id) {
 };
 
 Project.prototype.find_page_id_by_name = function(name) {
-	for(var i in this.pages){ 
-		if(this.pages[i] != undefined && this.pages[i].name == name){ return i; }
+	for (var i in this.pages) { 
+		if (this.pages[i] != undefined && this.pages[i].name == name) { return i; }
 	}
 	return undefined;
 };
 
-Project.prototype.page_path = function( page_index ){
+Project.prototype.page_path = function( page_index ) {
 	return this.path + '/' + page_index;
 };
 
@@ -67,7 +67,7 @@ Project.prototype.select_page = function(page_id) {
 };
 
 //set page items
-Project.prototype.sync_mockup = function(property){
+Project.prototype.sync_mockup = function(property) {
 	if (property == undefined) {
 		this.sync_name();
 		this.sync_pages();
@@ -90,21 +90,21 @@ Project.prototype.sync_name = function() {
 	$('#project_name_change').find('input').val(this.name);
 };
 
-Project.prototype.update_name = function(data){
+Project.prototype.update_name = function(data) {
 	this.name = data.name;
 	this.sync_name();
 };
 
-Project.prototype.update_page_name = function(page){
+Project.prototype.update_page_name = function(page) {
 	this.pages[page.id].name = page.name;
 	this.sync_pages(this.current_page);
 };
 
-Project.prototype.open_input_box = function($target){
+Project.prototype.open_input_box = function($target) {
 	$target.addClass('h').siblings('input').removeClass('h').focus();
 };
 
-Project.prototype.set_canvas_object = function(new_canvas_object){
+Project.prototype.set_canvas_object = function(new_canvas_object) {
 	var page_id = new_canvas_object.page.id;
 	delete new_canvas_object.page;
 

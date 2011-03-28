@@ -49,11 +49,11 @@ Views = {
 		return html;
 	},
 
-	connecting: function(){
+	connecting: function() {
 		return '<div id="connecting"><div id="wait"></div><p>Connecting to the Cloudspace Mockups.</p></div>';
 	},
 
-	connected: function(){
+	connected: function() {
 		return '<div id="connected" class="connected">' +
 			'<h2>Cloudspace Mockups <sup>alpha</sup></h2>' +
 			'<ol>' +
@@ -74,13 +74,13 @@ Views = {
 			'</form>' +
 			'</div>';
 	},
-	error_404: function(){
+	error_404: function() {
 		return '<div id="error_404">' +
 			'<p>Sorry, that project could not be found.</p>' +
 			'<p class="new_project"><a href="/" class="rad5 light_button">Create a new project.</a></p>' +
 			'<div>';
 	},
-	password_submit: function(){
+	password_submit: function() {
 		return '<div id="submit_password">' +
 			'<form>' +
 			'<label for="password">Password</label> <input type="password" id="password" /><br/>' +
@@ -88,7 +88,7 @@ Views = {
 			'</form>' +
 			'</div>';
 	},
-	password_create: function(){
+	password_create: function() {
 		return '<div id="create_password"><div class="flash"></div>' +
 			'<form>' +
 			'<label for="password">Password</label> <input type="password" id="password"/> <br/>' +
@@ -97,7 +97,7 @@ Views = {
 			'<form>' +
 			'</div>';
 	},
-	page: function(index, page){
+	page: function(index, page) {
 		var page_name = page.name ? page.name.replace('"', '&quot;') : '&nbsp;';
 		return '<li>' +
 			'<form page_id="' + index + '" class="name_update">' +

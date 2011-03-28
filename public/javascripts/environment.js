@@ -1,11 +1,11 @@
-Environment = function(){
+Environment = function() {
 	this.connected = false;
 	this.socket;
 	this.project;
 	var that = this;
 };
 
-Environment.prototype.connect = function(){
+Environment.prototype.connect = function() {
 	var that = this;
 
 	this.socket = new io.Socket(null, { port: 8080, rememberTransport: true, tryTransportsOnConnectTimeout: true });
@@ -24,7 +24,7 @@ Environment.prototype.connect = function(){
 		reset_display_name();
 		$.history.init(load_hash, { 'unescape': '/' });
 	})
-	.on('disconnect', function(){
+	.on('disconnect', function() {
 		delete that.project;
 		$('#canvas').html('');
 		$('.canvas_object_edit').remove();
@@ -50,19 +50,19 @@ Environment.prototype.attempt_reconnect = function() {
 	if (this.socket.connected == true) return;
 	var that = this;
 
-	this.reconnect_timer = setTimeout(function(){
+	this.reconnect_timer = setTimeout(function() {
 		that.attempt_reconnect.call(that);
 	}, this.reset_time + 2000);
 
 	this.hide_countdown();
-	this.show_countdown_timer = setTimeout(function(){
+	this.show_countdown_timer = setTimeout(function() {
 		that.show_countdown.call(that);
 	}, 2000);
 
 	this.socket.connect();
 };
 
-Environment.prototype.show_countdown = function(){
+Environment.prototype.show_countdown = function() {
 	$('#reconnect').dialog('destroy').remove();
 	$(Views.reconnect( Math.ceil((this.reset_time + 1000) / 1000) )).dialog({
 		title: 'Connection Lost',
@@ -74,7 +74,7 @@ Environment.prototype.show_countdown = function(){
 	this.reset_time = this.reset_time * 2 < 30000 ? this.reset_time * 2 : 30000;
 };
 
-Environment.prototype.hide_countdown = function(){
+Environment.prototype.hide_countdown = function() {
 	$('#reconnect').dialog('destroy').remove();
 	$('<div id="reconnect">Reconnecting.<br/><div id="wait"></div></div>').dialog({
 		title: 'Connection Lost',
@@ -85,7 +85,7 @@ Environment.prototype.hide_countdown = function(){
 	});
 };
 
-Environment.prototype.countdown = function(){
+Environment.prototype.countdown = function() {
 	if (this.socket.connected == true) return;
 	var time_span = $("#reconnect .wait"),
 			that = this,
@@ -93,8 +93,8 @@ Environment.prototype.countdown = function(){
 
 	time = time > 0 ? time - 1 : 0;
 	time_span.text(time);
-	this.countdown_timer = setTimeout(function(){
+	this.countdown_timer = setTimeout(function() {
 		that.countdown.call(that);
-	},1000);
+	}, 1000);
 };
 
