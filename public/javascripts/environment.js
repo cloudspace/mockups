@@ -63,6 +63,7 @@ Environment.prototype.attempt_reconnect = function() {
 };
 
 Environment.prototype.show_countdown = function() {
+	if($('#error_404')) return;
 	$('#reconnect').dialog('destroy').remove();
 	$(Views.reconnect( Math.ceil((this.reset_time + 1000) / 1000) )).dialog({
 		title: 'Connection Lost',
@@ -75,6 +76,7 @@ Environment.prototype.show_countdown = function() {
 };
 
 Environment.prototype.hide_countdown = function() {
+	if($('#error_404')) return;
 	$('#reconnect').dialog('destroy').remove();
 	$('<div id="reconnect">Reconnecting.<br/><div id="wait"></div></div>').dialog({
 		title: 'Connection Lost',
