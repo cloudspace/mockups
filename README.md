@@ -53,7 +53,7 @@ These are the features that we are planning on introducing.
 10. Upload images
 11. Auto-resizing text
 12. Layered canvas objects
-
+13. Delete Multiple items
 ### Guidelines
 
 If you would like to help please follow our guidelines for adding features:
