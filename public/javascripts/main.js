@@ -13,7 +13,6 @@ $(document).ready(function() {
 				
 				if(canvas_object_id = $('#canvas .ui-selected').first().attr('canvas_object_id')){
 					canvas_objects.push({ id: canvas_object_id });
-					console.log(canvas_objects);
 					env.socket.send({ canvas_object_delete: { canvas_objects : canvas_objects, page : { id: env.project.current_page } } });
 				}
 				break;
@@ -162,15 +161,14 @@ $(document).ready(function() {
 	});
 
 	$('.canvas_object_edit .delete').live('click', function(e) {
+		var message = {
+			canvas_object_delete: {
+				canvas_objects: [{ id: $(this).parents('form').attr('canvas_object_id') }],
+				page:          { id: env.project.current_page }
+			}
+		};
+		env.socket.send(message);
 		$('.canvas_object_edit').remove();
-		$(this).each(function() {
-			env.socket.send({
-				canvas_object_delete: {
-					canvas_object: { id: $(this).parents('form').attr('canvas_object_id') },
-					page:          { id: env.project.current_page }
-				}
-			});
-		});
 		return false;
 	});
 	
