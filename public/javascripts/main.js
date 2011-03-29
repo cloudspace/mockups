@@ -9,11 +9,13 @@ $(document).ready(function() {
 		switch (e.keyCode) {
 			case 8:  // backspace key
 			case 46: // delete key
-				var canvas_objects = [];
-				$('#canvas .ui-selected').each(function() {
-					canvas_objects.push({ id: $(this).attr('canvas_object_id') });
-				});
-				env.socket.send({ canvas_object_delete: { canvas_objects : canvas_objects, page : { id: env.project.current_page } } });
+				var canvas_objects = [], canvas_object_id;
+				
+				if(canvas_object_id = $('#canvas .ui-selected').first().attr('canvas_object_id')){
+					canvas_objects.push({ id: canvas_object_id });
+					console.log(canvas_objects);
+					env.socket.send({ canvas_object_delete: { canvas_objects : canvas_objects, page : { id: env.project.current_page } } });
+				}
 				break;
 
 			// look at last_key_pressed
