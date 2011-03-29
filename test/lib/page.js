@@ -27,7 +27,6 @@ exports.page = testCase({
 	},
 
 	tearDown: function (callback) {
-		db.close();
 		callback();
 	},
 

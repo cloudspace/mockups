@@ -28,7 +28,6 @@ exports.canvas_object = testCase({
 	},
 
 	tearDown: function (callback) {
-		db.close();
 		callback();
 	},
 

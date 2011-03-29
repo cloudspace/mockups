@@ -15,7 +15,6 @@ exports.project = testCase({
 	},
 
 	tearDown: function (callback) {
-		db.close();
 		callback();
 	},
 
