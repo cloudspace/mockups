@@ -9,10 +9,12 @@ $(document).ready(function() {
 		switch (e.keyCode) {
 			case 8:  // backspace key
 			case 46: // delete key
-				var canvas_objects = [], canvas_object_id;
+				var canvas_objects = [];
 				
-				if(canvas_object_id = $('#canvas .ui-selected').first().attr('canvas_object_id')){
-					canvas_objects.push({ id: canvas_object_id });
+				$('#canvas .ui-selected').each( function(index,ele){
+					canvas_objects.push({ "id" : $(ele).attr("canvas_object_id")});
+				});	
+				if(canvas_objects.length > 0){
 					env.socket.send({ canvas_object_delete: { canvas_objects : canvas_objects, page : { id: env.project.current_page } } });
 				}
 				break;
@@ -116,6 +118,7 @@ $(document).ready(function() {
 
 
 	$('#mockup_pages .name_update input').live('blur', function(e) {
+		if(env.project == undefined) return;
 		var $tgt = $(e.target), page_id = $tgt.parent().attr('page_id');
 		$tgt.addClass('h').siblings('a').removeClass('h');
 		$tgt.val(env.project.pages[page_id].name);
