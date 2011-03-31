@@ -22,18 +22,20 @@ ssh_options[:forward_agent] = true
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
 		run "rm /var/db/mongodb/mongod.lock" if file_exists?("/var/db/mongodb/mongod.lock") and not running?("mongod")
-		run "start mongo"
+		run "/etc/init.d/mongodb start"
 		run "start #{application}"
   end
 
   task :stop, :roles => :app, :except => { :no_release => true } do
     run "stop #{application}"
-		run "stop mongo"
+		run "/etc/init.d/mongodb stop"
   end
 
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "restart #{application} || #{try_sudo :as => 'root'} start #{application}"
-  end
+  	run "/etc/init.d/mongodb restart"
+	end
+	
 	task :check_dependencies, :roles => :app do
 			to_screen "Checking dependencies..."
 			to_screen "Mongo is not installed"  unless installed? "mongo"
@@ -81,7 +83,7 @@ UPSTART
 				export HOME="/home/#{admin_runner}"
 
 				cd #{current_path}
-				exec sudo -u root sh -c "mongod"
+				exec sudo -u root sh -c "mongod --syncdelay 60 --config /etc/mongodb.conf"
 		end script
 
 		respawn
